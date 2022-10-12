@@ -27,7 +27,10 @@
             if (isset($_GET['erreur'])) {
                 if ($_GET['erreur'] == 1)
                     echo 'erreur ! login indisponible';
-                else
+                else if ($_GET['erreur'] == 2) {
+                    echo 'i 8 caractères minimum avec au moins une lettre minuscule, 
+                    une lettre majuscule, un chiffre et un caractère spécial';
+            } else
                     echo 'erreur ! les mots de passe ne correspondent pas';
             }
 
@@ -39,7 +42,8 @@
             <INPUT type="password" NAME="mdp"> 
             <p>comfirmer le mot de passe</p> 
             <INPUT type="password" NAME="conf_mdp"> 
-            <br/>
+            <p>i 8 caractères minimum avec au moins une lettre minuscule, 
+            <br/>une lettre majuscule, un chiffre et un caractère spécial</p> 
             <INPUT CLASS="bouton_co_ins" TYPE="SUBMIT" NAME="bouton" value="s\'inscrire"> 
             </FORM>';
         }
