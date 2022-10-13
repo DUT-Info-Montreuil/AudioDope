@@ -31,7 +31,7 @@
             $correctSize = strlen($_POST['mdp']) >= 8;
             return $containsLowerCaseLetter && $containsUpperCaseLetter && $containsDigit && $containsSpecial && $correctSize;
         }
-
+        
         public function connexion() {
             if (!$this->verif_token())
                 return 1;
@@ -49,11 +49,11 @@
         public function creation_token() {
             $bytes = random_bytes(20);
             $_SESSION['token'] = bin2hex($bytes);
-            $_SESSION['token_date'] = time();
+            $_SESSION['token_time'] = time();
         }
 
         public function verif_token() {
-            return strcmp($_POST['token'], $_SESSION['token']) == 0 && time() - $_SESSION['token_date'] < 900;
+            return strcmp($_POST['token'], $_SESSION['token']) == 0 && time() - $_SESSION['token_time'] < 900;
         }
     }
 ?>
