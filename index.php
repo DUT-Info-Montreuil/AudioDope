@@ -1,5 +1,8 @@
 <?php
     session_start();
+
+	define ("lala", "layn");
+
     include_once('connexion.php');
 	include_once('modules/mod_connexion/mod_connexion.php');
 	include_once('composants/comp_menu/comp_menu.php');

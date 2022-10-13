@@ -1,4 +1,8 @@
 <?php
+
+    if (constant("lala") != "layn")
+        die("wrong constant");
+
     class VueGenerique {
 
         public function __construct() {
