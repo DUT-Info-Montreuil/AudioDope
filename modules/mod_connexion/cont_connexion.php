@@ -1,4 +1,9 @@
 <?php
+
+
+    if (constant("lala") != "layn")
+        die("wrong constant");
+
     include_once('modele_connexion.php');
     include_once('vue_connexion.php');
     
