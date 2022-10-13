@@ -1,4 +1,8 @@
 <?php
+
+    if (constant("lala") != "layn")
+        die("wrong constant");
+
     include_once('cont_menu.php');
 
     class CompMenu {

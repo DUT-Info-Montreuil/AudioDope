@@ -1,4 +1,9 @@
 <?php
+
+
+    if (constant("lala") != "layn")
+        die("wrong constant");
+
     include_once('vue_generique.php');
     
     class VueMenu extends VueGenerique {

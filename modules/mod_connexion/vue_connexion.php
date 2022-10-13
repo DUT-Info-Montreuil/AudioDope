@@ -1,4 +1,8 @@
 <?php
+
+    if (constant("lala") != "layn")
+        die("wrong constant");
+
     include_once('vue_generique.php');
 
     class VueConnexion extends VueGenerique {
@@ -9,16 +13,6 @@
 
         public function menu() {
             echo "<a href=\"index.php?module=connexion&action=form_inscription\">s'inscrire</a><br/>";
-        }
-
-        public function affiche_liste($tab) {
-            foreach ($tab as &$value) {
-                echo "id = ".$value["id"]." nom = <a href=\"index.php?module=joueurs&action=details&id=".$value["id"]."\">".$value["nom"]."</a><br/>";
-            }
-        }
-
-        public function affiche_details($details) {
-            echo $details->fetch()['details'];
         }
 
         public function form_inscription() {
