@@ -16,7 +16,7 @@
                 return 3;
             } else {
                 $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
-                $sql = 'INSERT INTO utilisateurs VALUES(NULL, ?, ?, 0, 0)';
+                $sql = 'INSERT INTO utilisateurs VALUES(NULL, ?, ?)';
                 $statement = self::$bdd->prepare($sql);
                 $statement->execute(array($_POST['login'], $mdp));
             }
@@ -29,8 +29,6 @@
             $containsDigit   = preg_match('/\d/', $_POST['mdp']);
             $containsSpecial = preg_match('/[^a-zA-Z\d]/', $_POST['mdp']);
             $correctSize = strlen($_POST['mdp']) >= 8;
-            global $string;
-            $string = $containsLowerCaseLetter.$containsUpperCaseLetter.$containsDigit.$containsSpecial.$correctSize;
             return $containsLowerCaseLetter && $containsUpperCaseLetter && $containsDigit && $containsSpecial && $correctSize;
         }
 
