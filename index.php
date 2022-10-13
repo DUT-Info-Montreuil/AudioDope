@@ -5,7 +5,6 @@
 	include_once('composants/comp_menu/comp_menu.php');
 	Connexion::initConnexion();
 	$affichage;
-	$string;
 	if (isset($_GET['module'])) {
 		switch($_GET['module']) {
 			case 'connexion' : new ModConnexion(); break;
@@ -13,8 +12,6 @@
 		}
 	}
 	$menu = new CompMenu();
-	global $string;
-	var_dump($string);
 	include_once('template.php');
 ?>
 

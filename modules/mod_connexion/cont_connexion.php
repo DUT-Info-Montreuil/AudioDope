@@ -22,7 +22,10 @@
         public function inscription() {
             $confirmation = $this->modele->inscription();
             if ($confirmation != null) {
-                header("Location: index.php?module=connexion&action=form_inscription&erreur=$confirmation");
+                if ($confirmation == 1)
+                    $this->vue->session_expiree();
+                else
+                    header("Location: index.php?module=connexion&action=form_inscription&erreur=$confirmation");
             } else {
                 $this->vue->confirmation_inscription();
             }
@@ -35,10 +38,14 @@
 
         public function connexion() {
             $confirmation = $this->modele->connexion();
-            if ($confirmation == 1) {
-                header('Location: index.php?module=connexion&action=form_connexion&erreur=null');
-            } else if ($confirmation == 2) {
-                $this->vue->deja_connecte();
+            if ($confirmation != null) {
+                if ($confirmation == 1) {
+                    $this->vue->session_expiree();
+                } else if ($confirmation == 2) {
+                    header("Location: index.php?module=connexion&action=form_connexion&erreur=null");
+                } else {
+                    $this->vue->deja_connecte();
+                }
             } else {
                 $this->vue->confirmation_connexion();
             }
