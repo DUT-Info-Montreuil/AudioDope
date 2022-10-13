@@ -29,7 +29,7 @@
                     echo 'erreur ! login indisponible';
                 else if ($_GET['erreur'] == 3) {
                     echo 'i 8 caractères minimum avec au moins une lettre minuscule, 
-                    une lettre majuscule, un chiffre et un caractère spécial';
+                    une lettre majuscule, un chiffre';
                 } else
                     echo 'erreur ! les mots de passe ne correspondent pas';
             }
@@ -43,7 +43,7 @@
             <p>comfirmer le mot de passe</p> 
             <INPUT type="password" NAME="conf_mdp"> 
             <p>i 8 caractères minimum avec au moins une lettre minuscule, 
-            <br/>une lettre majuscule, un chiffre et un caractère spécial</p> 
+            <br/>une lettre majuscule, un chiffre</p> 
             <INPUT CLASS="bouton_co_ins" TYPE="SUBMIT" NAME="bouton" value="s\'inscrire"> 
             </FORM>';
         }

@@ -27,9 +27,8 @@
             $containsLowerCaseLetter  = preg_match('/[a-z]/', $_POST['mdp']);
             $containsUpperCaseLetter  = preg_match('/[A-Z]/', $_POST['mdp']);
             $containsDigit   = preg_match('/\d/', $_POST['mdp']);
-            $containsSpecial = preg_match('/[^a-zA-Z\d]/', $_POST['mdp']);
             $correctSize = strlen($_POST['mdp']) >= 8;
-            return $containsLowerCaseLetter && $containsUpperCaseLetter && $containsDigit && $containsSpecial && $correctSize;
+            return $containsLowerCaseLetter && $containsUpperCaseLetter && $containsDigit && $correctSize;
         }
 
         public function connexion() {
