@@ -4,10 +4,17 @@
         die("wrong constant");
 
     class Connexion {
-        protected static $bdd;
 
+        static protected $bdd;
+
+        static private $id = "dutinfopw201625";
+        static private $dbname = "dutinfopw201625";
+        static private $mdp = "razamaqe";
+        static private $adress = "database-etudiants.iut.univ-paris8.fr";
+            
         public static function initConnexion() {
-            self::$bdd = new PDO ('mysql:dbname=dutinfopw201652;host=database-etudiants.iut.univ-paris8.fr','dutinfopw201652', 'suzasasa');
+            self :: $bdd = new PDO ('mysql:host='.self::$adress.';dbname='.self::$dbname.'', self::$id, self::$mdp);
+            
         }
     }
 ?>

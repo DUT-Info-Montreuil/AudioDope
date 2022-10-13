@@ -10,7 +10,7 @@
         public function inscription() {
             if (!$this->verif_token())
                 return 1;
-            $verif_login = self::$bdd->prepare('select * from utilisateurs where login = ?');
+            $verif_login = self::$bdd->prepare('select * from Utilisateurs where login = ?');
             $verif_login->execute(array($_POST['login']));
             if ($verif_login->rowCount() > 0) {
                 return 2;
@@ -20,7 +20,7 @@
                 return 4;
             } else {
                 $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
-                $sql = 'INSERT INTO utilisateurs VALUES(NULL, ?, ?)';
+                $sql = 'INSERT INTO Utilisateurs VALUES(NULL, ?, ?, 0, 1)';
                 $statement = self::$bdd->prepare($sql);
                 $statement->execute(array($_POST['login'], $mdp));
             }
@@ -38,14 +38,13 @@
         public function connexion() {
             if (!$this->verif_token())
                 return 1;
-            $sql = 'select * from utilisateurs where login = ?';
+            if (isset($_SESSION['login']))
+                return 2;
+            $sql = 'select * from Utilisateurs where login = ?';
             $verif_login = self::$bdd->prepare($sql);
             $verif_login->execute(array($_POST['login']));
-            if ($verif_login->rowCount() == 0 || !password_verify($_POST['mdp'], $verif_login->fetch()['motDePasse'])) {
-                return 2;
-            } else if (isset($_SESSION['login'])) {
+            if ($verif_login->rowCount() == 0 || !password_verify($_POST['mdp'], $verif_login->fetch()['password']))
                 return 3;
-            }
             $_SESSION['login'] = $_POST['login'];
         }
 

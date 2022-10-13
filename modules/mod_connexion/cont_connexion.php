@@ -47,9 +47,9 @@
                 if ($confirmation == 1) {
                     $this->vue->session_expiree();
                 } else if ($confirmation == 2) {
-                    header("Location: index.php?module=connexion&action=form_connexion&erreur=null");
-                } else {
                     $this->vue->deja_connecte();
+                } else {
+                    header("Location: index.php?module=connexion&action=form_connexion&erreur=null");
                 }
             } else {
                 $this->vue->confirmation_connexion();
