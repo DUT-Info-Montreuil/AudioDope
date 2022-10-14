@@ -8,7 +8,7 @@
 <HTML>
 	<HEAD>
 		<META CHARSET="UTF-8"/>
-		<TITLE>AudioDope</TITLE>
+		<TITLE>MVC</TITLE>
 		<LINK href="style.css" rel="stylesheet" type="text/css"> 
 	</HEAD>
 	<BODY>
@@ -25,7 +25,7 @@
 			?>
 		</MAIN>
 		<FOOTER>
-			<p>AudioDope - 2022 Tous droits réservés</p>
+			<p>MVC - 2022 Tous droits réservés</p>
 			<p>Mentions Légales · Politique de Protection des Données · Politique de cookies</p>
 		</FOOTER>
 	</BODY>
