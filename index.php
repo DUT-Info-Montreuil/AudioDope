@@ -11,6 +11,7 @@
 	if (isset($_GET['module'])) {
 		switch($_GET['module']) {
 			case 'connexion' : new ModConnexion(); break;
+			case 'profil' : new ModProfil(); break;
 			default : break;
 		}
 	}
