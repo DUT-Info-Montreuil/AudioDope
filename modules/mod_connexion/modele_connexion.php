@@ -7,6 +7,10 @@
 
     class ModeleConnexion extends Connexion {
 
+        public function deconnexion() {
+            unset($_SESSION['login']);
+            unset($_SESSION['idUser']);
+        }
         public function inscription() {
             if (!$this->verif_token())
                 return 1;
