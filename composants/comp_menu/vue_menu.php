@@ -15,7 +15,7 @@
         }   
 
         public function menu() {
-            $this->affichage = "<a href=\"index.php\"><h1>AudioDope</h1></a>";
+            $this->affichage = "<a href=\"index.php?module=accueil\"><h1>AudioDope</h1></a>";
 			if (isset($_SESSION['login'])) {
                 $this->affichage = $this->affichage." <a href=\"index.php?module=profil&action=voir_profil&idUser=".$_SESSION['idUser']."\">Profil</a>";
 				$this->affichage = $this->affichage." <a href=\"index.php?module=connexion&action=deconnexion\">Se déconnecter</a>";
