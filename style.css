@@ -35,6 +35,16 @@ main {
 	text-align: center;
 }
 
+#pseudo {
+	border: 1px black solid;
+	display: inline-block;
+}
+
+#abo {
+	border: 1px black solid;
+	display: inline-block;
+}
+
 .bouton_co_ins {
     margin: 10px;
 }
