@@ -1,4 +1,8 @@
 <?php
+
+    if (constant("lala") != "layn")
+        die("wrong constant");
+
     include_once('vue_generique.php');
 
     class VueConnexion extends VueGenerique {
@@ -11,26 +15,16 @@
             echo "<a href=\"index.php?module=connexion&action=form_inscription\">s'inscrire</a><br/>";
         }
 
-        public function affiche_liste($tab) {
-            foreach ($tab as &$value) {
-                echo "id = ".$value["id"]." nom = <a href=\"index.php?module=joueurs&action=details&id=".$value["id"]."\">".$value["nom"]."</a><br/>";
-            }
-        }
-
-        public function affiche_details($details) {
-            echo $details->fetch()['details'];
-        }
-
         public function form_inscription() {
             echo '<h1>Inscription</h1>';
 
             if (isset($_GET['erreur'])) {
-                if ($_GET['erreur'] == 1)
+                if ($_GET['erreur'] == 2)
                     echo 'erreur ! login indisponible';
-                else if ($_GET['erreur'] == 2) {
+                else if ($_GET['erreur'] == 3) {
                     echo 'i 8 caractères minimum avec au moins une lettre minuscule, 
                     une lettre majuscule, un chiffre et un caractère spécial';
-            } else
+                } else
                     echo 'erreur ! les mots de passe ne correspondent pas';
             }
 
@@ -78,9 +72,8 @@
             echo 'deconnexion confirmée';
         }
 
-        public function deja_connecte() {
-            $login = htmlspecialchars($_SESSION['login']);
-            echo "Vous êtes déjà connecté sous l’identifiant $login <a href=\"index.php?module=connexion&action=deconnexion\">Se déconnecter</a>";
+        public function session_expiree() {
+            echo "session expirée";
         }
     }
 ?>

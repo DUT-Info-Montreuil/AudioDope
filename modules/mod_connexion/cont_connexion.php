@@ -1,4 +1,9 @@
 <?php
+
+
+    if (constant("lala") != "layn")
+        die("wrong constant");
+
     include_once('modele_connexion.php');
     include_once('vue_connexion.php');
     
@@ -22,30 +27,42 @@
         public function inscription() {
             $confirmation = $this->modele->inscription();
             if ($confirmation != null) {
-                header("Location: index.php?module=connexion&action=form_inscription&erreur=$confirmation");
+                if ($confirmation == 1)
+                    $this->vue->session_expiree();
+                else
+                    header("Location: index.php?module=connexion&action=form_inscription&erreur=$confirmation");
             } else {
                 $this->vue->confirmation_inscription();
             }
         }
 
         public function form_connexion() {
-            $this->modele->creation_token();
-            $this->vue->form_connexion();
+            if (isset($_SESSION['login'])) {
+                $this->vue->deja_connecte();
+            } else {
+                $this->modele->creation_token();
+                $this->vue->form_connexion();
+            }
+            
         }
 
         public function connexion() {
             $confirmation = $this->modele->connexion();
-            if ($confirmation == 1) {
-                header('Location: index.php?module=connexion&action=form_connexion&erreur=null');
-            } else if ($confirmation == 2) {
-                $this->vue->deja_connecte();
+            if ($confirmation != null) {
+                if ($confirmation == 1) {
+                    $this->vue->session_expiree();
+                } else if ($confirmation == 2) {
+                    header("Location: index.php?module=connexion&action=form_connexion&erreur=null");
+                } else {
+                    $this->vue->deja_connecte();
+                }
             } else {
                 $this->vue->confirmation_connexion();
             }
         }
 
         public function deconnexion() {
-            unset($_SESSION['login']);
+            $this->modele->deconnexion();
             $this->vue->confirmation_deconnexion();
         }
 
@@ -56,8 +73,9 @@
                 case "form_connexion" : $this->form_connexion(); break;
                 case "connexion" : $this->connexion(); break;
                 case "deconnexion" : $this->deconnexion(); break;
+                default : die("module inexistant"); break;
             }
-            if (strcmp($this->action,"form_connexion") == 0) {
+            if (strcmp($this->action,"form_connexion") == 0 && !isset($_SESSION['login'])) {
                 $this->vue->menu();
             }
             $this->vue->affichage();

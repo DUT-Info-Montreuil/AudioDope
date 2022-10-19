@@ -1,4 +1,8 @@
 <?php
+
+    if (constant("lala") != "layn")
+        die("wrong constant");
+
     include_once('modele_menu.php');
     include_once('vue_menu.php');
     

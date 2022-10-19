@@ -1,55 +1,76 @@
 <?php
+
+    if (constant("lala") != "layn")
+        die("wrong constant");
+
     include_once('connexion.php');
 
     class ModeleConnexion extends Connexion {
 
+        public function deconnexion() {
+            unset($_SESSION['login']);
+            unset($_SESSION['idUser']);
+        }
         public function inscription() {
-            if (strcmp($_POST['token'], $_SESSION['token']) != 0)
-                return 0;
-            $verif_login = self::$bdd->prepare('select * from utilisateurs where login = ?');
+            if (!$this->verif_token())
+                return 1;
+            $verif_login = self::$bdd->prepare('select * from Utilisateurs where login = ?');
             $verif_login->execute(array($_POST['login']));
             if ($verif_login->rowCount() > 0) {
-                return 1;
-            } else if (!$this->mdp_correcte()) {
                 return 2;
-            } else if (strcmp($_POST['mdp'],$_POST['conf_mdp']) != 0) {
+            } else if (!$this->mdp_correcte()) {
                 return 3;
+            } else if (strcmp($_POST['mdp'],$_POST['conf_mdp']) != 0) {
+                return 4;
             } else {
                 $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
-                $sql = 'INSERT INTO utilisateurs VALUES(NULL, ?, ?)';
+                $sql = 'INSERT INTO Utilisateurs VALUES(NULL, ?, ?, 0, 1)';
                 $statement = self::$bdd->prepare($sql);
                 $statement->execute(array($_POST['login'], $mdp));
             }
-            unset($_SESSION['token']);
+
         }
 
         private function mdp_correcte() {
             $containsLowerCaseLetter  = preg_match('/[a-z]/', $_POST['mdp']);
             $containsUpperCaseLetter  = preg_match('/[A-Z]/', $_POST['mdp']);
             $containsDigit   = preg_match('/\d/', $_POST['mdp']);
-            $containsSpecial = preg_match('/[^a-zA-Z\d]/', $_POST['mdp']);
             $correctSize = strlen($_POST['mdp']) >= 8;
-            return $containsLowerCaseLetter && $containsUpperCaseLetter && $containsDigit && $containsSpecial && $correctSize;
+            return $containsLowerCaseLetter && $containsUpperCaseLetter && $containsDigit && $correctSize;
         }
 
         public function connexion() {
-            if (strcmp($_POST['token'], $_SESSION['token']) != 0)
-                return 0;
-            $sql = 'select * from utilisateurs where login = ?';
-            $verif_login = self::$bdd->prepare($sql);
-            $verif_login->execute(array($_POST['login']));
-            if ($verif_login->rowCount() == 0 || !password_verify($_POST['mdp'], $verif_login->fetch()['motDePasse'])) {
+            if (!$this->verif_token())
                 return 1;
-            } else if (isset($_SESSION['login'])) {
+           
+            if (isset($_SESSION['login'])) {
                 return 2;
             }
+
+            $sql = 'select * from Utilisateurs where login = ?';
+            $verif_login = self::$bdd->prepare($sql);
+            $verif_login->execute(array($_POST['login']));
+            if ($verif_login->rowCount() == 0 || !password_verify($_POST['mdp'], $verif_login->fetch()['password']))
+                return 3;
             $_SESSION['login'] = $_POST['login'];
-            unset($_SESSION['token']);
+
+            $idUser = self::$bdd -> prepare('SELECT idUser FROM Utilisateurs WHERE login = :username');
+            $idUser->bindParam(':username', $_SESSION['login']);
+            $idUser->execute();
+            // if ($idUser->rowCount() == 0)
+            //     return 4;
+            $idUser = $idUser -> fetch();
+            $_SESSION['idUser'] = $idUser[0];
         }
 
         public function creation_token() {
             $bytes = random_bytes(20);
             $_SESSION['token'] = bin2hex($bytes);
+            $_SESSION['token_date'] = time();
+        }
+
+        public function verif_token() {
+            return strcmp($_POST['token'], $_SESSION['token']) == 0 && time() - $_SESSION['token_date'] < 900;
         }
     }
 ?>

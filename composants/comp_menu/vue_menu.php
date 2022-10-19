@@ -1,4 +1,9 @@
 <?php
+
+
+    if (constant("lala") != "layn")
+        die("wrong constant");
+
     include_once('vue_generique.php');
     
     class VueMenu extends VueGenerique {
@@ -14,11 +19,10 @@
 
 			if (isset($_SESSION['login'])) {
 				$this->affichage = $this->affichage." <a href=\"index.php?module=connexion&action=deconnexion\">Se déconnecter</a>";
-                $this->affichage = $this->affichage." <a href=\"index.php?module=post\">rédiger un post</a>";;
+                $this->affichage = $this->affichage." <a href=\"index.php?module=post&action=form_redaction\">Rédiger un post</a>";
 			} else {
 				$this->affichage = $this->affichage." <a href=\"index.php?module=connexion\">se connecter</a>";
         	}
-                
         }
 
         public function affichage() {
