@@ -37,8 +37,13 @@
         }
 
         public function form_connexion() {
-            $this->modele->creation_token();
-            $this->vue->form_connexion();
+            if (isset($_SESSION['login'])) {
+                $this->vue->deja_connecte();
+            } else {
+                $this->modele->creation_token();
+                $this->vue->form_connexion();
+            }
+            
         }
 
         public function connexion() {
@@ -57,7 +62,7 @@
         }
 
         public function deconnexion() {
-            unset($_SESSION['login']);
+            $this->modele->deconnexion();
             $this->vue->confirmation_deconnexion();
         }
 
@@ -70,7 +75,7 @@
                 case "deconnexion" : $this->deconnexion(); break;
                 default : die("module inexistant"); break;
             }
-            if (strcmp($this->action,"form_connexion") == 0) {
+            if (strcmp($this->action,"form_connexion") == 0 && !isset($_SESSION['login'])) {
                 $this->vue->menu();
             }
             $this->vue->affichage();

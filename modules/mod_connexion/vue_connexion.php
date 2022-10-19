@@ -72,11 +72,6 @@
             echo 'deconnexion confirmée';
         }
 
-        public function deja_connecte() {
-            $login = htmlspecialchars($_SESSION['login']);
-            echo "Vous êtes déjà connecté sous l’identifiant $login <a href=\"index.php?module=connexion&action=deconnexion\">Se déconnecter</a>";
-        }
-
         public function session_expiree() {
             echo "session expirée";
         }

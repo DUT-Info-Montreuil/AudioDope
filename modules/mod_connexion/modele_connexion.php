@@ -7,10 +7,14 @@
 
     class ModeleConnexion extends Connexion {
 
+        public function deconnexion() {
+            unset($_SESSION['login']);
+            unset($_SESSION['idUser']);
+        }
         public function inscription() {
             if (!$this->verif_token())
                 return 1;
-            $verif_login = self::$bdd->prepare('select * from utilisateurs where login = ?');
+            $verif_login = self::$bdd->prepare('select * from Utilisateurs where login = ?');
             $verif_login->execute(array($_POST['login']));
             if ($verif_login->rowCount() > 0) {
                 return 2;
@@ -20,7 +24,7 @@
                 return 4;
             } else {
                 $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
-                $sql = 'INSERT INTO utilisateurs VALUES(NULL, ?, ?)';
+                $sql = 'INSERT INTO Utilisateurs VALUES(NULL, ?, ?, 0, 1)';
                 $statement = self::$bdd->prepare($sql);
                 $statement->execute(array($_POST['login'], $mdp));
             }
@@ -31,23 +35,32 @@
             $containsLowerCaseLetter  = preg_match('/[a-z]/', $_POST['mdp']);
             $containsUpperCaseLetter  = preg_match('/[A-Z]/', $_POST['mdp']);
             $containsDigit   = preg_match('/\d/', $_POST['mdp']);
-            $containsSpecial = preg_match('/[^a-zA-Z\d]/', $_POST['mdp']);
             $correctSize = strlen($_POST['mdp']) >= 8;
-            return $containsLowerCaseLetter && $containsUpperCaseLetter && $containsDigit && $containsSpecial && $correctSize;
+            return $containsLowerCaseLetter && $containsUpperCaseLetter && $containsDigit && $correctSize;
         }
 
         public function connexion() {
             if (!$this->verif_token())
                 return 1;
-            $sql = 'select * from utilisateurs where login = ?';
+           
+            if (isset($_SESSION['login'])) {
+                return 2;
+            }
+
+            $sql = 'select * from Utilisateurs where login = ?';
             $verif_login = self::$bdd->prepare($sql);
             $verif_login->execute(array($_POST['login']));
-            if ($verif_login->rowCount() == 0 || !password_verify($_POST['mdp'], $verif_login->fetch()['motDePasse'])) {
-                return 2;
-            } else if (isset($_SESSION['login'])) {
+            if ($verif_login->rowCount() == 0 || !password_verify($_POST['mdp'], $verif_login->fetch()['password']))
                 return 3;
-            }
             $_SESSION['login'] = $_POST['login'];
+
+            $idUser = self::$bdd -> prepare('SELECT idUser FROM Utilisateurs WHERE login = :username');
+            $idUser->bindParam(':username', $_SESSION['login']);
+            $idUser->execute();
+            // if ($idUser->rowCount() == 0)
+            //     return 4;
+            $idUser = $idUser -> fetch();
+            $_SESSION['idUser'] = $idUser[0];
         }
 
         public function creation_token() {
