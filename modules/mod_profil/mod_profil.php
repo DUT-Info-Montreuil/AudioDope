@@ -5,7 +5,7 @@
         
     include_once('cont_profil.php');
 
-    class ModConnexion {
+    class ModProfil {
         public function __construct() {
             $controleur = new ContProfil();
             $controleur->exec();

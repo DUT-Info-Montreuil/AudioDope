@@ -20,12 +20,12 @@
         }
 
         public function voir_profil() {
-            
+            $this->vue->afficher_profil($this->modele->getProfil());
         }
 
         public function exec() {
             switch($this->action) {
-                case 'voir_profil' : voir_profil(); break;
+                case 'voir_profil' : $this->voir_profil(); break;
                 default : die("action inexistant"); break;
             }
             $this->vue->affichage();
