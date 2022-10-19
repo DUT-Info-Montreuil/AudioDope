@@ -43,9 +43,11 @@
             $sql = 'select * from Utilisateurs where login = ?';
             $verif_login = self::$bdd->prepare($sql);
             $verif_login->execute(array($_POST['login']));
-            if ($verif_login->rowCount() == 0 || !password_verify($_POST['mdp'], $verif_login->fetch()['password']))
+            $infos = $verif_login->fetch();
+            if ($verif_login->rowCount() == 0 || !password_verify($_POST['mdp'], $infos['password']))
                 return 3;
             $_SESSION['login'] = $_POST['login'];
+            $_SESSION['idUser'] = $infos['idUser'];
         }
 
         public function creation_token() {
