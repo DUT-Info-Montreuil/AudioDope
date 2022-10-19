@@ -12,8 +12,8 @@
         }
 
         public function afficher_profil($profil) {
-            echo $_GET['login']."<br/>".$profil['nb_abonnes']." abonnés  ".$profil['nb_abonnement']." abonnements";
-            echo '<FORM ACTION="index.php?module=profil&action=abonner&login='.$_GET['login'].'" METHOD="POST"> 
+            echo $profil['login']."<br/>".$profil['nb_abonnes']." abonnés  ".$profil['nb_abonnement']." abonnements";
+            echo '<FORM ACTION="index.php?module=profil&action=abonner&login='.$profil['login'].'" METHOD="POST"> 
             <input type="hidden" name="token" value='.$_SESSION['token'].'>
             <INPUT CLASS="bouton_co_ins" TYPE="SUBMIT" NAME="bouton" value="s\'abonner"> 
             </FORM>';
