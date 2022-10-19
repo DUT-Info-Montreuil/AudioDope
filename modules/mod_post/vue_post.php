@@ -11,7 +11,7 @@
             parent::__construct();
         }   
 
-        //Faire en sorte que si titre déjà pris, le formulaire reste rempli
+        //Faire en sorte que si titre déjà pris ou vide, le formulaire reste rempli
         public function form_redaction() {
             echo '<h1>Rédiger</h1>
             <FORM ACTION="index.php?module=post&action=redaction" METHOD="POST"> </br>
