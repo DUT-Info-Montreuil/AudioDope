@@ -25,10 +25,21 @@
 
         public function exec() {
             switch($this->action) {
-                case 'voir_profil' : $this->voir_profil(); break;
+                case 'voir_profil' : $this->voir_profil(); /*$this->form_abonnement();*/ break;
+                case'abonner':
+                    $this->abonner();break;
                 default : die("action inexistant"); break;
             }
             $this->vue->affichage();
         }
+        /*
+        public function form_abonnement(){
+            $this->vue->afficherform_abonnement();
     }
+    */
+        public function abonner(){
+            $this->modele->abonnement();
+    }
+    }
+
 ?>
