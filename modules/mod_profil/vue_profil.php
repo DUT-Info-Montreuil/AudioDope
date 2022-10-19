@@ -12,7 +12,7 @@
         }
 
         public function afficher_profil($profil) {
-            echo $_GET['login']."<br/>".$profil['nb_abonnes']." abonnés  ".$profil['nb_abonnement']." abonnements";
+            echo "<div id =\"pseudo\">".$profil['login']."</div><div id=\"abo\"><p>".$profil['nb_abonnes']." abonnés</p><p>".$profil['nb_abonnement']." abonnements</p></div>";
         }
     }
 ?>
