@@ -39,6 +39,9 @@
     */
         public function abonner(){
             $this->modele->abonnement();
+            header("Location: index.php?module=profil&action=voir_profil&idUser=".$_GET['idUser']);
+            
+            
     }
     }
 
