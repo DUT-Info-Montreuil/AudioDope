@@ -21,7 +21,7 @@ body a {
 #titre1 {
 	font-family: "PicNic-Regular";
 	font-size: 60px;
-	margin-bottom: 0px;
+	margin-bottom: 15px;
 	color:rgb(255, 41, 41);
 	-webkit-text-stroke: 2px;
 	-webkit-text-stroke-color: black;
@@ -31,6 +31,7 @@ body a {
 	font-family: "PicNic-Regular";
 	font-size: 60px;
 	color:white;
+	margin-bottom: 15px;
 	-webkit-text-stroke: 2px;
 	-webkit-text-stroke-color: black;
 	display: inline;
