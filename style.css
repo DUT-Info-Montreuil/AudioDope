@@ -1,9 +1,49 @@
-/*CSS body*/
+/*HEADER*/
+
+@font-face {
+	font-family: "PicNic-Regular";
+	src: url("ressources/font/PicNic-Regular.woff2");
+}
+
+header {
+	text-align: center;
+	border-bottom: 1px black solid;
+	margin-top:15px;
+}
+
+.titre {
+	font-family: "PicNic-Regular";
+	font-size: 60px;
+	margin-bottom: 15px;
+	-webkit-text-stroke: 2px;
+	-webkit-text-stroke-color: black;
+	display: inline;
+}
+#titre1 {
+	color:rgb(255, 41, 41);
+}
+#titre2 {
+	color:whitesmoke;
+}
+
+header a {
+	margin: 8px;
+	margin-top: 0px;
+}
+
+a:hover {
+	background-color: rgb(214, 212, 212);
+}
+
+#navbar {
+	margin-top: 15px;
+}
+
+/*BODY*/
+
 body {
-	width: 1200px;
 	font-family: "Arial";
 	color: black;
-	margin: auto;
 }
 
 body a {
@@ -11,20 +51,8 @@ body a {
 	color: black;
 }
 
-/*CSS header*/
-header {
-	text-align: center;
-	border-bottom: 1px black solid;
-	margin-top: 5px;
-}
 
-header a {
-	margin: 8px;
-}
-
-a:hover {
-	background-color: rgb(214, 212, 212);
-}
+/* MAIN */
 
 main a {
 	text-decoration: underline;
@@ -32,8 +60,46 @@ main a {
 }
 
 main {
+	margin-top: 15px;
 	text-align: center;
 }
+
+/* INSCRIPTION & CONNEXION */
+
+.form-control {
+	resize:none;
+}
+
+#form_insc {
+	width: 500px;
+	margin:auto;
+	margin-top: 15px;
+	margin-bottom:15px;
+	position: relative;
+}
+
+#alert_insc {
+	width: 500px;
+	margin:auto;
+	height: 65px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#insc_input {
+	width: 200px;
+}
+
+/* REDACTION */
+
+#form_redac {
+	width: 800px;
+	margin:auto;
+	padding : 5px;
+
+}
+
+/* PROFIL */
 
 #pseudo {
 	border: 1px black solid;
@@ -49,8 +115,12 @@ main {
     margin: 10px;
 }
 
+/*FOOTER */
+
 footer {
 	margin-top: 15px;
+	padding-top: 10px;
 	border-top: 1px black solid;
+	text-align: center;
 }
 

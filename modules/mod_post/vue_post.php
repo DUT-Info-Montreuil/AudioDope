@@ -13,21 +13,27 @@
 
         //Faire en sorte que si titre déjà pris ou vide, le formulaire reste rempli
         public function form_redaction() {
-            echo '<h1>Rédiger</h1>
-            <FORM ACTION="index.php?module=post&action=redaction" METHOD="POST"> </br>
-            <INPUT TYPE="text" NAME="titre_post" placeholder="Titre" MAXLENGTH="50" > </br>
-            <INPUT TYPE="url" NAME="lien_post" placeholder="Lien" MAXLENGTH="150"> </br>
-            <TEXTAREA NAME="corps_post" placeholder="Corps" MAXLENGTH="1000" > </textarea> </br>
-            <INPUT CLASS="bouton_co_ins" TYPE="SUBMIT" NAME="bouton" value="Poster"> 
+            echo '<h2>Rédiger</h2>
+            <FORM ACTION="index.php?module=post&action=redaction" METHOD="POST" id="form_redac"> </br>
+            <div class="mb-3">
+                <INPUT TYPE="text" NAME="titre_post" placeholder="Titre" MAXLENGTH="50" class="form-control">
+            </div> </br>
+            <div class="mb-3">
+                <INPUT TYPE="url" NAME="lien_post" placeholder="Lien" MAXLENGTH="150" class="form-control"> 
+            </div> </br>
+            <div class="mb-3">
+                <TEXTAREA class="form-control" NAME="corps_post" placeholder="Corps" MAXLENGTH="1000" rows="20"></textarea>
+            </div> </br>
+            <INPUT CLASS="btn btn-primary" TYPE="SUBMIT" NAME="bouton" value="Poster"> 
             </FORM>';
         }
 
         public function post_envoye() {
-            echo 'bien envoyé';
+            echo '<p>Bien envoyé!</p>';
         }
 
         public function titre_deja_util() {
-            echo 'titre non disponible';
+            echo '<p>Titre non disponible</p>';
         }
     }
 ?>
