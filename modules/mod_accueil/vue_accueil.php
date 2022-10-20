@@ -30,14 +30,21 @@
         }
 
         public function affiche_recent($posts) {
+            echo "<section id=\"posts\">";
             foreach ($posts as &$post) {
-                echo "<article>";
-                echo "<h2>$post[titre]</h2>";
-                echo "<p><a href=\"index.php?module=profil&action=voir_profil&idUser=$post[idUser]\">$post[login]</a>&nbsp;<small>$post[datePost]</small></p>";
+                echo "<article class=\"post\">";
+                echo "<h2 class=\"titre_post\">$post[titre]</h2>";
+                echo "<div class=\"contenu_post\">";
+                echo "<div class=\"info_post\">";
+                echo "<a href=\"index.php?module=profil&action=voir_profil&idUser=$post[idUser]\">$post[login]</a>";
+                echo "<p><small>$post[datePost]</small></p>";
                 echo "<a class=\"lien_musique_post\" href=\"$post[lien]\">lien vers la musique/playlist</a>";
-                echo "<p>$post[descriptionPost]</p>";
+                echo "</div>";
+                echo "<p class=\"description\">$post[descriptionPost]</p>";
+                echo "</div>";
                 echo "</article>";
             }
+            echo "</section>";
         }
     }
 ?>

@@ -29,18 +29,20 @@ a:hover {
 #menu {
 	margin-left: auto;
     margin-right: auto;
-	text-align: center;
 	margin-top: 15px;
 }
 
 #menu a {
 	display: inline-block;
-	text-align: center;
 	width: 150px;
 }
 
 .lien_musique_post {
 	text-decoration: underline;
+}
+
+#posts {	
+	border: 1px black solid;
 }
 
 #pseudo {
@@ -52,6 +54,32 @@ a:hover {
 	border: 1px black solid;
 	display: inline-block;
 }
+
+.post {
+	margin-left: auto;
+    margin-right: auto;
+	width : 1000px;
+	height : 200px;
+}
+
+.contenu_post {
+	border: 1px black solid;
+	height: 120px;
+	display: flex;
+}
+
+.info_post {
+	width: 20%;
+	height: 120px;
+}
+
+.description {
+	margin-left : 15px;
+	width: 50%;
+	height: 120px;
+	margin-top: -1px;
+}
+
 
 .bouton_co_ins {
     margin: 10px;
