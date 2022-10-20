@@ -22,10 +22,22 @@
         }
 
         public function indic_section($action) {
-            echo "<style type=\"text/css\">#".$action."{
+            echo "<style type=\"text/css\">
+                #$action {
                 color: white;
                 background-color: black;
             }</style>";
+        }
+
+        public function affiche_recent($posts) {
+            foreach ($posts as &$post) {
+                echo "<article>";
+                echo "<h2>$post[titre]</h2>";
+                echo "<p>$post[login]&nbsp;<small>$post[datePost]</small></p>";
+                echo "<a class=\"lien_musique_post\" href=\"$post[lien]\">lien vers la musique/playlist</a>";
+                echo "<p>$post[descriptionPost]</p>";
+                echo "</article>";
+            }
         }
     }
 ?>

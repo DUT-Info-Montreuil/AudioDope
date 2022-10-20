@@ -39,7 +39,9 @@ a:hover {
 	width: 150px;
 }
 
-
+.lien_musique_post {
+	text-decoration: underline;
+}
 
 #pseudo {
 	border: 1px black solid;

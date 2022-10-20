@@ -20,7 +20,7 @@
         }
 
         public function recent() {
-
+            $this->vue->affiche_recent($this->modele->get_recent());
         }
         
         public function exec() {
