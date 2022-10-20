@@ -14,12 +14,12 @@
         }
 
         public function nonConnecte() {
-            echo "Vous n'êtes pas connecté";
+            echo "<p>Vous n'êtes pas connecté</p>";
         }
 
         public function deja_connecte() {
             $login = htmlspecialchars($_SESSION['login']);
-            echo "Vous êtes déjà connecté sous l’identifiant $login <br> <a href=\"index.php?module=connexion&action=deconnexion\">Se déconnecter</a>";
+            echo "<p>Vous êtes déjà connecté sous l’identifiant $login</p> <br> <a href=\"index.php?module=connexion&action=deconnexion\">Se déconnecter</a>";
         }
 
         public function affichage() {

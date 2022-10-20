@@ -26,6 +26,30 @@ a:hover {
 	background-color: rgb(214, 212, 212);
 }
 
+#form_insc {
+	padding: 50px;
+
+
+}
+
+/*#remp_username {
+	position: relative;
+}
+
+#remp_username:before {
+	content: "";
+  	position: absolute;
+  	left: 10px;
+  	top: 0;
+  	bottom: 0;
+  	width: 20px;
+ 	background: url(ressources/icons/person-plus.svg);
+}
+
+input {
+	padding: 10px 30px;
+  }*/
+
 main a {
 	text-decoration: underline;
 	text-align: center;

@@ -23,11 +23,11 @@
         }
 
         public function post_envoye() {
-            echo 'Bien envoyé!';
+            echo '<p>Bien envoyé!</p>';
         }
 
         public function titre_deja_util() {
-            echo 'Titre non disponible';
+            echo '<p>Titre non disponible</p>';
         }
     }
 ?>
