@@ -21,7 +21,7 @@
 				$this->affichage = $this->affichage." <a href=\"index.php?module=connexion&action=deconnexion\">Se déconnecter</a>";
                 $this->affichage = $this->affichage." <a href=\"index.php?module=post&action=form_redaction\">Rédiger un post</a>";
 			} else {
-				$this->affichage = $this->affichage." <a href=\"index.php?module=connexion\">se connecter</a>";
+				$this->affichage = $this->affichage." <a href=\"index.php?module=connexion\">Se connecter</a>";
         	}
         }
 

@@ -12,7 +12,7 @@
         }   
 
         public function menu() {
-            echo "<a href=\"index.php?module=connexion&action=form_inscription\">s'inscrire</a><br/>";
+            echo "<a href=\"index.php?module=connexion&action=form_inscription\">S'inscrire</a><br/>";
         }
 
         public function form_inscription() {
@@ -20,60 +20,60 @@
 
             if (isset($_GET['erreur'])) {
                 if ($_GET['erreur'] == 2)
-                    echo 'erreur ! login indisponible';
+                    echo 'Nom d\'utilisateur indisponible';
                 else if ($_GET['erreur'] == 3) {
-                    echo 'i 8 caractères minimum avec au moins une lettre minuscule, 
-                    une lettre majuscule, un chiffre';
+                    echo '8 caractères minimum avec au moins une lettre minuscule, 
+                    une lettre majuscule et un chiffre';
                 } else
-                    echo 'erreur ! les mots de passe ne correspondent pas';
+                    echo 'Les mots de passes ne correspondent pas';
             }
 
             echo '<FORM ACTION="index.php?module=connexion&action=inscription" METHOD="POST"> 
             <input type="hidden" name="token" value='.$_SESSION['token'].'>
-            <p>login</p>
+            <p>Nom d\'utilisateur</p>
             <INPUT NAME="login" MAXLENGTH="50">
-            <p>mot de passe</p> 
+            <p>Mot de passe</p> 
             <INPUT type="password" NAME="mdp"> 
-            <p>comfirmer le mot de passe</p> 
+            <p>Confirmer mot de passe</p> 
             <INPUT type="password" NAME="conf_mdp"> 
-            <p>i 8 caractères minimum avec au moins une lettre minuscule, 
-            <br/>une lettre majuscule, un chiffre</p> 
+            <p>8 caractères minimum avec au moins une lettre minuscule, 
+            <br/>une lettre majuscule et un chiffre</p> 
             <INPUT CLASS="bouton_co_ins" TYPE="SUBMIT" NAME="bouton" value="s\'inscrire"> 
             </FORM>';
         }
 
         public function confirmation_inscription() {
-            echo 'inscription confirmée';
+            echo 'Inscription confirmée!';
         }
 
         public function form_connexion() {
             echo '<h1>Connexion</h1>';
 
             if (isset($_GET['erreur'])) {
-                echo 'login ou mot de passe incorrecte';
+                echo 'Nom d\'utilisateur ou mot de passe incorrecte';
             }
 
             echo'<FORM ACTION="index.php?module=connexion&action=connexion" METHOD="POST"> 
             <input type="hidden" name="token" value='.$_SESSION['token'].'>
-            <p>login</p>
+            <p>Nom d\'utilisateur</p>
             <INPUT NAME="login" MAXLENGTH="50">
-            <p>mot de passe</p> 
+            <p>Mot de passe</p> 
             <INPUT type="password" NAME="mdp"> 
             <br/>
-            <INPUT CLASS="bouton_co_ins" TYPE="SUBMIT" NAME="bouton" value="se connecter"> 
+            <INPUT CLASS="bouton_co_ins" TYPE="SUBMIT" NAME="bouton" value="Se connecter"> 
             </FORM>';
         }
 
         public function confirmation_connexion() {
-            echo 'connexion confirmée';
+            echo 'Connexion confirmée';
         }
 
         public function confirmation_deconnexion() {
-            echo 'deconnexion confirmée';
+            echo 'Déconnexion confirmée';
         }
 
         public function session_expiree() {
-            echo "session expirée";
+            echo "Session expirée";
         }
     }
 ?>

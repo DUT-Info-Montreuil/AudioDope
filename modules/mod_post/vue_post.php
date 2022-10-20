@@ -13,7 +13,7 @@
 
         //Faire en sorte que si titre déjà pris ou vide, le formulaire reste rempli
         public function form_redaction() {
-            echo '<h1>Rédiger</h1>
+            echo '<h2>Rédiger</h2>
             <FORM ACTION="index.php?module=post&action=redaction" METHOD="POST"> </br>
             <INPUT TYPE="text" NAME="titre_post" placeholder="Titre" MAXLENGTH="50" > </br>
             <INPUT TYPE="url" NAME="lien_post" placeholder="Lien" MAXLENGTH="150"> </br>
@@ -23,11 +23,11 @@
         }
 
         public function post_envoye() {
-            echo 'bien envoyé';
+            echo 'Bien envoyé!';
         }
 
         public function titre_deja_util() {
-            echo 'titre non disponible';
+            echo 'Titre non disponible';
         }
     }
 ?>
