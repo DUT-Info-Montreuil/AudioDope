@@ -13,8 +13,6 @@
 
         public function afficher_profil($profil) {
             echo $profil['login']."<br/>".$profil['nb_abonnes']." abonnés  ".$profil['nb_abonnement']." abonnements";
-          
-            echo$profil['idUser']; echo $_SESSION['idUser'];
         }
 
         public function afficherform_abonnement($profil){
