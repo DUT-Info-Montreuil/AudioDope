@@ -1,9 +1,9 @@
 /*CSS body*/
+
 body {
-	width: 1200px;
 	font-family: "Arial";
 	color: black;
-	margin: auto;
+
 }
 
 body a {
@@ -15,7 +15,6 @@ body a {
 header {
 	text-align: center;
 	border-bottom: 1px black solid;
-	margin-top: 5px;
 }
 
 header a {
@@ -26,29 +25,40 @@ a:hover {
 	background-color: rgb(214, 212, 212);
 }
 
+/* INSCRIPTION & CONNEXION */
+
 #form_insc {
-	padding: 50px;
-
-
-}
-
-/*#remp_username {
+	width: 500px;
+	margin:auto;
+	margin-top: 15px;
 	position: relative;
+	margin-bottom:15px;
 }
 
-#remp_username:before {
-	content: "";
-  	position: absolute;
-  	left: 10px;
-  	top: 0;
-  	bottom: 0;
-  	width: 20px;
- 	background: url(ressources/icons/person-plus.svg);
+#alert_insc {
+	width: 500px;
+	height: 65px;;
+	margin:auto;
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
 
-input {
-	padding: 10px 30px;
-  }*/
+#insc_input {
+	width: 200px;
+}
+
+/* REDACTION */
+
+#form_redac {
+	width: 800px;
+	margin:auto;
+	padding : 5px;
+
+}
+
+
+
+
 
 main a {
 	text-decoration: underline;
@@ -56,6 +66,7 @@ main a {
 }
 
 main {
+	margin-top: 15px;
 	text-align: center;
 }
 
@@ -73,8 +84,12 @@ main {
     margin: 10px;
 }
 
+/*FOOTER */
+
 footer {
 	margin-top: 15px;
+	padding-top: 10px;
 	border-top: 1px black solid;
+	text-align: center;
 }
 
