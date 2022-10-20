@@ -24,8 +24,13 @@
         }
         
         public function exec() {
-            //$this->vue->menu();
+            $this->vue->menu();
+            $this->vue->indic_section($this->action);
             switch($this->action) {
+                case 'recommandes' : break;
+                case 'decouverte' : break;
+                case 'suivis' : break;
+                case 'tendance' : break;
                 case 'recent' : $this->recent(); break;
                 default : die("action inexistant"); break;
             }

@@ -12,12 +12,20 @@
         }
 
         public function menu() {
-            echo "<a href=\"index.php?module=\">Recommandés</a>";
-            echo "<a href=\"index.php?module=\">Découverte</a>";
-            echo "<a href=\"index.php?module=\">Suivis</a>";
-            echo "<a href=\"index.php?module=\">Tendance</a>";
-            echo "<a href=\"index.php?module=\">Récent</a>";
-            echo "<br/>";
+            echo "<nav id=\"menu\">";
+            echo "<a id=\"recommandes\" href=\"index.php?module=accueil&action=recommandes\">Recommandés</a>";
+            echo "<a id=\"decouverte\" href=\"index.php?module=accueil&action=decouverte\">Découverte</a>";
+            echo "<a id=\"suivis\" href=\"index.php?module=accueil&action=suivis\">Suivis</a>";
+            echo "<a id=\"tendance\" href=\"index.php?module=accueil&action=tendance\">Tendance</a>";
+            echo "<a id=\"recent\" href=\"index.php?module=accueil&action=recent\">Récent</a>";
+            echo "</nav>";
+        }
+
+        public function indic_section($action) {
+            echo "<style type=\"text/css\">#".$action."{
+                color: white;
+                background-color: black;
+            }</style>";
         }
     }
 ?>
