@@ -1,46 +1,29 @@
-/*CSS body*/
-
-body {
-	font-family: "Arial";
-	color: black;
-
-}
-
-body a {
-	text-decoration: none;
-	color: black;
-}
-
-/*CSS header*/
+/*HEADER*/
 
 @font-face {
 	font-family: "PicNic-Regular";
 	src: url("ressources/font/PicNic-Regular.woff2");
-	}
-
-#titre1 {
-	font-family: "PicNic-Regular";
-	font-size: 60px;
-	margin-bottom: 15px;
-	color:rgb(255, 41, 41);
-	-webkit-text-stroke: 2px;
-	-webkit-text-stroke-color: black;
-	display: inline;
-}
-#titre2 {
-	font-family: "PicNic-Regular";
-	font-size: 60px;
-	color:white;
-	margin-bottom: 15px;
-	-webkit-text-stroke: 2px;
-	-webkit-text-stroke-color: black;
-	display: inline;
-	
 }
 
 header {
 	text-align: center;
 	border-bottom: 1px black solid;
+	margin-top:15px;
+}
+
+.titre {
+	font-family: "PicNic-Regular";
+	font-size: 60px;
+	margin-bottom: 15px;
+	-webkit-text-stroke: 2px;
+	-webkit-text-stroke-color: black;
+	display: inline;
+}
+#titre1 {
+	color:rgb(255, 41, 41);
+}
+#titre2 {
+	color:whitesmoke;
 }
 
 header a {
@@ -52,20 +35,53 @@ a:hover {
 	background-color: rgb(214, 212, 212);
 }
 
+#navbar {
+	margin-top: 15px;
+}
+
+/*BODY*/
+
+body {
+	font-family: "Arial";
+	color: black;
+}
+
+body a {
+	text-decoration: none;
+	color: black;
+}
+
+
+/* MAIN */
+
+main a {
+	text-decoration: underline;
+	text-align: center;
+}
+
+main {
+	margin-top: 15px;
+	text-align: center;
+}
+
 /* INSCRIPTION & CONNEXION */
+
+.form-control {
+	resize:none;
+}
 
 #form_insc {
 	width: 500px;
 	margin:auto;
 	margin-top: 15px;
-	position: relative;
 	margin-bottom:15px;
+	position: relative;
 }
 
 #alert_insc {
 	width: 500px;
-	height: 65px;;
 	margin:auto;
+	height: 65px;
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
@@ -83,19 +99,7 @@ a:hover {
 
 }
 
-
-
-
-
-main a {
-	text-decoration: underline;
-	text-align: center;
-}
-
-main {
-	margin-top: 15px;
-	text-align: center;
-}
+/* PROFIL */
 
 #pseudo {
 	border: 1px black solid;

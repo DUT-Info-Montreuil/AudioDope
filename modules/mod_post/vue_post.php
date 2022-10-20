@@ -22,7 +22,7 @@
                 <INPUT TYPE="url" NAME="lien_post" placeholder="Lien" MAXLENGTH="150" class="form-control"> 
             </div> </br>
             <div class="mb-3">
-                <TEXTAREA class="form-control" NAME="corps_post" placeholder="Corps" MAXLENGTH="1000" rows="3" > </textarea>
+                <TEXTAREA class="form-control" NAME="corps_post" placeholder="Corps" MAXLENGTH="1000" rows="20"></textarea>
             </div> </br>
             <INPUT CLASS="btn btn-primary" TYPE="SUBMIT" NAME="bouton" value="Poster"> 
             </FORM>';

@@ -15,9 +15,9 @@
         }   
 
         public function menu() {
-            $this->affichage = "<a href=\"index.php\"><h1 id=titre1>Audio</h1><h1 id=titre2>Dope</h1></a><br>";
+            $this->affichage = "<a href=\"index.php\"><h1 class=\"titre\" id=titre1>Audio</h1><h1 class=\"titre\" id=titre2>Dope</h1></a><br>";
 			if (isset($_SESSION['login'])) {
-                $this->affichage = $this->affichage." <ul class=\"nav justify-content-center\"> " .
+                $this->affichage = $this->affichage." <ul class=\"nav justify-content-center\" id=\"navbar\"> " .
                 "<li class=\"nav-item\">" .
                 "<a class=\"nav-link\" href=\"index.php?module=profil&action=voir_profil&idUser=".$_SESSION['idUser']."\">Profil</a>";
 				$this->affichage = $this->affichage . "<li class=\"nav-item\">" .
