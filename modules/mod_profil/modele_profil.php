@@ -22,10 +22,28 @@
             );
             return $profil;
         }
-        public function abonnement(){ 
+        public function verif_abonnement(){ 
+            $sql=self::$bdd->prepare('SELECT count(iduser)from Abonner where idUserAbonne=? and idUserAbonnement=?');
+            $sql->execute(array($_SESSION['idUser'],$_GET['idUser']));
+            if($_SESSION['idUser']==$_GET['idUser']){
+                return 0;
+            } 
+            if($sql->rowcount()==0){
+                return 1;
+            }else {
+            
+            return 2;
+            }
+    }
+        public function abonnement(){
             $sql2=self::$bdd->prepare('INSERT INTO Abonner values(?,?)');
             $sql2->execute(array($_SESSION['idUser'],$_GET['idUser']));
     }
+    public function desabonnement(){
+        $sql2=self::$bdd->prepare('DELETE FROM Abonner where idUserAbonne=? and idUserAbonnement=?');
+        $sql2->execute(array($_SESSION['idUser'],$_GET['idUser']));
+}
+
 }
 
 ?>

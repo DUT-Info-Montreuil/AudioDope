@@ -25,21 +25,31 @@
 
         public function exec() {
             switch($this->action) {
-                case 'voir_profil' : $this->voir_profil(); /*$this->form_abonnement();*/ break;
+                case 'voir_profil' : $this->voir_profil();  $this->form_abonnement();  break;
+                
                 case'abonner':
+
                     $this->abonner();break;
                 default : die("action inexistant"); break;
             }
             $this->vue->affichage();
         }
-        /*
+    
         public function form_abonnement(){
-            $this->vue->afficherform_abonnement();
-    }
-    */
+            $this->vue->afficherform_abonnement($this->modele->getProfil());
+    
+        }
         public function abonner(){
+           
+            $val=$this->modele->verif_abonnement();
+           if($val==1){
+            $this->vue->afficherform_abonnement($this->modele->getProfil());
             $this->modele->abonnement();
             header("Location: index.php?module=profil&action=voir_profil&idUser=".$_GET['idUser']);
+            }else{
+                header("Location: index.php?module=profil&action=voir_profil&idUser=".$_GET['idUser']);
+            }
+         
             
             
     }
