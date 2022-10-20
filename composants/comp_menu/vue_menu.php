@@ -15,7 +15,7 @@
         }   
 
         public function menu() {
-            $this->affichage = "<a href=\"index.php\"><h1>AudioDope</h1></a>";
+            $this->affichage = "<a href=\"index.php\"><h1 id=titre1>Audio</h1><h1 id=titre2>Dope</h1></a>";
 			if (isset($_SESSION['login'])) {
                 $this->affichage = $this->affichage." <ul class=\"nav justify-content-center\"> " .
                 "<li class=\"nav-item\">" .

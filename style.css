@@ -12,6 +12,31 @@ body a {
 }
 
 /*CSS header*/
+
+@font-face {
+	font-family: "PicNic-Regular";
+	src: url("ressources/font/PicNic-Regular.woff2");
+	}
+
+#titre1 {
+	font-family: "PicNic-Regular";
+	font-size: 60px;
+	margin-bottom: 0px;
+	color:rgb(255, 41, 41);
+	-webkit-text-stroke: 2px;
+	-webkit-text-stroke-color: black;
+	display: inline;
+}
+#titre2 {
+	font-family: "PicNic-Regular";
+	font-size: 60px;
+	color:white;
+	-webkit-text-stroke: 2px;
+	-webkit-text-stroke-color: black;
+	display: inline;
+	
+}
+
 header {
 	text-align: center;
 	border-bottom: 1px black solid;
@@ -19,6 +44,7 @@ header {
 
 header a {
 	margin: 8px;
+	margin-top: 0px;
 }
 
 a:hover {
