@@ -33,7 +33,7 @@
             foreach ($posts as &$post) {
                 echo "<article>";
                 echo "<h2>$post[titre]</h2>";
-                echo "<p>$post[login]&nbsp;<small>$post[datePost]</small></p>";
+                echo "<p><a href=\"index.php?module=profil&action=voir_profil&idUser=$post[idUser]\">$post[login]</a>&nbsp;<small>$post[datePost]</small></p>";
                 echo "<a class=\"lien_musique_post\" href=\"$post[lien]\">lien vers la musique/playlist</a>";
                 echo "<p>$post[descriptionPost]</p>";
                 echo "</article>";
