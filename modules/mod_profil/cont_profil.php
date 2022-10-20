@@ -25,11 +25,19 @@
 
         public function exec() {
             switch($this->action) {
-                case 'voir_profil' : $this->voir_profil();  $this->form_abonnement();  break;
-                
+                case 'voir_profil' : 
+                    $this->voir_profil(); 
+                    $val=$this->modele->verif_abonnement();
+                    if($val==2){
+                        $this->form_desabonnement();  
+                    }else if($val==1){
+                        $this->form_abonnement();
+                    }break;
                 case'abonner':
-
-                    $this->abonner();break;
+                    $this->abonner();
+                    break;
+                case'desabonner':
+                        $this->desabonner();break;
                 default : die("action inexistant"); break;
             }
             $this->vue->affichage();
@@ -39,20 +47,21 @@
             $this->vue->afficherform_abonnement($this->modele->getProfil());
     
         }
+        public function form_desabonnement(){
+            $this->vue->afficherform_desabonnement($this->modele->getProfil());
+        }
+        public function desabonner(){   
+             $this->modele->desabonnement();
+             header("Location: index.php?module=profil&action=voir_profil&idUser=".$_GET['idUser']);
+        }
+        
         public function abonner(){
-           
-            $val=$this->modele->verif_abonnement();
-           if($val==1){
-            $this->vue->afficherform_abonnement($this->modele->getProfil());
             $this->modele->abonnement();
             header("Location: index.php?module=profil&action=voir_profil&idUser=".$_GET['idUser']);
-            }else{
-                header("Location: index.php?module=profil&action=voir_profil&idUser=".$_GET['idUser']);
-            }
+        }
          
             
             
-    }
     }
 
 ?>
