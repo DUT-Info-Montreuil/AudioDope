@@ -28,5 +28,3 @@
             echo $this->affichage;
         }
     }
-?>
-
