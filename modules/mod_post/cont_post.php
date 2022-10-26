@@ -20,7 +20,6 @@
         }
 
         public function exec() {
-            
                 switch($this->action) {
                     case "form_redaction" :
                         $this->form_redaction();
@@ -47,7 +46,7 @@
             if (isset($_SESSION['login']))
                 $this->vue->form_redaction();
             else
-            $this->vue->nonConnecte();
+            $this->vue->non_connecte();
         }
 
         public function redaction() {

@@ -18,7 +18,8 @@
                 "idUser"=>$_GET['idUser'],
                 "login" => $login->fetch()['login'],
                 "nb_abonnes" => $nb_abonnes->fetch()['count'],
-                "nb_abonnement" => $nb_abonnement->fetch()['count']
+                "nb_abonnement" => $nb_abonnement->fetch()['count'],
+                "posts" 
             );
             return $profil;
         }
@@ -37,15 +38,15 @@
         }
         
         public function verif_abonnement(){ 
-            $sql=self::$bdd->prepare('SELECT *from Abonner where Abonner.idUserAbonne=? and Abonner.idUserAbonnement=?');
-            $sql->execute(array($_SESSION['idUser'],$_GET['idUser']));
-            if($_SESSION['idUser']==$_GET['idUser']){
+            if(!isset($_SESSION['idUser']) || $_SESSION['idUser']==$_GET['idUser']){
                 return 0;
             } 
-            else if($sql->rowcount()==0){
+            $sql=self::$bdd->prepare('SELECT * from Abonner where Abonner.idUserAbonne=? and Abonner.idUserAbonnement=?');
+            $sql->execute(array($_SESSION['idUser'],$_GET['idUser']));
+            if($sql->rowcount()==0){
                 return 1;
             }else if($sql->rowcount()==1){
-            return 2;
+                return 2;
             }else{
                 return 3 ;
             }

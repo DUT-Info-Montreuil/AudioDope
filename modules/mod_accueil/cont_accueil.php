@@ -26,7 +26,7 @@
         public function suivi() {
             $tab = $this->modele->get_suivi();
             if ($tab == 0) {
-                $this->vue->pas_connecte();
+                $this->vue->non_connecte();
             } else 
                 $this->vue->affiche_posts($tab);
         }

@@ -28,9 +28,5 @@
                 background-color: black;
             }</style>";
         }
-
-        public function pas_connecte() {
-            echo "Pour voir vos suivis, veuillez vous connecter en cliquant <a href=\"index.php?module=connexion\">ici</a>";
-        }
     }
 ?>

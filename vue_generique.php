@@ -18,8 +18,8 @@
             $affichage = $this->getAffichage();
         }
 
-        public function nonConnecte() {
-            echo "<p>Vous n'êtes pas connecté</p>";
+        public function non_connecte() {
+            echo "<p>Vous n'êtes pas connecté. Pour vous connecter, cliquer <a href=\"index.php?module=connexion\">ici</a></p>";
         }
 
         public function deja_connecte() {
@@ -37,9 +37,9 @@
                 echo "<a class=\"lien_musique_post\" href=\"$post[lien]\">lien vers la musique/playlist</a>";
                 echo "</div>";
                 echo "<div class=\"post_droit\">";
-                echo "<h2 class=\"titre_post\">$post[titre]</h2>";
+                echo "<a href=\"index.php?module=post&action=voir_post&idPost=$post[idPost]\"><h2 class=\"titre_post\">$post[titre]</h2></a>";
                 echo "<div class=\"div_desc\">";
-                echo "<p class=\"description\">".substr($post['descriptionPost'], 0, 199)."<a href=\"index.php?module=post&action=voir_post&idPost=$post[idPost]\">...</a></p>";
+                echo "<p class=\"description\">".substr($post['descriptionPost'], 0, 199)."</p>";
                 echo "</div>";
                 echo "</div>";
                 echo "</article>";
