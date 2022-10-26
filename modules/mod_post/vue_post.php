@@ -24,7 +24,8 @@
             <div class="mb-3">
                 <TEXTAREA class="form-control" NAME="corps_post" placeholder="Corps" MAXLENGTH="1000" rows="20"></textarea>
             </div> </br>
-            <h3>Choisir tags</h3>';
+            <h3>Choisir tags</h3>
+            <div class="input-group mb-3" id="selec_tag">';
             
 
         }
@@ -32,7 +33,7 @@
         //Rajouter fonctionnalité recherche
         public function form_redaction_tag($genre, $annee, $artiste) {
             echo '
-            <select name="tags" id="select-state">
+            <select name="tags" class="form-select" id="inputGroupSelect01">
                     <option value="">--NONE--</option>
                     <option value="">--GENRES--</option>';
             foreach ($genre as $a) {
@@ -50,7 +51,7 @@
         }
 
         public function form_redaction_fin() {
-            echo '
+            echo '</div>
             </br>
             <INPUT CLASS="btn btn-primary" TYPE="SUBMIT" NAME="bouton" value="Poster"> 
             </FORM>';

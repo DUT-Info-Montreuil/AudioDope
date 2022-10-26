@@ -115,6 +115,14 @@ main {
 
 }
 
+#selec_tag {
+	padding :15px;
+}
+
+#inputGroupSelect01 {
+	margin:auto;
+}
+
 /* PROFIL */
 
 #pseudo {
