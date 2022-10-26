@@ -33,14 +33,18 @@
             $statement -> bindParam(':titre', $titre_post);
             $statement->execute();
             $idPost = $statement->fetch();
-
-            $sql =  "INSERT INTO AttribuerPost VALUES(?, ?);
-                    INSERT INTO AttribuerPost VALUES(?, ?);
-                    INSERT INTO AttribuerPost VALUES(?, ?);";
-            $statement = self::$bdd->prepare($sql);
-            $statement->execute(array($idPost["idPost"], $tag1, $idPost["idPost"], $tag2, $idPost["idPost"], $tag3));
             
-    
+            self :: inserer_attrib_post($idPost["idPost"], $tag1);
+            self :: inserer_attrib_post($idPost["idPost"], $tag2);
+            self :: inserer_attrib_post($idPost["idPost"], $tag3);
+        
+        }
+
+        public function inserer_attrib_post($idPost, $tag) {
+            if ($tag != "") {
+                $statement = self::$bdd->prepare("INSERT INTO AttribuerPost VALUES(?, ?)");
+                $statement->execute(array($idPost, $tag));
+            }   
         }
 
         public function verif_titre() {
