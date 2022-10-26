@@ -37,8 +37,16 @@
         }
 
         public function form_redaction() {
-            if (isset($_SESSION['login']))
+            if (isset($_SESSION['login'])) {
                 $this->vue->form_redaction();
+                $genre = $this->modele->redac_tag('genre');
+                $annee = $this->modele->redac_tag('annee');
+                $artiste = $this->modele->redac_tag('artiste');
+                $this->vue->form_redaction_tag($genre, $annee, $artiste);
+                $this->vue->form_redaction_tag($genre, $annee, $artiste);
+                $this->vue->form_redaction_tag($genre, $annee, $artiste);
+                $this->vue->form_redaction_fin();
+            }
             else
             $this->vue->nonConnecte();
         }

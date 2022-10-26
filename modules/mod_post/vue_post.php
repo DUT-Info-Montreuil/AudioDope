@@ -24,6 +24,34 @@
             <div class="mb-3">
                 <TEXTAREA class="form-control" NAME="corps_post" placeholder="Corps" MAXLENGTH="1000" rows="20"></textarea>
             </div> </br>
+            <h3>Choisir tags</h3>';
+            
+
+        }
+
+        //Rajouter fonctionnalité recherche
+        public function form_redaction_tag($genre, $annee, $artiste) {
+            echo '
+            <select name="tags" id="select-state">
+                    <option value="">--NONE--</option>
+                    <option value="">--GENRES--</option>';
+            foreach ($genre as $a) {
+                echo '<option value="' . $a[0] . '">' . $a[0] . '</option>';
+            }
+            echo '<option value="">--ARTISTES--</option>';
+            foreach ($artiste as $a) {
+                echo '<option value="' . $a[0] . '">' . $a[0] . '</option>';
+            }    
+            echo '<option value="">--ANNEES--</option>';
+            foreach ($annee as $a) {
+                echo '<option value="' . $a[0] . '">' . $a[0] . '</option>';
+            }    
+            echo '</select>';
+        }
+
+        public function form_redaction_fin() {
+            echo '
+            </br>
             <INPUT CLASS="btn btn-primary" TYPE="SUBMIT" NAME="bouton" value="Poster"> 
             </FORM>';
         }

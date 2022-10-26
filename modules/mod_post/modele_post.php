@@ -31,5 +31,21 @@
             return 2;
         }
 
+        public function redac_tag($typeTag) {
+            $statement = self::$bdd->prepare('SELECT nomTag FROM Tags WHERE typeTag = :typeT');
+            $statement -> bindParam(':typeT', $typeTag);
+            $statement->execute();
+            $statement = $statement->fetchAll();
+            return $statement;
+
+            /*
+            artiste
+            annee
+            genre
+    
+    
+           */
+
+        }
     }
 ?>
