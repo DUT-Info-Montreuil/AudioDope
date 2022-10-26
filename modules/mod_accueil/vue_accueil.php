@@ -29,7 +29,7 @@
             }</style>";
         }
 
-        public function affiche_recent($posts) {
+        public function affiche_posts($posts) {
             echo "<section id=\"posts\">";
             foreach ($posts as &$post) {
                 echo "<article class=\"post\">";
@@ -47,6 +47,10 @@
                 echo "</article>";
             }
             echo "</section>";
+        }
+
+        public function pas_connecte() {
+            echo "Pour voir vos suivis, veuillez vous connecter en cliquant <a href=\"index.php?module=connexion\">ici</a>";
         }
     }
 ?>

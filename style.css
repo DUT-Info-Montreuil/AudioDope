@@ -127,10 +127,6 @@ main {
 	display: inline-block;
 }
 
-h2 {
-	font-size: 15px;
-}
-
 .post {
 	margin: auto;
 	margin-bottom: 15px;
@@ -138,6 +134,11 @@ h2 {
 	height : 120px;
 	border: 1px black solid;
 	display: flex;
+}
+
+.titre_post {
+	font-size: 20px;
+	font-weight: bold;
 }
 
 .post_gauche {

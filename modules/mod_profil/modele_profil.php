@@ -22,6 +22,7 @@
             );
             return $profil;
         }
+
         public function verif_abonnement(){ 
             $sql=self::$bdd->prepare('SELECT *from Abonner where Abonner.idUserAbonne=? and Abonner.idUserAbonnement=?');
             $sql->execute(array($_SESSION['idUser'],$_GET['idUser']));
@@ -35,14 +36,15 @@
             }else{
                 return 3 ;
             }
-    }
+        }
         public function abonnement(){
             $sql2=self::$bdd->prepare('INSERT INTO Abonner values(?,?)');
             $sql2->execute(array($_SESSION['idUser'],$_GET['idUser']));
-    }
-    public function desabonnement(){
-        $sql3=self::$bdd->prepare('DELETE FROM Abonner where Abonner.idUserAbonne=? and Abonner.idUserAbonnement=?');
-        $sql3->execute(array($_SESSION['idUser'],$_GET['idUser']));
-}
+        }
+    
+        public function desabonnement(){
+            $sql3=self::$bdd->prepare('DELETE FROM Abonner where Abonner.idUserAbonne=? and Abonner.idUserAbonnement=?');
+            $sql3->execute(array($_SESSION['idUser'],$_GET['idUser']));
+        }
 
 }
