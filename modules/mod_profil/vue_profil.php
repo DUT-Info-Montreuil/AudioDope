@@ -12,7 +12,19 @@
         }
 
         public function afficher_profil($profil) {
-            echo '<p>' . $profil['login']."<br/>".$profil['nb_abonnes']." Abonné(s)  ".$profil['nb_abonnement']." Abonnement(s) </p>";
+            echo '<p>' . $profil['login']."<br/>".$profil['nb_abonnes']." <a href=\"index.php?module=profil&action=afficherAbonner&id=".$_SESSION['idUser']."\"> Abonne(s) </a> ".$profil['nb_abonnement']."<a href=\"index.php?module=profil&action=afficherAbonnement&id=".$_SESSION['idUser']."\"> Abonnement(s)</a></p>";
+        }
+        public function afficher_listeAbonne($abonne){
+            foreach($abonne as $value){
+                echo'<p>'.$value['login'];
+            }
+        }
+            public function afficher_listeAbonnement($abonnement){
+                foreach($abonnement as $value){
+                    echo'<p>'.$value['login'];
+                }
+
+           
         }
 
         public function afficherform_abonnement($profil){
