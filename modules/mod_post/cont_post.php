@@ -28,12 +28,19 @@
                     case "redaction" :
                         $this->redaction();
                         break;
+                    case "voir_post" :
+                        $this->voir_post();
+                        break;
                     default :
                         die("action inexistante");
                         break;
                 }
                 $this->vue->affichage();
             
+        }
+
+        public function voir_post() {
+            $this->vue->affiche_post($this->modele->get_post());
         }
 
         public function form_redaction() {

@@ -30,6 +30,12 @@
                 return 1;
             return 2;
         }
+        
+        public function get_post() {
+            $posts = self::$bdd->prepare('select Posts.idUser as idUser, idPost, login, lien, titre, descriptionPost, datePost from Posts join Utilisateurs on Posts.idUser = Utilisateurs.idUser where idPost = ?');
+            $posts->execute(array($_GET['idPost']));
+            return $posts->fetch();
+        }
 
     }
 ?>

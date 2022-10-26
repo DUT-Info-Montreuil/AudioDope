@@ -131,6 +131,14 @@ main {
 	margin: auto;
 	margin-bottom: 15px;
 	width : 1000px;
+	border: 1px black solid;
+	display: flex;
+}
+
+.post_dans_section {
+	margin: auto;
+	margin-bottom: 15px;
+	width : 1000px;
 	height : 120px;
 	border: 1px black solid;
 	display: flex;
