@@ -9,6 +9,7 @@
 
         //Rajouter token
         //Inclure systeme verification d'insertion reussi
+        //Inclure verification de titre vide ou déja pris
         public function redaction() {
             $titre_post = htmlspecialchars($_POST['titre_post']);
             $lien_post = htmlspecialchars($_POST['lien_post']);
