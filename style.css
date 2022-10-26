@@ -30,6 +30,7 @@ a:hover {
 	margin-left: auto;
     margin-right: auto;
 	margin-top: 15px;
+	margin-bottom: 15px;
 }
 
 #menu a {
@@ -39,10 +40,6 @@ a:hover {
 
 .lien_musique_post {
 	text-decoration: underline;
-}
-
-#posts {	
-	border: 1px black solid;
 }
 
 #pseudo {
@@ -55,29 +52,32 @@ a:hover {
 	display: inline-block;
 }
 
-.post {
-	margin-left: auto;
-    margin-right: auto;
-	width : 1000px;
-	height : 200px;
+h2 {
+	font-size: 17px;
 }
 
-.contenu_post {
+.post {
+	margin: auto;
+	margin-bottom: 15px;
+	width : 1000px;
+	height : 120px;
 	border: 1px black solid;
-	height: 120px;
 	display: flex;
 }
 
-.info_post {
+.post_gauche {
 	width: 20%;
-	height: 120px;
+	margin-right: 20px;
 }
 
-.description {
-	margin-left : 15px;
-	width: 50%;
-	height: 120px;
+.post_droit {
+	width: 60%;
 	margin-top: -1px;
+}
+
+.div_desc {
+	text-align: justify;
+	overflow-wrap: break-word;
 }
 
 
