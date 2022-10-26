@@ -39,7 +39,7 @@
                 echo "<div class=\"post_droit\">";
                 echo "<a href=\"index.php?module=post&action=voir_post&idPost=$post[idPost]\"><h2 class=\"titre_post\">$post[titre]</h2></a>";
                 echo "<div class=\"div_desc\">";
-                echo "<p class=\"description\">".substr($post['descriptionPost'], 0, 199)."</p>";
+                echo "<p class=\"description\">".substr($post['descriptionPost'], 0, 201)."</p>";
                 echo "</div>";
                 echo "</div>";
                 echo "</article>";

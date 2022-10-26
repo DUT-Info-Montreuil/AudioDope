@@ -12,12 +12,12 @@
         }
 
         public function afficher_profil($profil) {
-            echo '<p>' . $profil['login']."<br/>";
+            echo '<p>' . $profil['login']."&emsp;";
             if(isset($_SESSION['idUser']) && $profil['idUser'] == $_SESSION['idUser'])
-                echo "<a href=\"index.php?module=profil&action=afficherAbonner&id=".$_SESSION['idUser']."\"> Abonne(s) </a>   ".
+                echo $profil['nb_abonnes']."<a href=\"index.php?module=profil&action=afficherAbonner&id=".$_SESSION['idUser']."\"> Abonne(s) </a> &emsp;".
                 $profil['nb_abonnement']."<a href=\"index.php?module=profil&action=afficherAbonnement&id=".$_SESSION['idUser']."\"> Abonnement(s)</a></p>";
             else
-                echo $profil['nb_abonnes']."Abonne(s)  ".$profil['nb_abonnement']."Abonnement(s)</p>";
+                echo $profil['nb_abonnes']."Abonne(s)&emsp;".$profil['nb_abonnement']."Abonnement(s)</p>";
             $this->afficher_posts_profil($profil['posts']);
         }
         public function afficher_listeAbonne($abonne){
@@ -58,7 +58,7 @@
         }
         
         public function afficher_posts_profil($posts) {
-            echo "<h2>Posts</h2>";
+            echo "<h2 id=\"titre_posts_profil\">Posts</h2>";
             $this->affiche_posts($posts);
         }
     }

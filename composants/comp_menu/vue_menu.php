@@ -6,13 +6,9 @@
 
     include_once('vue_generique.php');
     
-    class VueMenu extends VueGenerique {
+    class VueMenu {
         
         private $affichage;
-
-        public function __construct() {
-            parent::__construct();
-        }   
 
         public function menu() {
             $this->affichage = "<a href=\"index.php?module=accueil\"><h1 class=\"titre\" id=titre1>Audio</h1><h1 class=\"titre\" id=titre2>Dope</h1></a><br>";
