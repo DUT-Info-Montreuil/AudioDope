@@ -19,9 +19,11 @@ header {
 	-webkit-text-stroke-color: black;
 	display: inline;
 }
+
 #titre1 {
 	color:rgb(255, 41, 41);
 }
+
 #titre2 {
 	color:whitesmoke;
 }
@@ -33,6 +35,20 @@ header a {
 
 a:hover {
 	background-color: rgb(214, 212, 212);
+}
+
+#menu {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#menu a {
+	display: inline-block;
+	width: 150px;
+}
+
+.lien_musique_post {
+	text-decoration: underline;
 }
 
 #navbar {
@@ -110,6 +126,35 @@ main {
 	border: 1px black solid;
 	display: inline-block;
 }
+
+h2 {
+	font-size: 15px;
+}
+
+.post {
+	margin: auto;
+	margin-bottom: 15px;
+	width : 1000px;
+	height : 120px;
+	border: 1px black solid;
+	display: flex;
+}
+
+.post_gauche {
+	width: 20%;
+	margin-right: 20px;
+}
+
+.post_droit {
+	width: 60%;
+	margin-top: -1px;
+}
+
+.div_desc {
+	text-align: justify;
+	overflow-wrap: break-word;
+}
+
 
 .bouton_co_ins {
     margin: 10px;
