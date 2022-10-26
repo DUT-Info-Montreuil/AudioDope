@@ -23,6 +23,19 @@
             return $profil;
         }
 
+        public function getAbonne(){
+            $listeAbonne=self::$bdd->prepare('select login from Abonner inner join Utilisateurs on (Abonner.idUserAbonne= Utilisateurs.idUser) where idUserAbonnement = ?');
+            $listeAbonne->execute(array($_SESSION['idUser']));
+            return $listeAbonne->fetchAll();
+        }
+    
+        public function getAbonnement(){
+            $listeAbonnement=self::$bdd->prepare('select login from Abonner inner join Utilisateurs on (Abonner.idUserAbonnement= Utilisateurs.idUser) where idUserAbonne = ?');
+            $listeAbonnement->execute(array($_SESSION['idUser']));
+            return $listeAbonnement->fetchAll();
+
+        }
+        
         public function verif_abonnement(){ 
             $sql=self::$bdd->prepare('SELECT *from Abonner where Abonner.idUserAbonne=? and Abonner.idUserAbonnement=?');
             $sql->execute(array($_SESSION['idUser'],$_GET['idUser']));
