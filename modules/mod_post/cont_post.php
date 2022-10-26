@@ -42,9 +42,9 @@
                 $genre = $this->modele->redac_tag('genre');
                 $annee = $this->modele->redac_tag('annee');
                 $artiste = $this->modele->redac_tag('artiste');
-                $this->vue->form_redaction_tag($genre, $annee, $artiste);
-                $this->vue->form_redaction_tag($genre, $annee, $artiste);
-                $this->vue->form_redaction_tag($genre, $annee, $artiste);
+                $this->vue->form_redaction_tag($genre, $annee, $artiste, 1);
+                $this->vue->form_redaction_tag($genre, $annee, $artiste, 2);
+                $this->vue->form_redaction_tag($genre, $annee, $artiste, 3);
                 $this->vue->form_redaction_fin();
             }
             else

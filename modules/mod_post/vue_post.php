@@ -31,21 +31,21 @@
         }
 
         //Rajouter fonctionnalité recherche
-        public function form_redaction_tag($genre, $annee, $artiste) {
+        public function form_redaction_tag($genre, $annee, $artiste, $num) {
             echo '
-            <select name="tags" class="form-select" id="inputGroupSelect01">
+            <select name="tag' . $num . '" class="form-select" id="inputGroupSelect01">
                     <option value="">--NONE--</option>
                     <option value="">--GENRES--</option>';
             foreach ($genre as $a) {
-                echo '<option value="' . $a[0] . '">' . $a[0] . '</option>';
+                echo '<option value="' . $a[1] . '">' . $a[0] . '</option>';
             }
             echo '<option value="">--ARTISTES--</option>';
             foreach ($artiste as $a) {
-                echo '<option value="' . $a[0] . '">' . $a[0] . '</option>';
+                echo '<option value="' . $a[1] . '">' . $a[0] . '</option>';
             }    
             echo '<option value="">--ANNEES--</option>';
             foreach ($annee as $a) {
-                echo '<option value="' . $a[0] . '">' . $a[0] . '</option>';
+                echo '<option value="' . $a[1] . '">' . $a[0] . '</option>';
             }    
             echo '</select>';
         }
