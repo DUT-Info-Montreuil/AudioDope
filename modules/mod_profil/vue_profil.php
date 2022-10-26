@@ -18,6 +18,7 @@
                 $profil['nb_abonnement']."<a href=\"index.php?module=profil&action=afficherAbonnement&id=".$_SESSION['idUser']."\"> Abonnement(s)</a></p>";
             else
                 echo $profil['nb_abonnes']."Abonne(s)  ".$profil['nb_abonnement']."Abonnement(s)</p>";
+            $this->afficher_posts_profil($profil['posts']);
         }
         public function afficher_listeAbonne($abonne){
             foreach($abonne as $value){
@@ -56,4 +57,8 @@
             
         }
         
+        public function afficher_posts_profil($posts) {
+            echo "<h2>Posts</h2>";
+            $this->affiche_posts($posts);
+        }
     }

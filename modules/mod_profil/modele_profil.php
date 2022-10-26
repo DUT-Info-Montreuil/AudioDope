@@ -14,12 +14,14 @@
             $nb_abonnes->execute(array($_GET['idUser']));
             $nb_abonnement = self::$bdd->prepare('select count(*) as count from Abonner where idUserAbonne = ?');
             $nb_abonnement->execute(array($_GET['idUser']));
+            $posts = self::$bdd->prepare('select Posts.idUser as idUser, idPost, login, lien, titre, descriptionPost, datePost from Posts join Utilisateurs on Posts.idUser = Utilisateurs.idUser where Posts.idUser = ? order by datePost desc limit 20');
+            $posts->execute(array($_GET['idUser']));
             $profil = array (
                 "idUser"=>$_GET['idUser'],
                 "login" => $login->fetch()['login'],
                 "nb_abonnes" => $nb_abonnes->fetch()['count'],
                 "nb_abonnement" => $nb_abonnement->fetch()['count'],
-                "posts" 
+                "posts" => $posts->fetchAll()
             );
             return $profil;
         }
