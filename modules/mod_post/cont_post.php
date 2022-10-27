@@ -20,22 +20,31 @@
         }
 
         public function exec() {
-                switch($this->action) {
-                    case "form_redaction" :
-                        $this->form_redaction();
-                        break;
-                    case "redaction" :
-                        $this->redaction();
-                        break;
-                    case "voir_post" :
-                        $this->voir_post();
-                        break;
-                    default :
-                        die("action inexistante");
-                        break;
-                }
-                $this->vue->affichage();
+            switch($this->action) {
+                case "form_redaction" :
+                    $this->form_redaction();
+                    break;
+                case "redaction" :
+                    $this->redaction();
+                    break;
+                case "voir_post" :
+                    $this->voir_post();
+                    break;
+                case "supprimer_post" :
+                    $this->supprimer_post();
+                    break;
+                default :
+                    die("action inexistante");
+                    break;
+            }
+            $this->vue->affichage();
             
+        }
+
+        public function supprimer_post() {
+            $this->modele->supprimer_post();
+            $lien = "Location: index.php?module=profil&action=voir_profil&idUser=" . $_SESSION['idUser'];
+            header($lien);
         }
 
         public function voir_post() {

@@ -63,6 +63,7 @@
             $posts->execute(array($_GET['idPost']));
             return $posts->fetch();
         }
+<<<<<<< HEAD
 
         public function redac_tag($typeTag) {
             $statement = self::$bdd->prepare('SELECT nomTag, idTag FROM Tags WHERE typeTag = :typeT');
@@ -73,5 +74,12 @@
 
         }
 
+=======
+        
+        public function supprimer_post() {
+            $post = self::$bdd->prepare('delete from Posts where idPost = ?');
+            $post->execute(array($_GET['idPost']));
+        }
+>>>>>>> supprimer_post
     }
 ?>
