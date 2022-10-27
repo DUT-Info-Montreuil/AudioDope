@@ -13,7 +13,7 @@
 
         //le formulaire reste rempli même si erreur
         public function form_redaction() {
-            echo '<h2>Rédiger</h2>
+            echo '<h1 id="titre_rouge">Rédiger</h1>
             <FORM ACTION="index.php?module=post&action=redaction" METHOD="POST" id="form_redac"> </br>
             <div class="mb-3">
                 <INPUT TYPE="text" NAME="titre_post" placeholder="Titre" MAXLENGTH="50" class="form-control">
