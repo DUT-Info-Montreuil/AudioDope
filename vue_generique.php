@@ -66,8 +66,10 @@
             //bouton partage
             $lien = "index.php?module=post&action=voir_post&idPost=$post[idPost]";
             echo "<a onclick=\"partager('$lien')\" href=\"#\">Partager</a>";
+            $lien = "index.php?module=post&action=supprimer_post&idPost=$post[idPost]";
             if (isset($_SESSION['idUser']) && $post['idUser'] == $_SESSION['idUser'])
-                echo "<a href=\"index.php?module=post&action=supprimer_post&idPost=$post[idPost]\">Supprimer</a>";
+                //echo "<a href=\"index.php?module=post&action=supprimer_post&idPost=$post[idPost]\">Supprimer</a>";
+                echo "<a onclick=\"supprimer('$lien')\" href=\"#\">Supprimer</a>";
             echo "</div></div>";
             echo "</article>";
         }
@@ -79,6 +81,13 @@ function partager(lien) {
   // Copy the text inside the text field
   navigator.clipboard.writeText(lien);
   alert("lien copié");
+}
+
+function supprimer(lien) {
+    if (window.confirm("Êtes-vous sûr de vouloir supprimer ?")) {
+        window.open(lien);
+}
+
 }
 </script>
 
