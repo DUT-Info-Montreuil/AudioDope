@@ -58,6 +58,8 @@
                 $this->vue->post_envoye();
             } else if ($verif == 2) {
                 $this->vue->titre_deja_util();
+            } else if ($verif == 3) {
+                $this->vue->titre_lien_a_remplir();
             }
         }
     }

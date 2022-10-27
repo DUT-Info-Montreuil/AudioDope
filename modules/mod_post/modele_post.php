@@ -9,8 +9,6 @@
 
         //Rajouter token
         //Inclure systeme verification d'insertion reussi
-        //Inclure verification de titre vide ou déja pris
-        //empecher de poster si lien vide
         public function redaction() {
             $titre_post = htmlspecialchars($_POST['titre_post']);
             $lien_post = htmlspecialchars($_POST['lien_post']);
@@ -49,6 +47,8 @@
 
         public function verif_titre() {
             $titre_post = htmlspecialchars($_POST['titre_post']);
+            if ($titre_post == "" || $_POST['lien_post'] == "")
+                return 3;
             $statement = self::$bdd->prepare('SELECT titre FROM Posts WHERE titre = :titre');
             $statement -> bindParam(':titre', $titre_post);
             $statement->execute();
@@ -66,5 +66,6 @@
             return $statement;
 
         }
+
     }
 ?>
