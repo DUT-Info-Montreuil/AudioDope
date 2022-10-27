@@ -55,6 +55,16 @@ a:hover {
 	margin-top: 15px;
 }
 
+#rechercher {
+	display:flex;
+}
+
+#boutton_recherche {
+	width: 50px;
+	height: 38px;
+	display: inline-block;
+}
+
 /*BODY*/
 
 body {

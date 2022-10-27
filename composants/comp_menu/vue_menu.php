@@ -21,8 +21,19 @@
                 $this->affichage = $this->affichage . "<li class=\"nav-item\">" .
                 "<a class=\"nav-link\" href=\"index.php?module=connexion&action=deconnexion\">Se déconnecter</a></li>";
 			} else {
-				$this->affichage = $this->affichage." <a href=\"index.php?module=connexion\">Se connecter</a>";
+				$this->affichage = $this->affichage." <a href=\"index.php?module=connexion\"  class=\"nav justify-content-center\" id=\"navbar\">Se connecter</a>";
         	}
+            $this->affichage = $this->affichage . 
+            '<div class=\"nav justify-content-center\" id="rechercher">
+                 <div class="form-outline">
+                     <input type="search" class="form-control" placeholder="Rechercher" />
+                </div>
+                <button type="button" id="boutton_recherche" class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </button>
+            </div>';
         }
 
         public function affichage() {
