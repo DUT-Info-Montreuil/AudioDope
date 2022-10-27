@@ -36,6 +36,10 @@
             $posts->execute(array($_GET['idPost']));
             return $posts->fetch();
         }
-
+        
+        public function supprimer_post() {
+            $post = self::$bdd->prepare('delete from Posts where idPost = ?');
+            $post->execute(array($_GET['idPost']));
+        }
     }
 ?>
