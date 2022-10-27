@@ -1,5 +1,9 @@
 /*HEADER*/
 
+:root {
+	width:auto;
+	margin:auto;
+}
 @font-face {
 	font-family: "PicNic-Regular";
 	src: url("ressources/font/PicNic-Regular.woff2");
@@ -7,8 +11,8 @@
 
 header {
 	text-align: center;
-	border-bottom: 1px black solid;
-	margin-top:15px;
+	padding-top:15px;
+	background-color: rgb(177, 237, 232) ;
 }
 
 .titre {
@@ -21,11 +25,11 @@ header {
 }
 
 #titre1 {
-	color:rgb(255, 41, 41);
+	color:rgb(255, 105, 120);
 }
 
 #titre2 {
-	color:whitesmoke;
+	color:rgb(255, 252, 249);
 }
 
 header a {
@@ -34,17 +38,20 @@ header a {
 }
 
 a:hover {
-	background-color: rgb(214, 212, 212);
+	background-color: rgba(177, 237, 232, 0.479);
+	border-radius: 5px;
 }
 
 #menu {
 	margin-top: 15px;
 	margin-bottom: 15px;
+	
 }
 
 #menu a {
 	display: inline-block;
 	width: 150px;
+	
 }
 
 .lien_musique_post {
@@ -52,25 +59,38 @@ a:hover {
 }
 
 #navbar {
+	/*border-top: 3px  rgb(255, 252, 249) solid ;*/
+	padding-top:10px;
 	margin-top: 15px;
+	background-color: rgb(53, 45, 57);
+}
+
+#navbar a {
+	color: rgb(255, 252, 249);
+	font-family: "Inter",sans-serif;
+
 }
 
 #rechercher {
 	display:flex;
+	border:none;
 }
 
 #boutton_recherche {
 	width: 50px;
 	height: 38px;
 	display: inline-block;
+	background-color: rgb(255, 105, 120);
+	border:none;
 }
 
 /*BODY*/
 
 body {
-	font-family: "Arial";
 	color: black;
+	font-family: "Inter",sans-serif;
 }
+
 
 body a {
 	text-decoration: none;
@@ -86,8 +106,10 @@ main a {
 }
 
 main {
-	margin-top: 15px;
+	padding-top: 15px;
+	padding-bottom:15px;
 	text-align: center;
+	background-color: rgb(177, 237, 232);
 }
 
 /* INSCRIPTION & CONNEXION */
@@ -151,32 +173,62 @@ main {
 	font-size: 20px;
 	font-weight: bold;
 	margin-bottom: 20px;
-	width : 1000px;
+	width : 65%;
+	min-width: 750px;
+	max-width:1200px;
 	border-bottom: 1px black solid;
+	
+}
+
+/*CONNEXION*/
+
+#bouton_connexion{
+	background-color:rgb(255, 105, 120);
+	border: none;
+}
+
+#titre_rouge {
+	color:rgb(255, 105, 120);
+	font-size: 55px;;
+	font-family: "PicNic-Regular";
+	-webkit-text-stroke: 2px;
+	-webkit-text-stroke-color: black;
 }
 
 /* POST */
 .post {
 	margin: auto;
-	margin-bottom: 15px;
-	width : 1000px;
+	margin-top: 15px;
+	width : 65%;
+	min-width: 750px;
+	max-width:1200px;
 	min-height: 120px;
 	border: 1px black solid;
 	display: flex;
+	
 }
 
 .post_dans_section {
 	margin: auto;
-	margin-bottom: 15px;
-	width : 1000px;
+	margin-top: 15px;
+	width : 65%;
+	min-width: 750px;
+	max-width:1200px;
 	height : 120px;
-	border: 1px black solid;
+	border: 2px rgb(53, 45, 57) solid;
 	display: flex;
+	background-color:rgb(255, 252, 249);
+	border-radius: 7px;
 }
 
 .titre_post {
 	font-size: 20px;
 	font-weight: bold;
+
+	color:rgb(255, 105, 120);
+	-webkit-text-stroke: 0.2px;
+	-webkit-text-stroke-color: black;
+	
 }
 
 .post_gauche {
@@ -202,9 +254,11 @@ main {
 /*FOOTER */
 
 footer {
-	margin-top: 15px;
-	padding-top: 10px;
-	border-top: 1px black solid;
+	padding-top:5px;
+	padding-bottom:3px;
 	text-align: center;
+	background-color: rgb(53, 45, 57);
+	color: rgb(255, 252, 249);
+	font-family: "Inter",sans-serif;
 }
 

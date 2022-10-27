@@ -24,8 +24,10 @@
         public function indic_section($action) {
             echo "<style type=\"text/css\">
                 #$action {
-                color: white;
-                background-color: black;
+                border-radius: 5px;
+                color: rgb(255, 252, 249);
+                background-color:rgb(53, 45, 57);
+                padding-bottom:3px;
             }</style>";
         }
     }

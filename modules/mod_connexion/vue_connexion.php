@@ -16,7 +16,7 @@
         }
 
         public function form_inscription() {
-            echo '<h1>Inscription</h1>';
+            echo '<h1 id="titre_rouge">Inscription</h1>';
 
             if (isset($_GET['erreur'])) {
                 if ($_GET['erreur'] == 2)
@@ -80,7 +80,7 @@
         }
 
         public function form_connexion() {
-            echo '<h1>Connexion</h1>';
+            echo '<h1 id="titre_rouge">Connexion</h1>';
 
             if (isset($_GET['erreur'])) {
                 echo '<p>Nom d\'utilisateur ou mot de passe incorrecte</p>';
@@ -112,7 +112,7 @@
                     <INPUT id="insc_input" type="password" NAME="mdp" placeholder="Mot de passe" class="form-control"> 
                 </div> 
 
-                <INPUT CLASS="btn btn-primary" TYPE="SUBMIT" NAME="bouton" value="Se connecter"> 
+                <INPUT CLASS="btn btn-primary" id="bouton_connexion" TYPE="SUBMIT" NAME="bouton" value="Se connecter"> 
             </FORM>';
         }
 
