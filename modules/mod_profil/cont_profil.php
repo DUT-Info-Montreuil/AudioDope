@@ -20,12 +20,13 @@
         }
 
         public function voir_profil() {
-            $this->vue->afficher_profil($this->modele->getProfil());
+            $profil = $this->modele->getProfil();
+            $this->vue->afficher_profil($profil);
             $val=$this->modele->verif_abonnement();
             if($val==2){
-                $this->vue->afficherform_desabonnement($this->modele->getProfil());               
+                $this->vue->afficherform_desabonnement($profil);               
             }else if($val==1){
-                $this->vue->afficherform_abonnement($this->modele->getProfil());
+                $this->vue->afficherform_abonnement($profil);
             }
             $this->vue->afficher_posts_profil($this->modele->getPosts());
         }
@@ -44,7 +45,7 @@
                         $this->afficher_abonne();
                     break;
                  case 'afficherAbonnement':
-                            $this->afficher_abonnement();
+                        $this->afficher_abonnement();
                     break;
                 default : die("action inexistant"); break;
             }
@@ -65,8 +66,5 @@
         }
         public function afficher_abonnement(){
             $this->vue->afficher_listeAbonnement($this->modele->getAbonnement());
-        }
-         
-            
-            
+        }    
     }

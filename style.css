@@ -180,6 +180,12 @@ main {
 	
 }
 
+.abonnement {
+	margin: auto;
+	width : 300px;
+	display: flex;
+}
+
 /*CONNEXION*/
 
 #bouton_connexion{
@@ -223,7 +229,6 @@ main {
 .titre_post {
 	font-size: 20px;
 	font-weight: bold;
-
 	color:rgb(255, 105, 120);
 	-webkit-text-stroke: 0.2px;
 	-webkit-text-stroke-color: black;

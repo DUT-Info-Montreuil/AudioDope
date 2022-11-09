@@ -22,13 +22,15 @@
 
         public function afficher_listeAbonne($abonne){
             foreach($abonne as $value){
-                echo'<p>'.$value['login'];
+                echo "<div class=\"abonne\"><a href=\"index.php?module=profil&action=voir_profil&idUser=$value[idUser]\">$value[login]</a></div>";
             }
         }
 
         public function afficher_listeAbonnement($abonnement){
             foreach($abonnement as $value){
-                echo'<p>'.$value['login'];
+                echo "<div class=\"abonnement\"><a href=\"index.php?module=profil&action=voir_profil&idUser=$value[idUser]\">$value[login]</a>";
+                $this->afficherform_desabonnement($value);
+                echo "</div>";
             }
         }
 
