@@ -33,6 +33,9 @@
                 case "supprimer_post" :
                     $this->supprimer_post();
                     break;
+                case "redaction_commentaire" :
+                    $this->redaction_commentaire();
+                    break;
                 default :
                     die("action inexistante");
                     break;
@@ -64,6 +67,13 @@
             }
             else
             $this->vue->non_connecte();
+        }
+
+        public function redaction_commentaire() {
+            if (isset($_SESSION['login'])) {
+                $this->modele->redaction_commentaire();
+
+            }
         }
 
         public function redaction() {

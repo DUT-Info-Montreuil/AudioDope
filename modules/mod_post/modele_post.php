@@ -35,7 +35,6 @@
             self :: inserer_attrib_post($idPost["idPost"], $tag1);
             self :: inserer_attrib_post($idPost["idPost"], $tag2);
             self :: inserer_attrib_post($idPost["idPost"], $tag3);
-        
         }
 
         public function inserer_attrib_post($idPost, $tag) {
@@ -70,13 +69,18 @@
             $statement->execute();
             $statement = $statement->fetchAll();
             return $statement;
-
         }
 
-        
         public function supprimer_post() {
             $post = self::$bdd->prepare('delete from Posts where idPost = ?');
             $post->execute(array($_GET['idPost']));
         }
+
+        public function redaction_commentaire() {
+            $statement = self::$bdd->prepare("INSERT INTO CommenterPost VALUES(?, ?, ?)");
+            $statement->execute(array($_GET['idPost'], $_SESSION['idUser'], $_POST['avis_commentaire']));
+        }
+
+
     }
 ?>

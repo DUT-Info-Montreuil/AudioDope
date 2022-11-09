@@ -72,6 +72,15 @@
                 echo "<a onclick=\"supprimer('$lien')\" href=\"#\">Supprimer</a>";
             echo "</div></div>";
             echo "</article>";
+            if (strcmp($_GET['module'], "post") == 0) {
+                echo '<h3 id="titre_rouge">Commentaires</h3>
+                <FORM ACTION="index.php?module=post&action=redaction_commentaire&idPost=' . $_GET['idPost'] . '" METHOD="POST" id="form_redac"> </br>
+                    <div class="mb-3">
+                        <TEXTAREA class="form-control" NAME="avis_commentaire" placeholder="Laissez votre avis!" MAXLENGTH="1000" rows="5"></textarea>
+                    </div> </br>
+                    <INPUT CLASS="btn btn-primary" TYPE="SUBMIT" NAME="bouton" value="Envoyer"> 
+                </FORM>';
+            }
         }
     }
 ?>
