@@ -18,19 +18,18 @@
                 $profil['nb_abonnement']."<a href=\"index.php?module=profil&action=afficherAbonnement&id=".$_SESSION['idUser']."\"> Abonnement(s)</a></p>";
             else
                 echo $profil['nb_abonnes']."Abonne(s)&emsp;".$profil['nb_abonnement']."Abonnement(s)</p>";
-            $this->afficher_posts_profil($profil['posts']);
         }
+
         public function afficher_listeAbonne($abonne){
             foreach($abonne as $value){
                 echo'<p>'.$value['login'];
             }
         }
-            public function afficher_listeAbonnement($abonnement){
-                foreach($abonnement as $value){
-                    echo'<p>'.$value['login'];
-                }
 
-           
+        public function afficher_listeAbonnement($abonnement){
+            foreach($abonnement as $value){
+                echo'<p>'.$value['login'];
+            }
         }
 
         public function afficherform_abonnement($profil){

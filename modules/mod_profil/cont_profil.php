@@ -27,6 +27,7 @@
             }else if($val==1){
                 $this->vue->afficherform_abonnement($this->modele->getProfil());
             }
+            $this->vue->afficher_posts_profil($this->modele->getPosts());
         }
 
         public function exec() {
