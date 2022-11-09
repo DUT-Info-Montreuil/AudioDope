@@ -72,6 +72,9 @@
                 echo "<a onclick=\"supprimer('$lien')\" href=\"#\">Supprimer</a>";
             echo "</div></div>";
             echo "</article>";
+        }
+
+        public function affiche_redac_commentaire() {
             if (strcmp($_GET['module'], "post") == 0) {
                 echo '<h3 id="titre_rouge">Commentaires</h3>
                 <FORM ACTION="index.php?module=post&action=redaction_commentaire&idPost=' . $_GET['idPost'] . '" METHOD="POST" id="form_redac"> </br>
@@ -81,6 +84,24 @@
                     <INPUT CLASS="btn btn-primary" TYPE="SUBMIT" NAME="bouton" value="Envoyer"> 
                 </FORM>';
             }
+        }
+
+        public function affiche_commentaire($com) {
+            echo "<article class=\"post\">";
+            //partie gauche
+            echo "<div class=\"post_gauche\">";
+            echo "<a href=\"index.php?module=profil&action=voir_profil&idUser=$com[idUser]\">$com[login]</a>";
+            //echo "<p><small>$post[datePost]</small></p>";
+            echo "</div>";
+            //partie droite
+            echo "<div class=\"post_droit\">";
+            //description
+            echo "<div class=\"div_desc\">";
+            echo "<p class=\"description\">$com[avis]</p>";
+            echo "</div>";
+            echo "</div>";
+            echo "</div></div>";
+            echo "</article>";
         }
     }
 ?>
