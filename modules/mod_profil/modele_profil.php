@@ -32,22 +32,39 @@
         public function getAbonne(){
             $listeAbonne=self::$bdd->prepare('select idUser, login from Abonner inner join Utilisateurs on (Abonner.idUserAbonne= Utilisateurs.idUser) where idUserAbonnement = ?');
             $listeAbonne->execute(array($_SESSION['idUser']));
-            return $listeAbonne->fetchAll();
+            $tab = $listeAbonne->fetchAll();
+            $verif_abo = array();
+            for ($i = 0; $i < count($tab); $i++) {
+                $verif_abo[$i] = $this->verif_abonnement($tab[$i]['idUser']);
+            }
+            $array = array(
+                "info"=>$tab,
+                "abo"=>$verif_abo
+            );
+            return $array;
         }
     
         public function getAbonnement(){
             $listeAbonnement=self::$bdd->prepare('select idUser, login from Abonner inner join Utilisateurs on (Abonner.idUserAbonnement= Utilisateurs.idUser) where idUserAbonne = ?');
             $listeAbonnement->execute(array($_SESSION['idUser']));
-            return $listeAbonnement->fetchAll();
-
+            $tab = $listeAbonnement->fetchAll();
+            $verif_abo = array();
+            for ($i = 0; $i < count($tab); $i++) {
+                $verif_abo[$i] = $this->verif_abonnement($tab[$i]['idUser']);
+            }
+            $array = array(
+                "info"=>$tab,
+                "abo"=>$verif_abo
+            );
+            return $array;
         }
         
-        public function verif_abonnement(){ 
-            if(!isset($_SESSION['idUser']) || $_SESSION['idUser']==$_GET['idUser']){
+        public function verif_abonnement($idUser) { 
+            if(!isset($_SESSION['idUser']) || $_SESSION['idUser']==$idUser){
                 return 0;
             } 
             $sql=self::$bdd->prepare('SELECT * from Abonner where Abonner.idUserAbonne=? and Abonner.idUserAbonnement=?');
-            $sql->execute(array($_SESSION['idUser'],$_GET['idUser']));
+            $sql->execute(array($_SESSION['idUser'],$idUser));
             if($sql->rowcount()==0){
                 return 1;
             }else if($sql->rowcount()==1){

@@ -22,11 +22,11 @@
         public function voir_profil() {
             $profil = $this->modele->getProfil();
             $this->vue->afficher_profil($profil);
-            $val=$this->modele->verif_abonnement();
+            $val=$this->modele->verif_abonnement($_GET['idUser']);
             if($val==2){
-                $this->vue->afficherform_desabonnement($profil);               
+                $this->vue->afficherform_desabonnement($profil['idUser']);               
             }else if($val==1){
-                $this->vue->afficherform_abonnement($profil);
+                $this->vue->afficherform_abonnement($profil['idUser']);
             }
             $this->vue->afficher_posts_profil($this->modele->getPosts());
         }
@@ -54,17 +54,17 @@
     
         public function desabonner(){   
              $this->modele->desabonnement();
-             header("Location: index.php?module=profil&action=voir_profil&idUser=".$_GET['idUser']);
+             header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
         
         public function abonner(){
             $this->modele->abonnement();
-            header("Location: index.php?module=profil&action=voir_profil&idUser=".$_GET['idUser']);
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
         public function afficher_abonne(){
-            $this->vue->afficher_listeAbonne($this->modele->getAbonne());
+            $this->vue->afficher_listeAbo($this->modele->getAbonne());
         }
         public function afficher_abonnement(){
-            $this->vue->afficher_listeAbonnement($this->modele->getAbonnement());
+            $this->vue->afficher_listeAbo($this->modele->getAbonnement());
         }    
     }
