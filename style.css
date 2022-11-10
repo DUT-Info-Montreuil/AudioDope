@@ -240,7 +240,7 @@ main {
 	margin-right: 20px;
 }
 
-.post_droit {
+.post_milieu {
 	width: 60%;
 	margin-top: -1px;
 }
@@ -296,16 +296,3 @@ footer {
 	text-decoration: none;
 	display: block;
 }
-
-.options_contenu a:hover {
-	background-color: #ddd;
-}
-
-.options:hover .options_contenu {
-	display: block;
-}
-
-.options:hover .options_bouton {
-	background-color: #ddd;
-} 
-
