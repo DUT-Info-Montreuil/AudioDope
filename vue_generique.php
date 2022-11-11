@@ -45,13 +45,23 @@ class VueGenerique
     public function affiche_post($post)
     {
         echo "<article class=\"post\">";
-        //partie gauche
+        $this->affiche_post_gauche($post);
+        $this->affiche_post_milieu($post);
+        $this->affiche_post_droit($post);
+        echo "</article>";
+    }
+
+    public function affiche_post_gauche($post)
+    {
         echo "<div class=\"post_gauche\">";
         echo "<a href=\"index.php?module=profil&action=voir_profil&idUser=$post[idUser]\">$post[login]</a>";
         echo "<p><small>$post[datePost]</small></p>";
         echo "<a class=\"lien_musique_post\" href=\"$post[lien]\">lien vers la musique/playlist</a>";
         echo "</div>";
-        //partie droite
+    }
+
+    public function affiche_post_milieu($post)
+    {
         echo "<div class=\"post_milieu\">";
         //titre
         if (strcmp($_GET['module'], "post") == 0)
@@ -66,33 +76,41 @@ class VueGenerique
             echo "<p class=\"description\">" . substr($post['descriptionPost'], 0, 201) . "</p>";
         echo "</div>";
         echo "</div>";
+    }
+
+    public function affiche_post_droit($post)
+    {
         echo "<div class=\"post_droit\">";
-        echo
-        " <div class=\"options\">
-                <button class=\"options_bouton\" onmouseover=\"afficher_options($post[idPost])\">...</button>
-                <div class=\"options_contenu\" id=\"options$post[idPost]\" onmouseleave=\"afficher_options($post[idPost])\">
-                    <a href=\"index.php?\">Ajouter à une collection</a>";
         //bouton partage
+        echo "<div class=\"options\">";
+        echo "<button class=\"options_bouton\" onmouseover=\"afficher_options($post[idPost])\">...</button>";
+        echo "<div class=\"options_contenu\" id=\"options$post[idPost]\" onmouseleave=\"afficher_options($post[idPost])\">";
+        //ajouter colletion
+        echo "<a href=\"index.php?\">Ajouter à une collection</a>";
         $lien = "index.php?module=post&action=voir_post&idPost=$post[idPost]";
+        //partager
         echo "<a onclick=\"partager('$lien')\" href=\"#\">Partager</a>";
         $lien = "index.php?module=post&action=supprimer_post&idPost=$post[idPost]";
+        //supprimer
         if (isset($_SESSION['idUser']) && $post['idUser'] == $_SESSION['idUser'])
-            //echo "<a href=\"index.php?module=post&action=supprimer_post&idPost=$post[idPost]\">Supprimer</a>";
             echo "<a onclick=\"supprimer('$lien')\" href=\"#\">Supprimer</a>";
-        echo "</div></div>";
-        echo "<div class=\"vote\">";
+        echo "</div>";
+        echo "</div>";
+
         //vote
+        echo "<div class=\"vote\">";
         echo "<button type=\"button\" onclick=\"vote('$post[idPost], ')\">UpVote</button>";
         echo "<button type=\"button\" onclick=\"vote()\">DownVote</button>";
-        echo "</div></div>";
-        echo "</article>";
+        echo "</div>";
+        
+        echo "</div>";
     }
 }
 ?>
 
 <script>
     function afficher_options(idPost) {
-        $("#options"+idPost).toggle();
+        $("#options" + idPost).toggle();
     }
 
     function partager(lien) {
@@ -106,6 +124,5 @@ class VueGenerique
         }
     }
 
-    function vote(lien) {
-    }
+    function vote(lien) {}
 </script>

@@ -1,6 +1,7 @@
 <head>
 	<script src="ressources/jquery-3.6.1.min.js"></script>
 </head>
+
 <?php
     session_start();
 
