@@ -83,9 +83,9 @@ class VueGenerique
         echo "<div class=\"post_droit\">";
         //bouton partage
         echo "<div class=\"options\">";
-        echo "<button class=\"options_bouton\" onmouseover=\"afficher_options($post[idPost])\">...</button>";
-        echo "<div class=\"options_contenu\" id=\"options$post[idPost]\" onmouseleave=\"afficher_options($post[idPost])\">";
-        //ajouter colletion
+        echo "<button class=\"options_bouton\" onclick=\"afficher_options(event, $post[idPost])\">...</button>";
+        echo "<div class=\"options_contenu\" id=\"options$post[idPost]\">";
+        //ajouter collection
         echo "<a href=\"index.php?\">Ajouter à une collection</a>";
         $lien = "index.php?module=post&action=voir_post&idPost=$post[idPost]";
         //partager
@@ -102,15 +102,26 @@ class VueGenerique
         echo "<button type=\"button\" onclick=\"vote('$post[idPost], ')\">UpVote</button>";
         echo "<button type=\"button\" onclick=\"vote()\">DownVote</button>";
         echo "</div>";
-        
+
         echo "</div>";
     }
 }
 ?>
 
 <script>
-    function afficher_options(idPost) {
-        $("#options" + idPost).toggle();
+    $(document).click(function() {
+        $(".options_contenu").hide();
+    });
+
+    function afficher_options(event, idPost) {
+        var element = "#options" + idPost;
+        if($(element).is(":visible"))
+            $(element).hide();
+        else {
+            $(".options_contenu").hide();
+            $(element).show();
+        }
+        event.stopPropagation();
     }
 
     function partager(lien) {
