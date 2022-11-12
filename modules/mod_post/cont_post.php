@@ -53,7 +53,8 @@
         }
 
         public function voir_post() {
-            $this->vue->affiche_post($this->modele->get_post());
+            $post = $this->modele->get_post();
+            $this->vue->affiche_post($post['post'], $post['vote'], $post['nb_votes']);
         }
 
         public function form_redaction() {

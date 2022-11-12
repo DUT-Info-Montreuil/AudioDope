@@ -30,5 +30,9 @@
                 padding-bottom:3px;
             }</style>";
         }
+
+        public function aucun_abonnement() {;
+            echo "Vous n'avez aucun abonnement.";
+        }
     }
 ?>

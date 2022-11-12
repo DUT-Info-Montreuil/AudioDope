@@ -17,7 +17,7 @@
                 echo $profil['nb_abonnes']."<a href=\"index.php?module=profil&action=afficherAbonner&id=".$_SESSION['idUser']."\"> Abonne(s) </a> &emsp;".
                 $profil['nb_abonnement']."<a href=\"index.php?module=profil&action=afficherAbonnement&id=".$_SESSION['idUser']."\"> Abonnement(s)</a></p>";
             else
-                echo $profil['nb_abonnes']."Abonne(s)&emsp;".$profil['nb_abonnement']."Abonnement(s)</p>";
+                echo $profil['nb_abonnes']." Abonne(s)&emsp;".$profil['nb_abonnement']." Abonnement(s)</p>";
         }
 
         public function afficher_listeAbo($array) {

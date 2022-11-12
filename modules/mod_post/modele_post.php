@@ -3,9 +3,9 @@
     if (constant("lala") != "layn")
         die("wrong constant");
 
-    include_once('connexion.php');
+    include_once('modele_generique.php');
 
-    class ModelePost extends Connexion {
+    class ModelePost extends ModeleGenerique {
 
         //Rajouter token
         //Inclure systeme verification d'insertion reussi
@@ -59,28 +59,20 @@
         }
         
         public function get_post() {
-            if (isset($_SESSION['idUser'])) {
-                $post = self::$bdd->prepare('select Posts.idUser as idUser, Posts.idPost as idPost, login, lien, titre, descriptionPost, datePost, vote from Posts join Utilisateurs on Posts.idUser = Utilisateurs.idUser 
-            left join VoterPost on Posts.idPost = VoterPost.idPost where (VoterPost.idUser = ? or VoterPost.idUser is null) and Posts.idPost = ?');
-            $post->execute(array($_SESSION['idUser'], $_GET['idPost']));
-            } else {
-                $post = self::$bdd->prepare('select Posts.idUser as idUser, Posts.idPost as idPost, login, lien, titre, descriptionPost, datePost from Posts join Utilisateurs on Posts.idUser = Utilisateurs.idUser where Posts.idPost = ?');
+            $post = self::$bdd->prepare('select Posts.idUser as idUser, Posts.idPost as idPost, login, lien, titre, descriptionPost, datePost from Posts join Utilisateurs on Posts.idUser = Utilisateurs.idUser where Posts.idPost = ?');
             $post->execute(array($_GET['idPost']));
-            }
-            return $post->fetch();
-        }
+            $post = $post->fetch();
 
-        public function get_vote() {
-            if (isset($_SESSION['idUser'])) {
-                $vote = self::$bdd->prepare('select vote from VoterPost where idUser = ? and idPost = ?');
-                $vote->execute(array($_SESSION['idUser'], $_GET['idPost']));
-                if ($vote->rowcount() == 1)
-                    $vote = $vote->fetch()['vote'];
-                else
-                    $vote = 0;
-            } else
-                $vote = 0;
-            return $vote;
+            $vote  = $this->get_vote($post['idPost']);
+            $nb_votes = $this->get_nb_votes($post['idPost']);
+
+            $tab = array(
+                "post" => $post,
+                "vote" => $vote,
+                "nb_votes" => $nb_votes
+            );
+
+            return $tab;
         }
 
         public function voter() {

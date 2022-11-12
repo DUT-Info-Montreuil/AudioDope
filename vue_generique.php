@@ -36,18 +36,18 @@ class VueGenerique
     public function affiche_posts($posts)
     {
         echo "<section id=\"posts\">";
-        foreach ($posts as &$post) {
-            $this->affiche_post($post);
+        for ($i = 0; $i < count($posts['posts']); $i++) {
+            $this->affiche_post($posts['posts'][$i], $posts['votes'][$i], $posts['nb_votes'][$i]);
         }
         echo "</section>";
     }
 
-    public function affiche_post($post)
+    public function affiche_post($post, $vote, $nb_votes)
     {
         echo "<article class=\"post\">";
         $this->affiche_post_gauche($post);
         $this->affiche_post_milieu($post);
-        $this->affiche_post_droit($post);
+        $this->affiche_post_droit($post, $vote, $nb_votes);
         echo "</article>";
     }
 
@@ -78,7 +78,7 @@ class VueGenerique
         echo "</div>";
     }
 
-    public function affiche_post_droit($post)
+    public function affiche_post_droit($post, $vote, $nb_votes)
     {
         echo "<div class=\"post_droit\">";
         //bouton partage
@@ -99,10 +99,10 @@ class VueGenerique
 
         //vote
         echo "<div class=\"vote\">";
-        if (!isset($post['vote']) || $post['vote'] == null) {
+        if ($vote == 0) {
             $src_up = "ressources/fleches/fleche_haut_vide.png";
             $src_down = "ressources/fleches/fleche_bas_vide.png";
-        } else if ($post['vote'] == 1) {
+        } else if ($vote == 1) {
             $src_up = "ressources/fleches/fleche_haut_plein.png";
             $src_down = "ressources/fleches/fleche_bas_vide.png";
         } else {
@@ -118,6 +118,7 @@ class VueGenerique
             $onclick_down = "pas_connecte()";
         }
         echo "<a onclick=\"$onclick_up\" href=\"#\"><img id=\"upVote$post[idPost]\" alt=\"fleche upvote\" src=$src_up style=\"width:30px;height:30px;\"></a>";
+        echo "<p class=\"nb_vote\" id=\"nb_vote$post[idPost]\">$nb_votes</p>";
         echo "<a onclick=\"$onclick_down\" href=\"#\"><img id=\"downVote$post[idPost]\" alt=\"fleche downvote\" src=$src_down style=\"width:30px;height:30px;\"></a>";
         echo "</div>";
 
@@ -164,25 +165,42 @@ class VueGenerique
         $.ajax({
             type: 'GET',
             url: 'index.php',
-            data: {module:"post", action:"voter", idPost:id, vote:v},
+            data: {
+                module: "post",
+                action: "voter",
+                idPost: id,
+                vote: v
+            },
             success: function(data) {
+                var nb_votes = parseInt($('#nb_vote' + id).text());
                 if (v == 1) {
-                    if ($("#upVote"+id).attr('src') == 'ressources/fleches/fleche_haut_vide.png') {
-                        $("#upVote"+id).attr('src', 'ressources/fleches/fleche_haut_plein.png')
-                        if ($("#downVote"+id).attr('src') == 'ressources/fleches/fleche_bas_plein.png')
-                            $("#downVote"+id).attr('src', 'ressources/fleches/fleche_bas_vide.png');
+                    if ($("#upVote" + id).attr('src') == 'ressources/fleches/fleche_haut_vide.png') {
+                        $("#upVote" + id).attr('src', 'ressources/fleches/fleche_haut_plein.png')
+                        if ($("#downVote" + id).attr('src') == 'ressources/fleches/fleche_bas_plein.png') {
+                            $("#downVote" + id).attr('src', 'ressources/fleches/fleche_bas_vide.png');
+                            nb_votes = nb_votes + 2;
+                        } else {
+                            nb_votes = nb_votes + 1;
+                        }
                     } else {
-                        $("#upVote"+id).attr('src', 'ressources/fleches/fleche_haut_vide.png');
+                        $("#upVote" + id).attr('src', 'ressources/fleches/fleche_haut_vide.png');
+                        nb_votes = nb_votes - 1;
                     }
                 } else {
-                    if ($("#downVote"+id).attr('src') == 'ressources/fleches/fleche_bas_vide.png') {
-                        $("#downVote"+id).attr('src', 'ressources/fleches/fleche_bas_plein.png')
-                        if ($("#upVote"+id).attr('src') == 'ressources/fleches/fleche_haut_plein.png')
-                            $("#upVote"+id).attr('src', 'ressources/fleches/fleche_haut_vide.png');
+                    if ($("#downVote" + id).attr('src') == 'ressources/fleches/fleche_bas_vide.png') {
+                        $("#downVote" + id).attr('src', 'ressources/fleches/fleche_bas_plein.png')
+                        if ($("#upVote" + id).attr('src') == 'ressources/fleches/fleche_haut_plein.png') {
+                            $("#upVote" + id).attr('src', 'ressources/fleches/fleche_haut_vide.png');
+                            nb_votes = nb_votes - 2;
+                        } else {
+                            nb_votes = nb_votes - 1;
+                        }
                     } else {
-                        $("#downVote"+id).attr('src', 'ressources/fleches/fleche_bas_vide.png');
+                        $("#downVote" + id).attr('src', 'ressources/fleches/fleche_bas_vide.png');
+                        nb_votes = nb_votes + 1;
                     }
                 }
+                $('#nb_vote' + id).text(nb_votes);
             }
         });
     }

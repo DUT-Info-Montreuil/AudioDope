@@ -27,6 +27,8 @@
             $tab = $this->modele->get_suivi();
             if ($tab == 0) {
                 $this->vue->non_connecte();
+            } else if ($tab == 1) {
+                $this->vue->aucun_abonnement();
             } else 
                 $this->vue->affiche_posts($tab);
         }
