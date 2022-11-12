@@ -47,7 +47,7 @@
                  case 'afficherAbonnement':
                         $this->afficher_abonnement();
                     break;
-                default : die("action inexistant"); break;
+                default : die("action inexistant");
             }
             $this->vue->affichage();
         }

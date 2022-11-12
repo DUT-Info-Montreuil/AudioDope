@@ -21,7 +21,7 @@
 			case 'profil' : new ModProfil(); break;
 			case 'post' : new ModPost(); break;
 			case 'accueil' : new ModAccueil(); break;
-			default : die("module inconnu"); break;
+			default : die("module inconnu");
 		}
 	}
 	$menu = new CompMenu();

@@ -38,7 +38,6 @@
                     break;
                 default :
                     die("action inexistante");
-                    break;
             }
             $this->vue->affichage();
             

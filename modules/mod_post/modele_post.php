@@ -84,7 +84,10 @@
                 if ($vote->rowcount() == 0) {
                     $vote = self::$bdd->prepare('insert into VoterPost values (?,?,?)');
                     $vote->execute(array($_SESSION['idUser'], $_GET['vote'], $_GET['idPost']));
-                } else if ($vote->fetch()['vote'] != $_GET['vote']) {
+                } else if ($vote->fetch()['vote'] == $_GET['vote']) {
+                    $vote = self::$bdd->prepare('delete from VoterPost where idUser = ? and idPost = ?');
+                    $vote->execute(array($_SESSION['idUser'], $_GET['idPost']));
+                } else {
                     $vote = self::$bdd->prepare('update VoterPost set vote = ? where idUser = ? and idPost = ?');
                     $vote->execute(array( $_GET['vote'], $_SESSION['idUser'], $_GET['idPost']));
                 }

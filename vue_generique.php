@@ -99,8 +99,8 @@ class VueGenerique
 
         //vote
         echo "<div class=\"vote\">";
-        echo "<a onclick=\"voter($post[idPost], 1)\" href=\"#\"><img alt=\"fleche upvote\" src=\"ressources/fleches/fleche_haut_vide.png\" style=\"width:30px;height:30px;\"></a>";
-        echo "<a onclick=\"voter($post[idPost], -1)\" href=\"#\"><img alt=\"fleche downvote\" src=\"ressources/fleches/fleche_bas_vide.png\"style=\"width:30px;height:30px;\"></a>";
+        echo "<a onclick=\"voter($post[idPost], 1)\" href=\"#\"><img id=\"upVote$post[idPost]\" alt=\"fleche upvote\" src=\"ressources/fleches/fleche_haut_vide.png\" style=\"width:30px;height:30px;\"></a>";
+        echo "<a onclick=\"voter($post[idPost], -1)\" href=\"#\"><img id=\"downVote$post[idPost]\" alt=\"fleche downvote\" src=\"ressources/fleches/fleche_bas_vide.png\"style=\"width:30px;height:30px;\"></a>";
         echo "</div>";
 
         echo "</div>";
@@ -141,6 +141,23 @@ class VueGenerique
             url: 'index.php',
             data: {module:"post", action:"voter", idPost:id, vote:v},
             success: function(data) {
+                if (v == 1) {
+                    if ($("#upVote"+id).attr('src') == 'ressources/fleches/fleche_haut_vide.png') {
+                        $("#upVote"+id).attr('src', 'ressources/fleches/fleche_haut_plein.png')
+                        if ($("#downVote"+id).attr('src') == 'ressources/fleches/fleche_bas_plein.png')
+                            $("#downVote"+id).attr('src', 'ressources/fleches/fleche_bas_vide.png');
+                    } else {
+                        $("#upVote"+id).attr('src', 'ressources/fleches/fleche_haut_vide.png');
+                    }
+                } else {
+                    if ($("#downVote"+id).attr('src') == 'ressources/fleches/fleche_bas_vide.png') {
+                        $("#downVote"+id).attr('src', 'ressources/fleches/fleche_bas_plein.png')
+                        if ($("#upVote"+id).attr('src') == 'ressources/fleches/fleche_haut_plein.png')
+                            $("#upVote"+id).attr('src', 'ressources/fleches/fleche_haut_vide.png');
+                    } else {
+                        $("#downVote"+id).attr('src', 'ressources/fleches/fleche_bas_vide.png');
+                    }
+                }
             }
         });
     }
