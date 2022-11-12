@@ -64,7 +64,7 @@
             $post = $post->fetch();
 
             $vote  = $this->get_vote($post['idPost']);
-            $nb_votes = $this->get_nb_votes($post['idPost']);
+            $nb_votes = $this->get_nb_vote($post['idPost']);
 
             $tab = array(
                 "post" => $post,

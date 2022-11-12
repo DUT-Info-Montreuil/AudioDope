@@ -33,6 +33,7 @@ class ModeleAccueil extends ModeleGenerique
         $sql = $sql . $abonnements->fetch()['idUserAbonnement'] . ') order by datePost desc limit 20';
         $posts = self::$bdd->prepare($sql);
         $posts->execute(array($_SESSION['idUser']));
+        
         $posts = $posts->fetchAll();
         $tab = $this->get_posts_complet($posts);
         return $tab;

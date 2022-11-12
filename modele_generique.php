@@ -11,14 +11,13 @@ class ModeleGenerique extends Connexion
     public function get_posts_complet($posts)
     {
         $votes = array();
-        for ($i = 0; $i < count($posts); $i++) {
-            $votes[$i] = $this->get_vote($posts[$i]['idPost']);
-        }
+        
+        if (count($posts) > 0)
+            $votes = $this->get_votes($posts);
 
         $nb_votes = array();
-        for ($i = 0; $i < count($posts); $i++) {
-            $nb_votes[$i] = $this->get_nb_votes($posts[$i]['idPost']);
-        }
+        if (count($posts) > 0)
+            $nb_votes = $this->get_nb_votes($posts);
 
         $tab = array(
             "posts" => $posts,
@@ -43,16 +42,58 @@ class ModeleGenerique extends Connexion
         return $vote;
     }
 
-    public function get_nb_votes($idPost)
+    public function get_votes($posts)
     {
-        $upVotes = self::$bdd->prepare('select count(*) as count from VoterPost where idPost = ? and vote=1');
-        $upVotes->execute(array($idPost));
-        $upVotes = $upVotes->fetch()['count'];
+        $votes = array_fill(0, count($posts), 0);
+        if (isset($_SESSION['idUser'])) {
+            $sql = 'select VoterPost.idPost as idPost, vote from  Posts left join VoterPost on Posts.idPost = VoterPost.idPost where VoterPost.idUser = ? and VoterPost.idPost in (';
+            for ($i = 0; $i < count($posts) - 1; $i++) {
+                $sql = $sql . $posts[$i]['idPost'] . ",";
+            }
+            $sql = $sql . $posts[$i]['idPost'] . ') order by datePost desc';
 
-        $downVotes = self::$bdd->prepare('select count(*) as count from VoterPost where idPost = ? and vote=-1');
-        $downVotes->execute(array($idPost));
-        $downVotes = $downVotes->fetch()['count'];
+            $tab = self::$bdd->prepare($sql);
+            $tab->execute(array($_SESSION['idUser']));
+            $tab = $tab->fetchAll();
 
-        return $upVotes - $downVotes;
+            $cpt = 0;
+            for ($i = 0; $i < count($posts) && $cpt < count($tab); $i++) {
+                if ($posts[$i]['idPost'] == $tab[$cpt]['idPost'])
+                    $votes[$i] = $tab[$cpt++]['vote'];
+            }
+        }
+        return $votes;
+    }
+
+    public function get_nb_vote($idPost)
+    {
+        $nb_vote = self::$bdd->prepare('select sum(vote) as sum from VoterPost where idPost = ?');
+        $nb_vote->execute(array($idPost));
+        $nb_vote = $nb_vote->fetch()['sum'];
+        return $nb_vote;
+    }
+
+    public function get_nb_votes($posts)
+    {
+        $nb_votes = array_fill(0, count($posts), 0);
+        if (isset($_SESSION['idUser'])) {
+            $sql = 'select VoterPost.idPost as idPost, sum(vote) as sum from Posts left join VoterPost on Posts.idPost = VoterPost.idPost where VoterPost.idPost in (';
+            for ($i = 0; $i < count($posts) - 1; $i++) {
+                $sql = $sql . $posts[$i]['idPost'] . ",";
+            }
+            $sql = $sql . $posts[$i]['idPost'] . ') group by VoterPost.idPost order by datePost desc';
+
+            $tab = self::$bdd->prepare($sql);
+            $tab->execute(array($_SESSION['idUser']));
+            $tab = $tab->fetchAll();
+
+            $cpt = 0;
+            for ($i = 0; $i < count($posts) && $cpt < count($tab); $i++) {
+                if ($posts[$i]['idPost'] == $tab[$cpt]['idPost'])
+                    $nb_votes[$i] = $tab[$cpt++]['sum'];
+            }
+
+        }
+        return $nb_votes;
     }
 }
