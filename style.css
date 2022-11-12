@@ -10,16 +10,24 @@
 }
 
 header {
+	z-index: 1;
+	position: fixed;
+	width: 100%;
 	text-align: center;
-	padding-top:15px;
+	margin-top: -15px;
 	background-color: rgb(177, 237, 232) ;
 }
 
+#div_titre {
+	background-color: rgb(177, 237, 232) ;
+	border-radius: 16px;
+	padding: 0px 7px 3px;
+}
+
 .titre {
+	font-size: 30px;
 	font-family: "PicNic-Regular";
-	font-size: 60px;
-	margin-bottom: 15px;
-	-webkit-text-stroke: 2px;
+	-webkit-text-stroke: 1px;
 	-webkit-text-stroke-color: black;
 	display: inline;
 }
@@ -43,7 +51,6 @@ a:hover {
 }
 
 #menu {
-	margin-top: 15px;
 	margin-bottom: 15px;
 }
 
@@ -61,6 +68,7 @@ a:hover {
 }
 
 #navbar {
+	width: 100%;
 	/*border-top: 3px  rgb(255, 252, 249) solid ;*/
 	padding-top:10px;
 	margin-top: 15px;
@@ -106,7 +114,7 @@ body a:hover {
 /* MAIN */
 
 main {
-	padding-top: 15px;
+	padding-top: 73px;
 	padding-bottom:15px;
 	text-align: center;
 	background-color: rgb(177, 237, 232);

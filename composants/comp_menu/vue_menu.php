@@ -11,17 +11,18 @@
         private $affichage;
 
         public function menu() {
-            $this->affichage = "<a href=\"index.php?module=accueil\"><h1 class=\"titre\" id=titre1>Audio</h1><h1 class=\"titre\" id=titre2>Dope</h1></a><br>";
+            $this->affichage = " <ul class=\"nav justify-content-center\" id=\"navbar\"> ";
+            $this->affichage = $this->affichage."<li class=\"nav-item\">".
+            "<a href=\"index.php?module=accueil\"><div id=\"div_titre\"><h1 class=\"titre\" id=titre1>Audio</h1><h1 class=\"titre\" id=titre2>Dope</h1></div></a>";
 			if (isset($_SESSION['login'])) {
-                $this->affichage = $this->affichage." <ul class=\"nav justify-content-center\" id=\"navbar\"> " .
-                "<li class=\"nav-item\">" .
+                $this->affichage = $this->affichage."<li class=\"nav-item\">".
                 "<a class=\"nav-link\" href=\"index.php?module=post&action=form_redaction\">Rédiger un post</a></li>";
 				$this->affichage = $this->affichage . "<li class=\"nav-item\">" .
                 "<a class=\"nav-link\" href=\"index.php?module=profil&action=voir_profil&idUser=".$_SESSION['idUser']."\">Profil</a></li>";
                 $this->affichage = $this->affichage . "<li class=\"nav-item\">" .
                 "<a class=\"nav-link\" href=\"index.php?module=connexion&action=deconnexion\">Se déconnecter</a></li>";
 			} else {
-				$this->affichage = $this->affichage." <a href=\"index.php?module=connexion\"  class=\"nav justify-content-center\" id=\"navbar\">Se connecter</a>";
+				$this->affichage = $this->affichage . "<li class=\"nav-item\">" . "<a class=\"nav-link\" href=\"index.php?module=connexion\">Se connecter</a></li>";
         	}
             $this->affichage = $this->affichage . 
             '<div class=\"nav justify-content-center\" id="rechercher">
@@ -34,6 +35,7 @@
                     </svg>
                 </button>
             </div>';
+            $this->affichage = $this->affichage . " </ul> ";
         }
 
         public function affichage() {

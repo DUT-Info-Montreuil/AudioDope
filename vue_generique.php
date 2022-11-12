@@ -117,8 +117,8 @@ class VueGenerique
             $onclick_up = "pas_connecte()";
             $onclick_down = "pas_connecte()";
         }
-        echo "<a onclick=$onclick_up href=\"#\"><img id=\"upVote$post[idPost]\" alt=\"fleche upvote\" src=$src_up style=\"width:30px;height:30px;\"></a>";
-        echo "<a onclick=$onclick_down href=\"#\"><img id=\"downVote$post[idPost]\" alt=\"fleche downvote\" src=$src_down style=\"width:30px;height:30px;\"></a>";
+        echo "<a onclick=\"$onclick_up\" href=\"#\"><img id=\"upVote$post[idPost]\" alt=\"fleche upvote\" src=$src_up style=\"width:30px;height:30px;\"></a>";
+        echo "<a onclick=\"$onclick_down\" href=\"#\"><img id=\"downVote$post[idPost]\" alt=\"fleche downvote\" src=$src_down style=\"width:30px;height:30px;\"></a>";
         echo "</div>";
 
         echo "</div>";
@@ -160,6 +160,7 @@ class VueGenerique
     }
 
     function voter(id, v) {
+        event.preventDefault();
         $.ajax({
             type: 'GET',
             url: 'index.php',
