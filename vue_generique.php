@@ -99,7 +99,7 @@ class VueGenerique
 
         //vote
         echo "<div class=\"vote\">";
-        if ($post['vote'] == null) {
+        if (!isset($post['vote']) || $post['vote'] == null) {
             $src_up = "ressources/fleches/fleche_haut_vide.png";
             $src_down = "ressources/fleches/fleche_bas_vide.png";
         } else if ($post['vote'] == 1) {
@@ -110,8 +110,15 @@ class VueGenerique
             $src_down = "ressources/fleches/fleche_bas_plein.png";
         }
 
-        echo "<a onclick=\"voter($post[idPost], 1)\" href=\"#\"><img id=\"upVote$post[idPost]\" alt=\"fleche upvote\" src=$src_up style=\"width:30px;height:30px;\"></a>";
-        echo "<a onclick=\"voter($post[idPost], -1)\" href=\"#\"><img id=\"downVote$post[idPost]\" alt=\"fleche downvote\" src=$src_down style=\"width:30px;height:30px;\"></a>";
+        if (isset($_SESSION['idUser'])) {
+            $onclick_up = "voter($post[idPost], 1)";
+            $onclick_down = "voter($post[idPost], -1)";
+        } else {
+            $onclick_up = "pas_connecte()";
+            $onclick_down = "pas_connecte()";
+        }
+        echo "<a onclick=$onclick_up href=\"#\"><img id=\"upVote$post[idPost]\" alt=\"fleche upvote\" src=$src_up style=\"width:30px;height:30px;\"></a>";
+        echo "<a onclick=$onclick_down href=\"#\"><img id=\"downVote$post[idPost]\" alt=\"fleche downvote\" src=$src_down style=\"width:30px;height:30px;\"></a>";
         echo "</div>";
 
         echo "</div>";
@@ -143,6 +150,12 @@ class VueGenerique
     function supprimer(lien) {
         if (window.confirm("Êtes-vous sûr de vouloir supprimer ?")) {
             window.open(lien);
+        }
+    }
+
+    function pas_connecte() {
+        if (window.confirm("Connectez ou inscrivez-vous pour pouvoir voter. Souhaitez-vous connecter ?")) {
+            window.open("index.php?module=connexion", "_self");
         }
     }
 
