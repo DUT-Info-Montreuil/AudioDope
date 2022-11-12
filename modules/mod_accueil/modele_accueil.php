@@ -10,7 +10,7 @@
         public function get_recent() {
             $posts = self::$bdd->prepare('select Posts.idUser as idUser, Posts.idPost as idPost, login, lien, titre, descriptionPost, datePost, vote from Posts join Utilisateurs on Posts.idUser = Utilisateurs.idUser 
             left join VoterPost on Posts.idPost = VoterPost.idPost where (VoterPost.idUser = ? or VoterPost.idUser is null) order by datePost desc limit 20');
-            $posts->execute();
+            $posts->execute(array($_SESSION['idUser']));
             return $posts->fetchAll();
         }
 
