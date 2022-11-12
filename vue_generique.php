@@ -99,8 +99,19 @@ class VueGenerique
 
         //vote
         echo "<div class=\"vote\">";
-        echo "<a onclick=\"voter($post[idPost], 1)\" href=\"#\"><img id=\"upVote$post[idPost]\" alt=\"fleche upvote\" src=\"ressources/fleches/fleche_haut_vide.png\" style=\"width:30px;height:30px;\"></a>";
-        echo "<a onclick=\"voter($post[idPost], -1)\" href=\"#\"><img id=\"downVote$post[idPost]\" alt=\"fleche downvote\" src=\"ressources/fleches/fleche_bas_vide.png\"style=\"width:30px;height:30px;\"></a>";
+        if ($post['vote'] == null) {
+            $src_up = "ressources/fleches/fleche_haut_vide.png";
+            $src_down = "ressources/fleches/fleche_bas_vide.png";
+        } else if ($post['vote'] == 1) {
+            $src_up = "ressources/fleches/fleche_haut_plein.png";
+            $src_down = "ressources/fleches/fleche_bas_vide.png";
+        } else {
+            $src_up = "ressources/fleches/fleche_haut_vide.png";
+            $src_down = "ressources/fleches/fleche_bas_plein.png";
+        }
+
+        echo "<a onclick=\"voter($post[idPost], 1)\" href=\"#\"><img id=\"upVote$post[idPost]\" alt=\"fleche upvote\" src=$src_up style=\"width:30px;height:30px;\"></a>";
+        echo "<a onclick=\"voter($post[idPost], -1)\" href=\"#\"><img id=\"downVote$post[idPost]\" alt=\"fleche downvote\" src=$src_down style=\"width:30px;height:30px;\"></a>";
         echo "</div>";
 
         echo "</div>";

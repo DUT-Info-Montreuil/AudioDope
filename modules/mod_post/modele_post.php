@@ -59,9 +59,10 @@
         }
         
         public function get_post() {
-            $posts = self::$bdd->prepare('select Posts.idUser as idUser, idPost, login, lien, titre, descriptionPost, datePost from Posts join Utilisateurs on Posts.idUser = Utilisateurs.idUser where idPost = ?');
-            $posts->execute(array($_GET['idPost']));
-            return $posts->fetch();
+            $post = self::$bdd->prepare('select Posts.idUser as idUser, Posts.idPost as idPost, login, lien, titre, descriptionPost, datePost, vote from Posts join Utilisateurs on Posts.idUser = Utilisateurs.idUser 
+            left join VoterPost on Posts.idPost = VoterPost.idPost where (VoterPost.idUser = ? or VoterPost.idUser is null) and Posts.idPost = ?');
+            $post->execute(array($_SESSION['idUser'], $_GET['idPost']));
+            return $post->fetch();
         }
 
         public function get_vote() {
@@ -82,12 +83,15 @@
                 $vote = self::$bdd->prepare('select vote from VoterPost where idUser = ? and idPost = ?');
                 $vote->execute(array($_SESSION['idUser'], $_GET['idPost']));
                 if ($vote->rowcount() == 0) {
+                    echo 1;
                     $vote = self::$bdd->prepare('insert into VoterPost values (?,?,?)');
                     $vote->execute(array($_SESSION['idUser'], $_GET['vote'], $_GET['idPost']));
                 } else if ($vote->fetch()['vote'] == $_GET['vote']) {
+                    echo 2;
                     $vote = self::$bdd->prepare('delete from VoterPost where idUser = ? and idPost = ?');
                     $vote->execute(array($_SESSION['idUser'], $_GET['idPost']));
                 } else {
+                    echo 3;
                     $vote = self::$bdd->prepare('update VoterPost set vote = ? where idUser = ? and idPost = ?');
                     $vote->execute(array( $_GET['vote'], $_SESSION['idUser'], $_GET['idPost']));
                 }

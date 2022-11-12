@@ -24,8 +24,9 @@
         }
 
         public function getPosts() {
-            $posts = self::$bdd->prepare('select Posts.idUser as idUser, idPost, login, lien, titre, descriptionPost, datePost from Posts join Utilisateurs on Posts.idUser = Utilisateurs.idUser where Posts.idUser = ? order by datePost desc limit 20');
-            $posts->execute(array($_GET['idUser']));
+            $posts = self::$bdd->prepare('select Posts.idUser as idUser, Posts.idPost as idPost, login, lien, titre, descriptionPost, datePost, vote from Posts join Utilisateurs on Posts.idUser = Utilisateurs.idUser 
+            left join VoterPost on Posts.idPost = VoterPost.idPost where (VoterPost.idUser = ? or VoterPost.idUser is null) and Posts.idUser = ? order by datePost desc limit 20');
+            $posts->execute(array($_SESSION['idUser'], $_GET['idUser']));
             return $posts->fetchAll();
         }
 
