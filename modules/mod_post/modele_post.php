@@ -64,6 +64,33 @@
             return $posts->fetch();
         }
 
+        public function get_vote() {
+            if (isset($_SESSION['idUser'])) {
+                $vote = self::$bdd->prepare('select vote from VoterPost where idUser = ? and idPost = ?');
+                $vote->execute(array($_SESSION['idUser'], $_GET['idPost']));
+                if ($vote->rowcount() == 1)
+                    $vote = $vote->fetch()['vote'];
+                else
+                    $vote = 0;
+            } else
+                $vote = 0;
+            return $vote;
+        }
+
+        public function voter() {
+            if (isset($_SESSION['idUser'])) {
+                $vote = self::$bdd->prepare('select vote from VoterPost where idUser = ? and idPost = ?');
+                $vote->execute(array($_SESSION['idUser'], $_GET['idPost']));
+                if ($vote->rowcount() == 0) {
+                    $vote = self::$bdd->prepare('insert into VoterPost values (?,?,?)');
+                    $vote->execute(array($_SESSION['idUser'], $_GET['vote'], $_GET['idPost']));
+                } else if ($vote->fetch()['vote'] != $_GET['vote']) {
+                    $vote = self::$bdd->prepare('update VoterPost set vote = ? where idUser = ? and idPost = ?');
+                    $vote->execute(array( $_GET['vote'], $_SESSION['idUser'], $_GET['idPost']));
+                }
+            }
+        }
+
         public function redac_tag($typeTag) {
             $statement = self::$bdd->prepare('SELECT nomTag, idTag FROM Tags WHERE typeTag = :typeT');
             $statement -> bindParam(':typeT', $typeTag);

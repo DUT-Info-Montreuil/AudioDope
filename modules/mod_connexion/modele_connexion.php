@@ -20,7 +20,7 @@
                 return 2;
             } else if (!$this->mdp_correcte()) {
                 return 3;
-            } else if (strcmp($_POST['mdp'],$_POST['conf_mdp']) != 0) {
+            } else if ($_POST['mdp'] == $_POST['conf_mdp']) {
                 return 4;
             } else {
                 $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);

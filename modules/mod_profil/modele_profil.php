@@ -73,6 +73,7 @@
                 return 3 ;
             }
         }
+        
         public function abonnement(){
             $sql2=self::$bdd->prepare('INSERT INTO Abonner values(?,?)');
             $sql2->execute(array($_SESSION['idUser'],$_GET['idUser']));

@@ -12,7 +12,7 @@
         }   
 
         public function menu() {
-            echo "<a href=\"index.php?module=connexion&action=form_inscription\">S'inscrire</a><br/>";
+            echo "<a id=\"inscrire\" href=\"index.php?module=connexion&action=form_inscription\">S'inscrire</a><br/>";
         }
 
         public function form_inscription() {

@@ -33,12 +33,18 @@
                 case "supprimer_post" :
                     $this->supprimer_post();
                     break;
+                case "voter" :
+                    $this->voter();
+                    break;
                 default :
                     die("action inexistante");
                     break;
             }
             $this->vue->affichage();
             
+        }
+        public function voter() {
+            $this->modele->voter();
         }
 
         public function supprimer_post() {

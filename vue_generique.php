@@ -99,8 +99,8 @@ class VueGenerique
 
         //vote
         echo "<div class=\"vote\">";
-        echo "<button type=\"button\" onclick=\"vote('$post[idPost], ')\">UpVote</button>";
-        echo "<button type=\"button\" onclick=\"vote()\">DownVote</button>";
+        echo "<a onclick=\"voter($post[idPost], 1)\" href=\"#\"><img alt=\"fleche upvote\" src=\"ressources/fleches/fleche_haut_vide.png\" style=\"width:30px;height:30px;\"></a>";
+        echo "<a onclick=\"voter($post[idPost], -1)\" href=\"#\"><img alt=\"fleche downvote\" src=\"ressources/fleches/fleche_bas_vide.png\"style=\"width:30px;height:30px;\"></a>";
         echo "</div>";
 
         echo "</div>";
@@ -115,7 +115,7 @@ class VueGenerique
 
     function afficher_options(event, idPost) {
         var element = "#options" + idPost;
-        if($(element).is(":visible"))
+        if ($(element).is(":visible"))
             $(element).hide();
         else {
             $(".options_contenu").hide();
@@ -135,5 +135,13 @@ class VueGenerique
         }
     }
 
-    function vote(lien) {}
+    function voter(id, v) {
+        $.ajax({
+            type: 'GET',
+            url: 'index.php',
+            data: {module:"post", action:"voter", idPost:id, vote:v},
+            success: function(data) {
+            }
+        });
+    }
 </script>

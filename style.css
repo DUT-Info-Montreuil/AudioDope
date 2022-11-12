@@ -45,16 +45,18 @@ a:hover {
 #menu {
 	margin-top: 15px;
 	margin-bottom: 15px;
-	
 }
 
 #menu a {
 	display: inline-block;
 	width: 150px;
-	
 }
 
 .lien_musique_post {
+	text-decoration: underline;
+}
+
+#inscrire {
 	text-decoration: underline;
 }
 
@@ -68,7 +70,6 @@ a:hover {
 #navbar a {
 	color: rgb(255, 252, 249);
 	font-family: "Inter",sans-serif;
-
 }
 
 #rechercher {
@@ -95,15 +96,14 @@ body {
 body a {
 	text-decoration: none;
 	color: black;
-}
-
-
-/* MAIN */
-
-main a {
-	text-decoration: underline;
 	text-align: center;
 }
+
+body a:hover {
+	text-decoration: none;
+}
+
+/* MAIN */
 
 main {
 	padding-top: 15px;
@@ -216,6 +216,11 @@ main {
 	border-radius: 7px;
 }
 
+.post h2:hover {
+	background-color: rgba(177, 237, 232, 0.479);
+	border-radius: 5px;
+}
+
 .post_dans_section {
 	margin: auto;
 	margin-top: 15px;
@@ -245,28 +250,12 @@ main {
 	margin-top: -1px;
 }
 
-.div_desc {
-	text-align: justify;
-	overflow-wrap: break-word;
+.post_droit {
+	width: 30px;
+	margin-right: 20px;
 }
 
-
-.bouton_co_ins {
-    margin: 10px;
-}
-
-/*FOOTER */
-
-footer {
-	padding-top:5px;
-	padding-bottom:3px;
-	text-align: center;
-	background-color: rgb(53, 45, 57);
-	color: rgb(255, 252, 249);
-	font-family: "Inter",sans-serif;
-}
-
- .options_bouton {
+.options_bouton {
 	padding: 5px;
 	font-size: 12px;
 	border: none;
@@ -296,3 +285,24 @@ footer {
 	text-decoration: none;
 	display: block;
 }
+
+.div_desc {
+	text-align: justify;
+	overflow-wrap: break-word;
+}
+
+.bouton_co_ins {
+    margin: 10px;
+}
+
+/*FOOTER */
+
+footer {
+	padding-top:5px;
+	padding-bottom:3px;
+	text-align: center;
+	background-color: rgb(53, 45, 57);
+	color: rgb(255, 252, 249);
+	font-family: "Inter",sans-serif;
+}
+
