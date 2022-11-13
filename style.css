@@ -10,12 +10,28 @@
 }
 
 header {
-	z-index: 1;
-	position: fixed;
-	width: 100%;
 	text-align: center;
-	margin-top: -15px;
+	padding-top: 5px;
 	background-color: rgb(177, 237, 232) ;
+}
+
+.logo {
+	font-family: "PicNic-Regular";
+	font-size: 60px;
+	margin-bottom: 15px;
+	-webkit-text-stroke: 2px;
+	-webkit-text-stroke-color: black;
+	display: inline;
+}
+
+.fixe {
+	position: fixed;
+	top: -15;
+	width: 100%;
+}
+
+.fixe + main {
+	padding-top: 150px;
 }
 
 #div_titre {
@@ -32,11 +48,11 @@ header {
 	display: inline;
 }
 
-#titre1 {
+.titre1 {
 	color:rgb(255, 105, 120);
 }
 
-#titre2 {
+.titre2 {
 	color:rgb(255, 252, 249);
 }
 
@@ -68,6 +84,7 @@ a:hover {
 }
 
 #navbar {
+	z-index: 1;
 	width: 100%;
 	/*border-top: 3px  rgb(255, 252, 249) solid ;*/
 	padding-top:10px;
@@ -114,10 +131,14 @@ body a:hover {
 /* MAIN */
 
 main {
-	padding-top: 73px;
+	padding-top: 15px;
 	padding-bottom:15px;
 	text-align: center;
 	background-color: rgb(177, 237, 232);
+}
+
+.decalage {
+	margin-top: 81px;
 }
 
 /* INSCRIPTION & CONNEXION */

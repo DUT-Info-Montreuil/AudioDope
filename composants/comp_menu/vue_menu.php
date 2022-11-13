@@ -11,9 +11,10 @@
         private $affichage;
 
         public function menu() {
-            $this->affichage = " <ul class=\"nav justify-content-center\" id=\"navbar\"> ";
+            $this->affichage = "<a href=\"index.php?module=accueil\"><h1 class=\"logo titre1\">Audio</h1><h1 class=\"logo titre2\">Dope</h1></a>";
+            $this->affichage = $this->affichage." <ul class=\"nav justify-content-center\" id=\"navbar\"> ";
             $this->affichage = $this->affichage."<li class=\"nav-item\">".
-            "<a href=\"index.php?module=accueil\"><div id=\"div_titre\"><h1 class=\"titre\" id=titre1>Audio</h1><h1 class=\"titre\" id=titre2>Dope</h1></div></a>";
+            "<a href=\"index.php?module=accueil\"><div id=\"div_titre\"><h1 class=\"titre titre1\">Audio</h1><h1 class=\"titre titre2\">Dope</h1></div></a>";
 			if (isset($_SESSION['login'])) {
                 $this->affichage = $this->affichage."<li class=\"nav-item\">".
                 "<a class=\"nav-link\" href=\"index.php?module=post&action=form_redaction\">Rédiger un post</a></li>";
