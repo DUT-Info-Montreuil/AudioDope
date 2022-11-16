@@ -42,34 +42,32 @@ $(function () {
         function () {
             var id = $(this).attr("idPost");
             var vote = $(this).attr("vote");
-            var idUser = $(this).attr("idUser");
-            if (idUser == -1) {
-                pas_connecte();
-            } else {
-                $.ajax({
-                    type: "GET",
-                    url: "javascript/voter.php",
-                    data: {
-                        idPost: id,
-                        vote: vote,
-                        idUser: idUser
-                    },
-                    dataType: "json",
-                    success: function (data) {
-                        if (data['vote'] == 0) {
-                            $("#imgUpVote" + id).attr('src', 'ressources/fleches/fleche_haut_vide.png')
-                            $("#imgDownVote" + id).attr('src', 'ressources/fleches/fleche_bas_vide.png');
-                        } else if (data['vote'] == 1) {
-                            $("#imgUpVote" + id).attr('src', 'ressources/fleches/fleche_haut_plein.png')
-                            $("#imgDownVote" + id).attr('src', 'ressources/fleches/fleche_bas_vide.png');
-                        } else {
-                            $("#imgUpVote" + id).attr('src', 'ressources/fleches/fleche_haut_vide.png')
-                            $("#imgDownVote" + id).attr('src', 'ressources/fleches/fleche_bas_plein.png');
-                        }
-                        $('#nb_vote' + id).text(data['nb_vote']);
+            $.ajax({
+                type: "GET",
+                url: "javascript/voter.php",
+                data: {
+                    idPost: id,
+                    vote: vote,
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data['connecte'] == false) {
+                        pas_connecte();
+                    } else {
+                    if (data['vote'] == 0) {
+                        $("#imgUpVote" + id).attr('src', 'ressources/fleches/fleche_haut_vide.png')
+                        $("#imgDownVote" + id).attr('src', 'ressources/fleches/fleche_bas_vide.png');
+                    } else if (data['vote'] == 1) {
+                        $("#imgUpVote" + id).attr('src', 'ressources/fleches/fleche_haut_plein.png')
+                        $("#imgDownVote" + id).attr('src', 'ressources/fleches/fleche_bas_vide.png');
+                    } else {
+                        $("#imgUpVote" + id).attr('src', 'ressources/fleches/fleche_haut_vide.png')
+                        $("#imgDownVote" + id).attr('src', 'ressources/fleches/fleche_bas_plein.png');
                     }
-                })
+                    $('#nb_vote' + id).text(data['nb_vote']);
+                }
             }
+            })
         })
 });
 

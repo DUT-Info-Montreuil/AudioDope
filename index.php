@@ -14,8 +14,10 @@ crossorigin="anonymous"></script>
 	include_once('modules/mod_post/mod_post.php');
 	include_once('modules/mod_accueil/mod_accueil.php');
 	include_once('composants/comp_menu/comp_menu.php');
+
 	Connexion::initConnexion();
 	$affichage;
+	
 	if (isset($_GET['module'])) {
 		switch($_GET['module']) {
 			case 'connexion' : new ModConnexion(); break;
