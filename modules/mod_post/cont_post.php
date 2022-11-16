@@ -30,9 +30,6 @@
                 case "voir_post" :
                     $this->voir_post();
                     break;
-                case "supprimer_post" :
-                    $this->supprimer_post();
-                    break;
                 case "voter" :
                     $this->voter();
                     break;
@@ -44,12 +41,6 @@
         }
         public function voter() {
             $this->modele->voter();
-        }
-
-        public function supprimer_post() {
-            $this->modele->supprimer_post();
-            $lien = "Location: index.php?module=profil&action=voir_profil&idUser=" . $_SESSION['idUser'];
-            header($lien);
         }
 
         public function voir_post() {
