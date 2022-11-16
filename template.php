@@ -34,22 +34,3 @@ if (constant("lala") != "layn")
 </BODY>
 
 </HTML>
-
-<script>
-window.onscroll = function() {myFunction()};
-
-var header = document.getElementById("navbar");
-var main = document.getElementById("main");
-
-var sticky = header.offsetTop;
-
-function myFunction() {
-  if (window.pageYOffset > sticky) {
-	main.classList.add("decalage");
-    header.classList.add("fixe");
-  } else {
-	main.classList.remove("decalage");
-    header.classList.remove("fixe");
-  }
-}
-</script>
