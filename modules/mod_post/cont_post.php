@@ -35,6 +35,8 @@
                     break;
                 case "voter" :
                     $this->voter();
+                case "redaction_commentaire" :
+                    $this->redaction_commentaire();
                     break;
                 default :
                     die("action inexistante");
@@ -55,6 +57,11 @@
         public function voir_post() {
             $post = $this->modele->get_post();
             $this->vue->affiche_post($post['post'], $post['vote'], $post['nb_votes']);
+            $this->vue->affiche_redac_commentaire();
+            $tab_com = $this->modele->get_commentaire();
+            foreach ($tab_com as $com) {
+                    $this->vue->affiche_commentaire($com);
+            }
         }
 
         public function form_redaction() {
@@ -69,14 +76,21 @@
                 $this->vue->form_redaction_fin();
             }
             else
-            $this->vue->non_connecte();
+                $this->vue->non_connecte();
+        }
+
+        public function redaction_commentaire() {
+            if (isset($_SESSION['login'])) {
+                $this->modele->redaction_commentaire();
+                $this->vue->commentaire_envoye($_GET['idPost']);
+            }
         }
 
         public function redaction() {
             $verif = $this->modele->verif_titre();
             if ($verif == 1) {
-                $this->modele->redaction();
-                $this->vue->post_envoye();
+                $idPost = $this->modele->redaction();
+                $this->vue->post_envoye($idPost);
             } else if ($verif == 2) {
                 $this->vue->titre_deja_util();
             } else if ($verif == 3) {

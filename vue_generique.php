@@ -78,8 +78,7 @@ class VueGenerique
         echo "</div>";
     }
 
-    public function affiche_post_droit($post, $vote, $nb_votes)
-    {
+    public function affiche_post_droit($post, $vote, $nb_votes) {
         echo "<div class=\"post_droit\">";
         //bouton partage
         echo "<div class=\"options\">";
@@ -124,6 +123,37 @@ class VueGenerique
 
         echo "</div>";
     }
+    
+    public function affiche_redac_commentaire() {
+        if (strcmp($_GET['module'], "post") == 0) {
+             echo '<h3 id="titre_rouge">Commentaires</h3>
+            <FORM ACTION="index.php?module=post&action=redaction_commentaire&idPost=' . $_GET['idPost'] . '" METHOD="POST" id="form_redac"> </br>
+                 <div class="mb-3">
+                    <TEXTAREA class="form-control" NAME="avis_commentaire" placeholder="Laissez votre avis!" MAXLENGTH="1000" rows="5"></textarea>
+                </div> </br>
+                <INPUT CLASS="btn btn-primary" TYPE="SUBMIT" NAME="bouton" value="Envoyer"> 
+             </FORM>';
+        }
+    }
+
+    public function affiche_commentaire($com) {
+        echo "<article class=\"post\">";
+        //partie gauche
+        echo "<div class=\"post_gauche\">";
+        echo "<a href=\"index.php?module=profil&action=voir_profil&idUser=$com[idUser]\">$com[login]</a>";
+        echo "<p><small>$com[dateCom]</small></p>";
+        echo "</div>";
+        //partie droite
+        echo "<div class=\"post_milieu\">";
+        //description
+        echo "<div class=\"div_desc\">";
+        echo "<p class=\"description\">$com[avis]</p>";
+        echo "</div>";
+        echo "</div>";
+        echo "</div></div>";
+        echo "</article>";
+    }
+    
 }
 ?>
 

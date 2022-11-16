@@ -57,8 +57,12 @@
             </FORM>';
         }
 
-        public function post_envoye() {
-            echo '<p>Bien envoyé!</p>';
+        public function post_envoye($idPost) {
+            echo '<a href ="index.php?module=post&action=voir_post&idPost=' . $idPost . '">Bien envoyé! - Cliquer pour accéder au post</a>';
+        }
+
+        public function commentaire_envoye($idPost) {
+            echo '<a href ="index.php?module=post&action=voir_post&idPost=' . $idPost . '">Bien envoyé! - Cliquer pour revenir au post</a>';
         }
 
         public function titre_deja_util() {

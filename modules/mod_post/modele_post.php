@@ -35,7 +35,8 @@
             self :: inserer_attrib_post($idPost["idPost"], $tag1);
             self :: inserer_attrib_post($idPost["idPost"], $tag2);
             self :: inserer_attrib_post($idPost["idPost"], $tag3);
-        
+
+            return $idPost["idPost"];
         }
 
         public function inserer_attrib_post($idPost, $tag) {
@@ -95,19 +96,30 @@
             }
         }
 
+        public function get_commentaire() {
+            $posts = self::$bdd->prepare('SELECT CommenterPost.idUser AS idUser, idPost, avis, login, dateCom FROM CommenterPost JOIN Utilisateurs ON CommenterPost.idUser = Utilisateurs.idUser WHERE idPost = ? ORDER BY dateCom DESC');
+            $posts->execute(array($_GET['idPost']));
+            return $posts->fetchAll();
+        }
+
         public function redac_tag($typeTag) {
             $statement = self::$bdd->prepare('SELECT nomTag, idTag FROM Tags WHERE typeTag = :typeT');
             $statement -> bindParam(':typeT', $typeTag);
             $statement->execute();
             $statement = $statement->fetchAll();
             return $statement;
-
         }
 
-        
         public function supprimer_post() {
             $post = self::$bdd->prepare('delete from Posts where idPost = ?');
             $post->execute(array($_GET['idPost']));
         }
+
+        public function redaction_commentaire() {
+            $statement = self::$bdd->prepare('INSERT INTO CommenterPost VALUES(NULL,?, ?, ?, now())');
+            $statement->execute(array($_GET['idPost'], $_SESSION['idUser'], $_POST['avis_commentaire']));
+        }
+
+
     }
 ?>
