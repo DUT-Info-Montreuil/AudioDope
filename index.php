@@ -1,6 +1,7 @@
-<head>
-	<script src="ressources/jquery-3.6.1.min.js"></script>
-</head>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+crossorigin="anonymous"></script>
+<script src="javascript/methode_js.js"></script>
 
 <?php
     session_start();
@@ -13,8 +14,10 @@
 	include_once('modules/mod_post/mod_post.php');
 	include_once('modules/mod_accueil/mod_accueil.php');
 	include_once('composants/comp_menu/comp_menu.php');
+
 	Connexion::initConnexion();
 	$affichage;
+	
 	if (isset($_GET['module'])) {
 		switch($_GET['module']) {
 			case 'connexion' : new ModConnexion(); break;

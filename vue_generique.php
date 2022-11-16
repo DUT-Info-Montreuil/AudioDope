@@ -44,7 +44,7 @@ class VueGenerique
 
     public function affiche_post($post, $vote, $nb_votes)
     {
-        echo "<article class=\"post\">";
+        echo "<article class=\"post\" id=\"$post[idPost]\">";
         $this->affiche_post_gauche($post);
         $this->affiche_post_milieu($post);
         $this->affiche_post_droit($post, $vote, $nb_votes);
@@ -82,20 +82,19 @@ class VueGenerique
         echo "<div class=\"post_droit\">";
         //bouton partage
         echo "<div class=\"options\">";
-        echo "<button class=\"options_bouton\" onclick=\"afficher_options(event, $post[idPost])\">...</button>";
+        echo "<button class=\"options_bouton\" idPost=$post[idPost]>...</button>";
         echo "<div class=\"options_contenu\" id=\"options$post[idPost]\">";
         //ajouter collection
         echo "<a href=\"index.php?\">Ajouter à une collection</a>";
         $lien = "index.php?module=post&action=voir_post&idPost=$post[idPost]";
         //partager
-        echo "<a onclick=\"partager('$lien')\" href=\"#\">Partager</a>";
-        $lien = "index.php?module=post&action=supprimer_post&idPost=$post[idPost]";
+        echo "<a class=\"partager\" lien=\"$lien\" href=\"#\">Partager</a>";
         //supprimer
         if (isset($_SESSION['idUser']) && $post['idUser'] == $_SESSION['idUser'])
-            echo "<a onclick=\"supprimer('$lien')\" href=\"#\">Supprimer</a>";
+            echo "<a class=\"supprimer\" idPost=$post[idPost] href=\"#\">Supprimer</a>";
         echo "</div>";
         echo "</div>";
-
+        
         //vote
         echo "<div class=\"vote\">";
         if ($vote == 0) {
@@ -109,16 +108,9 @@ class VueGenerique
             $src_down = "ressources/fleches/fleche_bas_plein.png";
         }
 
-        if (isset($_SESSION['idUser'])) {
-            $onclick_up = "voter($post[idPost], 1)";
-            $onclick_down = "voter($post[idPost], -1)";
-        } else {
-            $onclick_up = "pas_connecte()";
-            $onclick_down = "pas_connecte()";
-        }
-        echo "<a onclick=\"$onclick_up\" href=\"#\"><img id=\"upVote$post[idPost]\" alt=\"fleche upvote\" src=$src_up style=\"width:30px;height:30px;\"></a>";
+        echo "<a class=\"voter\" id=\"UpVote$post[idPost]\" idPost=$post[idPost] vote=1 href=\"#\"><img id=\"imgUpVote$post[idPost]\" alt=\"fleche upvote\" src=$src_up style=\"width:30px;height:30px;\"></a>";
         echo "<p class=\"nb_vote\" id=\"nb_vote$post[idPost]\">$nb_votes</p>";
-        echo "<a onclick=\"$onclick_down\" href=\"#\"><img id=\"downVote$post[idPost]\" alt=\"fleche downvote\" src=$src_down style=\"width:30px;height:30px;\"></a>";
+        echo "<a class=\"voter\" id=\"DownVote$post[idPost]\" idPost=$post[idPost] vote=-1 href=\"#\"><img id=\"imgDownVote$post[idPost]\" alt=\"fleche downvote\" src=$src_down style=\"width:30px;height:30px;\"></a>";
         echo "</div>";
 
         echo "</div>";
@@ -156,82 +148,3 @@ class VueGenerique
     
 }
 ?>
-
-<script>
-    $(document).click(function() {
-        $(".options_contenu").hide();
-    });
-
-    function afficher_options(event, idPost) {
-        var element = "#options" + idPost;
-        if ($(element).is(":visible"))
-            $(element).hide();
-        else {
-            $(".options_contenu").hide();
-            $(element).show();
-        }
-        event.stopPropagation();
-    }
-
-    function partager(lien) {
-        navigator.clipboard.writeText(lien);
-        alert("lien copié");
-    }
-
-    function supprimer(lien) {
-        if (window.confirm("Êtes-vous sûr de vouloir supprimer ?")) {
-            window.open(lien);
-        }
-    }
-
-    function pas_connecte() {
-        if (window.confirm("Connectez ou inscrivez-vous pour pouvoir voter. Souhaitez-vous connecter ?")) {
-            window.open("index.php?module=connexion", "_self");
-        }
-    }
-
-    function voter(id, v) {
-        event.preventDefault();
-        $.ajax({
-            type: 'GET',
-            url: 'index.php',
-            data: {
-                module: "post",
-                action: "voter",
-                idPost: id,
-                vote: v
-            },
-            success: function(data) {
-                var nb_votes = parseInt($('#nb_vote' + id).text());
-                if (v == 1) {
-                    if ($("#upVote" + id).attr('src') == 'ressources/fleches/fleche_haut_vide.png') {
-                        $("#upVote" + id).attr('src', 'ressources/fleches/fleche_haut_plein.png')
-                        if ($("#downVote" + id).attr('src') == 'ressources/fleches/fleche_bas_plein.png') {
-                            $("#downVote" + id).attr('src', 'ressources/fleches/fleche_bas_vide.png');
-                            nb_votes = nb_votes + 2;
-                        } else {
-                            nb_votes = nb_votes + 1;
-                        }
-                    } else {
-                        $("#upVote" + id).attr('src', 'ressources/fleches/fleche_haut_vide.png');
-                        nb_votes = nb_votes - 1;
-                    }
-                } else {
-                    if ($("#downVote" + id).attr('src') == 'ressources/fleches/fleche_bas_vide.png') {
-                        $("#downVote" + id).attr('src', 'ressources/fleches/fleche_bas_plein.png')
-                        if ($("#upVote" + id).attr('src') == 'ressources/fleches/fleche_haut_plein.png') {
-                            $("#upVote" + id).attr('src', 'ressources/fleches/fleche_haut_vide.png');
-                            nb_votes = nb_votes - 2;
-                        } else {
-                            nb_votes = nb_votes - 1;
-                        }
-                    } else {
-                        $("#downVote" + id).attr('src', 'ressources/fleches/fleche_bas_vide.png');
-                        nb_votes = nb_votes + 1;
-                    }
-                }
-                $('#nb_vote' + id).text(nb_votes);
-            }
-        });
-    }
-</script>

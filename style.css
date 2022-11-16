@@ -30,14 +30,12 @@ header {
 	width: 100%;
 }
 
-.fixe + main {
-	padding-top: 150px;
-}
-
 #div_titre {
 	background-color: rgb(177, 237, 232) ;
 	border-radius: 16px;
 	padding: 0px 7px 3px;
+	margin-top: -25px;
+	margin-bottom: -15px;
 }
 
 .titre {

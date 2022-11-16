@@ -14,7 +14,7 @@
             $lien_post = htmlspecialchars($_POST['lien_post']);
             $corps_post = htmlspecialchars($_POST['corps_post']);
             
-            $sql = 'INSERT INTO Posts VALUES(NULL, ?, ?, ?, now() ,?)';
+            $sql = 'INSERT INTO Posts VALUES(NULL, ?, ?, ?, NULL ,?)';
             $statement = self::$bdd->prepare($sql);
             $statement->execute(array($lien_post, $titre_post, $corps_post,$_SESSION['idUser']));  
 
@@ -75,32 +75,12 @@
 
             return $tab;
         }
-
-        public function voter() {
-            if (isset($_SESSION['idUser'])) {
-                $vote = self::$bdd->prepare('select vote from VoterPost where idUser = ? and idPost = ?');
-                $vote->execute(array($_SESSION['idUser'], $_GET['idPost']));
-                if ($vote->rowcount() == 0) {
-                    echo 1;
-                    $vote = self::$bdd->prepare('insert into VoterPost values (?,?,?)');
-                    $vote->execute(array($_SESSION['idUser'], $_GET['vote'], $_GET['idPost']));
-                } else if ($vote->fetch()['vote'] == $_GET['vote']) {
-                    echo 2;
-                    $vote = self::$bdd->prepare('delete from VoterPost where idUser = ? and idPost = ?');
-                    $vote->execute(array($_SESSION['idUser'], $_GET['idPost']));
-                } else {
-                    echo 3;
-                    $vote = self::$bdd->prepare('update VoterPost set vote = ? where idUser = ? and idPost = ?');
-                    $vote->execute(array( $_GET['vote'], $_SESSION['idUser'], $_GET['idPost']));
-                }
-            }
-        }
-
         public function get_commentaire() {
             $posts = self::$bdd->prepare('SELECT CommenterPost.idUser AS idUser, idPost, avis, login, dateCom FROM CommenterPost JOIN Utilisateurs ON CommenterPost.idUser = Utilisateurs.idUser WHERE idPost = ? ORDER BY dateCom DESC');
             $posts->execute(array($_GET['idPost']));
             return $posts->fetchAll();
         }
+
 
         public function redac_tag($typeTag) {
             $statement = self::$bdd->prepare('SELECT nomTag, idTag FROM Tags WHERE typeTag = :typeT');
@@ -108,11 +88,6 @@
             $statement->execute();
             $statement = $statement->fetchAll();
             return $statement;
-        }
-
-        public function supprimer_post() {
-            $post = self::$bdd->prepare('delete from Posts where idPost = ?');
-            $post->execute(array($_GET['idPost']));
         }
 
         public function redaction_commentaire() {
