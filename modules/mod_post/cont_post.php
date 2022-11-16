@@ -30,8 +30,6 @@
                 case "voir_post" :
                     $this->voir_post();
                     break;
-                case "voter" :
-                    $this->voter();
                 case "redaction_commentaire" :
                     $this->redaction_commentaire();
                     break;
@@ -40,9 +38,6 @@
             }
             $this->vue->affichage();
             
-        }
-        public function voter() {
-            $this->modele->voter();
         }
 
         public function voir_post() {
