@@ -91,7 +91,7 @@
             //partie gauche
             echo "<div class=\"post_gauche\">";
             echo "<a href=\"index.php?module=profil&action=voir_profil&idUser=$com[idUser]\">$com[login]</a>";
-            //echo "<p><small>$post[datePost]</small></p>";
+            echo "<p><small>$com[dateCom]</small></p>";
             echo "</div>";
             //partie droite
             echo "<div class=\"post_droit\">";

@@ -66,7 +66,7 @@
         }
 
         public function get_commentaire() {
-            $posts = self::$bdd->prepare('select CommenterPost.idUser as idUser, idPost, avis, login from CommenterPost join Utilisateurs on CommenterPost.idUser = Utilisateurs.idUser where idPost = ?');
+            $posts = self::$bdd->prepare('SELECT CommenterPost.idUser AS idUser, idPost, avis, login, dateCom FROM CommenterPost JOIN Utilisateurs ON CommenterPost.idUser = Utilisateurs.idUser WHERE idPost = ? ORDER BY dateCom DESC');
             $posts->execute(array($_GET['idPost']));
             return $posts->fetchAll();
         }
@@ -85,7 +85,7 @@
         }
 
         public function redaction_commentaire() {
-            $statement = self::$bdd->prepare("INSERT INTO CommenterPost VALUES(NULL,?, ?, ?)");
+            $statement = self::$bdd->prepare('INSERT INTO CommenterPost VALUES(NULL,?, ?, ?, now())');
             $statement->execute(array($_GET['idPost'], $_SESSION['idUser'], $_POST['avis_commentaire']));
         }
 
