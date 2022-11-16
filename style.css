@@ -250,6 +250,37 @@ main {
     margin: 10px;
 }
 
+/*Collection*/
+.collection{
+	margin: auto;
+	margin-top: 15px;
+	width : 65%;
+	min-width: 750px;
+	max-width:1200px;
+	min-height: 120px;
+	float: bottom;
+	border: 1px black solid;
+	border: 2px rgb(53, 45, 57) solid;
+	display: flex;
+	background-color:rgb(255, 252, 249);
+	border-radius: 7px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*FOOTER */
 
 footer {

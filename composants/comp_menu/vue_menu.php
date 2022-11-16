@@ -17,6 +17,7 @@
                 "<li class=\"nav-item\">" .
                 "<a class=\"nav-link\" href=\"index.php?module=post&action=form_redaction\">Rédiger un post</a></li>";
 				$this->affichage = $this->affichage . "<li class=\"nav-item\">" .
+                "<a class=\"nav-link\" href=\"index.php?module=collection&action=form_collection\">Créer une collection</a></li>".
                 "<a class=\"nav-link\" href=\"index.php?module=profil&action=voir_profil&idUser=".$_SESSION['idUser']."\">Profil</a></li>";
                 $this->affichage = $this->affichage . "<li class=\"nav-item\">" .
                 "<a class=\"nav-link\" href=\"index.php?module=connexion&action=deconnexion\">Se déconnecter</a></li>";
