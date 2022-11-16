@@ -111,7 +111,7 @@ class VueGenerique
         if (isset($_SESSION['idUser'])) {
             $idUser = $_SESSION['idUser'];
         } else {
-            $idUser = NULL;
+            $idUser = -1;
         }
 
         echo "<a class=\"voter\" id=\"UpVote$post[idPost]\" idPost=$post[idPost] vote=1 idUser=$idUser href=\"#\"><img id=\"imgUpVote$post[idPost]\" alt=\"fleche upvote\" src=$src_up style=\"width:30px;height:30px;\"></a>";

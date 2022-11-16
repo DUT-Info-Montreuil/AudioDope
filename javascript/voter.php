@@ -4,24 +4,26 @@
     $vote = $bdd->prepare('select vote from VoterPost where idUser = ? and idPost = ?');
     $vote->execute(array($_GET['idUser'], $_GET['idPost']));
     if ($vote->rowcount() == 0) {
-        $vote = self::$bdd->prepare('insert into VoterPost values (?,?,?)');
+        $vote = $bdd->prepare('insert into VoterPost values (?,?,?)');
         $vote->execute(array($_GET['idUser'], $_GET['vote'], $_GET['idPost']));
         $v = $_GET['vote'];
     } else if ($vote->fetch()['vote'] == $_GET['vote']) {
-        $vote = self::$bdd->prepare('delete from VoterPost where idUser = ? and idPost = ?');
+        $vote = $bdd->prepare('delete from VoterPost where idUser = ? and idPost = ?');
         $vote->execute(array($_GET['idUser'], $_GET['idPost']));
         $v = 0;
     } else {
-        $vote = self::$bdd->prepare('update VoterPost set vote = ? where idUser = ? and idPost = ?');
+        $vote = $bdd->prepare('update VoterPost set vote = ? where idUser = ? and idPost = ?');
         $vote->execute(array($_GET['vote'], $_GET['idUser'], $_GET['idPost']));
         $v = $_GET['vote'];
     }
-    $nb_vote = $bdd->prepare('select count(*) as count from VoterPost where idPost = ?');
+    $nb_vote = $bdd->prepare('select sum(vote) as somme from VoterPost where idPost = ?');
     $nb_vote->execute(array($_GET['idPost']));
-
+    $nb_vote = $nb_vote->fetch()['somme'];
+    if ($nb_vote == NULL)
+        $nb_vote = 0;
     $array = array(
         "vote"=>$v,
-        "nb_vote"=>$nb_vote->fetch()['count']
+        "nb_vote"=>$nb_vote
     );
     echo json_encode($array);
 ?>
