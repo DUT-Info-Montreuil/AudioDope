@@ -65,8 +65,8 @@
                 <button class=\"options_bouton\">...</button>
                 <div class=\"options_contenu\">";
             //bouton ajouter a une collection
-            $lien = "index.php?module=collection&action=ajouter_post&idPost=$post[idPost]";
-             echo" <a onclick=\"Ajouter à une collection('$lien')\" href=\"index.php?\">Ajouter à une collection</a>";
+            $lien = "index.php?module=collection&action=choix_collection";
+             echo" <a onclick=\"Ajouter à une collection('$lien')\" href=\"index.php?module=collection&action=choix_collection\">Ajouter à une collection</a>";
             //bouton partage
             $lien = "index.php?module=post&action=voir_post&idPost=$post[idPost]";
             echo "<a onclick=\"partager('$lien')\" href=\"#\">Partager</a>";

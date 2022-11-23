@@ -68,10 +68,10 @@ class ModeleCollection extends Connexion
         $collection->execute(array($_GET['idCollection']));
     }
 
-    public function ajouter_post($idPost)
+    public function ajouter_post()
     {
-        $collection = self::$bdd->prepare("INSERT INTO Appartenir VALUES(?, ?)");
-        $collection->execute(array($idPost, $_GET['idCollection']));
+        $collection = self::$bdd->prepare("INSERT INTO `Appartenir` (`idPost`, `idCollection`) VALUES ('?', '?');");
+        $collection->execute(array($_GET['idPost'],$_GET['idCollection']));
     }
 
     public function get_post_collection(){
@@ -84,6 +84,12 @@ class ModeleCollection extends Connexion
         $collections = self::$bdd->prepare('select Collections.idUser as idUser, idCollection, login, titreCollection, descriptionCollection, prive from Collections join Utilisateurs on Collections.idUser = Utilisateurs.idUser where Collections.idUser = ?');
         $collections->execute(array($_GET['idCollection']));
         return $collections->fetchAll();
+    }
+
+    public function getChoixCollection(){
+        $collections = self::$bdd->prepare('select Collections.idUser as idUser,titreCollection, idCollection, idPost from Collections inner join Appartenir using(idCollection) inner join Posts using (idPost) inner join Utilisateurs on(Collections.idUser=Utilisateurs.idUser) where Collections.idUser = ?');
+        $collections->execute(array($_SESSION['idUser']));
+       return $collections->fetchAll();
     }
 
 }

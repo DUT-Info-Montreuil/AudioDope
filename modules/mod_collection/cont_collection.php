@@ -34,7 +34,11 @@
                     $this->supprimer_collection();
                     break;
                 case "ajouter_post":
-                        $this->ajouter_unPost($_GET['idPost']);
+                        $this->ajouter_unPost();
+                        break;
+                    case "choix_collection":
+                        $this->affiche_choix_collection();
+                        break;
                 default :
                     die("action inexistante");
                     break;
@@ -68,8 +72,9 @@
             else
             $this->vue->non_connecte();
         }
-        public function ajouter_unPost($idPost){
-            $this->modele->ajouter_post($idPost);
+        public function ajouter_unPost(){
+            $this->modele->ajouter_post();
+            $this->vue->ajout_post_dans_collection();
         }
 
         public function redaction_collection() {
@@ -82,6 +87,10 @@
             } else if ($verif == 3) {
                 $this->vue->titre_description_a_remplir();
             }
+        }
+
+        public function affiche_choix_collection(){
+            $this->vue->choix_collection($this->modele->getChoixCollection());
         }
         
     }

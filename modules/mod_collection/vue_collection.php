@@ -57,6 +57,9 @@
         public function creation_collection() {
             echo '<p>Collection créé!</p>';
         }
+        public function ajout_post_dans_collection() {
+            echo '<p>Ajoutée dans la collection</p>';
+        }
 
         public function titre_deja_util() {
             echo '<p>Titre non disponible</p>';
@@ -65,5 +68,11 @@
         public function titre_description_a_remplir() {
             echo '<p>Veuillez saisir un titre et une description</p>';
         }
+        public function choix_collection($collection){
+            foreach($collection as $col){
+                echo "<a href=\"index.php?module=collection&action=ajouter_post&idPost=$col[idPost]&idCollection=$col[idCollection]\">".$col['titreCollection']."</a>".'<br>';
+         
+        }
     }
+}
 ?>
