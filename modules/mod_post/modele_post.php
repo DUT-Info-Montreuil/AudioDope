@@ -14,7 +14,7 @@
             $lien_post = htmlspecialchars($_POST['lien_post']);
             $corps_post = htmlspecialchars($_POST['corps_post']);
             
-            $sql = 'INSERT INTO Posts VALUES(NULL, ?, ?, ?, NULL ,?)';
+            $sql = 'INSERT INTO Posts(lien, titre, descriptionPost, idUser) VALUES(?, ?, ?, ?)';
             $statement = self::$bdd->prepare($sql);
             $statement->execute(array($lien_post, $titre_post, $corps_post,$_SESSION['idUser']));  
 
