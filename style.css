@@ -251,19 +251,44 @@ main {
 }
 
 /*Collection*/
-.collection{
+
+#collection{
 	margin: auto;
 	margin-top: 15px;
-	width : 65%;
+	width : 100%;
 	min-width: 750px;
 	max-width:1200px;
 	min-height: 120px;
-	float: bottom;
+	position: bottom;
 	border: 1px black solid;
 	border: 2px rgb(53, 45, 57) solid;
 	display: flex;
 	background-color:rgb(255, 252, 249);
 	border-radius: 7px;
+	
+	display: inline-block;
+}
+.collection_gauche{
+	float: left;
+	display: inline-block;
+	margin-left: 10px;
+
+}
+
+.collection_droit{
+	display: inline-block;
+	
+	
+}
+
+.titre_collection{
+	font-size: 20px;
+	font-weight: bold;
+
+	color:rgb(255, 105, 120);
+	-webkit-text-stroke: 0.2px;
+	-webkit-text-stroke-color: black;
+	
 }
 
 

@@ -60,4 +60,10 @@
             echo "<h2 id=\"titre_posts_profil\">Posts</h2>";
             $this->affiche_posts($posts);
         }
+
+        public function afficher_collection_profil($collection, $post_collection){
+            echo "<h2 id=\"titre_collection_profil\">Collection</h2>";
+            $this->affiche_collections($collection, $post_collection);
+
+        }
     }

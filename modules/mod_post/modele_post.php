@@ -72,6 +72,7 @@
             return $statement;
 
         }
+     
 
         
         public function supprimer_post() {

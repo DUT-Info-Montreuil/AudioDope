@@ -74,10 +74,16 @@ class ModeleCollection extends Connexion
         $collection->execute(array($idPost, $_GET['idCollection']));
     }
 
+    public function get_post_collection(){
+        $postC=self::$bdd->prepare('select idPost, titre, idCollection from Collections inner join Appartenir using(idCollection) inner join Posts using (idPost) where idCollection=?');
+        $postC->execute(array($_GET['idCollection']));
+        return $postC->fetchAll();
+    }
+
     public function getCollection()
     {
-        $collections = self::$bdd->prepare('select Collections.idUser as idUser, idCollection, login, , titreCollection, descriptionCollection, prive from Collections join Utilisateurs on Collections.idUser = Utilisateurs.idUser where idCollection = ?');
-        $collections->execute(array($_GET['idCollections']));
-        return $collections->fetch();
+        $collections = self::$bdd->prepare('select Collections.idUser as idUser, idCollection, login, titreCollection, descriptionCollection, prive from Collections join Utilisateurs on Collections.idUser = Utilisateurs.idUser where idCollection = ?');
+        $collections->execute(array($_SESSION['idUser']));
+        return $collections->fetchAll();
     }
 }

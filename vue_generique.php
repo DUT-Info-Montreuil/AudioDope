@@ -31,6 +31,7 @@
         public function affiche_posts($posts) {
             echo "<section id=\"posts\">";
             foreach ($posts as &$post) {
+               
                 $this->affiche_post($post);
             }
             echo "</section>";
@@ -78,35 +79,39 @@
         }
     
 
-    public function affiche_collections($collection) {
+    public function affiche_collections($collection, $post_collection) {
         echo "<section id=\"collection\">";
         foreach ($collection as &$collection) {
-            $this->affiche_collection($collection);
+    
+            $this->affiche_collection($collection,$post_collection);
         }
         echo "</section>";
     }
 
-    public function affiche_collection($collection){
+    public function affiche_collection($collection,$post_collection){
         echo "<article class=\"collection\">";
             //partie gauche
             echo "<div class=\"collection_gauche\">";
+           
             echo "<a href=\"index.php?module=profil&action=voir_profil&idUser=$collection[idUser]\">$collection[login]</a>";
             echo "</div>";
             //partie droite
             echo "<div class=\"collection_droit\">";
             //titre
-            if (strcmp($_GET['module'], "collection") == 0)
-                echo "<h2 class=\"titre_post\">$collection[titre]</h2>";
-            else
+            if (strcmp($_GET['module'], "collection") == 0){
+                echo "<h2 class=\"titre_collection\">$collection[titre]</h2>";
+               echo "<a href=\"index.php?module=post&action=voir_post&idPost=$post_collection[idPost]\">$post_collection[titre]</a>";
+            }else
                 echo "<a href=\"index.php?module=collection&action=voir_collection&idCollection=$collection[idCollection]\"><h2 class=\"titre_collection\">$collection[titreCollection]</h2></a>";
             //description
             echo "<div class=\"div_descCollection\">";
             if (strcmp($_GET['module'], "collection") == 0)
-                echo "<p class=\"description\">$collection[descriptionCollection]</p>";
+                echo "<p class=\"descriptionC\">$collection[descriptionCollection]</p>";
             else 
-                echo "<p class=\"description\">".substr($collection['descriptionCollection'], 0, 201)."</p>";
+                echo "<p class=\"descriptionC\">".substr($collection['descriptionCollection'], 0, 201)."</p>";
             echo "</div>";
             echo "</div>";
+            
            
     }
 }
