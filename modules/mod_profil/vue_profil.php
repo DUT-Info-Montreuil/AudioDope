@@ -12,15 +12,21 @@
         }
 
         public function afficher_profil($profil) {
-            if($profil['pfp'] == NULL) {
-                echo "<img src=\"ressources/pfp/pfp.jpg\" alt=\"photo de profil\" width=\"64\" height=\"64\">";
+            echo '<div id="profil">';
+            echo '<div id="profil_gauche">';
+            echo "<img src=\"$profil[pfp]\" alt=\"photo de profil\" width=\"64\" height=\"64\">";
+            echo '<p>'.$profil['login'].'</p>';
+            echo '</div>';
+            echo '<div id="profil_droit">';
+            if(isset($_SESSION['idUser']) && $profil['idUser'] == $_SESSION['idUser']) {
+                echo "<div id=\"abonne\"><p>$profil[nb_abonnes]</p><p><a href=\"index.php?module=profil&action=afficherAbonner&id=".$_SESSION['idUser']."\">Abonne(s)</a></p></div>";
+                echo "<div id=\"abonnenement\"><p>$profil[nb_abonnement]</p><p><a href=\"index.php?module=profil&action=afficherAbonnement&id=".$_SESSION['idUser']."\">Abonnement(s)</a></p></div>";
+            } else {
+                echo "<div id=\"abonne\"><p>$profil[nb_abonnes]</p><p>Abonne(s)</p></div>";
+                echo "<div id=\"abonnenement\"><p>$profil[nb_abonnement]</p><p>Abonnement(s)</p></div>";
             }
-            echo '<p>' . $profil['login']."&emsp;";
-            if(isset($_SESSION['idUser']) && $profil['idUser'] == $_SESSION['idUser'])
-                echo $profil['nb_abonnes']."<a href=\"index.php?module=profil&action=afficherAbonner&id=".$_SESSION['idUser']."\"> Abonne(s) </a> &emsp;".
-                $profil['nb_abonnement']."<a href=\"index.php?module=profil&action=afficherAbonnement&id=".$_SESSION['idUser']."\"> Abonnement(s)</a></p>";
-            else
-                echo $profil['nb_abonnes']." Abonne(s)&emsp;".$profil['nb_abonnement']." Abonnement(s)</p>";
+            echo '</div>';
+            echo '</div>';
         }
 
         public function afficher_listeAbo($array) {

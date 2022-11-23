@@ -335,3 +335,24 @@ footer {
 	font-family: "Inter",sans-serif;
 }
 
+#profil {
+	display: flex;
+	justify-content: center;
+}
+
+#profil_gauche {
+	margin-right: 10px;
+}
+
+#profil_droit {
+	padding-top: 10px;
+	display: flex;
+}
+
+#abonne {
+	margin-right: 10px;
+}
+
+#profil_droit p {
+	margin-bottom: 0px;
+}

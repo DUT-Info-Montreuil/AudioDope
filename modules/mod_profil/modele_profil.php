@@ -12,14 +12,15 @@ class ModeleProfil extends ModeleGenerique
     {
         $login = self::$bdd->prepare('select login, pfp from Utilisateurs where idUser = ?');
         $login->execute(array($_GET['idUser']));
+        $login = $login->fetch();
         $nb_abonnes = self::$bdd->prepare('select count(*) as count from Abonner where idUserAbonnement = ?');
         $nb_abonnes->execute(array($_GET['idUser']));
         $nb_abonnement = self::$bdd->prepare('select count(*) as count from Abonner where idUserAbonne = ?');
         $nb_abonnement->execute(array($_GET['idUser']));
         $profil = array(
             "idUser" => $_GET['idUser'],
-            "login" => $login->fetch()['login'],
-            "pfp" => $login->fetch()['pfp'],
+            "login" => $login['login'],
+            "pfp" => $login['pfp'],
             "nb_abonnes" => $nb_abonnes->fetch()['count'],
             "nb_abonnement" => $nb_abonnement->fetch()['count']
         );
