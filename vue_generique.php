@@ -44,18 +44,18 @@ class VueGenerique
 
     public function affiche_post($post, $vote, $nb_votes)
     {
-        echo "<article class=\"post\" id=\"$post[idPost]\">";
+        echo "<div class=\"post\" id=\"$post[idPost]\">";
         $this->affiche_post_gauche($post);
         $this->affiche_post_milieu($post);
         $this->affiche_post_droit($post, $vote, $nb_votes);
-        echo "</article>";
+        echo "<a href=\"index.php?module=post&action=voir_post&idPost=$post[idPost]\"> <span class=\"lien_vers_post\"></span></a></div>";
     }
 
     public function affiche_post_gauche($post)
     {
         echo "<div class=\"post_gauche\">";
-        echo "<a href=\"index.php?module=profil&action=voir_profil&idUser=$post[idUser]\">$post[login]</a>";
-        echo "<p><small>$post[datePost]</small></p>";
+        echo "<a href=\"index.php?module=profil&action=voir_profil&idUser=$post[idUser]\" id=\"pseudo_post\">$post[login]</a>";
+        echo "<p id=\"date_post\"><small>$post[datePost]</small></p>";
         echo "<a class=\"lien_musique_post\" href=\"$post[lien]\">lien vers la musique/playlist</a>";
         echo "</div>";
     }
@@ -67,7 +67,7 @@ class VueGenerique
         if (strcmp($_GET['module'], "post") == 0)
             echo "<h2 class=\"titre_post\">$post[titre]</h2>";
         else
-            echo "<a href=\"index.php?module=post&action=voir_post&idPost=$post[idPost]\"><h2 class=\"titre_post\">$post[titre]</h2></a>";
+            echo "<h2 class=\"titre_post\">$post[titre]</h2>";
         //description
         echo "<div class=\"div_desc\">";
         if (strcmp($_GET['module'], "post") == 0)
