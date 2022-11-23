@@ -2,11 +2,11 @@ $(function () {
 
     $(document).click(function () {
         $(".options_contenu").hide();
-    });
+    })
 
     $(".options_bouton").click(
         function (event) {
-            var element = "#options" + $(this).attr("idPost");
+            const element = "#options" + $(this).attr("idPost");
             if ($(element).is(":visible"))
                 $(element).hide();
             else {
@@ -15,18 +15,18 @@ $(function () {
             }
             event.stopPropagation();
         }
-    );
+    )
 
     $(".partager").click(
         function () {
             navigator.clipboard.writeText($(this).attr("lien"));
             alert("lien copié");
-        });
+        })
 
     $(".supprimer").click(
         function () {
             if (window.confirm("Êtes-vous sûr de vouloir supprimer ?")) {
-                var id = $(this).attr("idPost");
+                const id = $(this).attr("idPost");
                 $.ajax({
                     type: "GET",
                     url: "javascript/supprimer_post.php",
@@ -40,8 +40,8 @@ $(function () {
 
     $(".voter").click(
         function () {
-            var id = $(this).attr("idPost");
-            var vote = $(this).attr("vote");
+            const id = $(this).attr("idPost");
+            const vote = $(this).attr("vote");
             $.ajax({
                 type: "GET",
                 url: "javascript/voter.php",
@@ -72,9 +72,9 @@ $(function () {
 
     $(window).scroll(function () {
 
-        var header = document.getElementById("navbar");
-        var main = document.getElementById("main");
-        var fixe = header.offsetTop;
+        const header = document.getElementById("navbar");
+        const main = document.getElementById("main");
+        const fixe = header.offsetTop;
 
         if (window.pageYOffset > fixe) {
             main.classList.add("decalage");
@@ -84,6 +84,32 @@ $(function () {
             header.classList.remove("fixe");
         }
     })
+
+    //pop up
+    const modal = document.getElementById("myModal");
+    const btn = document.getElementById("lien_pfp");
+
+    btn.onclick = function () {
+        modal.style.display = "flex";
+    }
+
+    window.onclick = function (event) {
+        if (event.target == modal)
+            modal.style.display = "none";
+    }
+
+    $("#form_pfp").submit(
+        function (event) {
+            var file = $("#input_pfp").val();   
+            var filename = $("#idUser").val();    
+            var blob = new Blob([file]);
+            var url  = URL.createObjectURL(blob);
+
+            $(this).attr({ 'download': filename, 'href': url});  
+            filename = "";
+            event.preventDefault();
+            alert("ok");
+        })
 });
 
 function pas_connecte() {

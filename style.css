@@ -1,9 +1,10 @@
 /*HEADER*/
 
 :root {
-	width:auto;
-	margin:auto;
+	width: auto;
+	margin: auto;
 }
+
 @font-face {
 	font-family: "PicNic-Regular";
 	src: url("ressources/font/PicNic-Regular.woff2");
@@ -12,7 +13,7 @@
 header {
 	text-align: center;
 	padding-top: 5px;
-	background-color: rgb(177, 237, 232) ;
+	background-color: rgb(177, 237, 232);
 }
 
 .logo {
@@ -31,7 +32,7 @@ header {
 }
 
 #div_titre {
-	background-color: rgb(177, 237, 232) ;
+	background-color: rgb(177, 237, 232);
 	border-radius: 16px;
 	padding: 0px 7px 3px;
 	margin-top: -25px;
@@ -47,11 +48,11 @@ header {
 }
 
 .titre1 {
-	color:rgb(255, 105, 120);
+	color: rgb(255, 105, 120);
 }
 
 .titre2 {
-	color:rgb(255, 252, 249);
+	color: rgb(255, 252, 249);
 }
 
 header a {
@@ -85,19 +86,19 @@ a:hover {
 	z-index: 1;
 	width: 100%;
 	/*border-top: 3px  rgb(255, 252, 249) solid ;*/
-	padding-top:10px;
+	padding-top: 10px;
 	margin-top: 15px;
 	background-color: rgb(53, 45, 57);
 }
 
 #navbar a {
 	color: rgb(255, 252, 249);
-	font-family: "Inter",sans-serif;
+	font-family: "Inter", sans-serif;
 }
 
 #rechercher {
-	display:flex;
-	border:none;
+	display: flex;
+	border: none;
 }
 
 #boutton_recherche {
@@ -105,14 +106,14 @@ a:hover {
 	height: 38px;
 	display: inline-block;
 	background-color: rgb(255, 105, 120);
-	border:none;
+	border: none;
 }
 
 /*BODY*/
 
 body {
 	color: black;
-	font-family: "Inter",sans-serif;
+	font-family: "Inter", sans-serif;
 }
 
 
@@ -130,7 +131,7 @@ body a:hover {
 
 main {
 	padding-top: 15px;
-	padding-bottom:15px;
+	padding-bottom: 15px;
 	text-align: center;
 	background-color: rgb(177, 237, 232);
 }
@@ -142,20 +143,20 @@ main {
 /* INSCRIPTION & CONNEXION */
 
 .form-control {
-	resize:none;
+	resize: none;
 }
 
 #form_insc {
 	width: 500px;
-	margin:auto;
+	margin: auto;
 	margin-top: 15px;
-	margin-bottom:15px;
+	margin-bottom: 15px;
 	position: relative;
 }
 
 #alert_insc {
 	width: 500px;
-	margin:auto;
+	margin: auto;
 	height: 65px;
 	margin-top: 15px;
 	margin-bottom: 15px;
@@ -169,17 +170,17 @@ main {
 
 #form_redac {
 	width: 800px;
-	margin:auto;
-	padding : 5px;
+	margin: auto;
+	padding: 5px;
 
 }
 
 #selec_tag {
-	padding :15px;
+	padding: 15px;
 }
 
 #inputGroupSelect01 {
-	margin:auto;
+	margin: auto;
 }
 
 /* PROFIL */
@@ -200,29 +201,30 @@ main {
 	font-size: 20px;
 	font-weight: bold;
 	margin-bottom: 20px;
-	width : 65%;
+	width: 65%;
 	min-width: 750px;
-	max-width:1200px;
+	max-width: 1200px;
 	border-bottom: 1px black solid;
-	
+
 }
 
 .abo {
 	margin: auto;
-	width : 300px;
+	width: 300px;
 	display: flex;
 }
 
 /*CONNEXION*/
 
-#bouton_connexion{
-	background-color:rgb(255, 105, 120);
+#bouton_connexion {
+	background-color: rgb(255, 105, 120);
 	border: none;
 }
 
 #titre_rouge {
-	color:rgb(255, 105, 120);
-	font-size: 55px;;
+	color: rgb(255, 105, 120);
+	font-size: 55px;
+	;
 	font-family: "PicNic-Regular";
 	-webkit-text-stroke: 2px;
 	-webkit-text-stroke-color: black;
@@ -232,14 +234,14 @@ main {
 .post {
 	margin: auto;
 	margin-top: 15px;
-	width : 65%;
+	width: 65%;
 	min-width: 750px;
-	max-width:1200px;
+	max-width: 1200px;
 	min-height: 120px;
 	border: 1px black solid;
 	border: 2px rgb(53, 45, 57) solid;
 	display: flex;
-	background-color:rgb(255, 252, 249);
+	background-color: rgb(255, 252, 249);
 	border-radius: 7px;
 }
 
@@ -251,20 +253,20 @@ main {
 .post_dans_section {
 	margin: auto;
 	margin-top: 15px;
-	width : 65%;
+	width: 65%;
 	min-width: 750px;
-	max-width:1200px;
-	height : 120px;
+	max-width: 1200px;
+	height: 120px;
 	display: flex;
 }
 
 .titre_post {
 	font-size: 20px;
 	font-weight: bold;
-	color:rgb(255, 105, 120);
+	color: rgb(255, 105, 120);
 	-webkit-text-stroke: 0.2px;
 	-webkit-text-stroke-color: black;
-	
+
 }
 
 .post_gauche {
@@ -287,7 +289,7 @@ main {
 	font-size: 12px;
 	border: none;
 }
-  
+
 .options {
 	position: relative;
 	display: inline-block;
@@ -298,9 +300,9 @@ main {
 	position: absolute;
 	background-color: #f1f1f1;
 	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
-	right:0;
+	right: 0;
 }
 
 .options_contenu a {
@@ -321,18 +323,18 @@ main {
 }
 
 .bouton_co_ins {
-    margin: 10px;
+	margin: 10px;
 }
 
 /*FOOTER */
 
 footer {
-	padding-top:5px;
-	padding-bottom:3px;
+	padding-top: 5px;
+	padding-bottom: 3px;
 	text-align: center;
 	background-color: rgb(53, 45, 57);
 	color: rgb(255, 252, 249);
-	font-family: "Inter",sans-serif;
+	font-family: "Inter", sans-serif;
 }
 
 #profil {
@@ -349,6 +351,10 @@ footer {
 	display: flex;
 }
 
+#lien_pfp:hover {
+	opacity: 0.7;
+}
+
 #abonne {
 	margin-right: 10px;
 }
@@ -356,3 +362,28 @@ footer {
 #profil_droit p {
 	margin-bottom: 0px;
 }
+
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Modal Content */
+  .modal-content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	max-width: 400px;
+	max-height: 200px;
+  }

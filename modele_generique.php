@@ -8,6 +8,16 @@ include_once('connexion.php');
 class ModeleGenerique extends Connexion
 {
 
+    public function creation_token() {
+        $bytes = random_bytes(20);
+        $_SESSION['token'] = bin2hex($bytes);
+        $_SESSION['token_date'] = time();
+    }
+
+    public function verif_token() {
+        return strcmp($_POST['token'], $_SESSION['token']) == 0 && time() - $_SESSION['token_date'] < 900;
+    }
+    
     public function get_posts_complet($posts)
     {
         $votes = array();

@@ -14,7 +14,11 @@
         public function afficher_profil($profil) {
             echo '<div id="profil">';
             echo '<div id="profil_gauche">';
-            echo "<img src=\"$profil[pfp]\" alt=\"photo de profil\" width=\"64\" height=\"64\">";
+            if(isset($_SESSION['idUser']) && $profil['idUser'] == $_SESSION['idUser']) {
+                echo "<a id=\"lien_pfp\" href=\"#\"><img src=\"$profil[pfp]\" alt=\"photo de profil\" width=\"64\" height=\"64\"></a>";
+            } else {
+                echo "<img src=\"$profil[pfp]\" alt=\"photo de profil\" width=\"64\" height=\"64\">";
+            }
             echo '<p>'.$profil['login'].'</p>';
             echo '</div>';
             echo '<div id="profil_droit">';
@@ -27,6 +31,17 @@
             }
             echo '</div>';
             echo '</div>';
+            
+            //pop up changer de pfp
+            echo '<div id="myModal" class="modal">
+                    <div class="modal-content">
+                        <FORM id="form_pfp" action="" METHOD="POST"> 
+                        <input type="hidden" name="idUser" value='.$_SESSION['idUser'].'>
+                        <input type="file" name="input_pfp" accept="image/png, image/gif, image/jpeg"/>
+                        <INPUT TYPE="SUBMIT" NAME="bouton" value="Valider"> 
+                        </FORM>
+                    </div>
+                </div>';
         }
 
         public function afficher_listeAbo($array) {

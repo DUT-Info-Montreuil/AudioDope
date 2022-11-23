@@ -3,9 +3,9 @@
     if (constant("lala") != "layn")
         die("wrong constant");
 
-    include_once('connexion.php');
+    include_once('modele_generique.php');
 
-    class ModeleConnexion extends Connexion {
+    class ModeleConnexion extends ModeleGenerique {
 
         public function deconnexion() {
             unset($_SESSION['login']);
@@ -52,16 +52,6 @@
                 return 3;
             $_SESSION['login'] = $_POST['login'];
             $_SESSION['idUser'] = $infos['idUser'];
-        }
-
-        public function creation_token() {
-            $bytes = random_bytes(20);
-            $_SESSION['token'] = bin2hex($bytes);
-            $_SESSION['token_date'] = time();
-        }
-
-        public function verif_token() {
-            return strcmp($_POST['token'], $_SESSION['token']) == 0 && time() - $_SESSION['token_date'] < 900;
         }
     }
 ?>
