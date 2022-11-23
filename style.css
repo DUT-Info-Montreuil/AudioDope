@@ -252,7 +252,7 @@ main {
 
 /*Collection*/
 
-#collection{
+.collection{
 	margin: auto;
 	margin-top: 15px;
 	width : 100%;
@@ -275,7 +275,7 @@ main {
 
 }
 
-.collection_droit{
+.collection_centrale{
 	display: inline-block;
 	
 	

@@ -50,7 +50,8 @@
         }
 
         public function voir_colllection() {
-            $this->vue->affiche_collections($this->modele->getCollection(),$this->modele->get_post_collection());
+            $this->vue->affiche_collections($this->modele->getCollection());
+            $this->vue->affiche_posts($this->modele->get_post_collection());
         }
 
         public function form_redaction() {

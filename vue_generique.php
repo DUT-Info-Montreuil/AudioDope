@@ -79,30 +79,30 @@
         }
     
 
-    public function affiche_collections($collection, $post_collection) {
+    public function affiche_collections($collection) {
         echo "<section id=\"collection\">";
         foreach ($collection as &$collection) {
     
-            $this->affiche_collection($collection,$post_collection);
+            $this->affiche_collection($collection);
         }
         echo "</section>";
     }
 
-    public function affiche_collection($collection,$post_collection){
+    public function affiche_collection($collection){
         echo "<article class=\"collection\">";
             //partie gauche
             echo "<div class=\"collection_gauche\">";
            
             echo "<a href=\"index.php?module=profil&action=voir_profil&idUser=$collection[idUser]\">$collection[login]</a>";
             echo "</div>";
-            //partie droite
-            echo "<div class=\"collection_droit\">";
+            //partie centrale
+            echo "<div class=\"collection_centrale\">";
             //titre
             if (strcmp($_GET['module'], "collection") == 0){
                 echo "<h2 class=\"titre_collection\">$collection[titre]</h2>";
-               echo "<a href=\"index.php?module=post&action=voir_post&idPost=$post_collection[idPost]\">$post_collection[titre]</a>";
+           
             }else
-                echo "<a href=\"index.php?module=collection&action=voir_collection&idCollection=$collection[idCollection]\"><h2 class=\"titre_collection\">$collection[titreCollection]</h2></a>";
+                echo "<a href=\"index.php?module=collection&action=voir_collection&idCollection=$collection[idCollection]\"><h2 class=\"titre_collection\">$collection[titreCollection]</h2></a>";    
             //description
             echo "<div class=\"div_descCollection\">";
             if (strcmp($_GET['module'], "collection") == 0)

@@ -28,7 +28,7 @@
                 $this->vue->afficherform_abonnement($this->modele->getProfil());
             }
             $this->vue->afficher_posts_profil($this->modele->getPosts());
-            $this->vue->affiche_collections($this->modele->getCollection(),$this->modele->get_post_collection());
+            $this->vue->affiche_collections($this->modele->getCollection());
         }
 
         public function exec() {
