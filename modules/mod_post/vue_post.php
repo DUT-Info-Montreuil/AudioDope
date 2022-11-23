@@ -24,7 +24,7 @@
             <div class="mb-3">
                 <TEXTAREA class="form-control" NAME="corps_post" placeholder="Corps" MAXLENGTH="1000" rows="20"></textarea>
             </div> </br>
-            <h3>Choisir tags</h3>
+            <h3 id="titre_rouge">Choisir Tags</h3>
             <div class="input-group mb-3" id="selec_tag">';
             
 

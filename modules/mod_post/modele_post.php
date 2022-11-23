@@ -26,7 +26,7 @@
                 $tag1 = "";
             if ($tag2 == $tag3)
                 $tag2 = "";
-
+            
             $statement = self::$bdd->prepare('SELECT idPost FROM Posts WHERE titre = :titre');
             $statement -> bindParam(':titre', $titre_post);
             $statement->execute();

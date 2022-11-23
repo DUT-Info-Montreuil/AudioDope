@@ -70,20 +70,6 @@ $(function () {
             })
         })
 
-    $(window).scroll(function () {
-
-        var header = document.getElementById("navbar");
-        var main = document.getElementById("main");
-        var fixe = header.offsetTop;
-
-        if (window.pageYOffset > fixe) {
-            main.classList.add("decalage");
-            header.classList.add("fixe");
-        } else {
-            main.classList.remove("decalage");
-            header.classList.remove("fixe");
-        }
-    })
 });
 
 function pas_connecte() {

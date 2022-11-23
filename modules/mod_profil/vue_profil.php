@@ -56,7 +56,7 @@
         }
         
         public function afficher_posts_profil($posts) {
-            echo "<h2 id=\"titre_posts_profil\">Posts</h2>";
+            echo "<h2 id=\"titre_rouge\">Posts</h2>";
             $this->affiche_posts($posts);
         }
     }
