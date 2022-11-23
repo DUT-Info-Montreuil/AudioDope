@@ -12,6 +12,9 @@
         }
 
         public function afficher_profil($profil) {
+            if($profil['pfp'] == NULL) {
+                echo "<img src=\"ressources/pfp/pfp.jpg\" alt=\"photo de profil\" width=\"64\" height=\"64\">";
+            }
             echo '<p>' . $profil['login']."&emsp;";
             if(isset($_SESSION['idUser']) && $profil['idUser'] == $_SESSION['idUser'])
                 echo $profil['nb_abonnes']."<a href=\"index.php?module=profil&action=afficherAbonner&id=".$_SESSION['idUser']."\"> Abonne(s) </a> &emsp;".

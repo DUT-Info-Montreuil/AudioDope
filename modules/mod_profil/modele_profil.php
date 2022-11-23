@@ -10,7 +10,7 @@ class ModeleProfil extends ModeleGenerique
 
     public function getProfil()
     {
-        $login = self::$bdd->prepare('select login from Utilisateurs where idUser = ?');
+        $login = self::$bdd->prepare('select login, pfp from Utilisateurs where idUser = ?');
         $login->execute(array($_GET['idUser']));
         $nb_abonnes = self::$bdd->prepare('select count(*) as count from Abonner where idUserAbonnement = ?');
         $nb_abonnes->execute(array($_GET['idUser']));
@@ -19,6 +19,7 @@ class ModeleProfil extends ModeleGenerique
         $profil = array(
             "idUser" => $_GET['idUser'],
             "login" => $login->fetch()['login'],
+            "pfp" => $login->fetch()['pfp'],
             "nb_abonnes" => $nb_abonnes->fetch()['count'],
             "nb_abonnement" => $nb_abonnement->fetch()['count']
         );
