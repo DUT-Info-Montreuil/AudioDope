@@ -40,7 +40,7 @@
                             </svg>
                         </span>
                     </div>
-                    <INPUT id="insc_input" NAME="login" MAXLENGTH="50" placeholder="Nom d\'utilisateur" type="text" class="form-control"> 
+                    <INPUT id="insc_input" NAME="login" MAXLENGTH="20" placeholder="Nom d\'utilisateur" type="text" class="form-control"> 
                 </div> 
 
                 <div class="input-group mb-3">
@@ -85,7 +85,6 @@
             if (isset($_GET['erreur'])) {
                 echo '<p>Nom d\'utilisateur ou mot de passe incorrecte</p>';
             }
-
             echo
             '<FORM ACTION="index.php?module=connexion&action=connexion" METHOD="POST" id="form_insc"> 
                 <input type="hidden" name="token" value='.$_SESSION['token'].'>
@@ -98,7 +97,7 @@
                             </svg>
                         </span>
                     </div>
-                    <INPUT id="insc_input" NAME="login" MAXLENGTH="50" placeholder="Nom d\'utilisateur" type="text" class="form-control">
+                    <INPUT id="insc_input" NAME="login" MAXLENGTH="20" placeholder="Nom d\'utilisateur" type="text" class="form-control">
                 </div>
                 
                 <div class="input-group mb-3">

@@ -15,7 +15,7 @@ class ModeleGenerique extends Connexion
     }
 
     public function verif_token() {
-        return strcmp($_POST['token'], $_SESSION['token']) == 0 && time() - $_SESSION['token_date'] < 900;
+        return $_POST['token'] == $_SESSION['token'] && time() - $_SESSION['token_date'] < 900;
     }
     
     public function get_posts_complet($posts)

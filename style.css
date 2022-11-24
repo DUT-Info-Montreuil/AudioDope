@@ -206,17 +206,6 @@ main {
 
 /* PROFIL */
 
-#pseudo {
-	border: 1px black solid;
-	display: inline-block;
-	
-}
-
-#abo {
-	border: 1px black solid;
-	display: inline-block;
-}
-
 #titre_posts_profil {
 	margin-right: auto;
 	margin-left: auto;
@@ -232,8 +221,20 @@ main {
 
 .abo {
 	margin: auto;
-	width: 300px;
+	width: 275px;
 	display: flex;
+}
+
+.pseudo_abo {
+	width: 110px;
+	padding-top: 10px;
+	padding-right: 10px;
+	overflow: hidden;
+  	text-overflow: ellipsis;
+}
+
+.div_bouton_abo {
+	padding-top: 5px;
 }
 
 /*CONNEXION*/
@@ -360,6 +361,7 @@ main {
 }
 
 .options_contenu {
+	z-index: 2;
 	display: none;
 	position: absolute;
 	background-color: #d1d1d1;

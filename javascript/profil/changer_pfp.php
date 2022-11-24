@@ -16,13 +16,13 @@
         );
     } else {
         $extensionFichier = "." . strtolower(substr(strrchr($_FILES['file_pfp']['name'], '.'), 1));
-        $destination  = "../ressources/pfp/" . $_SESSION['idUser'] . $extensionFichier;
+        $destination  = "../../ressources/pfp/" . $_SESSION['idUser'] . $extensionFichier;
         
         $chemin_pfp = $bdd->prepare('select pfp from Utilisateurs where idUser = ?');
         $chemin_pfp->execute(array($_SESSION['idUser']));
         $chemin_pfp = $chemin_pfp->fetch()['pfp'];
         if ($chemin_pfp != 'ressources/pfp/pfp.jpg')
-            unlink("../$chemin_pfp");
+            unlink("../../$chemin_pfp");
 
 
         $chemin_pfp = "ressources/pfp/$_SESSION[idUser]$extensionFichier";

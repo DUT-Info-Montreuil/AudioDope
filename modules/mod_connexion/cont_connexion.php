@@ -73,7 +73,7 @@
                 case "form_connexion" : $this->form_connexion(); break;
                 case "connexion" : $this->connexion(); break;
                 case "deconnexion" : $this->deconnexion(); break;
-                default : die("module inexistant"); break;
+                default : die("module inexistant");
             }
             if (strcmp($this->action,"form_connexion") == 0 && !isset($_SESSION['login'])) {
                 $this->vue->menu();

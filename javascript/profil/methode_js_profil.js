@@ -16,7 +16,7 @@ $(function () {
             event.preventDefault();
             $.ajax({
                 type: "POST",
-                url: "javascript/changer_pfp.php",
+                url: "javascript/profil/changer_pfp.php",
                 data:  new FormData(this),
                 contentType: false,
                 cache: false,

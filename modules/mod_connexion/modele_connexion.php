@@ -24,7 +24,7 @@
                 return 4;
             } else {
                 $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
-                $sql = 'INSERT INTO Utilisateurs VALUES(NULL, ?, ?, 0, 1)';
+                $sql = 'INSERT INTO Utilisateurs VALUES(NULL, ?, ?, 0, 1, \'ressources/pfp/pfp.jpg\')';
                 $statement = self::$bdd->prepare($sql);
                 $statement->execute(array($_POST['login'], $mdp));
             }
