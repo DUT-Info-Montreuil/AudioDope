@@ -111,6 +111,20 @@
                 echo "<p class=\"descriptionC\">".substr($collection['descriptionCollection'], 0, 201)."</p>";
             echo "</div>";
             echo "</div>";
+            echo 
+            " <div class=\"Collection_options\">
+            <div class=\"options\">
+                <button class=\"options_bouton\">...</button>
+                <div class=\"options_contenu\">";
+            //bouton partage
+            $lien = "index.php?module=collection&action=voir_collection&idCollection=$collection[idCollection]";
+            echo "<a onclick=\"partager('$lien')\" href=\"#\">Partager</a>";
+            $lien = "index.php?module=collection&action=supprimer_collection&idCollection=$collection[idCollection]";
+            if (isset($_SESSION['idUser']) && $collection['idUser'] == $_SESSION['idUser'])
+                //echo "<a href=\"index.php?module=post&action=supprimer_post&idPost=$post[idPost]\">Supprimer</a>";
+                echo "<a onclick=\"supprimer('$lien')\" href=\"#\">Supprimer</a>";
+            echo "</div></div></div>";
+            echo "</article>";
             
            
     }

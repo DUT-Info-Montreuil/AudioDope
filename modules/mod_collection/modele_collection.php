@@ -75,7 +75,8 @@ class ModeleCollection extends Connexion
     }
 
     public function get_post_collection(){
-        $postC=self::$bdd->prepare('select idPost, titre,Posts.idUser as idUser, idPost, login, lien, titre, descriptionPost, datePost, idCollection from Collections inner join Appartenir using(idCollection) inner join Posts using (idPost) inner join Utilisateurs on(Collections.idUser=Utilisateurs.idUser) where idCollection=?');
+        
+        $postC=self::$bdd->prepare('select Posts.idPost, titre,Posts.idUser as idUser, idPost, login, lien, titre, descriptionPost, datePost, idCollection from Collections inner join Appartenir using(idCollection) inner join Posts using (idPost) inner join Utilisateurs on(Posts.idUser=Utilisateurs.idUser) where idCollection=?');
         $postC->execute(array($_GET['idCollection']));
         return $postC->fetchAll();
     }
@@ -91,5 +92,12 @@ class ModeleCollection extends Connexion
         $collections->execute(array($_SESSION['idUser']));
        return $collections->fetchAll();
     }
-
+/*
+    public function get_login_post($idPost){
+        $login = self::$bdd->prepare('select login from idPost where idPost = :idPost');
+        $login-> bindParam(':idPost', $idPost);
+        $login->execute();
+        return $login->fetch();
+    }
+*/
 }
