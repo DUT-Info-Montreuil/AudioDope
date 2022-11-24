@@ -1,6 +1,4 @@
 <?php
-
-
     if (constant("lala") != "layn")
         die("wrong constant");
 
@@ -20,6 +18,7 @@
         }
 
         public function voir_profil() {
+            echo '<script src="javascript/methode_js_profil.js"></script>';
             $profil = $this->modele->getProfil();
             $this->vue->afficher_profil($profil);
             $val=$this->modele->verif_abonnement($_GET['idUser']);

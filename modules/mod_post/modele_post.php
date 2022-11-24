@@ -60,7 +60,7 @@
         }
         
         public function get_post() {
-            $post = self::$bdd->prepare('select Posts.idUser as idUser, Posts.idPost as idPost, login, lien, titre, descriptionPost, datePost from Posts join Utilisateurs on Posts.idUser = Utilisateurs.idUser where Posts.idPost = ?');
+            $post = self::$bdd->prepare('select Posts.idUser as idUser, Posts.idPost as idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts join Utilisateurs on Posts.idUser = Utilisateurs.idUser where Posts.idPost = ?');
             $post->execute(array($_GET['idPost']));
             $post = $post->fetch();
 
@@ -76,7 +76,7 @@
             return $tab;
         }
         public function get_commentaire() {
-            $posts = self::$bdd->prepare('SELECT CommenterPost.idUser AS idUser, idPost, avis, login, dateCom FROM CommenterPost JOIN Utilisateurs ON CommenterPost.idUser = Utilisateurs.idUser WHERE idPost = ? ORDER BY dateCom DESC');
+            $posts = self::$bdd->prepare('SELECT CommenterPost.idUser AS idUser, idPost, avis, login, pfp, dateCom FROM CommenterPost JOIN Utilisateurs ON CommenterPost.idUser = Utilisateurs.idUser WHERE idPost = ? ORDER BY dateCom DESC');
             $posts->execute(array($_GET['idPost']));
             return $posts->fetchAll();
         }

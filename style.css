@@ -26,9 +26,10 @@
 /*HEADER*/
 
 :root {
-	width:auto;
-	margin:auto;
+	width: auto;
+	margin: auto;
 }
+
 @font-face {
 	font-family: "PicNic-Regular";
 	src: url("ressources/font/PicNic-Regular.woff2");
@@ -122,8 +123,8 @@ a:hover {
 }
 
 #rechercher {
-	display:flex;
-	border:none;
+	display: flex;
+	border: none;
 }
 
 #boutton_recherche {
@@ -131,7 +132,7 @@ a:hover {
 	height: 38px;
 	display: inline-block;
 	background-color: rgb(255, 105, 120);
-	border:none;
+	border: none;
 }
 
 /*BODY*/
@@ -162,20 +163,20 @@ main {
 /* INSCRIPTION & CONNEXION */
 
 .form-control {
-	resize:none;
+	resize: none;
 }
 
 #form_insc {
 	width: 500px;
-	margin:auto;
+	margin: auto;
 	margin-top: 15px;
-	margin-bottom:15px;
+	margin-bottom: 15px;
 	position: relative;
 }
 
 #alert_insc {
 	width: 500px;
-	margin:auto;
+	margin: auto;
 	height: 65px;
 	margin-top: 15px;
 	margin-bottom: 15px;
@@ -189,18 +190,18 @@ main {
 
 #form_redac {
 	width: 800px;
-	margin:auto;
-	padding : 5px;
+	margin: auto;
+	padding: 5px;
 
 }
 
 
 #selec_tag {
-	padding :15px;
+	padding: 15px;
 }
 
 #inputGroupSelect01 {
-	margin:auto;
+	margin: auto;
 }
 
 /* PROFIL */
@@ -222,23 +223,23 @@ main {
 	font-size: 20px;
 	font-weight: bold;
 	margin-bottom: 20px;
-	width : 65%;
+	width: 65%;
 	min-width: 750px;
-	max-width:1200px;
+	max-width: 1200px;
 	border-bottom: 1px black solid;
-	
+
 }
 
 .abo {
 	margin: auto;
-	width : 300px;
+	width: 300px;
 	display: flex;
 }
 
 /*CONNEXION*/
 
-#bouton_connexion{
-	background-color:rgb(255, 105, 120);
+#bouton_connexion {
+	background-color: rgb(255, 105, 120);
 	border: none;
 }
 
@@ -259,7 +260,7 @@ main {
 	padding-top: 5px;
 	width : 65%;
 	min-width: 750px;
-	max-width:1200px;
+	max-width: 1200px;
 	min-height: 120px;
 	display: flex;
 	border-radius: 7px;
@@ -290,10 +291,10 @@ main {
 .post_dans_section {
 	margin: auto;
 	margin-top: 15px;
-	width : 65%;
+	width: 65%;
 	min-width: 750px;
-	max-width:1200px;
-	height : 120px;
+	max-width: 1200px;
+	height: 120px;
 	display: flex;
 }
 
@@ -309,6 +310,20 @@ main {
 	position:relative;
 	width: 20%;
 	margin-right: 20px;
+}
+
+.post_gauche_haut {
+	margin-top: 5px;
+	display: flex;
+	justify-content: center;
+}
+
+.post_gauche_com {
+	width: 20%;
+	margin-right: 20px;
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
 }
 
 .post_milieu {
@@ -338,7 +353,7 @@ main {
 	background-color:#d1d1d1;
 	opacity: 50%;
 }
-  
+
 .options {
 	position: relative;
 	display: inline-block;
@@ -396,7 +411,7 @@ main {
 }
 
 .bouton_co_ins {
-    margin: 10px;
+	margin: 10px;
 }
 
 /*FOOTER */
@@ -415,3 +430,70 @@ footer {
 	font-family: 'Montserrat', sans-serif;
 }
 
+#profil {
+	display: flex;
+	justify-content: center;
+}
+
+#profil_gauche {
+	margin-right: 10px;
+}
+
+#profil_droit {
+	padding-top: 10px;
+	display: flex;
+}
+
+.lien_pfp:hover {
+	opacity: 0.7;
+}
+
+#abonne {
+	margin-right: 10px;
+}
+
+#profil_droit p {
+	margin-bottom: 0px;
+}
+
+  .class_pfp {
+	width: 64px;
+    height: 64px;
+	object-fit: cover;
+    border-radius: 50%;
+  }
+
+
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Modal Content */
+  .modal-content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	max-width: 500px;
+	max-height: 200px;
+  }
+
+  input[type=file] {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 275px;
+  }
+
+ 

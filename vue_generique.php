@@ -54,8 +54,16 @@ class VueGenerique
     public function affiche_post_gauche($post)
     {
         echo "<div class=\"post_gauche\">";
-        echo "<a href=\"index.php?module=profil&action=voir_profil&idUser=$post[idUser]\" id=\"pseudo_post\">$post[login]</a>";
-        echo "<p id=\"date_post\"><small>$post[datePost]</small></p>";
+        echo "<div class=\"post_gauche_haut\">";
+        echo "<div class=\"post_pfp\">";
+        echo "<img class=\"class_pfp\" src=\"$post[pfp]\" alt=\"photo de profil\">";
+        echo "</div>";
+        echo "<div class=\"post_nom_date\">";
+        echo "<a href=\"index.php?module=profil&action=voir_profil&idUser=$post[idUser]\">$post[login]</a>";
+        echo "<p><small>".substr($post['datePost'], 11)."</small></br>";
+        echo "<small>".substr($post['datePost'], 0, 10)."</small></p>";
+        echo "</div>";
+        echo "</div>";
         echo "<a class=\"lien_musique_post\" href=\"$post[lien]\">lien vers la musique/playlist</a>";
         echo "</div>";
     }
@@ -131,9 +139,15 @@ class VueGenerique
     public function affiche_commentaire($com) {
         echo "<article class=\"post\">";
         //partie gauche
-        echo "<div class=\"post_gauche\">";
+        echo "<div class=\"post_gauche_com\">";
+        echo "<div class=\"post_pfp\">";
+        echo "<img class=\"class_pfp\" src=\"$com[pfp]\" alt=\"photo de profil\">";
+        echo "</div>";
+        echo "<div class=\"post_nom_date\">";
         echo "<a href=\"index.php?module=profil&action=voir_profil&idUser=$com[idUser]\">$com[login]</a>";
-        echo "<p><small>$com[dateCom]</small></p>";
+        echo "<p><small>".substr($com['dateCom'], 11)."</small></br>";
+        echo "<small>".substr($com['dateCom'], 0, 10)."</small></p>";
+        echo "</div>";
         echo "</div>";
         //partie droite
         echo "<div class=\"post_milieu\">";

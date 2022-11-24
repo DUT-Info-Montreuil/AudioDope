@@ -12,12 +12,34 @@
         }
 
         public function afficher_profil($profil) {
-            echo '<p>' . $profil['login']."&emsp;";
-            if(isset($_SESSION['idUser']) && $profil['idUser'] == $_SESSION['idUser'])
-                echo $profil['nb_abonnes']."<a href=\"index.php?module=profil&action=afficherAbonner&id=".$_SESSION['idUser']."\"> Abonne(s) </a> &emsp;".
-                $profil['nb_abonnement']."<a href=\"index.php?module=profil&action=afficherAbonnement&id=".$_SESSION['idUser']."\"> Abonnement(s)</a></p>";
-            else
-                echo $profil['nb_abonnes']." Abonne(s)&emsp;".$profil['nb_abonnement']." Abonnement(s)</p>";
+            echo '<div id="profil">';
+            echo '<div id="profil_gauche">';
+            if(isset($_SESSION['idUser']) && $profil['idUser'] == $_SESSION['idUser']) {
+                echo "<a id=\"modif_pfp\" class=\"lien_pfp\" href=\"#\"><img class=\"class_pfp\" src=\"$profil[pfp]\" alt=\"photo de profil\"></a>";
+                //pop up changer de pfp
+                echo '<div id="myModal" class="modal">
+                    <div class="modal-content">
+                        <FORM id="form_pfp" action="javascript/changer_pfp.php" METHOD="POST" enctype="multipart/form-data"> 
+                            <input type="file" name="file_pfp" id="id_file_pfp" accept="image/png, image/gif, image/jpeg"/>
+                            <INPUT TYPE="SUBMIT" NAME="bouton" id="bouton_pfp" value="Valider"> 
+                        </FORM>
+                    </div>
+                    </div>';
+            } else {
+                echo "<img class=\"class_pfp\" src=\"$profil[pfp]\" alt=\"photo de profil\">";
+            }
+            echo '<p>'.$profil['login'].'</p>';
+            echo '</div>';
+            echo '<div id="profil_droit">';
+            if(isset($_SESSION['idUser']) && $profil['idUser'] == $_SESSION['idUser']) {
+                echo "<div id=\"abonne\"><p>$profil[nb_abonnes]</p><p><a href=\"index.php?module=profil&action=afficherAbonner&id=".$_SESSION['idUser']."\">Abonne(s)</a></p></div>";
+                echo "<div id=\"abonnenement\"><p>$profil[nb_abonnement]</p><p><a href=\"index.php?module=profil&action=afficherAbonnement&id=".$_SESSION['idUser']."\">Abonnement(s)</a></p></div>";
+            } else {
+                echo "<div id=\"abonne\"><p>$profil[nb_abonnes]</p><p>Abonne(s)</p></div>";
+                echo "<div id=\"abonnenement\"><p>$profil[nb_abonnement]</p><p>Abonnement(s)</p></div>";
+            }
+            echo '</div>';
+            echo '</div>';
         }
 
         public function afficher_listeAbo($array) {

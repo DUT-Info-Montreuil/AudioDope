@@ -2,11 +2,11 @@ $(function () {
 
     $(document).click(function () {
         $(".options_contenu").hide();
-    });
+    })
 
     $(".options_bouton").click(
         function (event) {
-            var element = "#options" + $(this).attr("idPost");
+            const element = "#options" + $(this).attr("idPost");
             if ($(element).is(":visible"))
                 $(element).hide();
             else {
@@ -15,18 +15,18 @@ $(function () {
             }
             event.stopPropagation();
         }
-    );
+    )
 
     $(".partager").click(
         function () {
             navigator.clipboard.writeText($(this).attr("lien"));
             alert("lien copié");
-        });
+        })
 
     $(".supprimer").click(
         function () {
             if (window.confirm("Êtes-vous sûr de vouloir supprimer ?")) {
-                var id = $(this).attr("idPost");
+                const id = $(this).attr("idPost");
                 $.ajax({
                     type: "GET",
                     url: "javascript/supprimer_post.php",
@@ -40,8 +40,8 @@ $(function () {
 
     $(".voter").click(
         function () {
-            var id = $(this).attr("idPost");
-            var vote = $(this).attr("vote");
+            const id = $(this).attr("idPost");
+            const vote = $(this).attr("vote");
             $.ajax({
                 type: "GET",
                 url: "javascript/voter.php",
@@ -70,6 +70,23 @@ $(function () {
             })
         })
 
+<<<<<<< HEAD
+=======
+    $(window).scroll(function () {
+
+        const header = document.getElementById("navbar");
+        const main = document.getElementById("main");
+        const fixe = header.offsetTop;
+
+        if (window.pageYOffset > fixe) {
+            main.classList.add("decalage");
+            header.classList.add("fixe");
+        } else {
+            main.classList.remove("decalage");
+            header.classList.remove("fixe");
+        }
+    })
+>>>>>>> pfp
 });
 
 function pas_connecte() {
