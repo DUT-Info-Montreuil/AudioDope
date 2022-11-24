@@ -1,6 +1,4 @@
 <?php
-
-
     if (constant("lala") != "layn")
         die("wrong constant");
 

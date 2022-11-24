@@ -1,20 +1,38 @@
 <?php
     session_start();
     header('Content-type: application/json; charset=utf-8');
-    include 'connexion.php';
-    if (!isset($_SESSION['idUser'])) {
+
+    $bdd = new PDO ('mysql:host='."database-etudiants.iut.univ-paris8.fr".';dbname='."dutinfopw201625", "dutinfopw201625", "razamaqe");
+    
+    $tailleMax = 1500000;
+    $ok = $_GET['id'];
+
+    if ($_GET['file_pfp']['error'] > 0) {
         $array = array(
-            "connecte" => false
+            "erreur" => "Erreur de transfert"
+        );
+    } else if ($_GET['file_pfp']['size'] > $tailleMax) {
+        $array = array(
+            "erreur" => "Fichier trop lourd"
         );
     } else {
-        $co = new Connexion();
-        $vote = $bdd->prepare('select vote from VoterPost where idUser = ? and idPost = ?');
-        $vote->execute(array($_SESSION['idUser'], $_GET['idPost']));
-    $array = array(
-        "connecte" => true,
-        "vote" => $v,
-        "nb_vote" => $nb_vote
-    );
+        $extensionFichier = "." . strtolower(substr(strrchr($_GET['file_pfp']['name'], '.'), 1));
+        $destination  = "../ressources/pfp/" . $_SESSION['idUser'] . $extensionFichier;
+        
+        $chemin_pfp = $bdd->prepare('select pfp from Utilisateurs where idUser = ?');
+        $chemin_pfp->execute(array($_SESSION['idUser']));
+        $chemin_pfp = $chemin_pfp->fetch()['pfp'];
+        if ($chemin_pfp != 'ressources/pfp/pfp.jpg')
+            unlink("../$chemin_pfp");
+
+
+        $chemin_pfp = "ressources/pfp/$_SESSION[idUser]$extensionFichier";
+        $modif_pfp = $bdd->prepare('update Utilisateurs set pfp = ? where idUser = ?');
+        $modif_pfp->execute(array($chemin_pfp, $_SESSION['idUser']));
+        
+        move_uploaded_file($_GET['file_pfp']['tmp_name'], $destination);
+            
+        $array = NULL;
 }
-echo json_encode($array);
+    echo json_encode($array);
 ?>

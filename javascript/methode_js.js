@@ -84,32 +84,6 @@ $(function () {
             header.classList.remove("fixe");
         }
     })
-
-    //pop up
-    const modal = document.getElementById("myModal");
-    const btn = document.getElementById("lien_pfp");
-
-    btn.onclick = function () {
-        modal.style.display = "flex";
-    }
-
-    window.onclick = function (event) {
-        if (event.target == modal)
-            modal.style.display = "none";
-    }
-
-    $("#form_pfp").submit(
-        function (event) {
-            var file = $("#input_pfp").val();   
-            var filename = $("#idUser").val();    
-            var blob = new Blob([file]);
-            var url  = URL.createObjectURL(blob);
-
-            $(this).attr({ 'download': filename, 'href': url});  
-            filename = "";
-            event.preventDefault();
-            alert("ok");
-        })
 });
 
 function pas_connecte() {
