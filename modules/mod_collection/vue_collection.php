@@ -68,9 +68,9 @@
         public function titre_description_a_remplir() {
             echo '<p>Veuillez saisir un titre et une description</p>';
         }
-        public function choix_collection($collection){
+        public function choix_collection($collection,$post){
             foreach($collection as $col){
-                echo "<a href=\"index.php?module=collection&action=ajouter_post&idPost=$col[idPost]&idCollection=$col[idCollection]\">".$col['titreCollection']."</a>".'<br>';
+                echo "<a href=\"index.php?module=collection&action=ajouter_post&idPost=$post&idCollection=$col[idCollection]\">".$col['titreCollection']."</a>".'<br>';
          
         }
     }

@@ -36,8 +36,8 @@
                 case "ajouter_post":
                         $this->ajouter_unPost();
                         break;
-                    case "choix_collection":
-                        $this->affiche_choix_collection();
+                case "choix_collection":
+                        $this->affiche_choix_collection($_GET['idPost']);
                         break;
                 default :
                     die("action inexistante");
@@ -89,8 +89,8 @@
             }
         }
 
-        public function affiche_choix_collection(){
-            $this->vue->choix_collection($this->modele->getChoixCollection());
+        public function affiche_choix_collection($post){
+            $this->vue->choix_collection($this->modele->getChoixCollection(),$post);
         }
         
     }

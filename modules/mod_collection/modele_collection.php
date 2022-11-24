@@ -70,7 +70,7 @@ class ModeleCollection extends Connexion
 
     public function ajouter_post()
     {
-        $collection = self::$bdd->prepare("INSERT INTO `Appartenir` (`idPost`, `idCollection`) VALUES ('?', '?');");
+        $collection = self::$bdd->prepare("INSERT INTO Appartenir (idPost, idCollection) VALUES (?, ?);");
         $collection->execute(array($_GET['idPost'],$_GET['idCollection']));
     }
 
@@ -87,7 +87,7 @@ class ModeleCollection extends Connexion
     }
 
     public function getChoixCollection(){
-        $collections = self::$bdd->prepare('select Collections.idUser as idUser,titreCollection, idCollection, idPost from Collections inner join Appartenir using(idCollection) inner join Posts using (idPost) inner join Utilisateurs on(Collections.idUser=Utilisateurs.idUser) where Collections.idUser = ?');
+        $collections = self::$bdd->prepare('select Collections.idUser as idUser ,titreCollection , idCollection from Collections where Collections.idUser = ?');
         $collections->execute(array($_SESSION['idUser']));
        return $collections->fetchAll();
     }
