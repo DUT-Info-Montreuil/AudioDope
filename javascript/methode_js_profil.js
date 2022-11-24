@@ -1,6 +1,6 @@
 $(function () {
     const modal = document.getElementById("myModal");
-    const btn = document.getElementById("lien_pfp");
+    const btn = document.getElementById("modif_pfp");
 
     btn.onclick = function () {
         modal.style.display = "flex";

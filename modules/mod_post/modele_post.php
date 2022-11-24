@@ -60,7 +60,7 @@
         }
         
         public function get_post() {
-            $post = self::$bdd->prepare('select Posts.idUser as idUser, Posts.idPost as idPost, login, lien, titre, descriptionPost, datePost from Posts join Utilisateurs on Posts.idUser = Utilisateurs.idUser where Posts.idPost = ?');
+            $post = self::$bdd->prepare('select Posts.idUser as idUser, Posts.idPost as idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts join Utilisateurs on Posts.idUser = Utilisateurs.idUser where Posts.idPost = ?');
             $post->execute(array($_GET['idPost']));
             $post = $post->fetch();
 

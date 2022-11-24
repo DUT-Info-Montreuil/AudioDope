@@ -54,8 +54,16 @@ class VueGenerique
     public function affiche_post_gauche($post)
     {
         echo "<div class=\"post_gauche\">";
+        echo "<div class=\"post_gauche_haut\">";
+        echo "<div class=\"post_pfp\">";
+        echo "<img class=\"class_pfp\" src=\"$post[pfp]\" alt=\"photo de profil\">";
+        echo "</div>";
+        echo "<div class=\"post_nom_date\">";
         echo "<a href=\"index.php?module=profil&action=voir_profil&idUser=$post[idUser]\">$post[login]</a>";
-        echo "<p><small>$post[datePost]</small></p>";
+        echo "<p><small>".substr($post['datePost'], 11)."</small></br>";
+        echo "<small>".substr($post['datePost'], 0, 10)."</small></p>";
+        echo "</div>";
+        echo "</div>";
         echo "<a class=\"lien_musique_post\" href=\"$post[lien]\">lien vers la musique/playlist</a>";
         echo "</div>";
     }

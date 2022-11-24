@@ -15,18 +15,18 @@
             echo '<div id="profil">';
             echo '<div id="profil_gauche">';
             if(isset($_SESSION['idUser']) && $profil['idUser'] == $_SESSION['idUser']) {
-                echo "<a id=\"lien_pfp\" href=\"#\"><img src=\"$profil[pfp]\" alt=\"photo de profil\" width=\"64\" height=\"64\"></a>";
+                echo "<a id=\"modif_pfp\" class=\"lien_pfp\" href=\"#\"><img class=\"class_pfp\" src=\"$profil[pfp]\" alt=\"photo de profil\"></a>";
                 //pop up changer de pfp
                 echo '<div id="myModal" class="modal">
                     <div class="modal-content">
                         <FORM id="form_pfp" action="javascript/changer_pfp.php" METHOD="POST" enctype="multipart/form-data"> 
                             <input type="file" name="file_pfp" id="id_file_pfp" accept="image/png, image/gif, image/jpeg"/>
-                            <INPUT TYPE="SUBMIT" NAME="bouton" value="Valider"> 
+                            <INPUT TYPE="SUBMIT" NAME="bouton" id="bouton_pfp" value="Valider"> 
                         </FORM>
                     </div>
                     </div>';
             } else {
-                echo "<img src=\"$profil[pfp]\" alt=\"photo de profil\" width=\"64\" height=\"64\">";
+                echo "<img class=\"class_pfp\" src=\"$profil[pfp]\" alt=\"photo de profil\">";
             }
             echo '<p>'.$profil['login'].'</p>';
             echo '</div>';
