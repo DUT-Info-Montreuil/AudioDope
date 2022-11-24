@@ -139,9 +139,15 @@ class VueGenerique
     public function affiche_commentaire($com) {
         echo "<article class=\"post\">";
         //partie gauche
-        echo "<div class=\"post_gauche\">";
+        echo "<div class=\"post_gauche_com\">";
+        echo "<div class=\"post_pfp\">";
+        echo "<img class=\"class_pfp\" src=\"$com[pfp]\" alt=\"photo de profil\">";
+        echo "</div>";
+        echo "<div class=\"post_nom_date\">";
         echo "<a href=\"index.php?module=profil&action=voir_profil&idUser=$com[idUser]\">$com[login]</a>";
-        echo "<p><small>$com[dateCom]</small></p>";
+        echo "<p><small>".substr($com['dateCom'], 11)."</small></br>";
+        echo "<small>".substr($com['dateCom'], 0, 10)."</small></p>";
+        echo "</div>";
         echo "</div>";
         //partie droite
         echo "<div class=\"post_milieu\">";
