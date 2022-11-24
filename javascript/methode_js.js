@@ -70,23 +70,6 @@ $(function () {
             })
         })
 
-<<<<<<< HEAD
-=======
-    $(window).scroll(function () {
-
-        const header = document.getElementById("navbar");
-        const main = document.getElementById("main");
-        const fixe = header.offsetTop;
-
-        if (window.pageYOffset > fixe) {
-            main.classList.add("decalage");
-            header.classList.add("fixe");
-        } else {
-            main.classList.remove("decalage");
-            header.classList.remove("fixe");
-        }
-    })
->>>>>>> pfp
 });
 
 function pas_connecte() {
