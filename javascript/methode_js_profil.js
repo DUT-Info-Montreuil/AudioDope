@@ -13,21 +13,23 @@ $(function () {
 
     $("#form_pfp").submit(
         function (event) {
-            const file = document.getElementById('id_file_pfp');
-            alert(file);
+            event.preventDefault();
             $.ajax({
-                type: "GET",
+                type: "POST",
                 url: "javascript/changer_pfp.php",
-                data: {
-                    id: 5,
-                    file_pfp: file
-                },
+                data:  new FormData(this),
+                contentType: false,
+                cache: false,
+                processData:false,
                 dataType: "json",
                 success: function (data) {
-                    alert(data['erreur']);
-                    modal.style.display = "none";
+                    if (data != null) {
+                        alert(data['erreur']);
+                        modal.style.display = "none";
+                    } else {
+                        location.reload();
+                    }
                 }
             })
-            event.preventDefault();
         })
 });
