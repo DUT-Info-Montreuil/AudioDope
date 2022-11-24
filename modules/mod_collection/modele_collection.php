@@ -92,12 +92,14 @@ class ModeleCollection extends Connexion
         $collections->execute(array($_SESSION['idUser']));
        return $collections->fetchAll();
     }
-/*
-    public function get_login_post($idPost){
-        $login = self::$bdd->prepare('select login from idPost where idPost = :idPost');
-        $login-> bindParam(':idPost', $idPost);
-        $login->execute();
-        return $login->fetch();
+
+    public function verif_post_dans_collection(){
+        $post = self::$bdd->prepare('select * from Appartenir where idCollection=? and idPost=? ');
+        $post-> execute(array($_GET['idCollection'],$_GET['idPost']));
+        if(!$post->fetch()){
+            return 1;
+        }
+        return 2;
+        
     }
-*/
 }

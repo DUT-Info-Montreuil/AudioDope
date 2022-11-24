@@ -54,8 +54,10 @@
         }
 
         public function voir_colllection() {
+           
             $this->vue->affiche_collections($this->modele->getCollection());
             $this->vue->affiche_posts($this->modele->get_post_collection());
+           
         }
 
         public function form_redaction() {
@@ -73,8 +75,13 @@
             $this->vue->non_connecte();
         }
         public function ajouter_unPost(){
+            $verif=$this->modele->verif_post_dans_collection();
+            if($verif==1){
             $this->modele->ajouter_post();
             $this->vue->ajout_post_dans_collection();
+         }else{
+            $this->vue->post_deja_dans_collection();
+            }
         }
 
         public function redaction_collection() {
@@ -92,6 +99,8 @@
         public function affiche_choix_collection($post){
             $this->vue->choix_collection($this->modele->getChoixCollection(),$post);
         }
+
+        
         
     }
 ?>

@@ -61,6 +61,10 @@
             echo '<p>Ajoutée dans la collection</p>';
         }
 
+        public function post_deja_dans_collection() {
+            echo '<p>Il y a deja se post dans votre collection</p>';
+        }
+
         public function titre_deja_util() {
             echo '<p>Titre non disponible</p>';
         }
