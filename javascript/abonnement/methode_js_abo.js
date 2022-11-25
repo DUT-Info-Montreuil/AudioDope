@@ -36,5 +36,18 @@ $(function () {
                 }
             })
         })
+    
+    const modal_abonne = document.getElementById("modal_abonne");
+    const btn_abonne = document.getElementById("voir_abonne");
 
+    btn_abonne.onclick = function () {
+        $.ajax({
+            url: "javascript/abonnement/voir_abonnes.php",
+            dataType: "json",
+            success: function (data) {
+                document.getElementsByClassName("modal_abo_contenu")[0].innerHTML = data['string'];
+            }
+        })
+        modal_abonne.style.display = "flex";
+    }
 });

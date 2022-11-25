@@ -1,14 +1,18 @@
 $(function () {
-    const modal = document.getElementById("myModal");
-    const btn = document.getElementById("modif_pfp");
+    const modal_pfp = document.getElementById("modal_pfp");
+    const btn_pfp = document.getElementById("modif_pfp");
 
-    btn.onclick = function () {
-        modal.style.display = "flex";
+    btn_pfp.onclick = function () {
+        modal_pfp.style.display = "flex";
     }
 
+    const modal_abonne = document.getElementById("modal_abonne");
+    
     window.onclick = function (event) {
-        if (event.target == modal)
-            modal.style.display = "none";
+        if (event.target == modal_pfp)
+            modal_pfp.style.display = "none";
+        if (event.target == modal_abonne)
+            modal_abonne.style.display = "none";
     }
 
     $("#form_pfp").submit(
@@ -25,11 +29,11 @@ $(function () {
                 success: function (data) {
                     if (data != null) {
                         alert(data['erreur']);
-                        modal.style.display = "none";
+                        modal_pfp.style.display = "none";
                     } else {
-                        location.reload();
+                        location.reload(true);
                     }
                 }
             })
-        })
+        });
 });

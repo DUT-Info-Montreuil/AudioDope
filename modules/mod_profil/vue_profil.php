@@ -17,12 +17,16 @@
             if(isset($_SESSION['idUser']) && $profil['idUser'] == $_SESSION['idUser']) {
                 echo "<a id=\"modif_pfp\" class=\"lien_pfp\" href=\"#\"><img class=\"class_pfp\" src=\"$profil[pfp]\" alt=\"photo de profil\"></a>";
                 //pop up changer de pfp
-                echo '<div id="myModal" class="modal">
-                    <div class="modal-content">
+                echo '<div id="modal_pfp" class="modal">
+                    <div class="modal-content" id="modal_pfp_contenu">
                         <FORM id="form_pfp" action="" METHOD="POST" enctype="multipart/form-data"> 
                             <input type="file" name="file_pfp" id="id_file_pfp" accept="image/png, image/gif, image/jpeg"/>
                             <INPUT TYPE="SUBMIT" NAME="bouton" id="bouton_pfp" value="Valider"> 
                         </FORM>
+                    </div>
+                    </div>';
+                    echo '<div id="modal_abonne" class="modal">
+                    <div class="modal-content modal_abo_contenu">
                     </div>
                     </div>';
             } else {
@@ -32,7 +36,7 @@
             echo '</div>';
             echo '<div id="profil_droit">';
             if(isset($_SESSION['idUser']) && $profil['idUser'] == $_SESSION['idUser']) {
-                echo "<div id=\"abonne\"><p>$profil[nb_abonnes]</p><p><a href=\"index.php?module=profil&action=afficherAbonner&id=".$_SESSION['idUser']."\">Abonne(s)</a></p></div>";
+                echo "<div id=\"abonne\"><p>$profil[nb_abonnes]</p><p><a id=\"voir_abonne\" href=\"#\">Abonne(s)</a></p></div>";
                 echo "<div id=\"abonnenement\"><p>$profil[nb_abonnement]</p><p><a href=\"index.php?module=profil&action=afficherAbonnement&id=".$_SESSION['idUser']."\">Abonnement(s)</a></p></div>";
             } else {
                 echo "<div id=\"abonne\"><p>$profil[nb_abonnes]</p><p>Abonne(s)</p></div>";

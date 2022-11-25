@@ -5,22 +5,22 @@
 /* width */
 ::-webkit-scrollbar {
 	width: 5px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-	background: #d1d1d1; 
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-	background: rgb(100, 221, 20); 
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-	background: #555; 
-  }
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #d1d1d1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: rgb(100, 221, 20);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
 
 
 /*HEADER*/
@@ -40,7 +40,7 @@ header {
 }
 
 #div_titre:hover {
-	transform:scale(1.05)
+	transform: scale(1.05)
 }
 
 #div_titre {
@@ -60,7 +60,7 @@ header {
 	background: -webkit-linear-gradient(#cc3f3f, #c15050);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
-	
+
 }
 
 .titre2 {
@@ -89,11 +89,11 @@ a:hover {
 }
 
 .lien_musique_post {
-	position:absolute;
+	position: absolute;
 	text-decoration: underline;
 	font-family: 'Montserrat', sans-serif;
 	word-spacing: 0.1em;
-	color:#d1d1d1;
+	color: #d1d1d1;
 	font-weight: 300;
 	z-index: 2;
 	text-align: center;
@@ -101,7 +101,7 @@ a:hover {
 }
 
 .lien_musique_post:hover {
-	background-color:#858585
+	background-color: #858585
 }
 
 #inscrire {
@@ -110,7 +110,7 @@ a:hover {
 
 #navbar {
 	width: 100%;
-	padding-top:10px;
+	padding-top: 10px;
 	background-color: rgb(53, 45, 57);
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 600;
@@ -119,7 +119,7 @@ a:hover {
 }
 
 #navbar a {
-	color:#d1d1d1;
+	color: #d1d1d1;
 }
 
 #rechercher {
@@ -151,13 +151,13 @@ body a:hover {
 /* MAIN */
 
 main {
-	min-height:90%;
+	min-height: 90%;
 
 	padding-top: 80px;
-	padding-bottom:15px;
+	padding-bottom: 15px;
 	text-align: center;
-	background: rgb(242,123,107);
-	background: linear-gradient(159deg, rgba(242,123,107,1) 4%, rgba(255,132,116,1) 12%, rgba(203,106,94,1) 26%, rgba(159,95,128,1) 84%, rgba(88,61,114,1) 100%); 
+	background: rgb(242, 123, 107);
+	background: linear-gradient(159deg, rgba(242, 123, 107, 1) 4%, rgba(255, 132, 116, 1) 12%, rgba(203, 106, 94, 1) 26%, rgba(159, 95, 128, 1) 84%, rgba(88, 61, 114, 1) 100%);
 }
 
 /* INSCRIPTION & CONNEXION */
@@ -230,7 +230,7 @@ main {
 	padding-top: 10px;
 	padding-right: 10px;
 	overflow: hidden;
-  	text-overflow: ellipsis;
+	text-overflow: ellipsis;
 }
 
 .div_bouton_abo {
@@ -248,7 +248,8 @@ main {
 	background: -webkit-linear-gradient(#cc3f3f, #c15050);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
-	font-size: 55px;;
+	font-size: 55px;
+	;
 	font-family: "PicNic-Regular";
 	-webkit-text-stroke: 2px;
 	-webkit-text-stroke-color: rgb(53, 45, 57);
@@ -259,7 +260,7 @@ main {
 	margin: auto;
 	margin-top: 15px;
 	padding-top: 5px;
-	width : 65%;
+	width: 65%;
 	min-width: 750px;
 	max-width: 1200px;
 	min-height: 120px;
@@ -267,21 +268,21 @@ main {
 	border-radius: 7px;
 	background-color: rgb(53, 45, 57);
 	cursor: pointer;
-	position:relative;
+	position: relative;
 	transition: transform 0.2s;
 }
 
 .lien_vers_post {
-	position:absolute;
-	top:0;
-	left:0;
-	width: 100%; 
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
 	height: 100%;
 	z-index: 1;
 }
 
 .post:hover {
-	transform:scale(1.02);
+	transform: scale(1.02);
 }
 
 .post h2:hover {
@@ -302,13 +303,13 @@ main {
 .titre_post {
 	font-size: 20px;
 	font-weight: bold;
-	color:#d1d1d1;
+	color: #d1d1d1;
 	font-family: 'Montserrat', sans-serif;
-	
+
 }
 
 .post_gauche {
-	position:relative;
+	position: relative;
 	width: 20%;
 	margin-right: 20px;
 }
@@ -328,13 +329,13 @@ main {
 }
 
 .post_milieu {
-	position:relative;
+	position: relative;
 	width: 60%;
 	margin-top: -1px;
 }
 
 .post_droit {
-	position:relative;
+	position: relative;
 	width: 30px;
 	margin-right: 20px;
 }
@@ -347,11 +348,11 @@ main {
 	border: none;
 	background-color: rgb(53, 45, 57);
 	color: #d1d1d1;
-	
+
 }
 
 .options_bouton:hover {
-	background-color:#d1d1d1;
+	background-color: #d1d1d1;
 	opacity: 50%;
 }
 
@@ -366,8 +367,8 @@ main {
 	position: absolute;
 	background-color: #d1d1d1;
 	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	right:0;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	right: 0;
 }
 
 .options_contenu a {
@@ -380,13 +381,13 @@ main {
 
 .nb_vote {
 	margin: auto;
-	color:#d1d1d1;
+	color: #d1d1d1;
 }
 
 .vote {
 	position: absolute;
 	z-index: 2;
-	top : 22%;
+	top: 22%;
 	left: 33%;
 }
 
@@ -397,17 +398,17 @@ main {
 	font-weight: 300;
 	line-height: 1.5em;
 	word-spacing: 0.1em;
-	color:#d1d1d1;
+	color: #d1d1d1;
 }
 
 #date_post {
-	color:#d1d1d1;
+	color: #d1d1d1;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 100;
 }
 
 #pseudo_post {
-	color:#d1d1d1;
+	color: #d1d1d1;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: bold;
 }
@@ -424,11 +425,11 @@ footer {
 	width: 100%;
 	height: 100px;  */
 
-	padding-top:5px;
-	padding-bottom:3px;
+	padding-top: 5px;
+	padding-bottom: 3px;
 	text-align: center;
 	background-color: rgb(53, 45, 57);
-	color:#d1d1d1;
+	color: #d1d1d1;
 	font-family: 'Montserrat', sans-serif;
 }
 
@@ -458,44 +459,48 @@ footer {
 	margin-bottom: 0px;
 }
 
-  .class_pfp {
+.class_pfp {
 	width: 64px;
-    height: 64px;
+	height: 64px;
 	object-fit: cover;
-    border-radius: 50%;
-  }
+	border-radius: 50%;
+}
 
-
-/* The Modal (background) */
 .modal {
-	display: none; /* Hidden by default */
-	position: fixed; /* Stay in place */
-	z-index: 1; /* Sit on top */
+	display: none;
+	position: fixed;
+	z-index: 1;
 	left: 0;
 	top: 0;
-	width: 100%; /* Full width */
-	height: 100%; /* Full height */
-	background-color: rgb(0,0,0); /* Fallback color */
-	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* Modal Content */
-  .modal-content {
+	width: 100%;
+	height: 100%;
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.4);
+	align-items: center;
+	justify-content: center;
+}
+
+
+.modal-content {
 	background-color: #fefefe;
 	margin: auto;
 	padding: 20px;
 	border: 1px solid #888;
+}
+
+#modal_pfp_contenu {
 	max-width: 500px;
 	max-height: 200px;
-  }
+}
 
-  input[type=file] {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 275px;
-  }
+.modal_abo_contenu {
+	max-width: 300px;
+	max-height: 500px;
+}
 
- 
+input[type=file] {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 275px;
+}
