@@ -7,7 +7,7 @@
         $sql = $bdd->prepare('DELETE FROM Abonner where Abonner.idUserAbonne=? and Abonner.idUserAbonnement=?');
         $sql->execute(array($_SESSION['idUser'], $_POST['idUser']));
         $data = array (
-            "data" => '<FORM class="form_abonner" ACTION="" METHOD="POST"> 
+            "data" => '<FORM class="form_abonnement" ACTION="javascript/abonnement/abonner.php" METHOD="POST"> 
             <input type="hidden" name="token" value='.$_SESSION['token'].'>
             <input type="hidden" name="idUser" value='.$_POST['idUser'].'>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">

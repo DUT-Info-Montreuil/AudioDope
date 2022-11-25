@@ -41,7 +41,7 @@
             echo '<div id="profil_droit">';
             if(isset($_SESSION['idUser']) && $profil['idUser'] == $_SESSION['idUser']) {
                 echo "<div id=\"abonne\"><p>$profil[nb_abonnes]</p><p><a id=\"voir_abonne\" href=\"#\">Abonne(s)</a></p></div>";
-                echo "<div id=\"abonnement\"><p>$profil[nb_abonnement]</p><p><a id=\"voir_abonnement\" href=\"#\">Abonnement(s)</a></p></div>";
+                echo "<div id=\"abonnement\"><p id=\"nb_abo\">$profil[nb_abonnement]</p><p><a id=\"voir_abonnement\" href=\"#\">Abonnement(s)</a></p></div>";
             } else {
                 echo "<div id=\"abonne\"><p>$profil[nb_abonnes]</p><p>Abonne(s)</p></div>";
                 echo "<div id=\"abonnement\"><p>$profil[nb_abonnement]</p><p>Abonnement(s)</p></div>";
@@ -70,7 +70,7 @@
 
         public function afficherform_abonnement($idUser){
             echo '<div class="div_bouton_abo" id="div_bouton_abo'.$idUser.'">';
-            echo '<FORM class="form_abonner" ACTION="" METHOD="POST"> 
+            echo '<FORM class="form_abonnement" ACTION="javascript/abonnement/abonner.php" METHOD="POST"> 
             <input type="hidden" name="token" value='.$_SESSION['token'].'>
             <input type="hidden" name="idUser" value='.$idUser.'>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
@@ -84,7 +84,7 @@
         
         public function afficherform_desabonnement($idUser){
             echo '<div class="div_bouton_abo" id="div_bouton_abo'.$idUser.'">';
-            echo '<FORM class="form_desabonner" ACTION="" METHOD="POST"> 
+            echo '<FORM class="form_abonnement" ACTION="javascript/abonnement/desabonner.php" METHOD="POST"> 
             <input type="hidden" name="token" value='.$_SESSION['token'].'>
             <input type="hidden" name="idUser" value='.$idUser.'>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">

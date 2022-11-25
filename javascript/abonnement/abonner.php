@@ -7,7 +7,7 @@
         $sql = $bdd->prepare('INSERT INTO Abonner values(?,?)');
         $sql->execute(array($_SESSION['idUser'], $_POST['idUser']));
         $data = array (
-            "data" => '<FORM class="form_desabonner" ACTION="" METHOD="POST"> 
+            "data" => '<FORM class="form_abonnement" ACTION="javascript/abonnement/desabonner.php" METHOD="POST"> 
             <input type="hidden" name="token" value='.$_SESSION['token'].'>
             <input type="hidden" name="idUser" value='.$_POST['idUser'].'>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">

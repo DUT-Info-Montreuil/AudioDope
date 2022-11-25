@@ -24,7 +24,7 @@
             $string = $string."</div>";
             if($verif_abo[$i]==2){
                 $string = $string.'<div class="div_bouton_abo" id="div_bouton_abo'.$info[$i]['idUser'].'">
-                <FORM class="form_desabonner" ACTION="" METHOD="POST"> 
+                <FORM class="form_abonnement" ACTION="javascript/abonnement/desabonner.php" METHOD="POST">
                 <input type="hidden" name="token" value='.$_SESSION['token'].'>
                 <input type="hidden" name="idUser" value='.$info[$i]['idUser'].'>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
@@ -36,7 +36,7 @@
                 </div>';      
             }else {
                 $string = $string.'<div class="div_bouton_abo" id="div_bouton_abo'.$info[$i]['idUser'].'">
-                <FORM class="form_abonner" ACTION="" METHOD="POST"> 
+                <FORM class="form_abonnement" ACTION="javascript/abonnement/abonner.php" METHOD="POST">
                 <input type="hidden" name="token" value='.$_SESSION['token'].'>
                 <input type="hidden" name="idUser" value='.$info[$i]['idUser'].'>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
