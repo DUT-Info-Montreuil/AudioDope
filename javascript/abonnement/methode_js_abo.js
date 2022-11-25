@@ -1,5 +1,5 @@
 $(function () {
-    $(".form_desabonner").submit(
+    $(".div_bouton_abo").on( 'submit', '.form_desabonner',
         function (event) {
             event.preventDefault();
             const formData = new FormData(this);
@@ -18,7 +18,7 @@ $(function () {
             })
         });
 
-    $(".form_abonner").submit(
+    $(".div_bouton_abo").on( 'submit', '.form_abonner',
         function (event) {
             event.preventDefault();
             const formData = new FormData(this);
