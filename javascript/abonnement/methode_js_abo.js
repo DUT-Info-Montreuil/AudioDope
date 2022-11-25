@@ -50,4 +50,18 @@ $(function () {
         })
         modal_abonne.style.display = "flex";
     }
+
+    const modal_abonnement = document.getElementById("modal_abonnement");
+    const btn_abonnement = document.getElementById("voir_abonnement");
+
+    btn_abonnement.onclick = function () {
+        $.ajax({
+            url: "javascript/abonnement/voir_abonnements.php",
+            dataType: "json",
+            success: function (data) {
+                document.getElementsByClassName("modal_abo_contenu")[1].innerHTML = data['string'];
+            }
+        })
+        modal_abonnement.style.display = "flex";
+    }
 });

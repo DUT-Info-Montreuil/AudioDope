@@ -7,12 +7,15 @@ $(function () {
     }
 
     const modal_abonne = document.getElementById("modal_abonne");
-    
+    const modal_abonnement = document.getElementById("modal_abonnement");
+
     window.onclick = function (event) {
         if (event.target == modal_pfp)
             modal_pfp.style.display = "none";
         if (event.target == modal_abonne)
             modal_abonne.style.display = "none";
+        if (event.target == modal_abonnement)
+            modal_abonnement.style.display = "none";
     }
 
     $("#form_pfp").submit(

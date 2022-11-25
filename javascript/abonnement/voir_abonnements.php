@@ -4,9 +4,9 @@
     
     if (isset($_SESSION['idUser'])) {
         $bdd = new PDO ('mysql:host='."database-etudiants.iut.univ-paris8.fr".';dbname='."dutinfopw201625", "dutinfopw201625", "razamaqe");
-        $listeAbonne = $bdd->prepare('select idUser, login from Abonner inner join Utilisateurs on (Abonner.idUserAbonne= Utilisateurs.idUser) where idUserAbonnement = ?');
-        $listeAbonne->execute(array($_SESSION['idUser']));
-        $info = $listeAbonne->fetchAll();
+        $listeAbonnement = $bdd->prepare('select idUser, login from Abonner inner join Utilisateurs on (Abonner.idUserAbonnement= Utilisateurs.idUser) where idUserAbonne = ?');
+        $listeAbonnement->execute(array($_SESSION['idUser']));
+        $info = $listeAbonnement->fetchAll();
         $verif_abo = array();
         for ($i = 0; $i < count($info); $i++) {
             $sql = $bdd->prepare('SELECT * from Abonner where Abonner.idUserAbonne=? and Abonner.idUserAbonnement=?');
@@ -16,7 +16,7 @@
             else
                 $verif_abo[$i] = 2;
         }
-        $string = "<h2>Abonnés</h2><section id=\"liste_abo\">";
+        $string = "<h2>Abonnement</h2><section id=\"liste_abo\">";
         for($i = 0; $i < count($info); $i++){
             $string = $string.'<div class="abo">';
             $string = $string.'<div class="pseudo_abo">';
