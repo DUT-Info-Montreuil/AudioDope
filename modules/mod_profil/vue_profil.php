@@ -49,7 +49,6 @@
                 echo '<div class="pseudo_abo">';
                 echo "<a href=\"index.php?module=profil&action=voir_profil&idUser=".$array['info'][$i]['idUser']."\">".$array['info'][$i]['login']."</a>";
                 echo "</div>";
-                echo '<div class="div_bouton_abo" id="div_bouton_abo'.$array['info'][$i]['idUser'].'">';
                 if($array['abo'][$i]==2){
                     $this->afficherform_desabonnement($array['info'][$i]['idUser']);               
                 }else if($array['abo'][$i]==1){
@@ -62,6 +61,7 @@
         }
 
         public function afficherform_abonnement($idUser){
+            echo '<div class="div_bouton_abo" id="div_bouton_abo'.$idUser.'">';
             echo '<FORM class="form_abonner" ACTION="" METHOD="POST"> 
             <input type="hidden" name="token" value='.$_SESSION['token'].'>
             <input type="hidden" name="idUser" value='.$idUser.'>
@@ -71,9 +71,11 @@
             </svg>
             <INPUT CLASS="btn btn-primary" TYPE="SUBMIT" NAME="bouton" value="S\'abonner"> 
             </FORM>';
+            echo "</div>";
         }
         
         public function afficherform_desabonnement($idUser){
+            echo '<div class="div_bouton_abo" id="div_bouton_abo'.$idUser.'">';
             echo '<FORM class="form_desabonner" ACTION="" METHOD="POST"> 
             <input type="hidden" name="token" value='.$_SESSION['token'].'>
             <input type="hidden" name="idUser" value='.$idUser.'>
@@ -83,7 +85,7 @@
             </svg>
             <INPUT CLASS="btn btn-primary" TYPE="SUBMIT" NAME="bouton" value="Se désabonner"> 
             </FORM>';
-            
+            echo "</div>";
         }
         
         public function afficher_posts_profil($posts) {
