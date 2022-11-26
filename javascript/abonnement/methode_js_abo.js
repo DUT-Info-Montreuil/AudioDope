@@ -11,7 +11,7 @@ $(function () {
     })
 
     const modal_abonne = document.getElementById("modal_abonne");
-    const btn_abonne = document.getElementById("voir_abonne");
+    const btn_abonne = document.getElementsByClassName("voir_abonne")[0];
 
     btn_abonne.onclick = function () {
         $.ajax({
@@ -25,7 +25,7 @@ $(function () {
     }
 
     const modal_abonnement = document.getElementById("modal_abonnement");
-    const btn_abonnement = document.getElementById("voir_abonnement");
+    const btn_abonnement = document.getElementsByClassName("voir_abonnement")[0];
 
     btn_abonnement.onclick = function () {
         $.ajax({

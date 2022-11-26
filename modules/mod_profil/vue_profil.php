@@ -40,8 +40,8 @@
             echo '</div>';
             echo '<div id="profil_droit">';
             if(isset($_SESSION['idUser']) && $profil['idUser'] == $_SESSION['idUser']) {
-                echo "<div id=\"abonne\"><p>$profil[nb_abonnes]</p><p><a id=\"voir_abonne\" href=\"#\">Abonne(s)</a></p></div>";
-                echo "<div id=\"abonnement\"><p id=\"nb_abo\">$profil[nb_abonnement]</p><p><a id=\"voir_abonnement\" href=\"#\">Abonnement(s)</a></p></div>";
+                echo "<div id=\"abonne\"><p>$profil[nb_abonnes]</p><p><a class=\"voir_abonne\" href=\"#\">Abonne(s)</a></p></div>";
+                echo "<div id=\"abonnement\"><p id=\"nb_abo\">$profil[nb_abonnement]</p><p><a class=\"voir_abonnement\" href=\"#\">Abonnement(s)</a></p></div>";
             } else {
                 echo "<div id=\"abonne\"><p>$profil[nb_abonnes]</p><p>Abonne(s)</p></div>";
                 echo "<div id=\"abonnement\"><p>$profil[nb_abonnement]</p><p>Abonnement(s)</p></div>";

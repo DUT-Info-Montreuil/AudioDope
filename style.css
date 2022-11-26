@@ -219,15 +219,8 @@ main {
 
 }
 
-.abo {
-	margin: auto;
-	width: 275px;
-	display: flex;
-}
-
 .pseudo_abo {
 	width: 110px;
-	padding-top: 10px;
 	padding-right: 10px;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -235,6 +228,8 @@ main {
 
 .div_bouton_abo {
 	padding-top: 5px;
+	margin: auto;
+	width: 50%;
 }
 
 /*CONNEXION*/
@@ -466,6 +461,13 @@ footer {
 	border-radius: 50%;
 }
 
+.pfp_list_abo {
+	width: 50px;
+	height: 50px;
+	margin-right: 10px;
+	margin-right: 10px;
+}
+
 .modal {
 	display: none;
 	position: fixed;
@@ -488,14 +490,25 @@ footer {
 	border: 1px solid #888;
 }
 
+/* MODALE pour la photo de profil*/
 #modal_pfp_contenu {
 	max-width: 500px;
 	max-height: 200px;
 }
 
+/* MODALE pour afficher les abonnés et les abonnements*/
 .modal_abo_contenu {
-	max-width: 300px;
+	max-width: 360px;
 	max-height: 500px;
+}
+
+
+.abo {
+	display: flex;
+}
+
+.info_list_abo {
+	width: 50%;
 }
 
 input[type=file] {
