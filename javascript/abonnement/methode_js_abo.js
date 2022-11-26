@@ -5,11 +5,9 @@ $(function () {
         abonnement(this);
     })
 
-    //bouton abonnement dynamique + compteur abonnements dynamiques
     $(".modal_abo_contenu").on('submit', '.form_abonnement', function (event) {
         event.preventDefault();
         abonnement(this);
-        refresh_abonnement();
     })
 
     //abonne
@@ -56,18 +54,6 @@ function abonnement(form) {
         success: function (data) {
             if (data != null) {
                 document.getElementById('div_bouton_abo' + formData.get('idUser')).innerHTML = data['data'];
-            }
-        }
-    })
-}
-
-function refresh_abonnement() {
-    $.ajax({
-        url: 'javascript/abonnement/refresh_abonnement.php',
-        dataType: "json",
-        success: function (data) {
-            if (data != null) {
-                document.getElementById('nb_abo').innerHTML = data['data'];
             }
         }
     })

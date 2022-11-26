@@ -56,6 +56,7 @@ class ModeleGenerique extends Connexion
     {
         $votes = array_fill(0, count($posts), 0);
         if (isset($_SESSION['idUser'])) {
+            //récupère toutes les votes de l'utilisateur dans une seule requête sql
             $sql = 'select VoterPost.idPost as idPost, vote from  Posts left join VoterPost on Posts.idPost = VoterPost.idPost where VoterPost.idUser = ? and VoterPost.idPost in (';
             for ($i = 0; $i < count($posts) - 1; $i++) {
                 $sql = $sql . $posts[$i]['idPost'] . ",";
@@ -65,7 +66,8 @@ class ModeleGenerique extends Connexion
             $tab = self::$bdd->prepare($sql);
             $tab->execute(array($_SESSION['idUser']));
             $tab = $tab->fetchAll();
-
+            
+            //associe les votes au posts correspondants
             $cpt = 0;
             for ($i = 0; $i < count($posts) && $cpt < count($tab); $i++) {
                 if ($posts[$i]['idPost'] == $tab[$cpt]['idPost'])

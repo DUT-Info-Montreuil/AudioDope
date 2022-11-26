@@ -7,15 +7,26 @@
         $listeAbonne = $bdd->prepare('select idUser, login, pfp from Abonner inner join Utilisateurs on (Abonner.idUserAbonne= Utilisateurs.idUser) where idUserAbonnement = ?');
         $listeAbonne->execute(array($_SESSION['idUser']));
         $info = $listeAbonne->fetchAll();
+        
         $verif_abo = array();
-        for ($i = 0; $i < count($info); $i++) {
-            $sql = $bdd->prepare('SELECT * from Abonner where Abonner.idUserAbonne=? and Abonner.idUserAbonnement=?');
-            $sql->execute(array($_SESSION['idUser'], $info[$i]['idUser']));
-            if ($sql->rowcount() == 0)
-                $verif_abo[$i] = 1;
-            else
-                $verif_abo[$i] = 2;
+        $sql = 'SELECT idUserAbonnement from Abonner where Abonner.idUserAbonne=? and Abonner.idUserAbonnement in (';
+        for ($i = 0; $i < count($info) - 1; $i++) {
+            $sql = $sql . $info[$i]['idUser'] . ",";
         }
+        $sql = $sql . $info[$i]['idUser'] . ') order by Abonner.idUserAbonnement';
+        $tab = $bdd->prepare($sql);
+        $tab->execute(array($_SESSION['idUser']));
+        $tab = $tab->fetchAll();
+
+        $cpt = 0;
+        for ($i = 0; $i < count($info) && $cpt < count($tab); $i++) {
+            if ($info[$i]['idUser'] == $tab[$cpt]['idUserAbonnement']) {
+                $verif_abo[$i] = 2;
+                $cpt++;
+            } else
+                $verif_abo[$i] = 1;
+        }
+
         $string = "<nav id=\"menu\">
          <a id=\"nom_liste\" href=\"#\">Abonnés</a>
          <a class=\"voir_abonnement\" href=\"#\">Abonnements</a>

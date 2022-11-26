@@ -507,6 +507,7 @@ input[type=file] {
 
 /* MODALE pour afficher les abonnés et les abonnements*/
 .modal_abo_contenu {
+	margin-top: 300px;
 	max-width: 380px;
 	max-height: 500px;
 }
