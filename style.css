@@ -85,9 +85,9 @@ a:hover {
 
 #menu a {
 	display: inline-block;
-	width: 159px;
-	margin-left: 2px;
-	margin-right: 2px;
+	width: 150px;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 .lien_musique_post {
@@ -470,7 +470,7 @@ footer {
 	margin-right: 10px;
 }
 
-.modal {
+.modal {/*
 	display: none;
 	position: fixed;
 	z-index: 1;
@@ -478,22 +478,29 @@ footer {
 	top: 0;
 	width: 100%;
 	height: 100%;
-	background-color: rgb(0, 0, 0);
+	background-color: rgb(0, 0, 0);*/
 	background-color: rgba(0, 0, 0, 0.4);
 	align-items: center;
 	justify-content: center;
 }
 
-
-.modal-content {
-	background-color: #fefefe;
-	margin: auto;
-	padding: 20px;
-	border: 1px solid #888;
+.close {
+	padding: 1rem 1rem;
+	margin: -1rem -1rem -1rem auto;
 }
 
-/* MODALE pour la photo de profil*/
+.croix {
+	height: 20px;
+}
+
+.modal-content {
+	margin: auto;
+	padding: 20px;
+}
+
+/* MODAL pour la photo de profil*/
 #modal_pfp_contenu {
+	margin-top: 300px;
 	max-width: 500px;
 	max-height: 200px;
 }
@@ -505,11 +512,12 @@ input[type=file] {
 	width: 275px;
 }
 
-/* MODALE pour afficher les abonnés et les abonnements*/
+/* MODAL pour afficher les abonnés et les abonnements*/
 .modal_abo_contenu {
-	margin-top: 300px;
-	max-width: 380px;
-	max-height: 500px;
+	margin-top: 250px;
+	max-width: 400px;
+	height: 412px;
+	overflow-y: auto;
 }
 
 

@@ -6,16 +6,13 @@ $(function () {
         modal_pfp.style.display = "flex";
     }
 
-    const modal_abonne = document.getElementById("modal_abonne");
-    const modal_abonnement = document.getElementById("modal_abonnement");
+    const modal_abo = document.getElementById("modal_abo");
 
     window.onclick = function (event) {
         if (event.target == modal_pfp)
             modal_pfp.style.display = "none";
-        if (event.target == modal_abonne)
-            modal_abonne.style.display = "none";
-        if (event.target == modal_abonnement)
-            modal_abonnement.style.display = "none";
+        if (event.target == modal_abo)
+            modal_abo.style.display = "none";
     }
 
     $("#form_pfp").submit(
@@ -24,10 +21,10 @@ $(function () {
             $.ajax({
                 type: "POST",
                 url: "javascript/profil/changer_pfp.php",
-                data:  new FormData(this),
+                data: new FormData(this),
                 contentType: false,
                 cache: false,
-                processData:false,
+                processData: false,
                 dataType: "json",
                 success: function (data) {
                     if (data != null) {

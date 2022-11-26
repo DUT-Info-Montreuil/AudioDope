@@ -19,14 +19,14 @@
         $tab = $tab->fetchAll();
 
         $cpt = 0;
-        for ($i = 0; $i < count($info) && $cpt < count($tab); $i++) {
-            if ($info[$i]['idUser'] == $tab[$cpt]['idUserAbonnement']) {
+        for ($i = 0; $i < count($info); $i++) {
+            if ($cpt < count($tab) && $info[$i]['idUser'] == $tab[$cpt]['idUserAbonnement']) {
                 $verif_abo[$i] = 2;
                 $cpt++;
             } else
                 $verif_abo[$i] = 1;
         }
-
+        
         $string = "<nav id=\"menu\">
          <a id=\"nom_liste\" href=\"#\">Abonnés</a>
          <a class=\"voir_abonnement\" href=\"#\">Abonnements</a>
