@@ -27,7 +27,12 @@
             }else if($val==1){
                 $this->vue->afficherform_abonnement($profil['idUser']);
             }
-            $this->vue->afficher_posts_profil($this->modele->getPosts());
+
+            $posts = $this->modele->get_posts();
+            $votes  = $this->modele->get_votes($posts);
+            $nb_votes = $this->modele->get_nb_votes($posts);
+
+            $this->vue->afficher_posts_profil($posts, $votes, $nb_votes);
         }
 
         public function exec() {

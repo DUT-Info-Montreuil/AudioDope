@@ -33,11 +33,11 @@ class VueGenerique
         echo "<p>Vous êtes déjà connecté sous l’identifiant $login</p> <br> <a href=\"index.php?module=connexion&action=deconnexion\">Se déconnecter</a>";
     }
 
-    public function affiche_posts($posts)
+    public function affiche_posts($posts, $votes, $nb_votes)
     {
         echo "<section id=\"posts\">";
-        for ($i = 0; $i < count($posts['posts']); $i++) {
-            $this->affiche_post($posts['posts'][$i], $posts['votes'][$i], $posts['nb_votes'][$i]);
+        for ($i = 0; $i < count($posts); $i++) {
+            $this->affiche_post($posts[$i], $votes[$i], $nb_votes[$i]);
         }
         echo "</section>";
     }

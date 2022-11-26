@@ -113,9 +113,9 @@ class VueProfil extends VueGenerique
         echo "</div>";
     }
 
-    public function afficher_posts_profil($posts)
+    public function afficher_posts_profil($posts, $votes, $nb_votes)
     {
         echo "<h2 id=\"titre_rouge\">Posts</h2>";
-        $this->affiche_posts($posts);
+        $this->affiche_posts($posts, $votes, $nb_votes);
     }
 }

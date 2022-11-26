@@ -12,9 +12,7 @@ class ModeleAccueil extends ModeleGenerique
     {
         $posts = self::$bdd->prepare('select Posts.idUser as idUser, Posts.idPost as idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts join Utilisateurs on Posts.idUser = Utilisateurs.idUser order by datePost desc limit 20');
         $posts->execute();
-        $posts = $posts->fetchAll();
-        $tab = $this->get_posts_complet($posts);
-        return $tab;
+        return $posts->fetchAll();
     }
 
     public function get_suivi()
@@ -34,8 +32,6 @@ class ModeleAccueil extends ModeleGenerique
         $posts = self::$bdd->prepare($sql);
         $posts->execute(array($_SESSION['idUser']));
         
-        $posts = $posts->fetchAll();
-        $tab = $this->get_posts_complet($posts);
-        return $tab;
+        return $posts->fetchAll();
     }
 }

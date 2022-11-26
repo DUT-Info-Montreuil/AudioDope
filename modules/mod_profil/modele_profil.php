@@ -27,13 +27,11 @@ class ModeleProfil extends ModeleGenerique
         return $profil;
     }
 
-    public function getPosts()
+    public function get_posts()
     {
         $posts = self::$bdd->prepare('select Posts.idUser as idUser, Posts.idPost as idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts join Utilisateurs on Posts.idUser = Utilisateurs.idUser where Posts.idUser = ? order by datePost desc limit 20');
         $posts->execute(array($_GET['idUser']));
-        $posts = $posts->fetchAll();
-        $tab = $this->get_posts_complet($posts);
-        return $tab;
+        return $posts->fetchAll();
     }
 
     public function getAbonne()

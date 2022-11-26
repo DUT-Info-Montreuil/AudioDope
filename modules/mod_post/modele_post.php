@@ -63,17 +63,7 @@
             $post = self::$bdd->prepare('select Posts.idUser as idUser, Posts.idPost as idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts join Utilisateurs on Posts.idUser = Utilisateurs.idUser where Posts.idPost = ?');
             $post->execute(array($_GET['idPost']));
             $post = $post->fetch();
-
-            $vote  = $this->get_vote($post['idPost']);
-            $nb_votes = $this->get_nb_vote($post['idPost']);
-
-            $tab = array(
-                "post" => $post,
-                "vote" => $vote,
-                "nb_votes" => $nb_votes
-            );
-
-            return $tab;
+            return $post;
         }
         public function get_commentaire() {
             $posts = self::$bdd->prepare('SELECT CommenterPost.idUser AS idUser, idPost, avis, login, pfp, dateCom FROM CommenterPost JOIN Utilisateurs ON CommenterPost.idUser = Utilisateurs.idUser WHERE idPost = ? ORDER BY dateCom DESC');
@@ -94,7 +84,5 @@
             $statement = self::$bdd->prepare('INSERT INTO CommenterPost VALUES(NULL,?, ?, ?, now())');
             $statement->execute(array($_GET['idPost'], $_SESSION['idUser'], $_POST['avis_commentaire']));
         }
-
-
     }
 ?>

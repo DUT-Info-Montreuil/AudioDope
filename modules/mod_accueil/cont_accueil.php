@@ -20,17 +20,25 @@
         }
 
         public function recent() {
-            $this->vue->affiche_posts($this->modele->get_recent());
+            $posts = $this->modele->get_recent();
+            $votes  = $this->modele->get_votes($posts);
+            $nb_votes = $this->modele->get_nb_votes($posts);
+
+            $this->vue->affiche_posts($posts, $votes, $nb_votes);
         }
 
         public function suivi() {
-            $tab = $this->modele->get_suivi();
-            if ($tab == 0) {
+            $posts = $this->modele->get_suivi();
+            if ($posts == 0) {
                 $this->vue->non_connecte();
-            } else if ($tab == 1) {
+            } else if ($posts == 1) {
                 $this->vue->aucun_abonnement();
-            } else 
-                $this->vue->affiche_posts($tab);
+            } else {
+                $votes  = $this->modele->get_votes($posts);
+                $nb_votes = $this->modele->get_nb_votes($posts);
+
+                $this->vue->affiche_posts($posts, $votes, $nb_votes);
+            }
         }
         
         public function exec() {
