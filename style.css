@@ -519,6 +519,12 @@ input[type=file] {
 
 .info_list_abo {
 	width: 50%;
+	padding-left: 10px;
+	display: flex;
+}
+
+.abonnement_pseudo {
+	margin-top: 9px;
 }
 
 #nom_liste {

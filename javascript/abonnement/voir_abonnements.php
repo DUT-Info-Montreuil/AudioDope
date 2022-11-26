@@ -16,8 +16,8 @@
         for($i = 0; $i < count($info); $i++){
             $string = $string.'<div class="abo">';
             $string = $string.'<div class="pseudo_abo info_list_abo">';
-            $string = $string."<a href=\"index.php?module=profil&action=voir_profil&idUser=".$info[$i]['idUser']."\"><img class=\"class_pfp pfp_list_abo\" src=\"".$info[$i]['pfp']."\" alt=\"photo de profil\"></a>";
-            $string = $string."<a href=\"index.php?module=profil&action=voir_profil&idUser=".$info[$i]['idUser']."\">".$info[$i]['login']."</a>";
+            $string = $string."<div class=\"abonnement_pfp\"><a href=\"index.php?module=profil&action=voir_profil&idUser=".$info[$i]['idUser']."\"><img class=\"class_pfp pfp_list_abo\" src=\"".$info[$i]['pfp']."\" alt=\"photo de profil\"></a></div>";
+            $string = $string."<div class=\"abonnement_pseudo\"><a href=\"index.php?module=profil&action=voir_profil&idUser=".$info[$i]['idUser']."\">".$info[$i]['login']."</a></div>";
             $string = $string."</div>";
             $string = $string.'<div class="div_bouton_abo" id="div_bouton_abo'.$info[$i]['idUser'].'">
                 <FORM class="form_abonnement" ACTION="javascript/abonnement/desabonner.php" METHOD="POST">
