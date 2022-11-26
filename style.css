@@ -85,7 +85,9 @@ a:hover {
 
 #menu a {
 	display: inline-block;
-	width: 150px;
+	width: 159px;
+	margin-left: 2px;
+	margin-right: 2px;
 }
 
 .lien_musique_post {
@@ -496,9 +498,16 @@ footer {
 	max-height: 200px;
 }
 
+input[type=file] {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 275px;
+}
+
 /* MODALE pour afficher les abonnés et les abonnements*/
 .modal_abo_contenu {
-	max-width: 360px;
+	max-width: 380px;
 	max-height: 500px;
 }
 
@@ -511,9 +520,11 @@ footer {
 	width: 50%;
 }
 
-input[type=file] {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	width: 275px;
+#nom_liste {
+	border-radius: 5px;
+	color: rgb(255, 252, 249);
+	background-color:rgb(53, 45, 57);
+	padding-bottom:3px;
 }
+
+

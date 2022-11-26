@@ -17,8 +17,8 @@
                 $verif_abo[$i] = 2;
         }
         $string = "<nav id=\"menu\">
-         <a  href=\"#\">Abonnés</a>
-         <a  href=\"#\">Abonnements</a>
+         <a id=\"nom_liste\" href=\"#\">Abonnés</a>
+         <a class=\"voir_abonnement\" href=\"#\">Abonnements</a>
          </nav>";
         $string = $string."<section id=\"liste_abo\">";
         for($i = 0; $i < count($info); $i++){

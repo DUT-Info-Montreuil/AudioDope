@@ -1,42 +1,46 @@
 $(function () {
+    //bouton abonnement dynamique
     $(".div_bouton_abo").on('submit', '.form_abonnement', function (event) {
         event.preventDefault();
         abonnement(this);
     })
 
+    //bouton abonnement dynamique + compteur abonnements dynamiques
     $(".modal_abo_contenu").on('submit', '.form_abonnement', function (event) {
         event.preventDefault();
         abonnement(this);
         refresh_abonnement();
     })
 
+    //abonne
     const modal_abonne = document.getElementById("modal_abonne");
     const btn_abonne = document.getElementsByClassName("voir_abonne")[0];
 
     btn_abonne.onclick = function () {
-        $.ajax({
-            url: "javascript/abonnement/voir_abonnes.php",
-            dataType: "json",
-            success: function (data) {
-                document.getElementsByClassName("modal_abo_contenu")[0].innerHTML = data['string'];
-            }
-        })
+        afficher_abonne();
         modal_abonne.style.display = "flex";
     }
 
+    //abonnement
     const modal_abonnement = document.getElementById("modal_abonnement");
     const btn_abonnement = document.getElementsByClassName("voir_abonnement")[0];
 
     btn_abonnement.onclick = function () {
-        $.ajax({
-            url: "javascript/abonnement/voir_abonnements.php",
-            dataType: "json",
-            success: function (data) {
-                document.getElementsByClassName("modal_abo_contenu")[1].innerHTML = data['string'];
-            }
-        })
+        afficher_abonnement();
         modal_abonnement.style.display = "flex";
     }
+
+    $(".modal_abo_contenu").on('click', '.voir_abonnement', function () {
+        modal_abonne.style.display = "none";
+        afficher_abonnement();
+        modal_abonnement.style.display = "flex";
+    })
+
+    $(".modal_abo_contenu").on('click', '.voir_abonne', function () {
+        modal_abonnement.style.display = "none";
+        afficher_abonne();
+        modal_abonne.style.display = "flex";
+    })
 });
 
 function abonnement(form) {
@@ -65,6 +69,26 @@ function refresh_abonnement() {
             if (data != null) {
                 document.getElementById('nb_abo').innerHTML = data['data'];
             }
+        }
+    })
+}
+
+function afficher_abonnement() {
+    $.ajax({
+        url: "javascript/abonnement/voir_abonnements.php",
+        dataType: "json",
+        success: function (data) {
+            document.getElementsByClassName("modal_abo_contenu")[1].innerHTML = data['string'];
+        }
+    })
+}
+
+function afficher_abonne() {
+    $.ajax({
+        url: "javascript/abonnement/voir_abonnes.php",
+        dataType: "json",
+        success: function (data) {
+            document.getElementsByClassName("modal_abo_contenu")[0].innerHTML = data['string'];
         }
     })
 }
