@@ -39,12 +39,22 @@
                 case "choix_collection":
                         $this->affiche_choix_collection($_GET['idPost']);
                         break;
+                case "prive_collection":
+                            $this->rendre_prive_collection();
+                    break;
+                    case "supprimer_post_collection":
+                        $this->supprimer_post_dans_collection();
+                        break;
                 default :
                     die("action inexistante");
                     break;
             }
             $this->vue->affichage();
             
+        }
+
+        public function rendre_prive_collection(){
+            $this->modele->rendre_collection_prive();
         }
 
         public function supprimer_collection() {
@@ -54,11 +64,16 @@
         }
 
         public function voir_colllection() {
-           
-            $this->vue->affiche_collections($this->modele->getCollection());
-            $this->vue->affiche_posts($this->modele->get_post_collection());
+           $this->vue->affiche_post_dans_collection($this->modele->get_post_collection(),$this->modele->getCollection());
            
         }
+
+        public function supprimer_post_dans_collection(){
+            $this->modele->supprimer_post_collection();
+            $lien = "Location: index.php?module=profil&action=voir_profil&idUser=".$_SESSION['idUser'];
+            header($lien);
+        }
+
 
         public function form_redaction() {
             if (isset($_SESSION['login'])) {
