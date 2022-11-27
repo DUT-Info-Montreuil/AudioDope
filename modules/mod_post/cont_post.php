@@ -44,7 +44,8 @@
             $post = $this->modele->get_post();
             $vote  = $this->modele->get_vote($post['idPost']);
             $nb_votes = $this->modele->get_nb_vote($post['idPost']);
-            $this->vue->affiche_post($post, $vote, $nb_votes);
+            $tags = $this->modele->get_tag($post['idPost']);
+            $this->vue->affiche_post($post, $vote, $nb_votes, $tags);
             
             $this->vue->affiche_redac_commentaire();
             $tab_com = $this->modele->get_commentaire();

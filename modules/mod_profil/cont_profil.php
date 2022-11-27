@@ -18,6 +18,9 @@
         }
 
         public function voir_profil() {
+            if (isset($_SESSION['idUser']) && $_GET['idUser'] == $_SESSION['idUser'])
+                echo '<script src="javascript/profil/methode_js_profil.js"></script>
+                    <script src="javascript/abonnement/methode_js_abo.js"></script>';
 
             $profil = $this->modele->getProfil();
             $this->vue->afficher_profil($profil);
@@ -31,8 +34,9 @@
             $posts = $this->modele->get_posts();
             $votes  = $this->modele->get_votes($posts);
             $nb_votes = $this->modele->get_nb_votes($posts);
+            $tags = $this->modele->get_tags($posts);
 
-            $this->vue->afficher_posts_profil($posts, $votes, $nb_votes);
+            $this->vue->afficher_posts_profil($posts, $votes, $nb_votes, $tags);
         }
 
         public function exec() {

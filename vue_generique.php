@@ -33,38 +33,51 @@ class VueGenerique
         echo "<p>Vous êtes déjà connecté sous l’identifiant $login</p> <br> <a href=\"index.php?module=connexion&action=deconnexion\">Se déconnecter</a>";
     }
 
-    public function affiche_posts($posts, $votes, $nb_votes)
+    public function affiche_posts($posts, $votes, $nb_votes, $tags)
     {
         echo "<section id=\"posts\">";
         for ($i = 0; $i < count($posts); $i++) {
-            $this->affiche_post($posts[$i], $votes[$i], $nb_votes[$i]);
+            $this->affiche_post($posts[$i], $votes[$i], $nb_votes[$i], $tags[$i]);
         }
         echo "</section>";
     }
 
-    public function affiche_post($post, $vote, $nb_votes)
+    public function affiche_post($post, $vote, $nb_votes, $tags)
     {
         echo "<div class=\"post\" id=\"$post[idPost]\">";
-        $this->affiche_post_gauche($post);
+        $this->affiche_post_gauche($post, $tags);
         $this->affiche_post_milieu($post);
         $this->affiche_post_droit($post, $vote, $nb_votes);
         echo "<a href=\"index.php?module=post&action=voir_post&idPost=$post[idPost]\"> <span class=\"lien_vers_post\"></span></a></div>";
     }
 
-    public function affiche_post_gauche($post)
+    public function affiche_post_gauche($post, $tags)
     {
         echo "<div class=\"post_gauche\">";
         echo "<div class=\"post_gauche_haut\">";
+
         echo "<div class=\"post_pfp\">";
         echo "<img class=\"class_pfp\" src=\"$post[pfp]\" alt=\"photo de profil\">";
         echo "</div>";
+
         echo "<div class=\"post_nom_date\">";
         echo "<a href=\"index.php?module=profil&action=voir_profil&idUser=$post[idUser]\">$post[login]</a>";
         echo "<p><small>".substr($post['datePost'], 11)."</small></br>";
         echo "<small>".substr($post['datePost'], 0, 10)."</small></p>";
         echo "</div>";
+
         echo "</div>";
+
+        echo "<div class=\"lien_musique\">";
         echo "<a class=\"lien_musique_post\" href=\"$post[lien]\">lien vers la musique/playlist</a>";
+        echo "</div>";
+        
+        echo "<div class=\"tags\">";
+        echo '<ul class="liste_tags">';
+        foreach($tags as $tag) 
+            echo '<li>'.$tag['nomTag'].'</li>';
+        echo '</ul>';
+        echo "</div>";
         echo "</div>";
     }
 
@@ -161,4 +174,3 @@ class VueGenerique
     }
     
 }
-?>

@@ -23,8 +23,9 @@
             $posts = $this->modele->get_recent();
             $votes  = $this->modele->get_votes($posts);
             $nb_votes = $this->modele->get_nb_votes($posts);
+            $tags = $this->modele->get_tags($posts);
 
-            $this->vue->affiche_posts($posts, $votes, $nb_votes);
+            $this->vue->affiche_posts($posts, $votes, $nb_votes, $tags);
         }
 
         public function suivi() {
@@ -36,8 +37,9 @@
             } else {
                 $votes  = $this->modele->get_votes($posts);
                 $nb_votes = $this->modele->get_nb_votes($posts);
+                $tags = $this->modele->get_tags($posts);
 
-                $this->vue->affiche_posts($posts, $votes, $nb_votes);
+                $this->vue->affiche_posts($posts, $votes, $nb_votes, $tags);
             }
         }
         

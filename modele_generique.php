@@ -20,15 +20,13 @@ class ModeleGenerique extends Connexion
 
     public function get_vote($idPost)
     {
+        $vote = 0;
         if (isset($_SESSION['idUser'])) {
-            $vote = self::$bdd->prepare('select vote from VoterPost where idUser = ? and idPost = ?');
-            $vote->execute(array($_SESSION['idUser'], $idPost));
-            if ($vote->rowcount() == 1)
-                $vote = $vote->fetch()['vote'];
-            else
-                $vote = 0;
-        } else
-            $vote = 0;
+            $sql = self::$bdd->prepare('select vote from VoterPost where idUser = ? and idPost = ?');
+            $sql->execute(array($_SESSION['idUser'], $idPost));
+            if ($sql->rowcount() == 1)
+                $vote = $sql->rowcount();
+        }
         return $vote;
     }
 
@@ -59,9 +57,12 @@ class ModeleGenerique extends Connexion
 
     public function get_nb_vote($idPost)
     {
+        
         $nb_vote = self::$bdd->prepare('select sum(vote) as sum from VoterPost where idPost = ?');
         $nb_vote->execute(array($idPost));
         $nb_vote = $nb_vote->fetch()['sum'];
+        if ($nb_vote == NULL)
+            $nb_vote = 0;
         return $nb_vote;
     }
 
@@ -87,5 +88,45 @@ class ModeleGenerique extends Connexion
 
         }
         return $nb_votes;
+    }
+
+    public function get_tag($idPost)
+    {
+        $tags = array();
+        if (isset($_SESSION['idUser'])) {
+            $sql = self::$bdd->prepare('select nomTag from Tags natural join AttribuerPost where idPost = ?');
+            $sql->execute(array($idPost));
+            if ($sql->rowcount() > 0)
+                $tags = $sql->fetchAll();
+        }
+        return $tags;
+    }
+
+    public function get_tags($posts)
+    {
+        $tags = array_fill(0, count($posts), array());
+        if (count($posts) > 0) {
+            $sql = 'select idPost, nomTag from Tags natural join AttribuerPost natural join Posts where idPost in (';
+            for ($i = 0; $i < count($posts) - 1; $i++) {
+                $sql = $sql . $posts[$i]['idPost'] . ",";
+            }
+            $sql = $sql . $posts[$i]['idPost'] . ') order by datePost desc';
+
+            $tab = self::$bdd->prepare($sql);
+            $tab->execute();
+            $tab = $tab->fetchAll();
+            $cpt = 0;
+            $taille = count($tab);
+            for ($i = 0; $i < count($posts); $i++) {
+                $tmp = array();
+                while ($cpt < $taille && $posts[$i]['idPost'] == $tab[$cpt]['idPost']) {
+                    $tmp[] = $tab[$cpt];
+                    unset($tab[$cpt]);
+                    $cpt++;
+                }
+                $tags[$i] = $tmp;
+            }
+        }
+        return $tags;
     }
 }
