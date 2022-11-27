@@ -45,13 +45,13 @@ class VueGenerique
     public function affiche_post($post, $vote, $nb_votes, $tags)
     {
         echo "<div class=\"post\" id=\"$post[idPost]\">";
-        $this->affiche_post_gauche($post, $tags);
-        $this->affiche_post_milieu($post);
+        $this->affiche_post_gauche($post);
+        $this->affiche_post_milieu($post, $tags);
         $this->affiche_post_droit($post, $vote, $nb_votes);
         echo "<a href=\"index.php?module=post&action=voir_post&idPost=$post[idPost]\"> <span class=\"lien_vers_post\"></span></a></div>";
     }
 
-    public function affiche_post_gauche($post, $tags)
+    public function affiche_post_gauche($post)
     {
         echo "<div class=\"post_gauche\">";
         echo "<div class=\"post_gauche_haut\">";
@@ -71,17 +71,10 @@ class VueGenerique
         echo "<div class=\"lien_musique\">";
         echo "<a class=\"lien_musique_post\" href=\"$post[lien]\">lien vers la musique/playlist</a>";
         echo "</div>";
-        
-        echo "<div class=\"tags\">";
-        echo '<ul class="liste_tags">';
-        foreach($tags as $tag) 
-            echo '<li>'.$tag['nomTag'].'</li>';
-        echo '</ul>';
-        echo "</div>";
         echo "</div>";
     }
 
-    public function affiche_post_milieu($post)
+    public function affiche_post_milieu($post, $tags)
     {
         echo "<div class=\"post_milieu\">";
         //titre
@@ -91,10 +84,14 @@ class VueGenerique
             echo "<h2 class=\"titre_post\">$post[titre]</h2>";
         //description
         echo "<div class=\"div_desc\">";
-        if (strcmp($_GET['module'], "post") == 0)
-            echo "<p class=\"description\">$post[descriptionPost]</p>";
-        else
-            echo "<p class=\"description\">" . substr($post['descriptionPost'], 0, 201) . "</p>";
+        echo "<p class=\"description\">$post[descriptionPost]</p>";
+        echo "</div>";
+        echo "<div class=\"tags\">";
+        echo '<ul class="liste_tags">';
+        echo '<span>Tags :</span>';
+        foreach($tags as $tag) 
+            echo '<li>'.$tag['nomTag'].'</li>';
+        echo '</ul>';
         echo "</div>";
         echo "</div>";
     }

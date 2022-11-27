@@ -260,7 +260,7 @@ main {
 	width: 65%;
 	min-width: 750px;
 	max-width: 1200px;
-	min-height: 120px;
+	min-height: 135px;
 	display: flex;
 	border-radius: 7px;
 	background-color: rgb(53, 45, 57);
@@ -288,14 +288,12 @@ main {
 	border-radius: 5px;
 }
 
-.post_dans_section {
-	margin: auto;
-	margin-top: 15px;
-	width: 65%;
-	min-width: 750px;
-	max-width: 1200px;
-	height: 120px;
-	display: flex;
+#posts .div_desc {
+	max-height: 100px;
+	overflow: hidden;
+	display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; 
 }
 
 .titre_post {
@@ -309,10 +307,10 @@ main {
 	position: relative;
 	width: 20%;
 	margin-right: 20px;
+	margin-top: 15px;
 }
 
 .post_gauche_haut {
-	margin-top: 5px;
 	display: flex;
 	justify-content: center;
 }
@@ -337,18 +335,21 @@ main {
 	margin-right: 20px;
 }
 
+.tags {
+	margin-top: -20px;
+}
+
 .liste_tags {
 	margin-top: 25px;
 	padding-left: 0px;
-	list-style: none;
+	list-style-type: none;
 	display: flex;
-	justify-content: center;
+	font-size: 13px;
 }
 
 .liste_tags li {
 	margin-right: 5px;
 	margin-left: 5px;
-	font-size: 13px;
 }
 
 .options_bouton {
@@ -404,6 +405,7 @@ main {
 }
 
 .div_desc {
+	min-height: 72px;
 	text-align: justify;
 	overflow-wrap: break-word;
 	font-family: 'Montserrat', sans-serif;
@@ -485,7 +487,8 @@ footer {
 	margin-right: 10px;
 }
 
-.modal {/*
+.modal {
+	/*
 	display: none;
 	position: fixed;
 	z-index: 1;
@@ -553,8 +556,6 @@ input[type=file] {
 #nom_liste {
 	border-radius: 5px;
 	color: rgb(255, 252, 249);
-	background-color:rgb(53, 45, 57);
-	padding-bottom:3px;
+	background-color: rgb(53, 45, 57);
+	padding-bottom: 3px;
 }
-
-
