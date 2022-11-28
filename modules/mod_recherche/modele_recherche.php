@@ -8,91 +8,39 @@ include_once('modele_generique.php');
 class ModeleRecherche extends ModeleGenerique
 {
 
-    public function getProfil()
+    public function recherche()
     {
-        $login = self::$bdd->prepare('select login, pfp from Utilisateurs where idUser = ?');
-        $login->execute(array($_GET['idUser']));
-        $login = $login->fetch();
-        $nb_abonnes = self::$bdd->prepare('select count(*) as count from Abonner where idUserAbonnement = ?');
-        $nb_abonnes->execute(array($_GET['idUser']));
-        $nb_abonnement = self::$bdd->prepare('select count(*) as count from Abonner where idUserAbonne = ?');
-        $nb_abonnement->execute(array($_GET['idUser']));
-        $profil = array(
-            "idUser" => $_GET['idUser'],
-            "login" => $login['login'],
-            "pfp" => $login['pfp'],
-            "nb_abonnes" => $nb_abonnes->fetch()['count'],
-            "nb_abonnement" => $nb_abonnement->fetch()['count']
-        );
-        return $profil;
+        $posts = self::$bdd->prepare('select idUser, idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts natural join Utilisateurs where idPost in (select idPost from AttribuerPost natural join Tags where nomTag like :contenu) or order titre like :contenu or login like :contenu by datePost desc limit 20');
+        $posts->execute(array(':contenu' => "%$_GET[contenu]%"));
+        $posts = $posts->fetchAll();
+        $tab = $this->get_posts_complet($posts);
+        return $tab;
     }
-
-    public function getPosts()
+    
+    public function recherche_par_tag()
     {
-        $posts = self::$bdd->prepare('select Posts.idUser as idUser, Posts.idPost as idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts join Utilisateurs on Posts.idUser = Utilisateurs.idUser where Posts.idUser = ? order by datePost desc limit 20');
-        $posts->execute(array($_GET['idUser']));
+        $posts = self::$bdd->prepare('select idUser, idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts natural join Utilisateurs where idPost in (select idPost from AttribuerPost natural join Tags where nomTag like ?) order by datePost desc limit 20');
+        $posts->execute(array("%$_GET[contenu]%"));
         $posts = $posts->fetchAll();
         $tab = $this->get_posts_complet($posts);
         return $tab;
     }
 
-    public function getAbonne()
+    public function recherche_par_titre()
     {
-        $listeAbonne = self::$bdd->prepare('select idUser, login from Abonner inner join Utilisateurs on (Abonner.idUserAbonne= Utilisateurs.idUser) where idUserAbonnement = ?');
-        $listeAbonne->execute(array($_SESSION['idUser']));
-        $tab = $listeAbonne->fetchAll();
-        $verif_abo = array();
-        for ($i = 0; $i < count($tab); $i++) {
-            $verif_abo[$i] = $this->verif_abonnement($tab[$i]['idUser']);
-        }
-        $array = array(
-            "info" => $tab,
-            "abo" => $verif_abo
-        );
-        return $array;
+        $posts = self::$bdd->prepare('select idUser, idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts natural join Utilisateurs where titre like ? order by datePost desc limit 20');
+        $posts->execute(array("%$_GET[contenu]%"));
+        $posts = $posts->fetchAll();
+        $tab = $this->get_posts_complet($posts);
+        return $tab;
     }
 
-    public function getAbonnement()
+    public function recherche_par_user()
     {
-        $listeAbonnement = self::$bdd->prepare('select idUser, login from Abonner inner join Utilisateurs on (Abonner.idUserAbonnement= Utilisateurs.idUser) where idUserAbonne = ?');
-        $listeAbonnement->execute(array($_SESSION['idUser']));
-        $tab = $listeAbonnement->fetchAll();
-        $verif_abo = array();
-        for ($i = 0; $i < count($tab); $i++) {
-            $verif_abo[$i] = $this->verif_abonnement($tab[$i]['idUser']);
-        }
-        $array = array(
-            "info" => $tab,
-            "abo" => $verif_abo
-        );
-        return $array;
-    }
-
-    public function verif_abonnement($idUser)
-    {
-        if (!isset($_SESSION['idUser']) || $_SESSION['idUser'] == $idUser) {
-            return 0;
-        }
-        $sql = self::$bdd->prepare('SELECT * from Abonner where Abonner.idUserAbonne=? and Abonner.idUserAbonnement=?');
-        $sql->execute(array($_SESSION['idUser'], $idUser));
-        if ($sql->rowcount() == 0) {
-            return 1;
-        } else if ($sql->rowcount() == 1) {
-            return 2;
-        } else {
-            return 3;
-        }
-    }
-
-    public function abonnement()
-    {
-        $sql2 = self::$bdd->prepare('INSERT INTO Abonner values(?,?)');
-        $sql2->execute(array($_SESSION['idUser'], $_GET['idUser']));
-    }
-
-    public function desabonnement()
-    {
-        $sql3 = self::$bdd->prepare('DELETE FROM Abonner where Abonner.idUserAbonne=? and Abonner.idUserAbonnement=?');
-        $sql3->execute(array($_SESSION['idUser'], $_GET['idUser']));
+        $posts = self::$bdd->prepare('select idUser, idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts natural join Utilisateurs where login like ? order by datePost desc limit 20');
+        $posts->execute(array("%$_GET[contenu]%"));
+        $posts = $posts->fetchAll();
+        $tab = $this->get_posts_complet($posts);
+        return $tab;
     }
 }
