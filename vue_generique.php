@@ -32,7 +32,6 @@ class VueGenerique
         $login = htmlspecialchars($_SESSION['login']);
         echo "<p>Vous êtes déjà connecté sous l’identifiant $login</p> <br> <a href=\"index.php?module=connexion&action=deconnexion\">Se déconnecter</a>";
     }
-
     public function affiche_posts($posts)
     {
         echo "<section id=\"posts\">";
@@ -41,6 +40,102 @@ class VueGenerique
         }
         echo "</section>";
     }
+    public function affiche_collections($collection) {
+        echo "<section id=\"collection\">";
+        
+        foreach ($collection as &$collection) {
+    
+            $this->affiche_collection($collection);
+        }
+        echo "</section>";
+    }
+
+    public function affiche_collection($collection){
+        echo "<article class=\"collection\">";
+            //partie gauche
+            echo "<div class=\"collection_gauche\">";
+           
+            echo "<a href=\"index.php?module=profil&action=voir_profil&idUser=$collection[idUser]\">$collection[login]</a>";
+            echo "</div>";
+            //partie centrale
+            echo "<div class=\"collection_centrale\">";
+            //titre
+            if (strcmp($_GET['module'], "collection") == 0){
+                echo "<h2 class=\"titre_collection\">$collection[titre]</h2>";
+           
+            }else
+                echo "<a href=\"index.php?module=collection&action=voir_collection&idCollection=$collection[idCollection]\"><h2 class=\"titre_collection\">$collection[titreCollection]</h2></a>";    
+            //description
+            echo "<div class=\"div_descCollection\">";
+            if (strcmp($_GET['module'], "collection") == 0)
+                echo "<p class=\"descriptionC\">$collection[descriptionCollection]</p>";
+            else 
+                echo "<p class=\"descriptionC\">".substr($collection['descriptionCollection'], 0, 201)."</p>";
+            echo "</div>";
+            echo "</div>";
+            echo 
+            " <div class=\"Collection_options\">
+            <div class=\"options\">
+                <button class=\"options_bouton\">...</button>
+                <div class=\"options_contenu\">";
+                //bouton prive
+                $lien = "index.php?module=collection&action=prive_collection&idCollection=$collection[idCollection]";
+                echo" <a onclick=\"Ajouter à une collection('$lien')\" href=#>rendre la collection prive</a>";
+            //bouton partage
+            $lien = "index.php?module=collection&action=voir_collection&idCollection=$collection[idCollection]";
+            echo "<a onclick=\"partager('$lien')\" href=\"#\">Partager</a>";
+            $lien = "index.php?module=collection&action=supprimer_collection&idCollection=$collection[idCollection]";
+            if (isset($_SESSION['idUser']) && $collection['idUser'] == $_SESSION['idUser'])
+                //echo "<a href=\"index.php?module=post&action=supprimer_post&idPost=$post[idPost]\">Supprimer</a>";
+                echo "<a onclick=\"supprimer('$lien')\" href=\"#\">Supprimer</a>";
+            echo "</div></div></div>";
+            echo "</article>";
+            
+           
+    }
+
+
+        public function affiche_post_dans_collection($posts,$collection){
+            echo "<section id=\"collection_post\">";
+            echo "<article class=\"collection\">";
+            //partie gauche
+            echo "<div class=\"collection_gauche\">";
+           
+            echo "<a href=\"index.php?module=profil&action=voir_profil&idUser=$collection[idUser]\">$collection[login]</a>";
+            echo "</div>";
+            //partie centrale
+            echo "<div class=\"collection_centrale\">";
+            //titre
+            if (strcmp($_GET['module'], "collection") == 0){
+                echo "<h2 class=\"titre_collection\">$collection[titreCollection]</h2>";
+           
+            }else
+                echo "<a href=\"index.php?module=collection&action=voir_collection&idCollection=$collection[idCollection]\"><h2 class=\"titre_collection\">$collection[titreCollection]</h2></a>";    
+            //description
+            echo "<div class=\"div_descCollection\">";
+            if (strcmp($_GET['module'], "collection") == 0)
+                echo "<p class=\"descriptionC\">$collection[descriptionCollection]</p>";
+            else 
+                echo "<p class=\"descriptionC\">".substr($collection['descriptionCollection'], 0, 201)."</p>";
+            echo "</div>";
+            echo "</div>";
+           
+            foreach ($posts as &$post) {
+              //  $this->affiche_post($post);
+                echo 
+                " <div class=\"options\">
+                    <button class=\"options_bouton\">...</button>
+                    <div class=\"options_contenu\">";
+                //bouton supprimer post d'une collection
+                $lien = "index.php?module=collection&action=supprimer_post_collection&idPost=$post[idPost]";
+                if (isset($_SESSION['idUser']) && $collection['idUser'] == $_SESSION['idUser'])
+                echo "<a onclick=\"supprimer('$lien')\" href=\"#\">Supprimer le post de la collection</a>";
+                 echo "</div></div>";
+            }
+            echo "</article>";
+            echo "</section>";
+        }
+
 
     public function affiche_post($post, $vote, $nb_votes)
     {
@@ -93,8 +188,8 @@ class VueGenerique
         echo "<button class=\"options_bouton\" idPost=$post[idPost]>...</button>";
         echo "<div class=\"options_contenu\" id=\"options$post[idPost]\">";
         //ajouter collection
-        echo "<a href=\"index.php?\">Ajouter à une collection</a>";
-        $lien = "index.php?module=post&action=voir_post&idPost=$post[idPost]";
+        $lien = "index.php?module=collection&action=choix_collection&idPost=$post[idPost]";
+         echo" <a onclick=\"Ajouter à une collection('$lien')\" href=\"index.php?module=collection&action=choix_collection&idPost=$post[idPost]\">Ajouter à une collection</a>";
         //partager
         echo "<a class=\"partager\" lien=\"$lien\" href=\"#\">Partager</a>";
         //supprimer

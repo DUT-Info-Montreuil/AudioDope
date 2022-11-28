@@ -89,6 +89,7 @@
             $statement = $statement->fetchAll();
             return $statement;
         }
+     
 
         public function redaction_commentaire() {
             $statement = self::$bdd->prepare('INSERT INTO CommenterPost VALUES(NULL,?, ?, ?, now())');

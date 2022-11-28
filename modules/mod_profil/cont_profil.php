@@ -28,6 +28,7 @@
                 $this->vue->afficherform_abonnement($profil['idUser']);
             }
             $this->vue->afficher_posts_profil($this->modele->getPosts());
+            $this->vue->affiche_collections($this->modele->getCollection());
         }
 
         public function exec() {

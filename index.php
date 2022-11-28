@@ -17,7 +17,7 @@ crossorigin="anonymous"></script>
 	include_once('modules/mod_post/mod_post.php');
 	include_once('modules/mod_accueil/mod_accueil.php');
 	include_once('composants/comp_menu/comp_menu.php');
-
+	include_once('modules/mod_collection/mod_collection.php');
 	Connexion::initConnexion();
 	$affichage;
 	
@@ -27,7 +27,8 @@ crossorigin="anonymous"></script>
 			case 'profil' : new ModProfil(); break;
 			case 'post' : new ModPost(); break;
 			case 'accueil' : new ModAccueil(); break;
-			default : die("module inconnu");
+			case 'collection' : new ModCollection(); break;
+			default : die("module inconnu"); break;
 		}
 	}
 	$menu = new CompMenu();
