@@ -82,9 +82,9 @@ class ModeleCollection extends Connexion
     }
     public function getCollection()
     {
-        $collections = self::$bdd->prepare('select Collections.idUser as idUser, idCollection, login, titreCollection, descriptionCollection, prive from Collections join Utilisateurs on Collections.idUser = Utilisateurs.idUser where Collections.idUser = ?');
+        $collections = self::$bdd->prepare('select Collections.idUser as idUser, idCollection, login, titreCollection, descriptionCollection, prive from Collections join Utilisateurs on Collections.idUser = Utilisateurs.idUser where idCollection = ?');
         $collections->execute(array($_GET['idCollection']));
-        return $collections->fetchAll();
+        return $collections->fetch();
     }
 
     public function getChoixCollection(){
@@ -102,4 +102,19 @@ class ModeleCollection extends Connexion
         return 2;
         
     }
+
+    public function supprimer_post_collection(){
+        $supp_post=self::$bdd->prepare('delete from Appartenir where idPost=?');
+        $supp_post->execute(array($_GET['idPost']));
+    }
+    
+
+    public function rendre_collection_prive(){
+        $prive =self::$bdd->prepare('update Collections set prive=1 where prive=0 and idCollection=?');
+        $prive->execute(array($_GET['idCollection']));
+        if(!$prive->fetch())
+            return 1;
+        return 2 ;
+    }
+    
 }
