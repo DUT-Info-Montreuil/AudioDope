@@ -94,7 +94,7 @@ class ModeleGenerique extends Connexion
     {
         $tags = array();
         if (isset($_SESSION['idUser'])) {
-            $sql = self::$bdd->prepare('select nomTag from Tags natural join AttribuerPost where idPost = ?');
+            $sql = self::$bdd->prepare('select nomTag from Tags natural join AttribuerPost where idPost = ? order by nomTag');
             $sql->execute(array($idPost));
             if ($sql->rowcount() > 0)
                 $tags = $sql->fetchAll();
@@ -110,7 +110,7 @@ class ModeleGenerique extends Connexion
             for ($i = 0; $i < count($posts) - 1; $i++) {
                 $sql = $sql . $posts[$i]['idPost'] . ",";
             }
-            $sql = $sql . $posts[$i]['idPost'] . ') order by datePost desc';
+            $sql = $sql . $posts[$i]['idPost'] . ') order by datePost desc, nomTag';
 
             $tab = self::$bdd->prepare($sql);
             $tab->execute();

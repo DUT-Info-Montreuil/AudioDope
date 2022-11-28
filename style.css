@@ -289,11 +289,11 @@ main {
 }
 
 #posts .div_desc {
-	max-height: 100px;
-	overflow: hidden;
+	max-height: 75px;
 	display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical; 
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 }
 
 .titre_post {
