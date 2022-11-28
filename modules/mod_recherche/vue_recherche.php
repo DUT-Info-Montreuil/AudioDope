@@ -15,10 +15,10 @@ class VueRecherche extends VueGenerique
 
     public function menu() {
         echo "<nav id=\"menu\">";
-        echo "<a id=\"section_tout\" href=\"index.php?module=recherche&action=section_tout\">Tout</a>";
-        echo "<a id=\"section_tag\" href=\"index.php?module=recherche&action=section_tag\">Tag</a>";
-        echo "<a id=\"section_titre\" href=\"index.php?module=recherche&action=section_titre\">Titre</a>";
-        echo "<a id=\"section_user\" href=\"index.php?module=recherche&action=section_user\">Utilisateurs</a>";
+        echo "<a id=\"section_tout\" href=\"index.php?module=recherche&action=section_tout&contenu=\"$_GET[contenu]\"\">Tout</a>";
+        echo "<a id=\"section_tag\" href=\"index.php?module=recherche&action=section_tag&contenu=\"$_GET[contenu]\"\">Tag</a>";
+        echo "<a id=\"section_titre\" href=\"index.php?module=recherche&action=section_titre&contenu=\"$_GET[contenu]\"\">Titre</a>";
+        echo "<a id=\"section_user\" href=\"index.php?module=recherche&action=section_user&contenu=\"$_GET[contenu]\"\">Utilisateurs</a>";
         echo "</nav>";
     }
 

@@ -26,9 +26,11 @@
         	}
             $this->affichage = $this->affichage .  
             '<div class=\"nav justify-content-center\" id="rechercher">
-            <FORM id="form_recherche" action="index.php?module=recherche&action=section_tout" METHOD="POST" enctype="multipart/form-data">
+            <FORM id="form_recherche" action="index.php" METHOD="GET" enctype="multipart/form-data">
+            <input type="hidden" name="module" value="recherche">
+            <input type="hidden" name="action" value="section_tout">
                  <div class="form-outline">
-                     <input type="search" class="form-control" placeholder="Rechercher" />
+                     <input type="search" name="contenu" class="form-control" placeholder="Rechercher" />
                 </div>
                 <button type="submit" id="bouton_recherche" class="btn btn-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
