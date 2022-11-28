@@ -16,7 +16,7 @@
             
             $sql = 'INSERT INTO Posts(lien, titre, descriptionPost, idUser) VALUES(?, ?, ?, ?)';
             $statement = self::$bdd->prepare($sql);
-            $statement->execute(array($lien_post, $titre_post, $corps_post,$_SESSION['idUser']));  
+            $statement->execute(array($lien_post, $titre_post, $corps_post, $_SESSION['idUser']));  
 
             $tag1 = ($_POST['tag1']);
             $tag2 = ($_POST['tag2']);

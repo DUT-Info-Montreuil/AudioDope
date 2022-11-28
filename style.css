@@ -270,7 +270,7 @@ main {
 	width: 65%;
 	min-width: 750px;
 	max-width: 1200px;
-	min-height: 135px;
+	min-height: 144px;
 	display: flex;
 	border-radius: 7px;
 	background-color: rgb(53, 45, 57);
@@ -346,11 +346,12 @@ main {
 }
 
 .tags {
-	margin-top: -20px;
+	position: absolute;
+	z-index: 2;
+	margin-top: -30px;
 }
 
 .liste_tags {
-	margin-top: 25px;
 	padding-left: 0px;
 	list-style-type: none;
 	display: flex;
@@ -360,6 +361,10 @@ main {
 .liste_tags li {
 	margin-right: 5px;
 	margin-left: 5px;
+}
+
+.liste_tags a {
+	color: #d1d1d1;
 }
 
 .options_bouton {
@@ -416,6 +421,7 @@ main {
 
 .div_desc {
 	min-height: 72px;
+	margin-bottom: 35px;
 	text-align: justify;
 	overflow-wrap: break-word;
 	font-family: 'Montserrat', sans-serif;

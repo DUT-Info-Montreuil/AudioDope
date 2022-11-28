@@ -90,7 +90,7 @@ class VueGenerique
         echo '<ul class="liste_tags">';
         echo '<span>Tags :</span>';
         foreach($tags as $tag) 
-            echo '<li>'.$tag['nomTag'].'</li>';
+            echo '<li><a href="index.php?module=recherche&action=section_tag&contenu='.$tag['nomTag'].'">'.$tag['nomTag'].'</a></li>';
         echo '</ul>';
         echo "</div>";
         echo "</div>";
