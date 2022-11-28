@@ -82,8 +82,6 @@ class ModeleGenerique extends Connexion
         $nb_vote = self::$bdd->prepare('select sum(vote) as sum from VoterPost where idPost = ?');
         $nb_vote->execute(array($idPost));
         $nb_vote = $nb_vote->fetch()['sum'];
-        if ($nb_vote == NULL)
-            $nb_vote = 0;
         return $nb_vote;
     }
 

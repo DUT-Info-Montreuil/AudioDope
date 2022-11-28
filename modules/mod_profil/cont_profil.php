@@ -18,6 +18,7 @@
         }
 
         public function voir_profil() {
+
             $profil = $this->modele->getProfil();
             $this->vue->afficher_profil($profil);
             $val=$this->modele->verif_abonnement($_GET['idUser']);

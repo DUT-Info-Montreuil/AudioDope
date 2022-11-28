@@ -90,14 +90,6 @@ a:hover {
 	margin-right: 5px;
 }
 
-#rechercher {
-	width: 250px;
-}
-
-#form_recherche {
-	display: flex;
-}
-
 .lien_musique_post {
 	position: absolute;
 	text-decoration: underline;
@@ -137,14 +129,12 @@ a:hover {
 	border: none;
 }
 
-#bouton_recherche {
+#boutton_recherche {
 	width: 50px;
 	height: 38px;
-	margin-left: 5px;
 	display: inline-block;
 	background-color: rgb(255, 105, 120);
 	border: none;
-	
 }
 
 /*BODY*/

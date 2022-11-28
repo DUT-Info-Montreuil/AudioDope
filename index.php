@@ -16,7 +16,6 @@ crossorigin="anonymous"></script>
 	include_once('modules/mod_profil/mod_profil.php');
 	include_once('modules/mod_post/mod_post.php');
 	include_once('modules/mod_accueil/mod_accueil.php');
-	include_once('modules/mod_recherche/mod_recherche.php');
 	include_once('composants/comp_menu/comp_menu.php');
 
 	Connexion::initConnexion();
@@ -28,7 +27,6 @@ crossorigin="anonymous"></script>
 			case 'profil' : new ModProfil(); break;
 			case 'post' : new ModPost(); break;
 			case 'accueil' : new ModAccueil(); break;
-			case 'recherche' : new ModRecherche(); break;
 			default : die("module inconnu");
 		}
 	}
