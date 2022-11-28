@@ -30,6 +30,9 @@
                 case 'section_titre' : 
                     $this->recherche_par_titre();
                     break;
+                case 'section_desc' : 
+                    $this->recherche_par_description();
+                    break;
                 case 'section_user' : 
                     $this->recherche_par_user();
                     break;
@@ -48,6 +51,10 @@
 
         public function recherche_par_titre() {
             $this->vue->affiche_posts($this->modele->recherche_par_titre());
+        }
+        
+        public function recherche_par_description() {
+            $this->vue->affiche_posts($this->modele->recherche_par_description());
         }
 
         public function recherche_par_user() {
