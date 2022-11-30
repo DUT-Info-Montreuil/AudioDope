@@ -36,13 +36,19 @@ class VueGenerique
     public function affiche_posts($posts, $votes, $nb_votes, $tags)
     {
         echo "<section id=\"posts\" nb_posts=20>";
-        for ($i = 0; $i < count($posts); $i++) {
-            $this->affiche_post($posts[$i], $votes[$i], $nb_votes[$i], $tags[$i]);
+
+        if (count($posts) == 0) {
+            echo "<p>Aucun posts</p>";
+            echo "</section>";
+        } else {
+            for ($i = 0; $i < count($posts); $i++)
+                $this->affiche_post($posts[$i], $votes[$i], $nb_votes[$i], $tags[$i]);
+
+            echo "</section>";
+            echo '<div id=gif_loading>';
+            echo '<img src="ressources/loading-gif.gif" alt="gif loading">';
+            echo "</div>";
         }
-        echo "</section>";
-        echo '<div id=gif_loading>';
-        echo '<img src="ressources/loading-gif.gif" alt="gif loading">';
-        echo "</div>";
     }
 
     public function affiche_post($post, $vote, $nb_votes, $tags)

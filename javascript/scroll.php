@@ -35,23 +35,68 @@
             $posts->execute();
             $posts = $posts->fetchAll();
             break;
+        case 'voir_profil' :
+            $posts = $bdd->prepare('select Posts.idUser as idUser, Posts.idPost as idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts join Utilisateurs on Posts.idUser = Utilisateurs.idUser where Posts.idUser = :idUser order by datePost desc limit :index, 20');
+            $posts->bindValue(':index', $_GET['nb_posts'], PDO::PARAM_INT);
+            $posts->bindParam(':idUser', $_GET['idUser']);
+            $posts->execute();
+            $posts = $posts->fetchAll();
+            break;
+        case 'section_tout' :
+            $posts = $bdd->prepare('select idUser, idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts natural join Utilisateurs where idPost in (select idPost from AttribuerPost natural join Tags where nomTag like :contenu) or titre like :contenu or descriptionPost like :contenu or login like :contenu order by datePost desc limit :index, 20');
+            $posts->bindValue(':index', $_GET['nb_posts'], PDO::PARAM_INT);
+            $posts->bindValue(':contenu', "%$_GET[contenu]%");
+            $posts->execute();
+            $posts = $posts->fetchAll();
+            break;
+        case 'section_tag' :
+            $posts = $bdd->prepare('select idUser, idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts natural join Utilisateurs where idPost in (select idPost from AttribuerPost natural join Tags where nomTag like :contenu) order by datePost desc limit :index, 20');
+            $posts->bindValue(':index', $_GET['nb_posts'], PDO::PARAM_INT);
+            $posts->bindValue(':contenu', "%$_GET[contenu]%");
+            $posts->execute();
+            $posts = $posts->fetchAll();
+            break;
+        case 'section_titre' :
+            $posts = $bdd->prepare('select idUser, idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts natural join Utilisateurs where titre like :contenu order by datePost desc limit :index, 20');
+            $posts->bindValue(':index', $_GET['nb_posts'], PDO::PARAM_INT);
+            $posts->bindValue(':contenu', "%$_GET[contenu]%");
+            $posts->execute();
+            $posts = $posts->fetchAll();
+            break;
+        case 'section_desc' :
+            $posts = $bdd->prepare('select idUser, idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts natural join Utilisateurs where descriptionPost like :contenu order by datePost desc limit :index, 20');
+            $posts->bindValue(':index', $_GET['nb_posts'], PDO::PARAM_INT);
+            $posts->bindValue(':contenu', "%$_GET[contenu]%");
+            $posts->execute();
+            $posts = $posts->fetchAll();
+            break;
+        case 'section_user' :
+            $posts = $bdd->prepare('select idUser, idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts natural join Utilisateurs where login like :contenu order by datePost desc limit :index, 20');
+            $posts->bindValue(':index', $_GET['nb_posts'], PDO::PARAM_INT);
+            $posts->bindValue(':contenu', "%$_GET[contenu]%");
+            $posts->execute();
+            $posts = $posts->fetchAll();
+            break;
     }
 
-    if (isset($posts) && count($posts) > 0) {
-        Connexion::initConnexion();
-        $modele = new ModeleGenerique();
-        $votes  = $modele->get_votes($posts);
-        $nb_votes = $modele->get_nb_votes($posts);
-        $tags = $modele->get_tags($posts);
+    if (isset($posts)) {
+        if (count($posts) == 0) {
+            $array = array();
+        } else {
+            Connexion::initConnexion();
+            $modele = new ModeleGenerique();
+            $votes  = $modele->get_votes($posts);
+            $nb_votes = $modele->get_nb_votes($posts);
+            $tags = $modele->get_tags($posts);
 
-        $vue = new VueGenerique();
-        for ($i = 0; $i < count($posts); $i++) {
-            $vue->affiche_post($posts[$i], $votes[$i], $nb_votes[$i], $tags[$i]);
+            $vue = new VueGenerique();
+            for ($i = 0; $i < count($posts); $i++) {
+                $vue->affiche_post($posts[$i], $votes[$i], $nb_votes[$i], $tags[$i]);
+            }
+            $array = array (
+                'posts' => $vue->getAffichage()
+            );
         }
-        $array = array (
-            'nb' => $_GET['nb_posts'],
-            'posts' => $vue->getAffichage()
-        );
         echo json_encode($array);
     }
 ?>
