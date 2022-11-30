@@ -80,7 +80,7 @@
             $verif = $this->modele->verif_titre();
             if ($verif == 1) {
                 $idPost = $this->modele->redaction();
-                $this->vue->post_envoye($idPost);
+                header("Location: index.php?module=post&action=voir_post&idPost=$idPost");
             } else if ($verif == 2) {
                 $this->vue->titre_deja_util();
             } else if ($verif == 3) {

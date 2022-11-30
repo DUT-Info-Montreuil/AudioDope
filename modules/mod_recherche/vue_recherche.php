@@ -39,4 +39,8 @@ class VueRecherche extends VueGenerique
             padding-bottom:3px;
         }</style>";
     }
+
+    public function affiche_users($user) {
+        
+    }
 }

@@ -7,6 +7,12 @@ include_once('modele_generique.php');
 
 class ModeleRecherche extends ModeleGenerique
 {
+    public function recherche_users() {
+        $users = self::$bdd->prepare('select idUser, login from Utilisateurs where login like :contenu desc limit 20');
+        $users->execute(array(':contenu' => "%$_GET[contenu]%"));
+        $users = $users->fetchAll();
+        return $users;
+    }
 
     public function recherche_posts()
     {

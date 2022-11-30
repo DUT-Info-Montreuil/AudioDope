@@ -25,11 +25,16 @@
                     $this->recherche_post();
                     break;
                 case 'recherche_user' : 
+                    $this->recherche_users();
                     break;
                 default : die("action inexistant");
             }
             $this->vue->affichage();
         } 
+
+        public function recherche_users() {
+            $this->vue->affiche_users($this->modele->recherche_users());
+        }
 
         public function recherche_post() {
             $this->vue->menu_filtre();
