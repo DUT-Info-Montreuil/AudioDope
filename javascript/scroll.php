@@ -42,40 +42,44 @@
             $posts->execute();
             $posts = $posts->fetchAll();
             break;
-        case 'section_tout' :
-            $posts = $bdd->prepare('select idUser, idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts natural join Utilisateurs where idPost in (select idPost from AttribuerPost natural join Tags where nomTag like :contenu) or titre like :contenu or descriptionPost like :contenu or login like :contenu order by datePost desc limit :index, 20');
-            $posts->bindValue(':index', $_GET['nb_posts'], PDO::PARAM_INT);
-            $posts->bindValue(':contenu', "%$_GET[contenu]%");
-            $posts->execute();
-            $posts = $posts->fetchAll();
-            break;
-        case 'section_tag' :
-            $posts = $bdd->prepare('select idUser, idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts natural join Utilisateurs where idPost in (select idPost from AttribuerPost natural join Tags where nomTag like :contenu) order by datePost desc limit :index, 20');
-            $posts->bindValue(':index', $_GET['nb_posts'], PDO::PARAM_INT);
-            $posts->bindValue(':contenu', "%$_GET[contenu]%");
-            $posts->execute();
-            $posts = $posts->fetchAll();
-            break;
-        case 'section_titre' :
-            $posts = $bdd->prepare('select idUser, idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts natural join Utilisateurs where titre like :contenu order by datePost desc limit :index, 20');
-            $posts->bindValue(':index', $_GET['nb_posts'], PDO::PARAM_INT);
-            $posts->bindValue(':contenu', "%$_GET[contenu]%");
-            $posts->execute();
-            $posts = $posts->fetchAll();
-            break;
-        case 'section_desc' :
-            $posts = $bdd->prepare('select idUser, idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts natural join Utilisateurs where descriptionPost like :contenu order by datePost desc limit :index, 20');
-            $posts->bindValue(':index', $_GET['nb_posts'], PDO::PARAM_INT);
-            $posts->bindValue(':contenu', "%$_GET[contenu]%");
-            $posts->execute();
-            $posts = $posts->fetchAll();
-            break;
-        case 'section_user' :
-            $posts = $bdd->prepare('select idUser, idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts natural join Utilisateurs where login like :contenu order by datePost desc limit :index, 20');
-            $posts->bindValue(':index', $_GET['nb_posts'], PDO::PARAM_INT);
-            $posts->bindValue(':contenu', "%$_GET[contenu]%");
-            $posts->execute();
-            $posts = $posts->fetchAll();
+        case 'recherche_post' :
+            switch($_GET['filtre']) {
+                case 'tout' :
+                    $posts = $bdd->prepare('select idUser, idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts natural join Utilisateurs where idPost in (select idPost from AttribuerPost natural join Tags where nomTag like :contenu) or titre like :contenu or descriptionPost like :contenu or login like :contenu order by datePost desc limit :index, 20');
+                    $posts->bindValue(':index', $_GET['nb_posts'], PDO::PARAM_INT);
+                    $posts->bindValue(':contenu', "%$_GET[contenu]%");
+                    $posts->execute();
+                    $posts = $posts->fetchAll();
+                    break;
+                case 'tag' :
+                    $posts = $bdd->prepare('select idUser, idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts natural join Utilisateurs where idPost in (select idPost from AttribuerPost natural join Tags where nomTag like :contenu) order by datePost desc limit :index, 20');
+                    $posts->bindValue(':index', $_GET['nb_posts'], PDO::PARAM_INT);
+                    $posts->bindValue(':contenu', "%$_GET[contenu]%");
+                    $posts->execute();
+                    $posts = $posts->fetchAll();
+                    break;
+                case 'titre' :
+                    $posts = $bdd->prepare('select idUser, idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts natural join Utilisateurs where titre like :contenu order by datePost desc limit :index, 20');
+                    $posts->bindValue(':index', $_GET['nb_posts'], PDO::PARAM_INT);
+                    $posts->bindValue(':contenu', "%$_GET[contenu]%");
+                    $posts->execute();
+                    $posts = $posts->fetchAll();
+                    break;
+                case 'desc' :
+                    $posts = $bdd->prepare('select idUser, idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts natural join Utilisateurs where descriptionPost like :contenu order by datePost desc limit :index, 20');
+                    $posts->bindValue(':index', $_GET['nb_posts'], PDO::PARAM_INT);
+                    $posts->bindValue(':contenu', "%$_GET[contenu]%");
+                    $posts->execute();
+                    $posts = $posts->fetchAll();
+                    break;
+                case 'user' :
+                    $posts = $bdd->prepare('select idUser, idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts natural join Utilisateurs where login like :contenu order by datePost desc limit :index, 20');
+                    $posts->bindValue(':index', $_GET['nb_posts'], PDO::PARAM_INT);
+                    $posts->bindValue(':contenu', "%$_GET[contenu]%");
+                    $posts->execute();
+                    $posts = $posts->fetchAll();
+                    break;
+            }
             break;
     }
 

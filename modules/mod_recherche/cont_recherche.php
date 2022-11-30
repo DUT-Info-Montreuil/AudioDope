@@ -36,7 +36,7 @@
             $this->vue->indic_recherche($_GET['filtre']);
             switch($_GET['filtre']) {
                 case 'tout' : 
-                    $posts = $this->modele->recherche();
+                    $posts = $this->modele->recherche_posts();
                     break;
                 case 'tag' : 
                     $posts = $this->modele->recherche_par_tag();

@@ -8,7 +8,7 @@ include_once('modele_generique.php');
 class ModeleRecherche extends ModeleGenerique
 {
 
-    public function recherche()
+    public function recherche_posts()
     {
         $posts = self::$bdd->prepare('select idUser, idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts natural join Utilisateurs where idPost in (select idPost from AttribuerPost natural join Tags where nomTag like :contenu) or titre like :contenu or descriptionPost like :contenu or login like :contenu order by datePost desc limit 20');
         $posts->execute(array(':contenu' => "%$_GET[contenu]%"));
