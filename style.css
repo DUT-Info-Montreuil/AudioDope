@@ -575,3 +575,12 @@ input[type=file] {
 	background-color: rgb(53, 45, 57);
 	padding-bottom: 3px;
 }
+
+#gif_loading {
+	margin-top: 15px;
+}
+
+#gif_loading img {
+	width: 32;
+	height: 32;
+}
