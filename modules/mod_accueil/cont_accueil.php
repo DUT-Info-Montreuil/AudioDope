@@ -16,11 +16,11 @@
         public function __construct() {
             $this->modele = new ModeleAccueil();
             $this->vue = new VueAccueil();
-            $this->action = isset($_GET['action']) ? $_GET['action'] : "suivis";
+            $this->action = isset($_GET['action']) ? $_GET['action'] : "";
         }
 
         public function recent() {
-            $posts = $this->modele->get_recent();
+            $posts = $this->modele->get_recent(0);
             $votes  = $this->modele->get_votes($posts);
             $nb_votes = $this->modele->get_nb_votes($posts,0);
             $tags = $this->modele->get_tags($posts);
@@ -29,7 +29,7 @@
         }
 
         public function suivi() {
-            $posts = $this->modele->get_suivi();
+            $posts = $this->modele->get_suivi(0);
             if ($posts == 0) {
                 $this->vue->non_connecte();
             } else if ($posts == 1) {

@@ -8,7 +8,7 @@
         $listeAbonnement->execute(array($_SESSION['idUser']));
         $info = $listeAbonnement->fetchAll();
 
-        $string = "<nav id=\"menu\">
+        $string = "<nav class=\"menu\">
          <a class=\"voir_abonne\" href=\"#\">Abonnés</a>
          <a id=\"nom_liste\" href=\"#\">Abonnements</a>
          </nav>";

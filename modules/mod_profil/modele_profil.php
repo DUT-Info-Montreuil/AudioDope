@@ -34,38 +34,6 @@ class ModeleProfil extends ModeleGenerique
         return $posts->fetchAll();
     }
 
-    public function getAbonne()
-    {
-        $listeAbonne = self::$bdd->prepare('select idUser, login from Abonner inner join Utilisateurs on (Abonner.idUserAbonne= Utilisateurs.idUser) where idUserAbonnement = ?');
-        $listeAbonne->execute(array($_SESSION['idUser']));
-        $tab = $listeAbonne->fetchAll();
-        $verif_abo = array();
-        for ($i = 0; $i < count($tab); $i++) {
-            $verif_abo[$i] = $this->verif_abonnement($tab[$i]['idUser']);
-        }
-        $array = array(
-            "info" => $tab,
-            "abo" => $verif_abo
-        );
-        return $array;
-    }
-
-    public function getAbonnement()
-    {
-        $listeAbonnement = self::$bdd->prepare('select idUser, login from Abonner inner join Utilisateurs on (Abonner.idUserAbonnement= Utilisateurs.idUser) where idUserAbonne = ?');
-        $listeAbonnement->execute(array($_SESSION['idUser']));
-        $tab = $listeAbonnement->fetchAll();
-        $verif_abo = array();
-        for ($i = 0; $i < count($tab); $i++) {
-            $verif_abo[$i] = $this->verif_abonnement($tab[$i]['idUser']);
-        }
-        $array = array(
-            "info" => $tab,
-            "abo" => $verif_abo
-        );
-        return $array;
-    }
-
     public function verif_abonnement($idUser)
     {
         if (!isset($_SESSION['idUser']) || $_SESSION['idUser'] == $idUser) {
@@ -80,17 +48,5 @@ class ModeleProfil extends ModeleGenerique
         } else {
             return 3;
         }
-    }
-
-    public function abonnement()
-    {
-        $sql2 = self::$bdd->prepare('INSERT INTO Abonner values(?,?)');
-        $sql2->execute(array($_SESSION['idUser'], $_GET['idUser']));
-    }
-
-    public function desabonnement()
-    {
-        $sql3 = self::$bdd->prepare('DELETE FROM Abonner where Abonner.idUserAbonne=? and Abonner.idUserAbonnement=?');
-        $sql3->execute(array($_SESSION['idUser'], $_GET['idUser']));
     }
 }

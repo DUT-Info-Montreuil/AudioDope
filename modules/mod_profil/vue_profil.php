@@ -19,34 +19,6 @@ class VueProfil extends VueGenerique
         echo '<div id="profil_gauche">';
         if (isset($_SESSION['idUser']) && $profil['idUser'] == $_SESSION['idUser']) {
             echo "<a id=\"modif_pfp\" class=\"lien_pfp\" href=\"#\"><img class=\"class_pfp\" src=\"$profil[pfp]\" alt=\"photo de profil\"></a>";
-            //modal changer de pfp
-            echo '<div id="modal_pfp" class="modal">
-                    <div class="modal-content" id="modal_pfp_contenu">
-                    <div class="modal_header">
-                    <button type="button" class="close" aria-label="Close">
-                    <span class="croix" aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    <div class="modal-body">
-                    <FORM id="form_pfp" action="" METHOD="POST" enctype="multipart/form-data"> 
-                            <input type="file" name="file_pfp" id="id_file_pfp" accept="image/png, image/gif, image/jpeg"/>
-                            <INPUT TYPE="SUBMIT" NAME="bouton" id="bouton_pfp" value="Valider"> 
-                    </FORM>
-                    </div>
-                    </div>
-                    </div>';
-            //modal abo
-            echo '<div id="modal_abo" class="modal">
-                    <div class="modal-content modal_abo_contenu">
-                    <div class="modal_header">
-                    <button type="button" class="close" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    <div class="modal-body" id="modal_abo_body">
-                    </div>
-                    </div>
-                    </div>';
         } else {
             echo "<img class=\"class_pfp\" src=\"$profil[pfp]\" alt=\"photo de profil\">";
         }
@@ -62,6 +34,37 @@ class VueProfil extends VueGenerique
         }
         echo '</div>';
         echo '</div>';
+
+        if (isset($_SESSION['idUser']) && $profil['idUser'] == $_SESSION['idUser']) {
+            //modal changer de pfp
+            echo '<div id="modal_pfp" class="modal">
+        <div class="modal-content" id="modal_pfp_contenu">
+        <div class="modal_header">
+        <button type="button" class="close" aria-label="Close">
+        <span class="croix" aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <FORM id="form_pfp" action="" METHOD="POST" enctype="multipart/form-data"> 
+                <input type="file" name="file_pfp" id="id_file_pfp" accept="image/png, image/gif, image/jpeg"/>
+                <INPUT TYPE="SUBMIT" NAME="bouton" id="bouton_pfp" value="Valider"> 
+        </FORM>
+        </div>
+        </div>
+        </div>';
+            //modal abo
+            echo '<div id="modal_abo" class="modal">
+        <div class="modal-content modal_abo_contenu">
+        <div class="modal_header">
+        <button type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body" id="modal_abo_body">
+        </div>
+        </div>
+        </div>';
+        }
     }
 
     public function afficher_listeAbo($array)

@@ -14,7 +14,7 @@
             $this->affichage = $this->affichage." <ul class=\"nav justify-content-center\" id=\"navbar\"> ";
             $this->affichage = $this->affichage."<li class=\"nav-item\">";
 			if (isset($_SESSION['login'])) {
-                $this->affichage = $this->affichage. "<a href=\"index.php?module=accueil\"><div id=\"div_titre\"><h1 class=\"titre titre1\">Audio</h1><h1 class=\"titre titre2\">Dope</h1></div></a>";
+                $this->affichage = $this->affichage. "<a href=\"index.php?module=accueil&action=suivis\"><div id=\"div_titre\"><h1 class=\"titre titre1\">Audio</h1><h1 class=\"titre titre2\">Dope</h1></div></a>";
                 $this->affichage = $this->affichage."<li class=\"nav-item\">".
                 "<a class=\"nav-link\" href=\"index.php?module=post&action=form_redaction\">Rédiger un post</a></li>";
 				$this->affichage = $this->affichage . "<li class=\"nav-item\">" .
@@ -29,7 +29,8 @@
             '<div class=\"nav justify-content-center\" id="rechercher">
             <FORM id="form_recherche" action="index.php" METHOD="GET" enctype="multipart/form-data">
             <input type="hidden" name="module" value="recherche">
-            <input type="hidden" name="action" value="section_tout">
+            <input type="hidden" name="action" value="recherche_post">
+            <input type="hidden" name="filtre" value="tout">
                  <div class="form-outline">
                      <input type="search" name="contenu" class="form-control" placeholder="Rechercher" />
                 </div>

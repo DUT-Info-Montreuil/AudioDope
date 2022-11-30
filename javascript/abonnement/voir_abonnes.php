@@ -27,7 +27,7 @@
                 $verif_abo[$i] = 1;
         }
         
-        $string = "<nav id=\"menu\">
+        $string = "<nav class=\"menu\">
          <a id=\"nom_liste\" href=\"#\">Abonnés</a>
          <a class=\"voir_abonnement\" href=\"#\">Abonnements</a>
          </nav>";

@@ -79,11 +79,11 @@ a:hover {
 	border-radius: 5px;
 }
 
-#menu {
+.menu {
 	margin-bottom: 15px;
 }
 
-#menu a {
+.menu a {
 	display: inline-block;
 	width: 150px;
 	margin-left: 5px;
@@ -175,8 +175,7 @@ body a:hover {
 /* MAIN */
 
 main {
-	min-height: 90%;
-
+	min-height: 848px;
 	padding-top: 80px;
 	padding-bottom: 15px;
 	text-align: center;
@@ -674,3 +673,18 @@ input[type=file] {
 	color: #d1d1d1;
 }
 
+#gif_loading {
+	margin-top: 15px;
+}
+
+#gif_loading img {
+	width: 32;
+	height: 32;
+}
+
+#resultat_rech_users {
+	width: 350px;
+	overflow-y: auto;
+	margin: auto;
+	margin-top: 42px;
+}

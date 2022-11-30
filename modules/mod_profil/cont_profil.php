@@ -44,35 +44,8 @@
                 case 'voir_profil' : 
                     $this->voir_profil(); 
                     break;
-                case'abonner':
-                    $this->abonner();
-                    break;
-                case'desabonner':
-                        $this->desabonner();break;
-                case 'afficherAbonner':
-                        $this->afficher_abonne();
-                    break;
-                 case 'afficherAbonnement':
-                        $this->afficher_abonnement();
-                    break;
                 default : die("action inexistant");
             }
             $this->vue->affichage();
         }
-    
-        public function desabonner(){   
-             $this->modele->desabonnement();
-             header('Location: ' . $_SERVER['HTTP_REFERER']);
-        }
-        
-        public function abonner(){
-            $this->modele->abonnement();
-            header('Location: ' . $_SERVER['HTTP_REFERER']);
-        }
-        public function afficher_abonne(){
-            $this->vue->afficher_listeAbo($this->modele->getAbonne());
-        }
-        public function afficher_abonnement(){
-            $this->vue->afficher_listeAbo($this->modele->getAbonnement());
-        }    
     }

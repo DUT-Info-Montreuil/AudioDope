@@ -19,66 +19,47 @@
 
         public function exec() {
             $this->vue->menu();
-            $this->vue->indic_section($this->action);
+            $this->vue->indic_recherche($this->action);
             switch($this->action) {
-                case 'section_tout' : 
-                    $this->recherche();
+                case 'recherche_post' : 
+                    $this->recherche_post();
                     break;
-                case 'section_tag' : 
-                    $this->recherche_par_tag();
-                    break;
-                case 'section_titre' : 
-                    $this->recherche_par_titre();
-                    break;
-                case 'section_desc' : 
-                    $this->recherche_par_description();
-                    break;
-                case 'section_user' : 
-                    $this->recherche_par_user();
+                case 'recherche_user' : 
+                    $this->recherche_users();
                     break;
                 default : die("action inexistant");
             }
             $this->vue->affichage();
         } 
 
-        public function recherche() {
-            $posts = $this->modele->recherche();
-            $votes  = $this->modele->get_votes($posts);
-            $nb_votes = $this->modele->get_nb_votes($posts,0);
-            $tags = $this->modele->get_tags($posts);
-
-            $this->vue->affiche_posts($posts, $votes, $nb_votes, $tags);
+        public function recherche_users() {
+            $users = $this->modele->recherche_users();
+            $abos = $this->modele->verif_abonnement($users);
+            $this->vue->affiche_users($users, $abos);
         }
 
-        public function recherche_par_tag() {
-            $posts = $this->modele->recherche_par_tag();
-            $votes  = $this->modele->get_votes($posts);
-            $nb_votes = $this->modele->get_nb_votes($posts,0);
-            $tags = $this->modele->get_tags($posts);
+        public function recherche_post() {
+            $this->vue->menu_filtre();
+            $this->vue->indic_recherche($_GET['filtre']);
+            switch($_GET['filtre']) {
+                case 'tout' : 
+                    $posts = $this->modele->recherche_posts();
+                    break;
+                case 'tag' : 
+                    $posts = $this->modele->recherche_par_tag();
+                    break;
+                case 'titre' : 
+                    $posts = $this->modele->recherche_par_titre();
+                    break;
+                case 'desc' : 
+                    $posts = $this->modele->recherche_par_description();
+                    break;
+                case 'user' : 
+                    $posts = $this->modele->recherche_par_user();
+                    break;
+                default : die("filtre inexistant");
+            }
 
-            $this->vue->affiche_posts($posts, $votes, $nb_votes, $tags);
-        }
-
-        public function recherche_par_titre() {
-            $posts = $this->modele->recherche_par_titre();
-            $votes  = $this->modele->get_votes($posts);
-            $nb_votes = $this->modele->get_nb_votes($posts,0);
-            $tags = $this->modele->get_tags($posts);
-
-            $this->vue->affiche_posts($posts, $votes, $nb_votes, $tags);
-        }
-        
-        public function recherche_par_description() {
-            $posts = $this->modele->recherche_par_description();
-            $votes  = $this->modele->get_votes($posts);
-            $nb_votes = $this->modele->get_nb_votes($posts,0);
-            $tags = $this->modele->get_tags($posts);
-
-            $this->vue->affiche_posts($posts, $votes, $nb_votes, $tags);
-        }
-
-        public function recherche_par_user() {
-            $posts = $this->modele->recherche_par_user();
             $votes  = $this->modele->get_votes($posts);
             $nb_votes = $this->modele->get_nb_votes($posts,0);
             $tags = $this->modele->get_tags($posts);
