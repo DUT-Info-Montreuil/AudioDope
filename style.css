@@ -175,8 +175,6 @@ body a:hover {
 /* MAIN */
 
 main {
-	min-height: 90%;
-
 	padding-top: 80px;
 	padding-bottom: 15px;
 	text-align: center;
@@ -588,4 +586,13 @@ input[type=file] {
 	color: rgb(255, 252, 249);
 	background-color: rgb(53, 45, 57);
 	padding-bottom: 3px;
+}
+
+#gif_loading {
+	margin-top: 15px;
+}
+
+#gif_loading img {
+	width: 32;
+	height: 32;
 }
