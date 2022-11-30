@@ -44,7 +44,7 @@
         public function recherche() {
             $posts = $this->modele->recherche();
             $votes  = $this->modele->get_votes($posts);
-            $nb_votes = $this->modele->get_nb_votes($posts);
+            $nb_votes = $this->modele->get_nb_votes($posts,0);
             $tags = $this->modele->get_tags($posts);
 
             $this->vue->affiche_posts($posts, $votes, $nb_votes, $tags);
@@ -53,7 +53,7 @@
         public function recherche_par_tag() {
             $posts = $this->modele->recherche_par_tag();
             $votes  = $this->modele->get_votes($posts);
-            $nb_votes = $this->modele->get_nb_votes($posts);
+            $nb_votes = $this->modele->get_nb_votes($posts,0);
             $tags = $this->modele->get_tags($posts);
 
             $this->vue->affiche_posts($posts, $votes, $nb_votes, $tags);
@@ -62,7 +62,7 @@
         public function recherche_par_titre() {
             $posts = $this->modele->recherche_par_titre();
             $votes  = $this->modele->get_votes($posts);
-            $nb_votes = $this->modele->get_nb_votes($posts);
+            $nb_votes = $this->modele->get_nb_votes($posts,0);
             $tags = $this->modele->get_tags($posts);
 
             $this->vue->affiche_posts($posts, $votes, $nb_votes, $tags);
@@ -71,7 +71,7 @@
         public function recherche_par_description() {
             $posts = $this->modele->recherche_par_description();
             $votes  = $this->modele->get_votes($posts);
-            $nb_votes = $this->modele->get_nb_votes($posts);
+            $nb_votes = $this->modele->get_nb_votes($posts,0);
             $tags = $this->modele->get_tags($posts);
 
             $this->vue->affiche_posts($posts, $votes, $nb_votes, $tags);
@@ -80,7 +80,7 @@
         public function recherche_par_user() {
             $posts = $this->modele->recherche_par_user();
             $votes  = $this->modele->get_votes($posts);
-            $nb_votes = $this->modele->get_nb_votes($posts);
+            $nb_votes = $this->modele->get_nb_votes($posts,0);
             $tags = $this->modele->get_tags($posts);
 
             $this->vue->affiche_posts($posts, $votes, $nb_votes, $tags);
