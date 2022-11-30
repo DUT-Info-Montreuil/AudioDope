@@ -12,7 +12,7 @@
         }
 
         public function menu() {
-            echo "<nav id=\"menu\">";
+            echo "<nav class=\"menu\">";
             echo "<a id=\"recommandes\" href=\"index.php?module=accueil&action=recommandes\">Recommandés</a>";
             echo "<a id=\"decouverte\" href=\"index.php?module=accueil&action=decouverte\">Découverte</a>";
             echo "<a id=\"suivis\" href=\"index.php?module=accueil&action=suivis\">Suivis</a>";

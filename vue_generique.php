@@ -45,9 +45,11 @@ class VueGenerique
                 $this->affiche_post($posts[$i], $votes[$i], $nb_votes[$i], $tags[$i]);
 
             echo "</section>";
-            echo '<div id=gif_loading>';
-            echo '<img src="ressources/loading-gif.gif" alt="gif loading">';
-            echo "</div>";
+            if (count($posts) == 20) {
+                echo '<div id=gif_loading>';
+                echo '<img src="ressources/loading-gif.gif" alt="gif loading">';
+                echo "</div>";
+            }
         }
     }
 
@@ -100,7 +102,7 @@ class VueGenerique
         echo '<ul class="liste_tags">';
         echo '<span>Tags :</span>';
         foreach($tags as $tag) 
-            echo '<li><a href="index.php?module=recherche&action=section_tag&contenu='.$tag['nomTag'].'">'.$tag['nomTag'].'</a></li>';
+            echo '<li><a href="index.php?module=recherche&action=recherche_post&filtre=tag&contenu='.$tag['nomTag'].'">'.$tag['nomTag'].'</a></li>';
         echo '</ul>';
         echo "</div>";
         echo "</div>";

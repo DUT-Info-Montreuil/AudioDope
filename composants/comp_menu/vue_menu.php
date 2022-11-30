@@ -28,7 +28,8 @@
             '<div class=\"nav justify-content-center\" id="rechercher">
             <FORM id="form_recherche" action="index.php" METHOD="GET" enctype="multipart/form-data">
             <input type="hidden" name="module" value="recherche">
-            <input type="hidden" name="action" value="section_tout">
+            <input type="hidden" name="action" value="recherche_post">
+            <input type="hidden" name="filtre" value="tout">
                  <div class="form-outline">
                      <input type="search" name="contenu" class="form-control" placeholder="Rechercher" />
                 </div>

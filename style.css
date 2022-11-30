@@ -79,11 +79,11 @@ a:hover {
 	border-radius: 5px;
 }
 
-#menu {
+.menu {
 	margin-bottom: 15px;
 }
 
-#menu a {
+.menu a {
 	display: inline-block;
 	width: 150px;
 	margin-left: 5px;
@@ -175,6 +175,7 @@ body a:hover {
 /* MAIN */
 
 main {
+	min-height: 848px;
 	padding-top: 80px;
 	padding-bottom: 15px;
 	text-align: center;
