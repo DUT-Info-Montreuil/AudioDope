@@ -597,3 +597,10 @@ input[type=file] {
 	width: 32;
 	height: 32;
 }
+
+#resultat_rech_users {
+	width: 350px;
+	overflow-y: auto;
+	margin: auto;
+	margin-top: 42px;
+}

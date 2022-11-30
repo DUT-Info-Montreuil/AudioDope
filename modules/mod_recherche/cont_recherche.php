@@ -33,7 +33,9 @@
         } 
 
         public function recherche_users() {
-            $this->vue->affiche_users($this->modele->recherche_users());
+            $users = $this->modele->recherche_users();
+            $abos = $this->modele->verif_abonnement($users);
+            $this->vue->affiche_users($users, $abos);
         }
 
         public function recherche_post() {
