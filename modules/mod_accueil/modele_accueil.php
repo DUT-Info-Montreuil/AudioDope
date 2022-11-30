@@ -34,4 +34,47 @@ class ModeleAccueil extends ModeleGenerique
         
         return $posts->fetchAll();
     }
+
+    //POST DES SEPTS DERNIERS JOURS LE PLUS D'UPVOTE (Peut afficher ceux à zero du a la conception de la BD, dans tout les cas cela veux dire qu'il y'a eu interaction avec et ils seront
+    //toujours en dessous de ceux avec des votes)
+    public function get_tendance() {
+        if (!isset($_SESSION['idUser']))
+            return 0;
+            
+        $sql = 'SELECT DISTINCT Posts.idUser, Posts.idPost, login, pfp, lien, titre, descriptionPost, datePost, vote, VoteOrdre.nbVote  
+            FROM Posts 
+            JOIN Utilisateurs ON Posts.idUser = Utilisateurs.idUser
+            LEFT JOIN VoterPost on Posts.idPost = VoterPost.idPost 
+            INNER JOIN (SELECT sum(vote) as nbVote, idPost
+                    FROM VoterPost 
+                    GROUP BY VoterPost.idPost 
+                    ORDER BY sum(vote) DESC
+            ) AS VoteOrdre ON VoteOrdre.idPost = Posts.idPost
+            WHERE (DATEDIFF (now(), Posts.datePost) <= 7)
+            ORDER BY nbVote DESC';
+                    
+        
+    
+        // $sql = $sql . $idPostVote->fetch()['idPost']. ')';
+
+        // $sql = $sql . ')) ORDER BY (SELECT idPost FROM VoterPost GROUP BY VoterPost.idPost ORDER BY sum(vote) DESC) DESC';
+
+        // $vote = ''SELECT sum(vote), VoterPost.idPost 
+            // FROM VoterPost 
+            // INNER JOIN Posts ON VoterPost.idPost = Posts.idPost 
+            // WHERE (DATEDIFF (now(), Posts.datePost) <= 7)
+            // GROUP BY VoterPost.idPost 
+            // ORDER BY sum(vote) DESC';
+        
+        
+        // echo $sql;
+        
+        $posts = self::$bdd->prepare($sql);
+        $posts->execute(array($_SESSION['idUser']));
+        if ($posts->rowcount() == 0)
+            return 1;
+        return $posts->fetchAll();
+
+    }
+
 }

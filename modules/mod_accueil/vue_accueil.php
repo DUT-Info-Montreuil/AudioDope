@@ -32,7 +32,13 @@
         }
 
         public function aucun_abonnement() {;
-            echo "Vous n'avez aucun abonnement.";
+            echo "<p>Vous n'avez aucun abonnement<p>";
         }
+
+        public function pas_de_post_en_tendance() {
+            echo "<p> Aucun post n'a atteinds les tendances durant les septièmes derniers jours ... </p>
+            <a href=\"index.php?module=post&action=form_redaction\">Cliquez ici pour en rédiger  et tenter d'arriver en tendance!</a>";
+        }
+
     }
 ?>

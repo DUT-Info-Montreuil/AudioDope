@@ -42,6 +42,22 @@
                 $this->vue->affiche_posts($posts, $votes, $nb_votes, $tags);
             }
         }
+
+        public function tendance() {
+            $posts = $this->modele->get_tendance();
+            if ($posts == 0) {
+                $this->vue->non_connecte();
+            } else if ($posts == 1) {
+                $this->vue->pas_de_post_en_tendance();
+            } else {
+                $votes  = $this->modele->get_votes($posts);
+                $nb_votes = $this->modele->get_nb_votes($posts);
+                //On recalcule nb vote alors qu'on pourrait le passer en param
+                $tags = $this->modele->get_tags($posts);
+
+                $this->vue->affiche_posts($posts, $votes, $nb_votes, $tags);
+            }
+        }
         
         public function exec() {
             $this->vue->menu();
@@ -50,7 +66,7 @@
                 case 'recommandes' : break;
                 case 'decouverte' : break;
                 case 'suivis' : $this->suivi(); break;
-                case 'tendance' : break;
+                case 'tendance' : $this->tendance(); break;
                 case 'recent' : $this->recent(); break;
                 default : die("action inexistant");
             }
