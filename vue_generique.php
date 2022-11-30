@@ -60,9 +60,10 @@ class VueGenerique
         echo "<img class=\"class_pfp\" src=\"$post[pfp]\" alt=\"photo de profil\">";
         echo "</div>";
 
+     
         echo "<div class=\"post_nom_date\">";
-        echo "<a href=\"index.php?module=profil&action=voir_profil&idUser=$post[idUser]\">$post[login]</a>";
-        echo "<p><small>".substr($post['datePost'], 11)."</small></br>";
+        echo "<a href=\"index.php?module=profil&action=voir_profil&idUser=$post[idUser]\" id=\"pseudo_post\">$post[login]</a>";
+        echo "<p id=\"date_post\"><small>".substr($post['datePost'], 11)."</small></br>";
         echo "<small>".substr($post['datePost'], 0, 10)."</small></p>";
         echo "</div>";
 
