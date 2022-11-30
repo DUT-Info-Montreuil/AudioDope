@@ -66,7 +66,7 @@ class ModeleGenerique extends Connexion
         return $nb_vote;
     }
 
-    public function get_nb_votes($posts)
+    public function get_nb_votes($posts, $order)
     {
         $nb_votes = array_fill(0, count($posts), 0);
         if (isset($_SESSION['idUser']) && count($posts) > 0) {
@@ -74,7 +74,10 @@ class ModeleGenerique extends Connexion
             for ($i = 0; $i < count($posts) - 1; $i++) {
                 $sql = $sql . $posts[$i]['idPost'] . ",";
             }
-            $sql = $sql . $posts[$i]['idPost'] . ') group by VoterPost.idPost order by datePost desc';
+            if ($order==0)
+                $sql = $sql . $posts[$i]['idPost'] . ') group by VoterPost.idPost order by datePost desc';
+            else
+                $sql = $sql . $posts[$i]['idPost'] . ') group by VoterPost.idPost order by sum(vote) desc';
 
             $tab = self::$bdd->prepare($sql);
             $tab->execute(array($_SESSION['idUser']));
