@@ -106,9 +106,9 @@ class VueGenerique
             echo "<div class=\"tag\">";
             echo "<div class=\"aimer_tag\">";
             if ($aimer_tags[$i] == 0)
-                echo "<a href=\"#\"><img src=\"ressources/coeurs/coeur_vide.png\" alt=\"logo like vide\"></a>";
+                echo '<button type="button" class="like_tag liker_tag" idTag="'.$tags[$i]['idTag'].'"><img src="ressources/coeurs/coeur_vide.png" alt="logo like vide"></button type="button">';
             else
-                echo "<a href=\"#\"><img src=\"ressources/coeurs/coeur_plein.png\" alt=\"logo like plein\"></a>";
+                echo '<button type="button" class="like_tag deliker_tag" idTag="'.$tags[$i]['idTag'].'" href="#"><img src="ressources/coeurs/coeur_plein.png" alt="logo like plein"></button type="button">';
             echo "</div>";
             echo "<div class=\"nom_tag\">";
             echo '<a href="index.php?module=recherche&action=recherche_post&filtre=tag&contenu='.$tags[$i]['nomTag'].'">'.$tags[$i]['nomTag'].'</a>';

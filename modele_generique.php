@@ -144,7 +144,7 @@ class ModeleGenerique extends Connexion
             for ($i = 0; $i < count($posts) - 1; $i++) {
                 $sql = $sql . $posts[$i]['idPost'] . ",";
             }
-            $sql = $sql . $posts[$i]['idPost'] . ') order by datePost desc, nomTag';
+            $sql = $sql . $posts[$i]['idPost'] . ') order by datePost desc, idTag';
     
             $tab = self::$bdd->prepare($sql);
             $tab->execute();

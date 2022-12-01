@@ -370,12 +370,16 @@ main {
 	padding: 1px 5px 1px 3px;
 }
 
-.tag a {
+.like_tag {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
 	margin-right: 3px;
-}
-
-.tag img {
-	margin-bottom: 2px;
+	margin-top: 3px;
 }
 
 .liste_tags {
