@@ -92,11 +92,13 @@
             $votes  = $modele->get_votes($posts);
             $nb_votes = $modele->get_nb_votes($posts, 0);
             $tags = $modele->get_tags($posts);
+            $aimer_tags = $modele->aimer_tags($tags);
 
             $vue = new VueGenerique();
             for ($i = 0; $i < count($posts); $i++) {
-                $vue->affiche_post($posts[$i], $votes[$i], $nb_votes[$i], $tags[$i]);
+                $vue->affiche_post($posts[$i], $votes[$i], $nb_votes[$i], $tags[$i], $aimer_tags[$i]);
             }
+
             $array = array (
                 'posts' => $vue->getAffichage()
             );

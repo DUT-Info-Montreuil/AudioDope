@@ -128,21 +128,31 @@ class ModeleGenerique extends Connexion
         return $aimer_tags;
     }
 
+    public function aimer_tags($tags) {
+        $aimer_tags = array();
+        for ($i = 0; $i < count($tags); $i++) {
+            $aimer_tags[$i] = $this->aimer_tag($tags[$i]);
+        }
+        return $aimer_tags;
+    }
+
     public function get_tags($posts)
     {
         $tags = array_fill(0, count($posts), array());
         if (count($posts) > 0) {
-            $sql = 'select idPost, nomTag from Tags natural join AttribuerPost natural join Posts where idPost in (';
+            $sql = 'select idPost, idTag, nomTag from Tags natural join AttribuerPost natural join Posts where idPost in (';
             for ($i = 0; $i < count($posts) - 1; $i++) {
                 $sql = $sql . $posts[$i]['idPost'] . ",";
             }
             $sql = $sql . $posts[$i]['idPost'] . ') order by datePost desc, nomTag';
-
+    
             $tab = self::$bdd->prepare($sql);
             $tab->execute();
             $tab = $tab->fetchAll();
             $cpt = 0;
             $taille = count($tab);
+
+            //divise le tab en tableau de tableau pour mettre dans tags
             for ($i = 0; $i < count($posts); $i++) {
                 $tmp = array();
                 while ($cpt < $taille && $posts[$i]['idPost'] == $tab[$cpt]['idPost']) {
