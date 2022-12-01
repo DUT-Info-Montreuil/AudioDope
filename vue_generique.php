@@ -33,7 +33,7 @@ class VueGenerique
         echo "<p>Vous êtes déjà connecté sous l’identifiant $login</p> <br> <a href=\"index.php?module=connexion&action=deconnexion\">Se déconnecter</a>";
     }
 
-    public function affiche_posts($posts, $votes, $nb_votes, $tags)
+    public function affiche_posts($posts, $votes, $nb_votes, $tags, $aimer_tags)
     {
         echo "<section id=\"posts\" nb_posts=20>";
 
@@ -42,7 +42,7 @@ class VueGenerique
             echo "</section>";
         } else {
             for ($i = 0; $i < count($posts); $i++)
-                $this->affiche_post($posts[$i], $votes[$i], $nb_votes[$i], $tags[$i]);
+                $this->affiche_post($posts[$i], $votes[$i], $nb_votes[$i], $tags[$i], $aimer_tags[$i]);
 
             echo "</section>";
             if (count($posts) == 20) {
@@ -53,11 +53,11 @@ class VueGenerique
         }
     }
 
-    public function affiche_post($post, $vote, $nb_votes, $tags)
+    public function affiche_post($post, $vote, $nb_votes, $tags, $aimer_tags)
     {
         echo "<div class=\"post\" id=\"$post[idPost]\">";
         $this->affiche_post_gauche($post);
-        $this->affiche_post_milieu($post, $tags);
+        $this->affiche_post_milieu($post, $tags, $aimer_tags);
         $this->affiche_post_droit($post, $vote, $nb_votes);
         echo "<a href=\"index.php?module=post&action=voir_post&idPost=$post[idPost]\"> <span class=\"lien_vers_post\"></span></a></div>";
     }
@@ -86,7 +86,7 @@ class VueGenerique
         echo "</div>";
     }
 
-    public function affiche_post_milieu($post, $tags)
+    public function affiche_post_milieu($post, $tags, $aimer_tags)
     {
         echo "<div class=\"post_milieu\">";
         //titre
@@ -101,8 +101,21 @@ class VueGenerique
         echo "<div class=\"tags\">";
         echo '<ul class="liste_tags">';
         echo '<span>Tags :</span>';
-        foreach($tags as $tag) 
-            echo '<li><a href="index.php?module=recherche&action=recherche_post&filtre=tag&contenu='.$tag['nomTag'].'">'.$tag['nomTag'].'</a></li>';
+        for ($i = 0; $i < count($tags); $i++) {
+            echo '<li>';
+            echo "<div class=\"tag\">";
+            echo "<div class=\"aimer_tag\">";
+            if ($aimer_tags[$i] == 0)
+                echo "<a href=\"#\"><img src=\"ressources/coeurs/coeur_vide.png\" alt=\"logo like vide\"></a>";
+            else
+                echo "<a href=\"#\"><img src=\"ressources/coeurs/coeur_plein.png\" alt=\"logo like plein\"></a>";
+            echo "</div>";
+            echo "<div class=\"nom_tag\">";
+            echo '<a href="index.php?module=recherche&action=recherche_post&filtre=tag&contenu='.$tags[$i]['nomTag'].'">'.$tags[$i]['nomTag'].'</a>';
+            echo "</div>";
+            echo "</div>";
+            echo '</li>';
+        }
         echo '</ul>';
         echo "</div>";
         echo "</div>";

@@ -96,13 +96,36 @@ class ModeleGenerique extends Connexion
     public function get_tag($idPost)
     {
         $tags = array();
-        if (isset($_SESSION['idUser'])) {
-            $sql = self::$bdd->prepare('select nomTag from Tags natural join AttribuerPost where idPost = ? order by nomTag');
-            $sql->execute(array($idPost));
-            if ($sql->rowcount() > 0)
-                $tags = $sql->fetchAll();
-        }
+        $sql = self::$bdd->prepare('select idTag, nomTag from Tags natural join AttribuerPost where idPost = ? order by idTag');
+        $sql->execute(array($idPost));
+        if ($sql->rowcount() > 0)
+            $tags = $sql->fetchAll();
         return $tags;
+    }
+
+    public function aimer_tag($tags) {
+        $aimer_tags = array_fill(0, count($tags), 0);
+        if (isset($_SESSION['idUser']) && count($tags) > 0) {
+            $sql = 'select idTag from Apprecier where idUser = 6 and idTag in (';
+            for ($i = 0; $i < count($tags) - 1; $i++) {
+                $sql = $sql . $tags[$i]['idTag'] . ",";
+            }
+            $sql = $sql . $tags[$i]['idTag'] . ') order by idTag';
+
+            $tab = self::$bdd->prepare($sql);
+            $tab->execute(array($_SESSION['idUser']));
+            if ($tab->rowcount() > 0) {
+                $tab = $tab->fetchAll();
+                $cpt = 0;
+                for ($i = 0; $i < count($tags) && $cpt < count($tab); $i++) {
+                    if($tags[$i]['idTag'] == $tab[$cpt]['idTag']) {
+                        $aimer_tags[$i] = 1;
+                        $cpt++;
+                    }
+                }
+            }
+        }
+        return $aimer_tags;
     }
 
     public function get_tags($posts)

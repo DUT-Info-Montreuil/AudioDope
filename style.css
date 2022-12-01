@@ -363,6 +363,21 @@ main {
 	margin-top: -30px;
 }
 
+.tag {
+	display: flex;
+	border-radius: 10px;
+	border: 1px solid black;
+	padding: 1px 5px 1px 3px;
+}
+
+.tag a {
+	margin-right: 3px;
+}
+
+.tag img {
+	margin-bottom: 2px;
+}
+
 .liste_tags {
 	padding-left: 0px;
 	list-style-type: none;

@@ -35,8 +35,8 @@
             $votes  = $this->modele->get_votes($posts);
             $nb_votes = $this->modele->get_nb_votes($posts, 0);
             $tags = $this->modele->get_tags($posts);
-
-            $this->vue->afficher_posts_profil($posts, $votes, $nb_votes, $tags);
+            $aimer_tags = $tags;
+            $this->vue->afficher_posts_profil($posts, $votes, $nb_votes, $tags, $aimer_tags);
         }
 
         public function exec() {

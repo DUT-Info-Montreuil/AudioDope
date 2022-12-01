@@ -90,7 +90,7 @@
             Connexion::initConnexion();
             $modele = new ModeleGenerique();
             $votes  = $modele->get_votes($posts);
-            $nb_votes = $modele->get_nb_votes($posts);
+            $nb_votes = $modele->get_nb_votes($posts, 0);
             $tags = $modele->get_tags($posts);
 
             $vue = new VueGenerique();
