@@ -104,7 +104,7 @@ class VueGenerique
         for ($i = 0; $i < count($tags); $i++) {
             echo '<li>';
             echo "<div class=\"tag\">";
-            echo "<div class=\"aimer_tag\">";
+            echo "<div class=\"aimer_tag aimer_".$tags[$i]['idTag']."\">";
             if ($aimer_tags[$i] == 0)
                 echo '<button type="button" class="like_tag liker_tag" idTag="'.$tags[$i]['idTag'].'"><img src="ressources/coeurs/coeur_vide.png" alt="logo like vide"></button type="button">';
             else
