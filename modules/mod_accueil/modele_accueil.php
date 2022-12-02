@@ -8,33 +8,27 @@ include_once('modele_generique.php');
 class ModeleAccueil extends ModeleGenerique
 {
 
-    public function get_recent($index)
+    //postes les plus récents de la plateforme
+    public function get_recent()
     {
-        $posts = self::$bdd->prepare('select Posts.idUser as idUser, Posts.idPost as idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts join Utilisateurs on Posts.idUser = Utilisateurs.idUser order by datePost desc limit :index, 20');
-        $posts->bindValue(':index', $index, PDO::PARAM_INT);
+        $posts = self::$bdd->prepare('select idUser, idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts natural join Utilisateurs order by datePost desc limit 20');
         $posts->execute();
         return $posts->fetchAll();
     }
 
-    public function get_suivi($index)
+    //postes des abonnements de l'utilisateur
+    public function get_suivi()
     {
         if (!isset($_SESSION['idUser']))
             return 0;
         $sql = 'select Posts.idUser as idUser, Posts.idPost as idPost, login, pfp, lien, titre, descriptionPost, datePost, vote from Posts join Utilisateurs on Posts.idUser = Utilisateurs.idUser 
-            left join VoterPost on Posts.idPost = VoterPost.idPost where (VoterPost.idUser = :idUser or VoterPost.idUser is null) and Posts.idUser in (';
-        $abonnements = self::$bdd->prepare('select idUserAbonnement from Abonner where idUserAbonne = ?');
-        $abonnements->execute(array($_SESSION['idUser']));
-        if ($abonnements->rowcount() == 0)
-            return 1;
-        for ($i = 0; $i < $abonnements->rowcount() - 1; $i++) {
-            $sql = $sql . $abonnements->fetch()['idUserAbonnement'] . ",";
-        }
-        $sql = $sql . $abonnements->fetch()['idUserAbonnement'] . ') order by datePost desc limit :index, 20';
+            left join VoterPost on Posts.idPost = VoterPost.idPost where (VoterPost.idUser = :idUser or VoterPost.idUser is null) 
+            and Posts.idUser in (select idUserAbonnement from Abonner where idUserAbonne = :idUser) order by datePost desc limit 20';
         $posts = self::$bdd->prepare($sql);
-        $posts->bindValue(':index', $index, PDO::PARAM_INT);
         $posts->bindParam(':idUser', $_SESSION['idUser']);
         $posts->execute();
-        
+        if ($posts->rowcount() == 0)
+            return 1;
         return $posts->fetchAll();
     }
 
@@ -63,4 +57,27 @@ class ModeleAccueil extends ModeleGenerique
         return $posts->fetchAll();
     }
 
+    //posts selon les tags qu'apprécie l'utilisateur qui ne sont pas de ceux que l'utilisatueur suit
+    //affiche des postes au hasard si l'utilisateur n'apprécie aucun tag
+    public function get_recommandes()
+    {   
+        $tags = self::$bdd->prepare('SELECT * FROM Apprecier where idUser = ?');
+        $tags->execute(array($_SESSION['idUser']));
+        
+        if($tags->rowcount() == 0)
+            $sql = 'select idUser, Posts.idPost as idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts 
+        natural join Utilisateurs left join AttribuerPost on Posts.idPost = AttribuerPost.idPost 
+        where idUser not in (select idUserAbonnement from Abonner where idUserAbonne = :idUser) and idUser != :idUser
+        order by datePost desc limit 20';
+        else
+            $sql = 'select Distinct idUser, Posts.idPost as idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts 
+        natural join Utilisateurs left join AttribuerPost on Posts.idPost = AttribuerPost.idPost 
+        where idTag in (SELECT idTag FROM Apprecier where idUser = :idUser) and idUser not in (select idUserAbonnement from Abonner where idUserAbonne = :idUser) and idUser != :idUser
+        order by datePost desc limit 20';
+
+        $posts = self::$bdd->prepare($sql);
+        $posts->bindParam(':idUser', $_SESSION['idUser']);
+        $posts->execute();
+        return $posts->fetchAll();
+    }
 }

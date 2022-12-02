@@ -25,7 +25,7 @@ class ModeleGenerique extends Connexion
             $sql = self::$bdd->prepare('select vote from VoterPost where idUser = ? and idPost = ?');
             $sql->execute(array($_SESSION['idUser'], $idPost));
             if ($sql->rowcount() == 1)
-                $vote = $sql->rowcount();
+                $vote = $sql->fetch()['vote'];
         }
         return $vote;
     }

@@ -13,31 +13,20 @@ class VueProfil extends VueGenerique
         parent::__construct();
     }
 
-    public function afficher_profil($profil)
-    {
+    public function afficher_profil_perso($profil) {
         echo '<div id="profil">';
         echo '<div id="profil_gauche">';
-        if (isset($_SESSION['idUser']) && $profil['idUser'] == $_SESSION['idUser']) {
-            echo "<a id=\"modif_pfp\" class=\"lien_pfp\" href=\"#\"><img class=\"class_pfp\" src=\"$profil[pfp]\" alt=\"photo de profil\"></a>";
-        } else {
-            echo "<img class=\"class_pfp\" src=\"$profil[pfp]\" alt=\"photo de profil\">";
-        }
+        echo "<a id=\"modif_pfp\" class=\"lien_pfp\" href=\"#\"><img class=\"class_pfp\" src=\"$profil[pfp]\" alt=\"photo de profil\"></a>";
         echo '<p>' . $profil['login'] . '</p>';
         echo '</div>';
         echo '<div id="profil_droit">';
-        if (isset($_SESSION['idUser']) && $profil['idUser'] == $_SESSION['idUser']) {
-            echo "<div id=\"abonne\"><p>$profil[nb_abonnes]</p><p><a class=\"voir_abonne\" href=\"#\">Abonne(s)</a></p></div>";
-            echo "<div id=\"abonnement\"><p id=\"nb_abo\">$profil[nb_abonnement]</p><p><a class=\"voir_abonnement\" href=\"#\">Abonnement(s)</a></p></div>";
-        } else {
-            echo "<div id=\"abonne\"><p>$profil[nb_abonnes]</p><p>Abonne(s)</p></div>";
-            echo "<div id=\"abonnement\"><p>$profil[nb_abonnement]</p><p>Abonnement(s)</p></div>";
-        }
+        echo "<div id=\"abonne\"><p>$profil[nb_abonnes]</p><p><a class=\"voir_abonne\" href=\"#\">Abonne(s)</a></p></div>";
+        echo "<div id=\"abonnement\"><p id=\"nb_abo\">$profil[nb_abonnement]</p><p><a class=\"voir_abonnement\" href=\"#\">Abonnement(s)</a></p></div>";
         echo '</div>';
         echo '</div>';
 
-        if (isset($_SESSION['idUser']) && $profil['idUser'] == $_SESSION['idUser']) {
-            //modal changer de pfp
-            echo '<div id="modal_pfp" class="modal">
+        //modal changer de pfp
+        echo '<div id="modal_pfp" class="modal">
         <div class="modal-content" id="modal_pfp_contenu">
         <div class="modal_header">
         <button type="button" class="close" aria-label="Close">
@@ -52,8 +41,9 @@ class VueProfil extends VueGenerique
         </div>
         </div>
         </div>';
-            //modal abo
-            echo '<div id="modal_abo" class="modal">
+
+        //modal abo
+        echo '<div id="modal_abo" class="modal">
         <div class="modal-content modal_abo_contenu">
         <div class="modal_header">
         <button type="button" class="close" aria-label="Close">
@@ -64,7 +54,20 @@ class VueProfil extends VueGenerique
         </div>
         </div>
         </div>';
-        }
+    }
+
+    public function afficher_profil($profil)
+    {
+        echo '<div id="profil">';
+        echo '<div id="profil_gauche">';
+        echo "<img class=\"class_pfp\" src=\"$profil[pfp]\" alt=\"photo de profil\">";
+        echo '<p>' . $profil['login'] . '</p>';
+        echo '</div>';
+        echo '<div id="profil_droit">';
+        echo "<div id=\"abonne\"><p>$profil[nb_abonnes]</p><p>Abonne(s)</p></div>";
+        echo "<div id=\"abonnement\"><p>$profil[nb_abonnement]</p><p>Abonnement(s)</p></div>";
+        echo '</div>';
+        echo '</div>';
     }
 
     public function afficher_listeAbo($array)
