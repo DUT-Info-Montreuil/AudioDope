@@ -32,6 +32,12 @@ crossorigin="anonymous"></script>
 			case 'presentation' : new ModPresentation(); break;
 			default : die("module inconnu");
 		}
+	} else {
+		if (isset($_SESSION['login'])) {
+			new ModAccueil(); 
+		} else {
+			new ModPresentation();
+		}
 	}
 	$menu = new CompMenu();
 	include_once('template.php');

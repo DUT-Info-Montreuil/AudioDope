@@ -70,7 +70,7 @@
                 case 'suivis' : $this->suivi(); break;
                 case 'tendance' : $this->tendance(); break;
                 case 'recent' : $this->recent(); break;
-                default : die("action inexistant");
+                default : $this->suivi();
             }
             $this->vue->affichage();
         }

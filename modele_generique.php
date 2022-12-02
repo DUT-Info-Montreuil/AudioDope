@@ -11,6 +11,7 @@ class ModeleGenerique extends Connexion
     public function creation_token() {
         $bytes = random_bytes(20);
         $_SESSION['token'] = bin2hex($bytes);
+        var_dump($_SESSION['token']);
         $_SESSION['token_date'] = time();
     }
 

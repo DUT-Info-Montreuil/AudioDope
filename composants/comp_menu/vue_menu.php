@@ -14,7 +14,7 @@
             $this->affichage = $this->affichage." <ul class=\"nav justify-content-center\" id=\"navbar\"> ";
             $this->affichage = $this->affichage."<li class=\"nav-item\">";
 			if (isset($_SESSION['login'])) {
-                $this->affichage = $this->affichage. "<a href=\"index.php?module=accueil&action=suivis\"><div id=\"div_titre\"><h1 class=\"titre titre1\">Audio</h1><h1 class=\"titre titre2\">Dope</h1></div></a>";
+                $this->affichage = $this->affichage. "<a href=\"index.php?module=accueil&action=suivis\"><div id=\"div_titre\"><h1 class=\"titre titre1\">Audio </h1><h1 class=\"titre titre2\">Dope</h1></div></a>";
                 $this->affichage = $this->affichage."<li class=\"nav-item\">".
                 "<a class=\"nav-link\" href=\"index.php?module=post&action=form_redaction\">Rédiger un post</a></li>";
 				$this->affichage = $this->affichage . "<li class=\"nav-item\">" .
@@ -22,7 +22,7 @@
                 $this->affichage = $this->affichage . "<li class=\"nav-item\">" .
                 "<a class=\"nav-link\" href=\"index.php?module=connexion&action=deconnexion\">Se déconnecter</a></li>";
 			} else {
-                $this->affichage = $this->affichage. "<a href=\"index.php?module=presentation\"><div id=\"div_titre\"><h1 class=\"titre titre1\">Audio</h1><h1 class=\"titre titre2\">Dope</h1></div></a>";
+                $this->affichage = $this->affichage. "<a href=\"index.php?module=presentation\"><div id=\"div_titre\"><h1 class=\"titre titre1\">Audio </h1><h1 class=\"titre titre2\">Dope</h1></div></a>";
 				$this->affichage = $this->affichage . "<li class=\"nav-item\">" . "<a class=\"nav-link\" href=\"index.php?module=connexion\">Se connecter</a></li>";
         	}
             $this->affichage = $this->affichage .  

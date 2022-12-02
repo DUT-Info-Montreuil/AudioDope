@@ -20,7 +20,10 @@
         }
         
         public function form_inscription() {
-            $this->modele->creation_token();
+            if(!isset($_SESSION['token'])) {
+                var_dump('test');
+                $this->modele->creation_token();
+            }
             $this->vue->form_inscription();
         }
 
@@ -40,7 +43,10 @@
             if (isset($_SESSION['login'])) {
                 $this->vue->deja_connecte();
             } else {
-                $this->modele->creation_token();
+                if(!isset($_SESSION['token'])) {
+                var_dump('test');
+                    $this->modele->creation_token();
+                }
                 $this->vue->form_connexion();
             }
             

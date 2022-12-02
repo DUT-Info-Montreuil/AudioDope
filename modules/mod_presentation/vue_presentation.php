@@ -12,13 +12,12 @@
         public function menu() {
             echo'
             <div id=slide_un>
-                <div id="div_titre"><h1 class="titre titre1">Audio</h1><h1 class="titre titre2">Dope</h1></div>
+                <div id="div_titre"><h1 class="titre titre1">Audio </h1><h1 class="titre titre2">Dope</h1></div>
                 <h2> Partage et découvre, de l\'underground au mainstream </h2>
-                
             </div>
 
             <div id=slide_deux>
-                <h2 id="titre_pres"> Qui somme nous ?</h2>
+                <h2 id="titre_pres"> Qui sommes nous ?</h2>
                 <p id="desc_pres"> AudioDope est un projet universitaire fondé par trois étudiants</p>
             </div>
 
