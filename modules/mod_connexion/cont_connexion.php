@@ -21,7 +21,6 @@
         
         public function form_inscription() {
             if(!isset($_SESSION['token'])) {
-                var_dump('test');
                 $this->modele->creation_token();
             }
             $this->vue->form_inscription();
@@ -44,7 +43,6 @@
                 $this->vue->deja_connecte();
             } else {
                 if(!isset($_SESSION['token'])) {
-                var_dump('test');
                     $this->modele->creation_token();
                 }
                 $this->vue->form_connexion();

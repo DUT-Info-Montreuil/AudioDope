@@ -30,7 +30,7 @@
 
             echo '
             <FORM ACTION="index.php?module=connexion&action=inscription" METHOD="POST" id="form_insc"> 
-                <input type="hidden" name="token" value='.$_SESSION['token'].'>
+                
 
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
