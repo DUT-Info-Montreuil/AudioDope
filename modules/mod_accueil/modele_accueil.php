@@ -21,6 +21,7 @@ class ModeleAccueil extends ModeleGenerique
     {
         if (!isset($_SESSION['idUser']))
             return 0;
+
         $sql = 'select Posts.idUser as idUser, Posts.idPost as idPost, login, pfp, lien, titre, descriptionPost, datePost, vote from Posts join Utilisateurs on Posts.idUser = Utilisateurs.idUser 
             left join VoterPost on Posts.idPost = VoterPost.idPost where (VoterPost.idUser = :idUser or VoterPost.idUser is null) 
             and Posts.idUser in (select idUserAbonnement from Abonner where idUserAbonne = :idUser) order by datePost desc limit 20';
@@ -61,6 +62,9 @@ class ModeleAccueil extends ModeleGenerique
     //affiche des postes au hasard si l'utilisateur n'apprécie aucun tag
     public function get_recommandes()
     {   
+        if (!isset($_SESSION['idUser']))
+            return 0;
+
         $tags = self::$bdd->prepare('SELECT * FROM Apprecier where idUser = ?');
         $tags->execute(array($_SESSION['idUser']));
         
@@ -79,5 +83,38 @@ class ModeleAccueil extends ModeleGenerique
         $posts->bindParam(':idUser', $_SESSION['idUser']);
         $posts->execute();
         return $posts->fetchAll();
+    }
+
+    //posts selon les tags qu'apprécie l'utilisateur qui ne sont pas de ceux que l'utilisatueur suit
+    public function get_decouverte()
+    {   
+        if (!isset($_SESSION['idUser']))
+            return 0;
+
+        $sql = 'select Distinct idUser, Posts.idPost as idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts 
+        natural join Utilisateurs left join AttribuerPost on Posts.idPost = AttribuerPost.idPost 
+        where idTag not in (SELECT idTag FROM Apprecier where idUser = :idUser) and idUser not in (select idUserAbonnement from Abonner where idUserAbonne = :idUser) and idUser != :idUser
+        order by datePost desc limit 20';
+
+        $posts = self::$bdd->prepare($sql);
+        $posts->bindParam(':idUser', $_SESSION['idUser']);
+        $posts->execute();
+
+        $posts = $posts->fetchAll();
+        if (count($posts) < 20) {
+            $nb = 20 - count($posts);
+            
+            $sql = 'select idUser, Posts.idPost as idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts 
+        natural join Utilisateurs left join AttribuerPost on Posts.idPost = AttribuerPost.idPost 
+        where idTag is null and idUser not in (select idUserAbonnement from Abonner where idUserAbonne = :idUser) and idUser != :idUser
+        order by datePost desc limit :nb';
+
+            $posts2 = self::$bdd->prepare($sql);
+            $posts2->bindParam(':idUser', $_SESSION['idUser']);
+            $posts2->bindValue(':nb', $nb, PDO::PARAM_INT);
+            $posts2->execute();
+            $posts = array_merge($posts, $posts2->fetchAll());
+        }
+        return $posts;
     }
 }

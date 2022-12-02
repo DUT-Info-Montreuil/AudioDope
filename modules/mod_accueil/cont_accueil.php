@@ -63,12 +63,30 @@
 
         public function recommandes() {
             $posts = $this->modele->get_recommandes();
-            $votes  = $this->modele->get_votes($posts);
-            $nb_votes = $this->modele->get_nb_votes($posts,0);
-            $tags = $this->modele->get_tags($posts);
-            $aimer_tags = $this->modele->aimer_tags($tags);
+            if ($posts == 0) {
+                $this->vue->non_connecte();
+            } else {
+                $votes  = $this->modele->get_votes($posts);
+                $nb_votes = $this->modele->get_nb_votes($posts,1);
+                $tags = $this->modele->get_tags($posts);
+                $aimer_tags = $this->modele->aimer_tags($tags);
 
-            $this->vue->affiche_posts($posts, $votes, $nb_votes, $tags, $aimer_tags);
+                $this->vue->affiche_posts($posts, $votes, $nb_votes, $tags, $aimer_tags);
+            }
+        }
+
+        public function decouverte() {
+            $posts = $this->modele->get_decouverte();
+            if ($posts == 0) {
+                $this->vue->non_connecte();
+            } else {
+                $votes  = $this->modele->get_votes($posts);
+                $nb_votes = $this->modele->get_nb_votes($posts,1);
+                $tags = $this->modele->get_tags($posts);
+                $aimer_tags = $this->modele->aimer_tags($tags);
+
+                $this->vue->affiche_posts($posts, $votes, $nb_votes, $tags, $aimer_tags);
+            }
         }
         
         public function exec() {
@@ -76,7 +94,7 @@
             $this->vue->indic_section($this->action);
             switch($this->action) {
                 case 'recommandes' : $this->recommandes(); break;
-                case 'decouverte' : break;
+                case 'decouverte' : $this->decouverte(); break;
                 case 'suivis' : $this->suivi(); break;
                 case 'tendance' : $this->tendance(); break;
                 case 'recent' : $this->recent(); break;

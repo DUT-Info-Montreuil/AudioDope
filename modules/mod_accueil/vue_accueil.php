@@ -32,7 +32,7 @@
         }
 
         public function aucun_abonnement() {;
-            echo "<p>Vous n'avez aucun abonnement<p>";
+            echo "<p>Aucun de vos abonnements n'a poster<p>";
         }
 
         public function pas_de_post_en_tendance() {
