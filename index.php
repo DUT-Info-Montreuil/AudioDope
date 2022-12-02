@@ -6,6 +6,8 @@ crossorigin="anonymous"></script>
 <script src="javascript/tags/methode_js_tags.js"></script>
 
 <?php
+// GNU GPL Copyleft 2022 
+
     session_start();
 
 	define ("lala", "layn");

@@ -1,4 +1,5 @@
 <?php
+// GNU GPL Copyleft 2022 
     if (constant("lala") != "layn")
         die("wrong constant");
 

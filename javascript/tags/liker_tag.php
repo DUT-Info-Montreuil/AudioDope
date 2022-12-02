@@ -1,4 +1,5 @@
 <?php
+// GNU GPL Copyleft 2022 
     session_start();
     header('Content-type: application/json; charset=utf-8');
     if (!isset($_SESSION['idUser'])) {

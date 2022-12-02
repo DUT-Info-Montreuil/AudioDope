@@ -1,5 +1,5 @@
 $(function () {
-    
+    // GNU GPL Copyleft 2022 
     const btn = document.getElementsByClassName("close");
     const modal = document.getElementsByClassName("modal");
 

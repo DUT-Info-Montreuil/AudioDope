@@ -1,5 +1,5 @@
 $(function () {
-
+// GNU GPL Copyleft 2022 
     $(document).click(function () {
         $(".options_contenu").hide();
     })

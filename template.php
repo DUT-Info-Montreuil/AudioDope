@@ -1,4 +1,7 @@
 <?php
+
+// GNU GPL Copyleft 2022 
+
 if (constant("lala") != "layn")
 	die("wrong constant");
 ?>
@@ -29,7 +32,7 @@ if (constant("lala") != "layn")
 			?>
 		</MAIN>
 		<FOOTER>
-			<p>AudioDope - 2022 Tous droits réservés</p>
+			<p>AudioDope - GNU GPL Copyleft ↄ - 2022</p>
 			<p>Mentions Légales · Politique de Protection des Données · Politique de cookies</p>
 		</FOOTER>
 </BODY>

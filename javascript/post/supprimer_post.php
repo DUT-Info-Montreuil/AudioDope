@@ -1,4 +1,5 @@
 <?php
+// GNU GPL Copyleft 2022 
     session_start();
     if (isset($_SESSION['idUser'])) {
         $bdd = new PDO ('mysql:host='."database-etudiants.iut.univ-paris8.fr".';dbname='."dutinfopw201625", "dutinfopw201625", "razamaqe");

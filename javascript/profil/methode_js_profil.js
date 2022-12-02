@@ -1,4 +1,5 @@
 $(function () {
+    // GNU GPL Copyleft 2022 
     const modal_pfp = document.getElementById("modal_pfp");
     const btn_pfp = document.getElementById("modif_pfp");
 
