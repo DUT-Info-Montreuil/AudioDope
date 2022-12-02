@@ -31,7 +31,7 @@
             if ($confirmation != null) {
                 if ($confirmation == 1) {
                     $this->vue->session_expiree();
-                    $this->modele->unset_token();
+                    $this->vue->deconnexion();
                 }
                 else
                     header("Location: index.php?module=connexion&action=form_inscription&erreur=$confirmation");
@@ -57,7 +57,6 @@
             if ($confirmation != null) {
                 if ($confirmation == 1) {
                     $this->vue->session_expiree();
-                    $this->modele->unset_token();
                 } else if ($confirmation == 2) {
                     $this->vue->deja_connecte();
                 } else {
@@ -70,6 +69,7 @@
 
         public function deconnexion() {
             $this->modele->deconnexion();
+            $this->modele->unset_token();
             $this->vue->confirmation_deconnexion();
         }
 

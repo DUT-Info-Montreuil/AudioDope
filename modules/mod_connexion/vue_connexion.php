@@ -117,6 +117,7 @@
 
         public function confirmation_connexion() {
             echo '<p>Connexion confirmée</p>';
+            var_dump($_SESSION['token']);
         }
 
         public function confirmation_deconnexion() {

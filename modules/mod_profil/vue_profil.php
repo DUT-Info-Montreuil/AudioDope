@@ -86,8 +86,7 @@ class VueProfil extends VueGenerique
         echo "</section>";
     }
 
-    public function afficherform_abonnement($idUser)
-    {
+    public function afficherform_abonnement($idUser) {
         echo '<div class="div_bouton_abo" id="div_bouton_abo' . $idUser . '">';
         echo '<FORM class="form_abonnement" ACTION="javascript/abonnement/abonner.php" METHOD="POST"> 
             <input type="hidden" name="token" value=' . $_SESSION['token'] . '>
