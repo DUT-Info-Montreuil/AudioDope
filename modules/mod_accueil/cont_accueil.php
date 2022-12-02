@@ -20,7 +20,7 @@
         }
 
         public function recent() {
-            $posts = $this->modele->get_recent(0);
+            $posts = $this->modele->get_recent();
             $votes  = $this->modele->get_votes($posts);
             $nb_votes = $this->modele->get_nb_votes($posts,0);
             $tags = $this->modele->get_tags($posts);
@@ -30,7 +30,7 @@
         }
 
         public function suivi() {
-            $posts = $this->modele->get_suivi(0);
+            $posts = $this->modele->get_suivi();
             if ($posts == 0) {
                 $this->vue->non_connecte();
             } else if ($posts == 1) {
@@ -60,12 +60,22 @@
                 $this->vue->affiche_posts($posts, $votes, $nb_votes, $tags, $aimer_tags);
             }
         }
+
+        public function recommandes() {
+            $posts = $this->modele->get_recommandes();
+            $votes  = $this->modele->get_votes($posts);
+            $nb_votes = $this->modele->get_nb_votes($posts,0);
+            $tags = $this->modele->get_tags($posts);
+            $aimer_tags = $this->modele->aimer_tags($tags);
+
+            $this->vue->affiche_posts($posts, $votes, $nb_votes, $tags, $aimer_tags);
+        }
         
         public function exec() {
             $this->vue->menu();
             $this->vue->indic_section($this->action);
             switch($this->action) {
-                case 'recommandes' : break;
+                case 'recommandes' : $this->recommandes(); break;
                 case 'decouverte' : break;
                 case 'suivis' : $this->suivi(); break;
                 case 'tendance' : $this->tendance(); break;

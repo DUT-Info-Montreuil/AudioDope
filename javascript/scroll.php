@@ -9,6 +9,28 @@
     $bdd = new PDO ('mysql:host='."database-etudiants.iut.univ-paris8.fr".';dbname='."dutinfopw201625", "dutinfopw201625", "razamaqe");
 
     switch($_GET['action']) {
+        case 'recommandes':
+            $tags = $bdd->prepare('SELECT * FROM Apprecier where idUser = ?');
+        $tags->execute(array($_SESSION['idUser']));
+        
+        if($tags->rowcount() == 0)
+            $sql = 'select idUser, Posts.idPost as idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts 
+        natural join Utilisateurs left join AttribuerPost on Posts.idPost = AttribuerPost.idPost 
+        where idUser not in (select idUserAbonnement from Abonner where idUserAbonne = :idUser) and idUser != :idUser
+        order by datePost desc limit :index, 20';
+        else
+            $sql = 'select Distinct idUser, Posts.idPost as idPost, login, pfp, lien, titre, descriptionPost, datePost from Posts 
+        natural join Utilisateurs left join AttribuerPost on Posts.idPost = AttribuerPost.idPost 
+        where idTag in (SELECT idTag FROM Apprecier where idUser = :idUser) and idUser not in (select idUserAbonnement from Abonner where idUserAbonne = :idUser) and idUser != :idUser
+        order by datePost desc limit :index, 20';
+
+        $posts = $bdd->prepare($sql);
+        $posts->bindValue(':index', $_GET['nb_posts'], PDO::PARAM_INT);
+        $posts->bindParam(':idUser', $_SESSION['idUser']);
+        $posts->execute();
+
+        $posts = $posts->fetchAll();
+        break;
         case 'suivis' :
             if (!isset($_SESSION['idUser']))
                 return 0;
@@ -105,4 +127,3 @@
         }
         echo json_encode($array);
     }
-?>

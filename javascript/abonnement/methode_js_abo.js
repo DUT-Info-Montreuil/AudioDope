@@ -1,16 +1,6 @@
 $(function () {
     // GNU GPL Copyleft 2022 
-    const btn = document.getElementsByClassName("close");
-    const modal = document.getElementsByClassName("modal");
-
-    btn[0].onclick = function () {
-        modal[0].style.display = "none";
-    }
-
-    btn[1].onclick = function () {
-        modal[1].style.display = "none";
-    }
-
+    
     //bouton abonnement dynamique
     $(".div_bouton_abo").on('submit', '.form_abonnement', function (event) {
         event.preventDefault();
@@ -22,23 +12,43 @@ $(function () {
         abonnement(this);
     })
 
+
+    const btn = document.getElementsByClassName("close");
+    const modal = document.getElementsByClassName("modal");
+
+    if (btn.length > 0) {
+        btn[0].onclick = function () {
+            modal[0].style.display = "none";
+        }
+
+        btn[1].onclick = function () {
+            modal[1].style.display = "none";
+        }
+    }
+
+
     const modal_abo = document.getElementById("modal_abo");
 
     //abonne
     const btn_abonne = document.getElementsByClassName("voir_abonne")[0];
 
-    btn_abonne.onclick = function () {
-        afficher_abonne();
-        modal_abo.style.display = "flex";
+    if (btn_abonne != null) {
+        btn_abonne.onclick = function () {
+            afficher_abonne();
+            modal_abo.style.display = "flex";
+        }
     }
 
     //abonnement
     const btn_abonnement = document.getElementsByClassName("voir_abonnement")[0];
 
-    btn_abonnement.onclick = function () {
-        afficher_abonnement();
-        modal_abo.style.display = "flex";
+    if (btn_abonnement != null) {
+        btn_abonnement.onclick = function () {
+            afficher_abonnement();
+            modal_abo.style.display = "flex";
+        }
     }
+
 
     $(".modal_abo_contenu").on('click', '.voir_abonnement', function () {
         afficher_abonnement();

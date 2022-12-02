@@ -17,22 +17,24 @@ class ModeleRecherche extends ModeleGenerique
 
     public function verif_abonnement($users) {
         $verif_abo = array();
-        $sql = 'SELECT idUserAbonnement from Abonner where Abonner.idUserAbonne=? and Abonner.idUserAbonnement in (';
-        for ($i = 0; $i < count($users) - 1; $i++) {
-            $sql = $sql . $users[$i]['idUser'] . ",";
-        }
-        $sql = $sql . $users[$i]['idUser'] . ') order by Abonner.idUserAbonnement';
-        $tab = self::$bdd->prepare($sql);
-        $tab->execute(array($_SESSION['idUser']));
-        $tab = $tab->fetchAll();
+        if (count($users) > 0) {
+            $sql = 'SELECT idUserAbonnement from Abonner where Abonner.idUserAbonne=? and Abonner.idUserAbonnement in (';
+            for ($i = 0; $i < count($users) - 1; $i++) {
+                $sql = $sql . $users[$i]['idUser'] . ",";
+            }
+            $sql = $sql . $users[$i]['idUser'] . ') order by Abonner.idUserAbonnement';
+            $tab = self::$bdd->prepare($sql);
+            $tab->execute(array($_SESSION['idUser']));
+            $tab = $tab->fetchAll();
 
-        $cpt = 0;
-        for ($i = 0; $i < count($users); $i++) {
-            if ($cpt < count($tab) && $users[$i]['idUser'] == $tab[$cpt]['idUserAbonnement']) {
-                $verif_abo[$i] = 2;
-                $cpt++;
-            } else
-                $verif_abo[$i] = 1;
+            $cpt = 0;
+            for ($i = 0; $i < count($users); $i++) {
+                if ($cpt < count($tab) && $users[$i]['idUser'] == $tab[$cpt]['idUserAbonnement']) {
+                    $verif_abo[$i] = 2;
+                    $cpt++;
+                } else
+                    $verif_abo[$i] = 1;
+            }
         }
         return $verif_abo;
     }

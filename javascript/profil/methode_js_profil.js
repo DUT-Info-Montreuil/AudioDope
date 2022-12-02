@@ -3,8 +3,10 @@ $(function () {
     const modal_pfp = document.getElementById("modal_pfp");
     const btn_pfp = document.getElementById("modif_pfp");
 
-    btn_pfp.onclick = function () {
-        modal_pfp.style.display = "flex";
+    if (btn_pfp != null) {
+        btn_pfp.onclick = function () {
+            modal_pfp.style.display = "flex";
+        }
     }
 
     const modal_abo = document.getElementById("modal_abo");
