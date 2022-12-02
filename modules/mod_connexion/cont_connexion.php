@@ -31,7 +31,7 @@
             if ($confirmation != null) {
                 if ($confirmation == 1) {
                     $this->vue->session_expiree();
-                    $this->vue->deconnexion();
+                    $this->modele->deconnexion();
                 }
                 else
                     header("Location: index.php?module=connexion&action=form_inscription&erreur=$confirmation");
