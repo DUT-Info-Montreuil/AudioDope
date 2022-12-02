@@ -34,9 +34,10 @@ class ModeleGenerique extends Connexion
             "votes" => $votes,
             "nb_votes" => $nb_votes
         );
-
+        
         return $tab;
     }
+    
 
     public function get_vote($idPost)
     {

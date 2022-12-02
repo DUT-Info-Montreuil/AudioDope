@@ -3,9 +3,10 @@
 if (constant("lala") != "layn")
     die("wrong constant");
 
-include_once('connexion.php');
 
-class ModeleCollection extends Connexion
+include_once('/home/etudiants/info/aybouaziz/local_html/AudioDope/modele_generique.php');
+
+class ModeleCollection extends ModeleGenerique 
 {
 
     public function collection()
@@ -61,6 +62,34 @@ class ModeleCollection extends Connexion
             return 1;
         return 2;
     }
+    public function get_post_collection() {
+        /*
+        $sql = 'select Posts.idUser as idUser, Posts.idPost as idPost, login, pfp, lien, titre, descriptionPost, datePost from Collections inner join Appartenir using(idcollection) inner join Posts using(idPost) join Utilisateurs on Posts.idUser = Utilisateurs.idUser 
+            where idCollection in (';
+        $collection=self::$bdd->prepare('select idCollection from Collections where idCollection = ?');
+        $collection->execute(array($_GET['idCollection']));
+        
+
+        for ($i = 0; $i < $collection->rowcount() - 1; $i++) {
+
+        $sql = $sql . $collection->fetch()['idCollection'].',';
+        }
+        
+        $sql = $sql . $collection->fetch()['idCollection'].')';
+        $posts=self::$bdd->prepare($sql);
+        $posts->execute(array($_GET['idCollection']));
+*/
+
+$sql = self::$bdd->prepare('select Posts.idUser as idUser,vote,Posts.idPost as idPost, login, pfp, lien, titre, descriptionPost, datePost from Collections inner join Appartenir using(idcollection) inner join Posts using(idPost) join Utilisateurs on Posts.idUser = Utilisateurs.idUser 
+left join VoterPost on Posts.idPost = VoterPost.idPost where idCollection in (select idCollection from Collections where idCollection =?)');
+ $sql->execute(array($_GET['idCollection']));           
+        $posts=$sql->fetchAll();
+        $tab=$this->get_posts_complet($posts);
+        return $tab;
+
+      
+    }
+
 
     public function supprimer_collection()
     {
@@ -74,12 +103,7 @@ class ModeleCollection extends Connexion
         $collection->execute(array($_GET['idPost'],$_GET['idCollection']));
     }
 
-    public function get_post_collection(){
-        
-        $postC=self::$bdd->prepare('select Posts.idPost, titre,Posts.idUser as idUser, idPost, login, lien, titre, descriptionPost, datePost, idCollection from Collections inner join Appartenir using(idCollection) inner join Posts using (idPost) inner join Utilisateurs on(Posts.idUser=Utilisateurs.idUser) where idCollection=?');
-        $postC->execute(array($_GET['idCollection']));
-        return $postC->fetchAll();
-    }
+   
     public function getCollection()
     {
         $collections = self::$bdd->prepare('select Collections.idUser as idUser, idCollection, login, titreCollection, descriptionCollection, prive from Collections join Utilisateurs on Collections.idUser = Utilisateurs.idUser where idCollection = ?');

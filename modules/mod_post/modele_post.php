@@ -75,6 +75,7 @@
 
             return $tab;
         }
+        
         public function get_commentaire() {
             $posts = self::$bdd->prepare('SELECT CommenterPost.idUser AS idUser, idPost, avis, login, pfp, dateCom FROM CommenterPost JOIN Utilisateurs ON CommenterPost.idUser = Utilisateurs.idUser WHERE idPost = ? ORDER BY dateCom DESC');
             $posts->execute(array($_GET['idPost']));

@@ -64,8 +64,13 @@
         }
 
         public function voir_colllection() {
-           $this->vue->affiche_post_dans_collection($this->modele->get_post_collection(),$this->modele->getCollection());
-           
+            $post = $this->modele->get_post_collection();
+           $this->vue->affiche_post_dans_collection($post,$this->modele->getCollection());
+           /*
+          $posts=$this->modele->get_post_collection();
+        foreach($posts as $post){
+            $this->vue->affiche_post_dans_collection($post,$this->modele->getCollection(),$this->modele->get_vote($post['idPost']),$this->modele->get_nb_vote($post['idPost']));
+        }*/
         }
 
         public function supprimer_post_dans_collection(){

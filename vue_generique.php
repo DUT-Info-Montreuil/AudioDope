@@ -35,6 +35,7 @@ class VueGenerique
     public function affiche_posts($posts)
     {
         echo "<section id=\"posts\">";
+    
         for ($i = 0; $i < count($posts['posts']); $i++) {
             $this->affiche_post($posts['posts'][$i], $posts['votes'][$i], $posts['nb_votes'][$i]);
         }
@@ -120,14 +121,15 @@ class VueGenerique
             echo "</div>";
             echo "</div>";
            
-            foreach ($posts as &$post) {
-              //  $this->affiche_post($post);
+            for ($i = 0; $i < count($posts['posts']); $i++) {
+            //    $this->affiche_post($post,$vote,$nb_votes);
+            $this->affiche_post($posts['posts'][$i], $posts['votes'][$i], $posts['nb_votes'][$i]);
                 echo 
-                " <div class=\"options\">
-                    <button class=\"options_bouton\">...</button>
+                " <div class=\"options_collection\">
+                    <button class=\"options_bouton_Collection\">...</button>
                     <div class=\"options_contenu\">";
                 //bouton supprimer post d'une collection
-                $lien = "index.php?module=collection&action=supprimer_post_collection&idPost=$post[idPost]";
+                $lien = "index.php?module=collection&action=supprimer_post_collection&idPost=$posts[posts][$i][idPost]";
                 if (isset($_SESSION['idUser']) && $collection['idUser'] == $_SESSION['idUser'])
                 echo "<a onclick=\"supprimer('$lien')\" href=\"#\">Supprimer le post de la collection</a>";
                  echo "</div></div>";
