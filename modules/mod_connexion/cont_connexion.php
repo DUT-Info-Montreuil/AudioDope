@@ -69,7 +69,7 @@
 
         public function deconnexion() {
             $this->modele->deconnexion();
-            $this->modele->unset_token();
+            $this->modele->unset_token();   
             $this->vue->confirmation_deconnexion();
         }
 
