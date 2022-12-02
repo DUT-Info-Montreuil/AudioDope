@@ -116,12 +116,8 @@ class ModeleGenerique extends Connexion
             $tab->execute(array($_SESSION['idUser']));
             if ($tab->rowcount() > 0) {
                 $tab = $tab->fetchAll();
-                $cpt = 0;
-                for ($i = 0; $i < count($tags) && $cpt < count($tab); $i++) {
-                    if($tags[$i]['idTag'] == $tab[$cpt]['idTag']) {
-                        $aimer_tags[$i] = 1;
-                        $cpt++;
-                    }
+                for ($i = 0; $i < count($tab); $i++) {
+                    $aimer_tags[$i] = $tab[$i]['idTag'];
                 }
             }
         }
@@ -130,8 +126,26 @@ class ModeleGenerique extends Connexion
 
     public function aimer_tags($tags) {
         $aimer_tags = array();
-        for ($i = 0; $i < count($tags); $i++) {
-            $aimer_tags[$i] = $this->aimer_tag($tags[$i]);
+        if (isset($_SESSION['idUser']) && count($tags) > 0) {
+            $sql = 'select idTag from Apprecier where idUser = ? and idTag in (';
+            for ($i = 0; $i < count($tags); $i++) {
+                for ($j = 0; $j < count($tags[$i]); $j++) {
+                    $sql = $sql . $tags[$i][$j]['idTag'] . ",";
+                }
+            }
+
+            $sql = $sql . ') order by idTag';
+            $sql = str_replace(',)', ')', $sql);
+
+            $tab = self::$bdd->prepare($sql);
+            $tab->execute(array($_SESSION['idUser']));
+            if ($tab->rowcount() > 0) {
+                $tab = $tab->fetchAll();
+                for ($i = 0; $i < count($tab); $i++) {
+                    $aimer_tags[$i] = $tab[$i]['idTag'];
+                }
+            }
+
         }
         return $aimer_tags;
     }

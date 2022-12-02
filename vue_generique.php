@@ -42,7 +42,7 @@ class VueGenerique
             echo "</section>";
         } else {
             for ($i = 0; $i < count($posts); $i++)
-                $this->affiche_post($posts[$i], $votes[$i], $nb_votes[$i], $tags[$i], $aimer_tags[$i]);
+                $this->affiche_post($posts[$i], $votes[$i], $nb_votes[$i], $tags[$i], $aimer_tags);
 
             echo "</section>";
             if (count($posts) == 20) {
@@ -105,10 +105,10 @@ class VueGenerique
             echo '<li>';
             echo "<div class=\"tag\">";
             echo "<div class=\"aimer_tag aimer_".$tags[$i]['idTag']."\">";
-            if ($aimer_tags[$i] == 0)
-                echo '<button type="button" class="like_tag liker_tag" idTag="'.$tags[$i]['idTag'].'"><img src="ressources/coeurs/coeur_vide.png" alt="logo like vide"></button type="button">';
-            else
+            if (in_array($tags[$i]['idTag'], $aimer_tags))
                 echo '<button type="button" class="like_tag deliker_tag" idTag="'.$tags[$i]['idTag'].'" href="#"><img src="ressources/coeurs/coeur_plein.png" alt="logo like plein"></button type="button">';
+            else
+                echo '<button type="button" class="like_tag liker_tag" idTag="'.$tags[$i]['idTag'].'"><img src="ressources/coeurs/coeur_vide.png" alt="logo like vide"></button type="button">';
             echo "</div>";
             echo "<div class=\"nom_tag\">";
             echo '<a href="index.php?module=recherche&action=recherche_post&filtre=tag&contenu='.$tags[$i]['nomTag'].'">'.$tags[$i]['nomTag'].'</a>';

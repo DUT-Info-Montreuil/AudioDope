@@ -96,7 +96,7 @@
 
             $vue = new VueGenerique();
             for ($i = 0; $i < count($posts); $i++) {
-                $vue->affiche_post($posts[$i], $votes[$i], $nb_votes[$i], $tags[$i], $aimer_tags[$i]);
+                $vue->affiche_post($posts[$i], $votes[$i], $nb_votes[$i], $tags[$i], $aimer_tags);
             }
 
             $array = array (
