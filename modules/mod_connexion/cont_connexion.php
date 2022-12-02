@@ -29,8 +29,10 @@
         public function inscription() {
             $confirmation = $this->modele->inscription();
             if ($confirmation != null) {
-                if ($confirmation == 1)
+                if ($confirmation == 1) {
                     $this->vue->session_expiree();
+                    $this->modele->unset_token();
+                }
                 else
                     header("Location: index.php?module=connexion&action=form_inscription&erreur=$confirmation");
             } else {
@@ -55,6 +57,7 @@
             if ($confirmation != null) {
                 if ($confirmation == 1) {
                     $this->vue->session_expiree();
+                    $this->modele->unset_token();
                 } else if ($confirmation == 2) {
                     $this->vue->deja_connecte();
                 } else {

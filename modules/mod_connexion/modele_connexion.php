@@ -53,5 +53,10 @@
             $_SESSION['login'] = $_POST['login'];
             $_SESSION['idUser'] = $infos['idUser'];
         }
+
+        public function unset_token() {
+            unset($_SESSION['token']);
+            unset($_SESSION['token_date']);
+        }
     }
 ?>
