@@ -1,6 +1,6 @@
 $(function () {
 
-    $(".aimer_tag").on('click', '.liker_tag', function () {
+    $("#posts").on('click', '.liker_tag', function () {
         const idTag = $(this).attr("idTag");
         $.ajax({
             type: "GET",
@@ -22,7 +22,7 @@ $(function () {
         })
     })
 
-    $(".aimer_tag").on('click', '.deliker_tag', function () {
+    $("#posts").on('click', '.deliker_tag', function () {
         const idTag = $(this).attr("idTag");
         $.ajax({
             type: "GET",
