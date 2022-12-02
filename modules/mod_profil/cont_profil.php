@@ -1,12 +1,7 @@
 <?php
-<<<<<<< HEAD
 // GNU GPL Copyleft 2022 
     if (constant("lala") != "layn")
         die("wrong constant");
-=======
-if (constant("lala") != "layn")
-    die("wrong constant");
->>>>>>> section_reco
 
 include_once('modele_profil.php');
 include_once('vue_profil.php');
@@ -27,10 +22,6 @@ class ContProfil
 
     public function voir_profil()
     {
-        if (isset($_SESSION['idUser']) && $_GET['idUser'] == $_SESSION['idUser'])
-            echo '<script src="javascript/profil/methode_js_profil.js"></script>
-                    <script src="javascript/abonnement/methode_js_abo.js"></script>';
-
         $profil = $this->modele->getProfil();
         if (isset($_SESSION['idUser']) && $profil['idUser'] == $_SESSION['idUser'])
             $this->vue->afficher_profil_perso($profil);
