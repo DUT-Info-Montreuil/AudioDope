@@ -116,10 +116,9 @@ class ModeleGenerique extends Connexion
             $tab->execute(array($_SESSION['idUser']));
             if ($tab->rowcount() > 0) {
                 $tab = $tab->fetchAll();
-            }
-
-            for ($i = 0; $i < count($tab); $i++) {
-                $aimer_tags[$i] = $tab[$i]['idTag'];
+                for ($i = 0; $i < count($tab); $i++) {
+                    $aimer_tags[$i] = $tab[$i]['idTag'];
+                }
             }
         }
         return $aimer_tags;
@@ -142,10 +141,9 @@ class ModeleGenerique extends Connexion
             $tab->execute(array($_SESSION['idUser']));
             if ($tab->rowcount() > 0) {
                 $tab = $tab->fetchAll();
-            }
-
-            for ($i = 0; $i < count($tab); $i++) {
-                $aimer_tags[$i] = $tab[$i]['idTag'];
+                for ($i = 0; $i < count($tab); $i++) {
+                    $aimer_tags[$i] = $tab[$i]['idTag'];
+                }
             }
 
         }
