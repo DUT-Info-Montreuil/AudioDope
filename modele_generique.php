@@ -15,7 +15,13 @@ class ModeleGenerique extends Connexion
     }
 
     public function verif_token() {
-        return $_POST['token'] == $_SESSION['token'] && time() - $_SESSION['token_date'] < 900;
+        if (isset($_SESSION['token']) && $_POST['token'] == $_SESSION['token'] && time() - $_SESSION['token_date'] < 900) {
+            return true;
+        } else {
+            if (isset($_SESSION['token']))
+                unset($_SESSION['token']);
+            return false;
+        }
     }
 
     public function get_vote($idPost)
