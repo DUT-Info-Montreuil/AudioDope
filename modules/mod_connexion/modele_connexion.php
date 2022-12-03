@@ -71,9 +71,9 @@ class ModeleConnexion extends ModeleGenerique
         $_SESSION['idUser'] = $infos['idUser'];
     }
 
-    public function unset_token()
-    {
-        unset($_SESSION['token']);
-        unset($_SESSION['token_date']);
+    public function get_email() {
+        $email = self::$bdd->prepare('select email from Utilisateurs where login = ?');
+        $email->execute(array($_SESSION['login']));
+        return $email->fetch()['email'];
     }
 }

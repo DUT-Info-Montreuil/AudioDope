@@ -19,9 +19,15 @@ class ModeleGenerique extends Connexion
             return true;
         } else {
             if (isset($_SESSION['token']))
-                unset($_SESSION['token']);
+                $this->unset_token($_SESSION['token']);
             return false;
         }
+    }
+
+    public function unset_token()
+    {
+        unset($_SESSION['token']);
+        unset($_SESSION['token_date']);
     }
 
     public function get_vote($idPost)

@@ -18,6 +18,10 @@ header {
 	height: 4rem;
 }
 
+#link_titre {
+	margin: auto;
+}
+
 #div_titre:hover {
 	transform: scale(1.05)
 }
@@ -159,7 +163,7 @@ body a:hover {
 
 main {
 	min-height: calc(100vh - 9rem);
-	padding-top: 80px;
+	padding-top: 20px;
 	padding-bottom: 15px;
 	text-align: center;
 	background: rgb(242, 123, 107);
@@ -180,7 +184,7 @@ main {
 	position: relative;
 }
 
-#alert_insc {
+#alert {
 	width: 500px;
 	margin: auto;
 	height: 65px;
@@ -389,7 +393,7 @@ main {
 	border: none;
 	background-color: rgb(53, 45, 57);
 	color: #d1d1d1;
-
+	border-radius: 7px;
 }
 
 .options_bouton:hover {
@@ -410,6 +414,7 @@ main {
 	min-width: 160px;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	right: 0;
+	border-radius: 7px;
 }
 
 .options_contenu a {
@@ -688,4 +693,33 @@ input[type=file] {
 	overflow-y: auto;
 	margin: auto;
 	margin-top: 42px;
+}
+
+#param {
+	margin-top: 40px;
+}
+
+#email {
+	display: flex;
+	justify-content: center;
+}
+
+#text_email {
+	margin-top : 5px;
+	margin-right : 20px;
+}
+
+#form_email {
+	display: flex;
+	justify-content: center;
+}
+
+#form_email {
+	display: flex;
+	justify-content: center;
+}
+
+#bouton_email {
+	margin-left: 10px;
+	height: 38px;
 }

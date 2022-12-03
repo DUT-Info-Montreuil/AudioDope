@@ -6,6 +6,7 @@ crossorigin="anonymous"></script>
 <script src="javascript/abonnement/methode_js_abo.js"></script>
 <script src="javascript/post/methode_js_post.js"></script>
 <script src="javascript/tags/methode_js_tags.js"></script>
+<script src="javascript/connexion/methode_js_connexion.js"></script>
 
 <?php
 // GNU GPL Copyleft 2022 
