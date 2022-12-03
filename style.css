@@ -570,7 +570,7 @@ input[type=file] {
 /* MODAL pour afficher les abonnés et les abonnements*/
 .modal_abo_contenu {
 	margin-top: 250px;
-	max-width: 400px;
+	max-width: 420px;
 	height: 412px;
 	overflow-y: auto;
 }
