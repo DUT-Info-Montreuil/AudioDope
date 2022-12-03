@@ -4,7 +4,7 @@ if (constant("lala") != "layn")
     die("wrong constant");
 
 
-include_once('/home/etudiants/info/aybouaziz/local_html/AudioDope/modele_generique.php');
+include_once('modele_generique.php');
 
 class ModeleCollection extends ModeleGenerique 
 {
@@ -88,13 +88,6 @@ left join VoterPost on Posts.idPost = VoterPost.idPost where idCollection in (se
         return $tab;
 
       
-    }
-
-
-    public function supprimer_collection()
-    {
-        $collection = self::$bdd->prepare('delete from Collections where idCollection = ?');
-        $collection->execute(array($_GET['idCollection']));
     }
 
     public function ajouter_post()

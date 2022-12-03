@@ -30,9 +30,6 @@
                 case "voir_collection" :
                     $this->voir_colllection();
                     break;
-                case "supprimer_collection" :
-                    $this->supprimer_collection();
-                    break;
                 case "ajouter_post":
                         $this->ajouter_unPost();
                         break;
@@ -57,20 +54,9 @@
             $this->modele->rendre_collection_prive();
         }
 
-        public function supprimer_collection() {
-            $this->modele->supprimer_collection();
-            $lien = "Location: index.php?module=profil&action=voir_profil&idUser=" . $_SESSION['idUser'];
-            header($lien);
-        }
-
         public function voir_colllection() {
-            $post = $this->modele->get_post_collection();
-           $this->vue->affiche_post_dans_collection($post,$this->modele->getCollection());
-           /*
-          $posts=$this->modele->get_post_collection();
-        foreach($posts as $post){
-            $this->vue->affiche_post_dans_collection($post,$this->modele->getCollection(),$this->modele->get_vote($post['idPost']),$this->modele->get_nb_vote($post['idPost']));
-        }*/
+           $this->vue->affiche_post_dans_collection( $this->modele->get_post_collection(),$this->modele->getCollection());
+      
         }
 
         public function supprimer_post_dans_collection(){

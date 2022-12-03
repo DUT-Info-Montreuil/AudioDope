@@ -74,25 +74,28 @@ class VueGenerique
                 echo "<p class=\"descriptionC\">".substr($collection['descriptionCollection'], 0, 201)."</p>";
             echo "</div>";
             echo "</div>";
-            echo 
-            " <div class=\"Collection_options\">
-            <div class=\"options\">
-                <button class=\"options_bouton\">...</button>
-                <div class=\"options_contenu\">";
-                //bouton prive
-                $lien = "index.php?module=collection&action=prive_collection&idCollection=$collection[idCollection]";
-                echo" <a onclick=\"Ajouter à une collection('$lien')\" href=#>rendre la collection prive</a>";
-            //bouton partage
-            $lien = "index.php?module=collection&action=voir_collection&idCollection=$collection[idCollection]";
-            echo "<a onclick=\"partager('$lien')\" href=\"#\">Partager</a>";
-            $lien = "index.php?module=collection&action=supprimer_collection&idCollection=$collection[idCollection]";
-            if (isset($_SESSION['idUser']) && $collection['idUser'] == $_SESSION['idUser'])
-                //echo "<a href=\"index.php?module=post&action=supprimer_post&idPost=$post[idPost]\">Supprimer</a>";
-                echo "<a onclick=\"supprimer('$lien')\" href=\"#\">Supprimer</a>";
-            echo "</div></div></div>";
-            echo "</article>";
-            
-           
+            $this->collection_droit($collection);
+            echo "</article>";  
+    }
+
+    public function collection_droit($collection){
+
+        echo "<div class=\"collection_droit\">";
+        //bouton partage
+        echo "<div class=\"Collection_options_bouton\">";
+        echo "<button class=\"Collection_options_bouton\" idCollection=$collection[idCollection]>...</button>";
+        echo "<div class=\"Collection_options_contenu\" id=\"options$collection[idCollection]\">";
+      //bouton prive
+        $lien ="index.php?module=collection&action=prive_collection&idCollection=$collection[idCollection]";
+        echo" <a onclick=\"Ajouter à une collection('$lien')\" href=#>rendre la collection prive</a>";
+        //partager
+        echo "<a class=\"partager\" lien=\"$lien\" href=\"#\">Partager</a>";
+        //supprimer
+        if (isset($_SESSION['idUser']) && $collection['idUser'] == $_SESSION['idUser'])
+            echo "<a class=\"supprimer_collection\" idCollection=$collection[idCollection] href=\"#\">Supprimer</a>";
+        echo "</div>";
+        echo "</div>";
+        
     }
 
 
@@ -131,7 +134,7 @@ class VueGenerique
                 //bouton supprimer post d'une collection
                 $lien = "index.php?module=collection&action=supprimer_post_collection&idPost=$posts[posts][$i][idPost]";
                 if (isset($_SESSION['idUser']) && $collection['idUser'] == $_SESSION['idUser'])
-                echo "<a onclick=\"supprimer('$lien')\" href=\"#\">Supprimer le post de la collection</a>";
+                echo "<a onclick=\"supprimer_post_collection('$lien')\" href=\"#\">Supprimer le post de la collection</a>";
                  echo "</div></div>";
             }
             echo "</article>";

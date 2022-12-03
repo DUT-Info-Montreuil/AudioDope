@@ -58,11 +58,12 @@
             echo '<p>Collection créé!</p>';
         }
         public function ajout_post_dans_collection() {
-            echo '<p>Ajoutée dans la collection</p>';
+            echo "<a href=\"index.php?module=collection&action=voir_collection&idCollection=".$_GET['idCollection']."\">Ajoutée dans la collection</p>.</a>".'<br>';
         }
 
         public function post_deja_dans_collection() {
             echo '<p>Il y a deja se post dans votre collection</p>';
+           
         }
 
         public function titre_deja_util() {

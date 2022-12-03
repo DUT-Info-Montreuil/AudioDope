@@ -377,9 +377,12 @@ main {
 	
 }
 
-.collection_options{
+
+.collection_droit{
+	position: relative;
 	float: right;
-	margin-right: 5px;
+	width: 30px;
+	margin-right: 20px;
 	display: inline-block;
 }
 	

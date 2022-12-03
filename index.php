@@ -5,6 +5,8 @@ crossorigin="anonymous"></script>
 <script src="javascript/post/methode_js_post.js"></script>
 <script src="javascript/profil/methode_js_profil.js"></script>
 <script src="javascript/abonnement/methode_js_abo.js"></script>
+<script src="javascript/collection/méthode._js_collection.js"></script>
+
 
 <?php
     session_start();
