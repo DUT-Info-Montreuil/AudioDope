@@ -25,7 +25,7 @@
                     case 3: echo 'L\'adressse e-mail est invalide'; break;
                     case 4: echo 'L\'adresse e-mail est déjà utilisée'; break;
                     case 5: echo '8 caractères minimum avec au moins une lettre minuscule, une lettre majuscule et un chiffre'; break;
-                    case 6: echo 'Les mots de passes ne correspondent pas'; break;
+                    case 6: echo 'Les mots de passe ne correspondent pas'; break;
                 };
                 echo '</p></div>';
             }
@@ -141,6 +141,8 @@
         public function parametres($email) {
             echo "<h2 id=\"titre_rouge\">Paramètres</h2>";
             echo '<section id="param">';
+
+            //EMAIL
             echo "<div id=\"div_email\">";
             echo "<div id=\"erreur_email\">";
             echo "</div>";
@@ -163,6 +165,53 @@
                 <INPUT id="input_email" NAME="email" MAXLENGTH="254" placeholder="Adresse email" type="text" class="form-control" value="'.$email.'" disabled> 
             </div> 
             <INPUT CLASS="btn btn-primary" TYPE="SUBMIT" NAME="bouton" value="Modifier" id="bouton_email"> 
+        </FORM>';
+            echo "</div>";
+            echo "</div>";
+            echo "</div>";
+
+            //MOT DE PASSE
+            echo "<div id=\"div_mdp\">";
+            echo "<div id=\"erreur_mdp\">";
+            echo "</div>";
+            echo "<div id=\"email\">";
+            echo '<div id="text_email">';
+            echo '<label for="password">Mot de passe :</label>';
+            echo "</div>";
+            echo '<div id="div_form_mdp">';
+            echo '<FORM ACTION="" METHOD="POST" id="form_mdp"> 
+            <input type="hidden" name="token" value='.$_SESSION['token'].'>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+                            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
+                        </svg>
+                    </span>
+                </div>
+                <INPUT id="mdp" NAME="mdp" placeholder="Mot de passe actuelle" type="password" class="form-control"> 
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+                            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
+                        </svg>
+                    </span>
+                </div>
+                <INPUT id="nouv_mdp" NAME="nouv_mdp" placeholder="Nouveau mot de passe" type="password" class="form-control"> 
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+                            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
+                        </svg>
+                    </span>
+                </div>
+                <INPUT id="conf_mdp" NAME="conf_mdp" placeholder="Confirmer le mot de passe" type="password" class="form-control"> 
+            </div>
+            <INPUT CLASS="btn btn-primary" TYPE="SUBMIT" NAME="bouton" value="Valider" id="bouton_email"> 
         </FORM>';
             echo "</div>";
             echo "</div>";

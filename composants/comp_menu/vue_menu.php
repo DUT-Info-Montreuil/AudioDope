@@ -34,7 +34,7 @@
 				$this->affichage = $this->affichage . "<li class=\"nav-item\">" . "<a class=\"nav-link\" href=\"index.php?module=connexion\">Se connecter</a></li>";
         	}
             $this->affichage = $this->affichage .  
-            '<div class=\"nav justify-content-center\" id="rechercher">
+            '<li class=\"nav-item\"> <div class=\"nav justify-content-center\" id="rechercher">
             <FORM id="form_recherche" action="index.php" METHOD="GET" enctype="multipart/form-data">
             <input type="hidden" name="module" value="recherche">
             <input type="hidden" name="action" value="recherche_post">
@@ -48,7 +48,7 @@
                     </svg>
                 </button>
             </FORM>
-            </div>';
+            </div> </li>';
             $this->affichage = $this->affichage . " </ul> ";
         }
 

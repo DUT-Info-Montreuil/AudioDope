@@ -36,6 +36,7 @@
         }
 
         public function parametres() {
+            $this->modele->creation_token();
             $this->vue->parametres($this->modele->get_email());
         }
 

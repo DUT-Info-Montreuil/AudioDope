@@ -19,7 +19,7 @@ class ModeleGenerique extends Connexion
             return true;
         } else {
             if (isset($_SESSION['token']))
-                $this->unset_token($_SESSION['token']);
+                $this->unset_token();
             return false;
         }
     }

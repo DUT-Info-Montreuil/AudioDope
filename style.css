@@ -696,22 +696,20 @@ input[type=file] {
 }
 
 #param {
+	width: 492px;
+	margin: auto;
 	margin-top: 40px;
 }
 
 #email {
 	display: flex;
-	justify-content: center;
 }
 
 #text_email {
 	margin-top : 5px;
 	margin-right : 20px;
-}
-
-#form_email {
-	display: flex;
-	justify-content: center;
+	min-width: 106px;
+	text-align: right;
 }
 
 #form_email {
@@ -722,4 +720,9 @@ input[type=file] {
 #bouton_email {
 	margin-left: 10px;
 	height: 38px;
+}
+
+#text_mdp {
+	margin-top : 5px;
+	margin-right : 20px;
 }
