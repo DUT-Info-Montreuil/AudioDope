@@ -17,18 +17,20 @@ class ModeleConnexion extends ModeleGenerique
     {
         if (!$this->verif_token())
             return 1;
-
-        if (strlen($_POST['login']) == 0 || filter_var($_POST['login'], FILTER_VALIDATE_EMAIL))
+        $login = htmlspecialchars($_POST['login']);
+        $email = $_POST['email'];
+        
+        if (strlen($login) == 0 || filter_var($login, FILTER_VALIDATE_EMAIL))
             return 2;
         $verif_login = self::$bdd->prepare('select * from Utilisateurs where login = ?');
-        $verif_login->execute(array($_POST['login']));
+        $verif_login->execute(array($login));
         if ($verif_login->rowCount() > 0)
             return 2;
 
-        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL))
             return 3;
         $verif_email = self::$bdd->prepare('select * from Utilisateurs where email = ?');
-        $verif_email->execute(array($_POST['email']));
+        $verif_email->execute(array($email));
         if ($verif_email->rowCount() > 0)
             return 4;
 
@@ -41,7 +43,7 @@ class ModeleConnexion extends ModeleGenerique
         $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
         $sql = 'INSERT INTO Utilisateurs VALUES(NULL, ?, ?, ?, 0, 1, \'ressources/pfp/pfp.jpg\')';
         $statement = self::$bdd->prepare($sql);
-        $statement->execute(array($_POST['login'],$_POST['email'], $mdp));
+        $statement->execute(array($login,$email, $mdp));
     }
 
     private function mdp_correcte()
@@ -58,9 +60,9 @@ class ModeleConnexion extends ModeleGenerique
             return 1;
         if (isset($_SESSION['login']))
             return 2;
-
+        $login = htmlspecialchars($_POST['login']);
         $verif_login = self::$bdd->prepare('select * from Utilisateurs where login = :login or email = :login');
-        $verif_login->bindParam(':login', $_POST['login']);
+        $verif_login->bindParam(':login', $login);
         $verif_login->execute();
         $infos = $verif_login->fetch();
         if ($verif_login->rowCount() == 0 || !password_verify($_POST['mdp'], $infos['password']))
