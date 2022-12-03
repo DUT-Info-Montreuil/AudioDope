@@ -27,7 +27,7 @@
                     case 5: echo '8 caractères minimum avec au moins une lettre minuscule, une lettre majuscule et un chiffre'; break;
                     case 6: echo 'Les mots de passes ne correspondent pas'; break;
                 };
-                echo '</p> </div>';
+                echo '</p></div>';
             }
 
             echo '
@@ -95,7 +95,7 @@
             echo '<h1 id="titre_rouge">Connexion</h1>';
 
             if (isset($_GET['erreur'])) {
-                echo '<p>Nom d\'utilisateur ou mot de passe incorrecte</p>';
+                echo '<div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert_insc"> <p>Nom d\'utilisateur ou mot de passe incorrecte</p></div>';
             }
             echo
             '<FORM ACTION="index.php?module=connexion&action=connexion" METHOD="POST" id="form_insc"> 
@@ -109,7 +109,7 @@
                             </svg>
                         </span>
                     </div>
-                    <INPUT id="insc_input" NAME="login" MAXLENGTH="20" placeholder="Nom d\'utilisateur" type="text" class="form-control">
+                    <INPUT id="insc_input" NAME="login" MAXLENGTH="254" placeholder="Nom d\'utilisateur ou adresse email" type="text" class="form-control">
                 </div>
                 
                 <div class="input-group mb-3">

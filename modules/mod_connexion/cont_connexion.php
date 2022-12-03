@@ -30,9 +30,9 @@
                 if ($confirmation == 1) {
                     $this->vue->session_expiree();
                     $this->modele->deconnexion();
-                }
-                else
+                } else {
                     header("Location: index.php?module=connexion&action=form_inscription&erreur=$confirmation");
+                }
             } else {
                 $this->vue->confirmation_inscription();
             }

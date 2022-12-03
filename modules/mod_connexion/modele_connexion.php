@@ -18,6 +18,8 @@ class ModeleConnexion extends ModeleGenerique
         if (!$this->verif_token())
             return 1;
 
+        if (strlen($_POST['login']) == 0 || filter_var($_POST['login'], FILTER_VALIDATE_EMAIL))
+            return 2;
         $verif_login = self::$bdd->prepare('select * from Utilisateurs where login = ?');
         $verif_login->execute(array($_POST['login']));
         if ($verif_login->rowCount() > 0)
@@ -25,15 +27,14 @@ class ModeleConnexion extends ModeleGenerique
 
         if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
             return 3;
-
         $verif_email = self::$bdd->prepare('select * from Utilisateurs where email = ?');
         $verif_email->execute(array($_POST['email']));
         if ($verif_email->rowCount() > 0)
             return 4;
 
-        if (!$this->mdp_correcte()) {
+        if (!$this->mdp_correcte())
             return 5;
-        }
+    
         if ($_POST['mdp'] != $_POST['conf_mdp'])
             return 6;
 
@@ -52,19 +53,19 @@ class ModeleConnexion extends ModeleGenerique
         return $containsLowerCaseLetter && $containsUpperCaseLetter && $containsDigit && $correctSize;
     }
 
-    public function connexion()
-    {
+    public function connexion() {
         if (!$this->verif_token())
             return 1;
         if (isset($_SESSION['login']))
             return 2;
-        $sql = 'select * from Utilisateurs where login = ?';
-        $verif_login = self::$bdd->prepare($sql);
-        $verif_login->execute(array($_POST['login']));
+
+        $verif_login = self::$bdd->prepare('select * from Utilisateurs where login = :login or email = :login');
+        $verif_login->bindParam(':login', $_POST['login']);
+        $verif_login->execute();
         $infos = $verif_login->fetch();
         if ($verif_login->rowCount() == 0 || !password_verify($_POST['mdp'], $infos['password']))
             return 3;
-        $_SESSION['login'] = $_POST['login'];
+        $_SESSION['login'] = $infos['login'];
         $_SESSION['idUser'] = $infos['idUser'];
     }
 
