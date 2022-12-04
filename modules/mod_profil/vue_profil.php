@@ -118,4 +118,11 @@ class VueProfil extends VueGenerique
         echo "<h2 id=\"titre_rouge\">Posts</h2>";
         $this->affiche_posts($posts);
     }
+
+    public function menu() {
+        echo "<nav id=\"menu\">";
+        echo "<a id=\"section_posts\" href=\"index.php?module=profil&action=voir_profil&idUser=$_GET[idUser]&section=posts\">Posts</a>";
+        echo "<a id=\"section_collections\" href=\"index.php?module=profil&action=voir_profil&idUser=$_GET[idUser]&section=collections\">Collections</a>";
+        echo "</nav>";
+    }
 }

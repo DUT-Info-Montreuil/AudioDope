@@ -27,8 +27,14 @@
             }else if($val==1){
                 $this->vue->afficherform_abonnement($profil['idUser']);
             }
-            $this->vue->afficher_posts_profil($this->modele->getPosts());
-            $this->vue->affiche_collections($this->modele->getCollection());
+            $this->vue->menu();
+            if (isset($_GET['section']) && $_GET['section'] == 'collections') {
+                $this->vue->indic_section('section_collections');
+                $this->vue->affiche_collections($this->modele->getCollection());
+            } else {
+                $this->vue->indic_section('section_posts');
+                $this->vue->affiche_posts($this->modele->getPosts());
+            }
         }
 
         public function exec() {

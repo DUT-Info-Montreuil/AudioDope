@@ -32,6 +32,17 @@ class VueGenerique
         $login = htmlspecialchars($_SESSION['login']);
         echo "<p>Vous êtes déjà connecté sous l’identifiant $login</p> <br> <a href=\"index.php?module=connexion&action=deconnexion\">Se déconnecter</a>";
     }
+
+    public function indic_section($action) {
+        echo "<style type=\"text/css\">
+            #$action {
+            border-radius: 5px;
+            color: rgb(255, 252, 249);
+            background-color:rgb(53, 45, 57);
+            padding-bottom:3px;
+        }</style>";
+    }
+    
     public function affiche_posts($posts)
     {
         echo "<section id=\"posts\">";
