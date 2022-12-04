@@ -52,7 +52,7 @@ class VueGenerique
     }
 
     public function affiche_collection($collection){
-        echo "<article class=\"collection\">";
+        echo "<article class=\"collection\" id=\"$collection[idCollection]\">";
             //partie gauche
             echo "<div class=\"collection_gauche\">";
            
@@ -141,7 +141,7 @@ class VueGenerique
             //bouton supprimer post d'une collection
          
             if (isset($_SESSION['idUser']) && $collection['idUser'] == $_SESSION['idUser'])
-            echo "<a class=\"supprimer_post_collection\" idPost=". $idPost ." href=\"#\">Supprimer le post de la collection</a>";
+            echo "<a class=\"supprimer_post_collection\" idPost=\"$idPost\" idCollection=\"$collection[idCollection]\" href=\"#\">Supprimer le post de la collection</a>";
         
              echo "</div></div>";
 

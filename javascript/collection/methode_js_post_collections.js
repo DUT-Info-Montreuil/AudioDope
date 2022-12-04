@@ -17,15 +17,19 @@ $(function () {
     )
 
     $(".supprimer_post_collection").click(
-        function () {
+        function (event) {
+            event.preventDefault();
             if (window.confirm("Êtes-vous sûr de vouloir supprimer ?")) {
-                const id = $(this).attr("idPost");
+                const idPost = $(this).attr("idPost");
+                const idCollection = $(this).attr("idCollection");
                 $.ajax({
                     type: "GET",
                     url: "javascript/collection/supprimer_post_collection.php",
-                    data: { idCollection: id },
+                    data: { idCollection: idCollection,
+                        idPost: idPost
+                    },
                     success: function () {
-                        $("#" + id).remove();
+                        $("#" + idPost).remove();
                     }
                 })
             }

@@ -16,7 +16,8 @@ $(function () {
         }
     )
     $(".supprimer_collection").click(
-        function () {
+        function (event) {
+            event.preventDefault();
             if (window.confirm("Êtes-vous sûr de vouloir supprimer ?")) {
                 const id = $(this).attr("idCollection");
                 $.ajax({

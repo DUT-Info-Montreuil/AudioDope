@@ -25,7 +25,7 @@ class ModeleCollection extends ModeleGenerique
         if ($tag2 == $tag3)
             $tag2 = "";
 
-        $statement = self::$bdd->prepare('SELECT idCollection FROM Collections WHERE titre = :titre');
+        $statement = self::$bdd->prepare('SELECT idCollection FROM Collections WHERE titreCollection = :titre');
         $statement->bindParam(':titre', $titre_collection);
         $statement->execute();
         $idCollection = $statement->fetch();
