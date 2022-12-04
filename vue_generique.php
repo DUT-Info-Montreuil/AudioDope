@@ -84,7 +84,7 @@ class VueGenerique
         //bouton partage
         echo "<div class=\"Collection_options_bouton\">";
         echo "<button class=\"Collection_options_bouton\" idCollection=$collection[idCollection]>...</button>";
-        echo "<div class=\"Collection_options_contenu\" id=\"options$collection[idCollection]\">";
+        echo "<div class=\"Collection_options_contenu\" id=\"Collection_options$collection[idCollection]\">";
       //bouton prive
         $lien ="index.php?module=collection&action=prive_collection&idCollection=$collection[idCollection]";
         echo" <a onclick=\"Ajouter à une collection('$lien')\" href=#>rendre la collection prive</a>";
@@ -125,22 +125,28 @@ class VueGenerique
             echo "</div>";
            
             for ($i = 0; $i < count($posts['posts']); $i++) {
-            //    $this->affiche_post($post,$vote,$nb_votes);
+           
             $this->affiche_post($posts['posts'][$i], $posts['votes'][$i], $posts['nb_votes'][$i]);
-                echo 
-                " <div class=\"options_collection\">
-                    <button class=\"options_bouton_Collection\">...</button>
-                    <div class=\"options_contenu\">";
-                //bouton supprimer post d'une collection
-                $lien = "index.php?module=collection&action=supprimer_post_collection&idPost=$posts[posts][$i][idPost]";
-                if (isset($_SESSION['idUser']) && $collection['idUser'] == $_SESSION['idUser'])
-                echo "<a onclick=\"supprimer_post_collection('$lien')\" href=\"#\">Supprimer le post de la collection</a>";
-                 echo "</div></div>";
+            $this->afficher_post_collection_droit($collection ,$posts['posts'][$i]['idPost']);
             }
             echo "</article>";
             echo "</section>";
         }
 
+        public function afficher_post_collection_droit($collection ,$idPost){
+            echo 
+            " <div class=\"options_collection\">
+                <button class=\"options_bouton_Collection\">...</button>
+                <div class=\"options_contenu_collection\">";
+            //bouton supprimer post d'une collection
+           // $lien = "index.php?module=collection&action=supprimer_post_collection&idPost=$posts[posts][$i][idPost]";
+            if (isset($_SESSION['idUser']) && $collection['idUser'] == $_SESSION['idUser'])
+            echo "<a class=\"supprimer_post_collection\" idPost=". $idPost ." href=\"#\">Supprimer le post de la collection</a>";
+           // echo "<a onclick=\"supprimer_post_collection('$lien')\" href=\"#\">Supprimer le post de la collection</a>";
+             echo "</div></div>";
+
+
+        }
 
     public function affiche_post($post, $vote, $nb_votes)
     {
@@ -230,6 +236,18 @@ class VueGenerique
             <FORM ACTION="index.php?module=post&action=redaction_commentaire&idPost=' . $_GET['idPost'] . '" METHOD="POST" id="form_redac"> </br>
                  <div class="mb-3">
                     <TEXTAREA class="form-control" NAME="avis_commentaire" placeholder="Laissez votre avis!" MAXLENGTH="1000" rows="5"></textarea>
+                </div> </br>
+                <INPUT CLASS="btn btn-primary" TYPE="SUBMIT" NAME="bouton" value="Envoyer"> 
+             </FORM>';
+        }
+    }
+
+    public function affiche_redac_commentaire_collection() {
+        if (strcmp($_GET['module'], "collection") == 0) {
+             echo '<h3 id="titre_rouge">Commentaires</h3>
+            <FORM ACTION="index.php?module=collection&action=redaction_commentaire&idCollection=' . $_GET['idCollection'] . '" METHOD="POST" id="form_redac"> </br>
+                 <div class="mb-3">
+                    <TEXTAREA class="form-control" NAME="avis" placeholder="Laissez votre avis!" MAXLENGTH="1000" rows="5"></textarea>
                 </div> </br>
                 <INPUT CLASS="btn btn-primary" TYPE="SUBMIT" NAME="bouton" value="Envoyer"> 
              </FORM>';

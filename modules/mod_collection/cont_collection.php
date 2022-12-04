@@ -36,12 +36,12 @@
                 case "choix_collection":
                         $this->affiche_choix_collection($_GET['idPost']);
                         break;
+                case "redaction_commentaire" :
+                         $this->redaction_commentaire();
+                         break;
                 case "prive_collection":
                             $this->rendre_prive_collection();
                     break;
-                    case "supprimer_post_collection":
-                        $this->supprimer_post_dans_collection();
-                        break;
                 default :
                     die("action inexistante");
                     break;
@@ -56,13 +56,20 @@
 
         public function voir_colllection() {
            $this->vue->affiche_post_dans_collection( $this->modele->get_post_collection(),$this->modele->getCollection());
+           $this->vue->affiche_redac_commentaire_collection();
+           $tab_com = $this->modele->get_commentaire();
+           foreach ($tab_com as $com) {
+                   $this->vue->affiche_commentaire($com);
+           }
+       }
       
-        }
 
-        public function supprimer_post_dans_collection(){
-            $this->modele->supprimer_post_collection();
-            $lien = "Location: index.php?module=profil&action=voir_profil&idUser=" . $_SESSION['idUser'];
-            header($lien);
+
+        public function redaction_commentaire() {
+            if (isset($_SESSION['login'])) {
+                $this->modele->redaction_commentaire();
+                $this->vue->commentaire_envoye($_GET['idCollection']);
+            }
         }
 
 

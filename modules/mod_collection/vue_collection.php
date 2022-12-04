@@ -79,5 +79,8 @@
          
         }
     }
+    public function commentaire_envoye($idCollection) {
+        echo '<a href ="index.php?module=collection&action=voir_collection&idCollection=' . $idCollection . '">Bien envoyé! - Cliquer pour revenir à la collection</a>';
+    }
 }
 ?>
