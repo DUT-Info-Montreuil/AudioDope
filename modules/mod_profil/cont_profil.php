@@ -1,7 +1,7 @@
 <?php
 // GNU GPL Copyleft 2022 
-    if (constant("lala") != "layn")
-        die("wrong constant");
+if (constant("lala") != "layn")
+    die("wrong constant");
 
 include_once('modele_profil.php');
 include_once('vue_profil.php');
@@ -34,13 +34,19 @@ class ContProfil
                 $this->vue->afficherform_abonnement($profil['idUser']);
             }
         }
-
-        $posts = $this->modele->get_posts();
-        $votes  = $this->modele->get_votes($posts);
-        $nb_votes = $this->modele->get_nb_votes($posts, 0);
-        $tags = $this->modele->get_tags($posts);
-        $aimer_tags = $this->modele->aimer_tags($tags);
-        $this->vue->afficher_posts_profil($posts, $votes, $nb_votes, $tags, $aimer_tags);
+        $this->vue->menu();
+        if (isset($_GET['section']) && $_GET['section'] == 'collections') {
+            $this->vue->indic_section('section_collections');
+            $this->vue->affiche_collections($this->modele->getCollection());
+        } else {
+            $this->vue->indic_section('section_posts');
+            $posts = $this->modele->get_posts();
+            $votes  = $this->modele->get_votes($posts);
+            $nb_votes = $this->modele->get_nb_votes($posts, 0);
+            $tags = $this->modele->get_tags($posts);
+            $aimer_tags = $this->modele->aimer_tags($tags);
+            $this->vue->affiche_posts($posts, $votes, $nb_votes, $tags, $aimer_tags);
+        }
     }
 
     public function exec()

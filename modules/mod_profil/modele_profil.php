@@ -34,6 +34,20 @@ class ModeleProfil extends ModeleGenerique
         return $posts->fetchAll();
     }
 
+    public function get_nombre_post_collection($collections){
+        foreach($collections as $col){
+        $nb_post= self::$bdd->prepare('SELECT * from Collections inner join Appartenir using(idCollection) where idCollection=? ');
+        $nb_post->execute(array($col['idCollection']));
+       return $nb_post->rowcount();
+    }
+    }
+    public function getCollection()
+    {
+        $collections = self::$bdd->prepare('select Collections.idUser as idUser, idCollection, login, titreCollection, descriptionCollection, prive from Collections join Utilisateurs on Collections.idUser = Utilisateurs.idUser where Collections.idUser = ?');
+        $collections->execute(array($_GET['idUser']));
+        return $collections->fetchAll();
+    }
+
     public function verif_abonnement($idUser)
     {
         if (!isset($_SESSION['idUser']) || $_SESSION['idUser'] == $idUser) {

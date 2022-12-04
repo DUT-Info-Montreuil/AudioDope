@@ -18,6 +18,7 @@
                 $this->affichage = $this->affichage."<li class=\"nav-item\">".
                 "<a class=\"nav-link\" href=\"index.php?module=post&action=form_redaction\">Rédiger un post</a></li>";
 				$this->affichage = $this->affichage . "<li class=\"nav-item\">" .
+                "<a class=\"nav-link\" href=\"index.php?module=collection&action=form_collection\">Créer une collection</a></li>".
                 "<a class=\"nav-link\" href=\"index.php?module=profil&action=voir_profil&idUser=".$_SESSION['idUser']."\">Profil</a></li>";
                 $this->affichage = $this->affichage . "<li class=\"nav-item\">" .
                 '<a class="nav-link" href="index.php?module=connexion&action=parametres"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">

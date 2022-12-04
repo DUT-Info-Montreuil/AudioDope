@@ -7,6 +7,8 @@ crossorigin="anonymous"></script>
 <script src="javascript/post/methode_js_post.js"></script>
 <script src="javascript/tags/methode_js_tags.js"></script>
 <script src="javascript/connexion/methode_js_connexion.js"></script>
+<script src="javascript/collection/methode_js_collection.js"></script>
+<script src="javascript/collection/methode_js_post_collections.js"></script>
 
 <?php
 // GNU GPL Copyleft 2022 
@@ -23,7 +25,7 @@ crossorigin="anonymous"></script>
 	include_once('modules/mod_recherche/mod_recherche.php');
 	include_once('modules/mod_presentation/mod_presentation.php');
 	include_once('composants/comp_menu/comp_menu.php');
-
+	include_once('modules/mod_collection/mod_collection.php');
 	Connexion::initConnexion();
 	$affichage;
 	
@@ -35,6 +37,7 @@ crossorigin="anonymous"></script>
 			case 'accueil' : new ModAccueil(); break;
 			case 'recherche' : new ModRecherche(); break;
 			case 'presentation' : new ModPresentation(); break;
+			case 'collection' : new ModCollection(); break;
 			default : die("module inconnu");
 		}
 	} else {
