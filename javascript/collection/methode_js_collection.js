@@ -30,20 +30,7 @@ $(function () {
             }
         });
 
-        $(".supprimer_post_collection").click(
-            function () {
-                if (window.confirm("Êtes-vous sûr de vouloir supprimer ?")) {
-                    const id = $(this).attr("idPost");
-                    $.ajax({
-                        type: "GET",
-                        url: "javascript/collection/supprimer_post_collection.php",
-                        data: { idCollection: id },
-                        success: function () {
-                            $("#" + id).remove();
-                        }
-                    })
-                }
-            });
+
       
     });
    

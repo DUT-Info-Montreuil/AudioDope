@@ -139,10 +139,10 @@ class VueGenerique
                 <button class=\"options_bouton_Collection\">...</button>
                 <div class=\"options_contenu_collection\">";
             //bouton supprimer post d'une collection
-           // $lien = "index.php?module=collection&action=supprimer_post_collection&idPost=$posts[posts][$i][idPost]";
+         
             if (isset($_SESSION['idUser']) && $collection['idUser'] == $_SESSION['idUser'])
             echo "<a class=\"supprimer_post_collection\" idPost=". $idPost ." href=\"#\">Supprimer le post de la collection</a>";
-           // echo "<a onclick=\"supprimer_post_collection('$lien')\" href=\"#\">Supprimer le post de la collection</a>";
+        
              echo "</div></div>";
 
 
@@ -247,7 +247,7 @@ class VueGenerique
              echo '<h3 id="titre_rouge">Commentaires</h3>
             <FORM ACTION="index.php?module=collection&action=redaction_commentaire&idCollection=' . $_GET['idCollection'] . '" METHOD="POST" id="form_redac"> </br>
                  <div class="mb-3">
-                    <TEXTAREA class="form-control" NAME="avis" placeholder="Laissez votre avis!" MAXLENGTH="1000" rows="5"></textarea>
+                    <TEXTAREA class="form-control" NAME="avis_commentaire" placeholder="Laissez votre avis!" MAXLENGTH="1000" rows="5"></textarea>
                 </div> </br>
                 <INPUT CLASS="btn btn-primary" TYPE="SUBMIT" NAME="bouton" value="Envoyer"> 
              </FORM>';

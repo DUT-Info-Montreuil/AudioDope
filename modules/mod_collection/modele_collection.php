@@ -119,11 +119,6 @@ left join VoterPost on Posts.idPost = VoterPost.idPost where idCollection in (se
         return 2;
         
     }
-
-    public function supprimer_post_collection(){
-        $supp_post=self::$bdd->prepare('delete from Appartenir where idPost=?');
-        $supp_post->execute(array($_GET['idPost']));
-    }
     
 
     public function rendre_collection_prive(){
@@ -135,14 +130,14 @@ left join VoterPost on Posts.idPost = VoterPost.idPost where idCollection in (se
     }
 
     public function get_commentaire() {
-        $posts = self::$bdd->prepare('SELECT CommenterPost.idUser AS idUser, idCollection, avis, login, pfp, dateCom  FROM CommenterCollection JOIN Utilisateurs ON CommenterPost.idUser = Utilisateurs.idUser WHERE idCollection = ? ');
+        $posts = self::$bdd->prepare('SELECT CommenterCollection.idUser AS idUser, idCollection, avis, login, pfp, dateCom  FROM CommenterCollection INNER JOIN Utilisateurs ON CommenterCollection.idUser = Utilisateurs.idUser WHERE idCollection = ? ');
         $posts->execute(array($_GET['idCollection']));
         return $posts->fetchAll();
     }
 
     public function redaction_commentaire() {
         $statement = self::$bdd->prepare('INSERT INTO CommenterCollection VALUES(NULL,?, ?, ?, now())');
-        $statement->execute(array( $_SESSION['idUser'],$_GET['idCollection'], $_POST['avis']));
+        $statement->execute(array( $_SESSION['idUser'],$_GET['idCollection'], $_POST['avis_commentaire']));
     }
 
     
