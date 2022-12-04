@@ -42,7 +42,7 @@ class VueGenerique
             padding-bottom:3px;
         }</style>";
     }
-    
+
     public function affiche_posts($posts)
     {
         echo "<section id=\"posts\">";
@@ -93,9 +93,9 @@ class VueGenerique
 
         echo "<div class=\"collection_droit\">";
         //bouton partage
-        echo "<div class=\"Collection_options_bouton\">";
-        echo "<button class=\"Collection_options_bouton\" idCollection=$collection[idCollection]>...</button>";
-        echo "<div class=\"Collection_options_contenu\" id=\"Collection_options$collection[idCollection]\">";
+        echo "<div class=\"Collection_options options\">";
+        echo "<button class=\"Collection_options_bouton bouton_options_collection\" idCollection=$collection[idCollection]>...</button>";
+        echo "<div class=\"Collection_options_contenu options_contenu\" id=\"Collection_options$collection[idCollection]\">";
       //bouton prive
         $lien ="index.php?module=collection&action=prive_collection&idCollection=$collection[idCollection]";
         echo" <a onclick=\"Ajouter à une collection('$lien')\" href=#>rendre la collection prive</a>";
@@ -106,7 +106,7 @@ class VueGenerique
             echo "<a class=\"supprimer_collection\" idCollection=$collection[idCollection] href=\"#\">Supprimer</a>";
         echo "</div>";
         echo "</div>";
-        
+        echo "</div>";
     }
 
 
@@ -136,9 +136,10 @@ class VueGenerique
             echo "</div>";
            
             for ($i = 0; $i < count($posts['posts']); $i++) {
-           
-            $this->affiche_post($posts['posts'][$i], $posts['votes'][$i], $posts['nb_votes'][$i]);
-            $this->afficher_post_collection_droit($collection ,$posts['posts'][$i]['idPost']);
+                echo '<div class="div_post_collection" id="div_post_collection'.$posts['posts'][$i]['idPost'].'">';
+                $this->affiche_post($posts['posts'][$i], $posts['votes'][$i], $posts['nb_votes'][$i]);
+                $this->afficher_post_collection_droit($collection ,$posts['posts'][$i]['idPost']);
+                echo "</div>";
             }
             echo "</article>";
             echo "</section>";
@@ -146,9 +147,9 @@ class VueGenerique
 
         public function afficher_post_collection_droit($collection ,$idPost){
             echo 
-            " <div class=\"options_collection\">
-                <button class=\"options_bouton_Collection\">...</button>
-                <div class=\"options_contenu_collection\">";
+            " <div class=\"options_collection options\">
+                <button class=\"options_bouton_Collection bouton_options_collection\" idCollection=$collection[idCollection]>...</button>
+                <div class=\"options_contenu_collection options_contenu\" id=\"options_contenu_collection$collection[idCollection]\">";
             //bouton supprimer post d'une collection
          
             if (isset($_SESSION['idUser']) && $collection['idUser'] == $_SESSION['idUser'])
@@ -290,4 +291,3 @@ class VueGenerique
     }
     
 }
-?>

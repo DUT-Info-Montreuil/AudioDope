@@ -1,11 +1,11 @@
 $(function () {
     $(document).click(function () {
-        $(".options_collection").hide();
+        $(".options_contenu_collection").hide();
     })
     
     $(".options_bouton_Collection").click(
         function (event) {
-            const element = "#options_collection" + $(this).attr("idCollection");
+            const element = "#options_contenu_collection" + $(this).attr("idCollection");
             if ($(element).is(":visible"))
                 $(element).hide();
             else {
@@ -29,7 +29,7 @@ $(function () {
                         idPost: idPost
                     },
                     success: function () {
-                        $("#" + idPost).remove();
+                        $("#div_post_collection" + idPost).remove();
                     }
                 })
             }

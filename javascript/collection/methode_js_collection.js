@@ -1,6 +1,6 @@
 $(function () {
     $(document).click(function () {
-        $(".Collection_options").hide();
+        $(".Collection_options_contenu").hide();
     })
     
     $(".Collection_options_bouton").click(

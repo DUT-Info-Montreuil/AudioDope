@@ -354,6 +354,7 @@ main {
 	
 	display: inline-block;
 }
+
 .collection_gauche{
 	float: left;
 	display: inline-block;
@@ -387,7 +388,16 @@ main {
 }
 	
 	
+.div_post_collection {
+	margin: auto;
+	width: 800px;
+	display: flex;
+	justify-content: center;
+}
 
+.options_Collection {
+	padding-top: 20px;
+}
 
 
 
@@ -423,7 +433,14 @@ footer {
 	border: none;
 	background-color: rgb(53, 45, 57);
 	color: #d1d1d1;
+}
 
+.bouton_options_collection {
+	position: absolute;
+	z-index: 2;
+	padding: 5px;
+	font-size: 12px;
+	border: none;
 }
 
 .options_bouton:hover {
