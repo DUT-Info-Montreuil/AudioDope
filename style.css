@@ -87,11 +87,6 @@ a:hover {
 	z-index:2; 
 } 
 
-.pseudo_post {
-	position: absolute;
-	z-index:3;
-}
-
 .lien_musique_post {
 	position: absolute;
 	text-decoration: underline;
@@ -267,7 +262,7 @@ main {
 	padding-top: 5px;
 	width: 65%;
 	min-width: 750px;
-	max-width: 1200px;
+	max-width: 1000px;
 	min-height: 144px;
 	display: flex;
 	border-radius: 7px;
@@ -334,14 +329,14 @@ main {
 
 .post_milieu {
 	position: relative;
-	width: 60%;
+	width: 80%;
 	margin-top: -1px;
 }
 
 .post_droit {
 	position: relative;
-	width: 30px;
-	margin-right: 20px;
+	width: 7%;
+	margin-right: 15px;
 }
 
 .tags {
@@ -385,6 +380,95 @@ main {
 	color: #d1d1d1;
 }
 
+/*Collection*/
+
+.collection{
+	margin: auto;
+	margin-top: 15px;
+	width : 100%;
+	min-width: 750px;
+	max-width:1200px;
+	min-height: 120px;
+	position: bottom;
+	border: 1px black solid;
+	border: 2px rgb(53, 45, 57) solid;
+	display: flex;
+	background-color:rgb(255, 252, 249);
+	border-radius: 7px;
+	
+	display: inline-block;
+}
+
+.collection_gauche{
+	float: left;
+	display: inline-block;
+	margin-left: 10px;
+
+}
+
+.collection_centrale{
+	display: inline-block;
+	
+	
+}
+
+.titre_collection{
+	font-size: 20px;
+	font-weight: bold;
+
+	color:rgb(255, 105, 120);
+	-webkit-text-stroke: 0.2px;
+	-webkit-text-stroke-color: black;
+	
+}
+
+
+.collection_droit{
+	position: relative;
+	float: right;
+	width: 30px;
+	margin-right: 20px;
+	display: inline-block;
+}
+	
+	
+.div_post_collection {
+	margin: auto;
+	width: 800px;
+	display: flex;
+	justify-content: center;
+}
+
+.options_Collection {
+	padding-top: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*FOOTER */
+
+footer {
+	padding-top:5px;
+	padding-bottom:3px;
+	text-align: center;
+	background-color: rgb(53, 45, 57);
+	color: rgb(255, 252, 249);
+	font-family: "Inter",sans-serif;
+}
+
 .options_bouton {
 	position: absolute;
 	z-index: 2;
@@ -396,6 +480,14 @@ main {
 	border-radius: 7px;
 }
 
+.bouton_options_collection {
+	position: absolute;
+	z-index: 2;
+	padding: 5px;
+	font-size: 12px;
+	border: none;
+}
+
 .options_bouton:hover {
 	background-color: #d1d1d1;
 	opacity: 50%;
@@ -404,6 +496,7 @@ main {
 .options {
 	position: relative;
 	display: inline-block;
+	margin-right: 9px;
 }
 
 .options_contenu {
@@ -450,17 +543,18 @@ main {
 	color: #d1d1d1;
 }
 
-#date_post {
+.date_post {
 	color: #d1d1d1;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 100;
 }
 
-#pseudo_post {
+.pseudo_post {
 	color: #d1d1d1;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: bold;
 }
+
 
 .bouton_co_ins {
 	margin: 10px;

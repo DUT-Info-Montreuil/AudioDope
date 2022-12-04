@@ -65,6 +65,7 @@
             $post = $post->fetch();
             return $post;
         }
+        
         public function get_commentaire() {
             $posts = self::$bdd->prepare('SELECT CommenterPost.idUser AS idUser, idPost, avis, login, pfp, dateCom FROM CommenterPost JOIN Utilisateurs ON CommenterPost.idUser = Utilisateurs.idUser WHERE idPost = ? ORDER BY dateCom DESC');
             $posts->execute(array($_GET['idPost']));
@@ -79,6 +80,7 @@
             $statement = $statement->fetchAll();
             return $statement;
         }
+     
 
         public function redaction_commentaire() {
             $statement = self::$bdd->prepare('INSERT INTO CommenterPost VALUES(NULL,?, ?, ?, now())');

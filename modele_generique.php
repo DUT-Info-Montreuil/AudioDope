@@ -29,6 +29,7 @@ class ModeleGenerique extends Connexion
         unset($_SESSION['token']);
         unset($_SESSION['token_date']);
     }
+    
 
     public function get_vote($idPost)
     {
