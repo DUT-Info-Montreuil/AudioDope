@@ -1,5 +1,7 @@
 <?php
-    // GNU GPL Copyleft 2022 
+    /*AudioDope - Version 1.0 - 2022
+GNU GPL CopyLeft 2022-2032
+Hugo COHEN - Ayoub BOUAZIZ - Steven YANG*/
 
     if (constant("lala") != "layn")
         die("wrong constant");
@@ -10,11 +12,16 @@
         
         private $affichage;
 
-        public function menu() {
+        public function menu($isAdmin) {
             $this->affichage = $this->affichage." <ul class=\"nav justify-content-center\" id=\"navbar\"> ";
             $this->affichage = $this->affichage."<li class=\"nav-item\">";
 			if (isset($_SESSION['login'])) {
                 $this->affichage = $this->affichage. "<a id=\"link_titre\" href=\"index.php?module=accueil&action=suivis\"><div id=\"div_titre\"><h1 class=\"titre titre1\">Audio </h1><h1 class=\"titre titre2\">Dope</h1></div></a>";
+                if ($isAdmin == 1) {
+                    $this->affichage = $this->affichage. "<li class=\"nav-item\">
+                    <a class=\"nav-link\" href=\"admin/index.php?\">Côté Admin</a></li>
+                    ";
+                }
                 $this->affichage = $this->affichage."<li class=\"nav-item\">".
                 "<a class=\"nav-link\" href=\"index.php?module=post&action=form_redaction\">Rédiger un post</a></li>";
 				$this->affichage = $this->affichage . "<li class=\"nav-item\">" .
@@ -29,7 +36,7 @@
                 '<a class="nav-link" href="index.php?module=connexion&action=deconnexion"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
                 <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-              </svg></a></li>';
+                </svg></a></li>';
 			} else {
                 $this->affichage = $this->affichage. "<a id=\"link_titre\" href=\"index.php?module=presentation\"><div id=\"div_titre\"><h1 class=\"titre titre1\">Audio </h1><h1 class=\"titre titre2\">Dope</h1></div></a>";
 				$this->affichage = $this->affichage . "<li class=\"nav-item\">" . "<a class=\"nav-link\" href=\"index.php?module=connexion\">Se connecter</a></li>";

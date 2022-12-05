@@ -1,5 +1,7 @@
 <?php
-// GNU GPL Copyleft 2022 
+/*AudioDope - Version 1.0 - 2022
+GNU GPL CopyLeft 2022-2032
+Hugo COHEN - Ayoub BOUAZIZ - Steven YANG*/
     session_start();
     if (isset($_SESSION['idUser'])) {
         $bdd = new PDO ('mysql:host='."database-etudiants.iut.univ-paris8.fr".';dbname='."dutinfopw201625", "dutinfopw201625", "razamaqe");

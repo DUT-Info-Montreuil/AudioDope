@@ -1,6 +1,8 @@
 <?php
 
-// GNU GPL Copyleft 2022 
+/*AudioDope - Version 1.0 - 2022
+GNU GPL CopyLeft 2022-2032
+Hugo COHEN - Ayoub BOUAZIZ - Steven YANG*/
 
 
 if (constant("lala") != "layn")
