@@ -20,7 +20,7 @@
             
             }
         
-            public function verif_admin(){  
+            public static function verif_admin(){  
                 $statement = self::$bdd->prepare('SELECT idRoles FROM `Utilisateurs` WHERE idUser = ?');
                 $statement->execute(array($_SESSION['idUser']));
                 $idRole = $statement->fetch();
