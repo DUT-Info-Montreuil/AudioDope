@@ -60,7 +60,7 @@ Hugo COHEN - Ayoub BOUAZIZ - Steven YANG*/
             echo '<p>Collection créé!</p>';
         }
         public function ajout_post_dans_collection() {
-            echo "<a href=\"index.php?module=collection&action=voir_collection&idCollection=".$_GET['idCollection']."\">Ajoutée dans la collection</p></a>".'<br>';
+            echo "<a href=\"index.php?module=collection&action=voir_collection&idCollection=".$_GET['idCollection']."\">Ajouter dans la collection ?</p></a>".'<br>';
         }
 
         public function post_deja_dans_collection() {
