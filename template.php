@@ -1,6 +1,8 @@
 <?php
 
-// GNU GPL Copyleft 2022 
+/*AudioDope - Version 1.0 - 2022
+GNU GPL CopyLeft 2022-2032
+Hugo COHEN - Ayoub BOUAZIZ - Steven YANG*/
 
 if (constant("lala") != "layn")
 	die("wrong constant");
@@ -32,8 +34,8 @@ if (constant("lala") != "layn")
 			?>
 		</MAIN>
 		<FOOTER>
-			<p>AudioDope - GNU GPL Copyleft ↄ - 2022</p>
-			<p>Mentions Légales · Politique de Protection des Données · Politique de cookies</p>
+			<p>AudioDope - GNU GPL Copyleft ↄ - 2022<br>
+			Mentions Légales · Politique de Protection des Données · Politique de cookies</p>
 		</FOOTER>
 </BODY>
 

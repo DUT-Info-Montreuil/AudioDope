@@ -1,4 +1,9 @@
 <?php
+
+/*AudioDope - Version 1.0 - 2022
+GNU GPL CopyLeft 2022-2032
+Hugo COHEN - Ayoub BOUAZIZ - Steven YANG*/
+
 session_start();
 header('Content-type: application/json; charset=utf-8');
 define("lala", "layn");

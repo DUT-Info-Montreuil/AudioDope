@@ -1,5 +1,7 @@
 $(function () {
-    // GNU GPL Copyleft 2022 
+/*AudioDope - Version 1.0 - 2022
+GNU GPL CopyLeft 2022-2032
+Hugo COHEN - Ayoub BOUAZIZ - Steven YANG*/
     
     //bouton abonnement dynamique
     $(".div_bouton_abo").on('submit', '.form_abonnement', function (event) {

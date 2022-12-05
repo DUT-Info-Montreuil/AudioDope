@@ -1,4 +1,7 @@
 $(function() {
+    /*AudioDope - Version 1.0 - 2022
+GNU GPL CopyLeft 2022-2032
+Hugo COHEN - Ayoub BOUAZIZ - Steven YANG*/
     window.onscroll = function () {
         if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
             $.ajax({
