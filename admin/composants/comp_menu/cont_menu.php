@@ -17,11 +17,7 @@ Hugo COHEN - Ayoub BOUAZIZ - Steven YANG*/
         public function __construct() {
             $this->modele = new ModeleMenu();
             $this->vue = new VueMenu();
-            $this->menu();
-        }
-
-        public function menu() {
-            $this->vue->menu($this->modele->verif_admin());
+            $this->vue->menu();
         }
 
         public function affichage() {
