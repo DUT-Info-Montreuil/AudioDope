@@ -202,6 +202,11 @@ main {
 
 }
 
+#form_collec {
+	width: 800px;
+	margin: auto;
+	padding: 5px;
+}
 
 #selec_tag {
 	padding: 15px;
@@ -262,9 +267,7 @@ main {
 	margin: auto;
 	margin-top: 15px;
 	padding-top: 5px;
-	width: 65%;
-	min-width: 750px;
-	max-width: 1000px;
+	width: 1000px;
 	min-height: 144px;
 	display: flex;
 	border-radius: 7px;
@@ -436,7 +439,7 @@ main {
 	
 .div_post_collection {
 	margin: auto;
-	width: 800px;
+	width: 1050px;
 	display: flex;
 	justify-content: center;
 }
