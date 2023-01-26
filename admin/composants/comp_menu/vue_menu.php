@@ -18,7 +18,7 @@ Hugo COHEN - Ayoub BOUAZIZ - Steven YANG*/
 			if (isset($_SESSION['login'])) {
                 $this->affichage = $this->affichage. "<a id=\"link_titre\" href=\"index.php?module=accueil&action=suivis\"><div id=\"div_titre\"><h1 class=\"titre titre1\">Audio </h1><h1 class=\"titre titre2\">Dope</h1></div></a>";
                 $this->affichage = $this->affichage. "<li class=\"nav-item\">
-                    <a class=\"nav-link\" href=\"..\index.php?\">Côté Utilisateur</a></li>
+                    <a class=\"nav-link\" href=\"..\index.php?module=accueil&action=suivis\">Côté Utilisateur</a></li>
                     ";
                 $this->affichage = $this->affichage."<li class=\"nav-item\">".
                 "<a class=\"nav-link\" href=\"index.php?module=post&action=form_redaction\">Rédiger un post</a></li>";

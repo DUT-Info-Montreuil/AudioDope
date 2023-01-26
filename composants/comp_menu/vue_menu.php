@@ -19,7 +19,7 @@ Hugo COHEN - Ayoub BOUAZIZ - Steven YANG*/
                 $this->affichage = $this->affichage. "<a id=\"link_titre\" href=\"index.php?module=accueil&action=suivis\"><div id=\"div_titre\"><h1 class=\"titre titre1\">Audio </h1><h1 class=\"titre titre2\">Dope</h1></div></a>";
                 if ($isAdmin == 1) {
                     $this->affichage = $this->affichage. "<li class=\"nav-item\">
-                    <a class=\"nav-link\" href=\"admin/index.php?\">Côté Admin</a></li>
+                    <a class=\"nav-link\" href=\"admin/index.php?module=accueil&action=suivis\">Côté Admin</a></li>
                     ";
                 }
                 $this->affichage = $this->affichage."<li class=\"nav-item\">".
