@@ -68,7 +68,7 @@ Hugo COHEN - Ayoub BOUAZIZ - Steven YANG*/
             $tab_com = $this->modele->get_commentaire();
             foreach ($tab_com as $com) {
                $this->vue->affiche_commentaire($com);
-           }
+            }
        }
       
 

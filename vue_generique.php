@@ -152,14 +152,13 @@ class VueGenerique
             echo "<p class=\"descriptionC\">" . substr($collection['descriptionCollection'], 0, 201) . "</p>";
         echo "</div>";
         echo "</div>";
-
+        echo "</article>";
         for ($i = 0; $i < count($posts); $i++) {
             echo '<div class="div_post_collection" id="div_post_collection' . $posts[$i]['idPost'] . '">';
             $this->affiche_post($posts[$i], $votes[$i], $nb_votes[$i], $tags[$i], $aimer_tags);
             $this->afficher_post_collection_droit($collection, $posts[$i]['idPost']);
             echo "</div>";
         }
-        echo "</article>";
         echo "</section>";
     }
 
@@ -258,8 +257,7 @@ class VueGenerique
         //partager
         echo "<a class=\"partager\" lien=\"$lien\" href=\"#\">Partager</a>";
         //supprimer
-        if (isset($_SESSION['idUser']) && $post['idUser'] == $_SESSION['idUser'])
-            echo "<a class=\"supprimer\" idPost=$post[idPost] href=\"#\">Supprimer</a>";
+        echo "<a class=\"supprimer\" idPost=$post[idPost] href=\"#\">Supprimer</a>";
         echo "</div>";
         echo "</div>";
 
